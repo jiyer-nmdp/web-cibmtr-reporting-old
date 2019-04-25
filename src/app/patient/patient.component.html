@@ -1,0 +1,97 @@
+<div class="container">
+  <div class="col-xs-12">
+    <div class="row">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-xs-8">
+              <div class="panel-title">EHR Launch Context Patient</div>
+            </div>
+            <div class="col-xs-4">
+              <div>FHIR Version: {{ fhirVersionStr }}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-body">
+          <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+              <tr>
+                <td>Name</td>
+                <td>Contact Info</td>
+                <td>Identifier</td>
+                <td>D.O.B.</td>
+                <td>Gender</td>
+                <td>Marital Status</td>
+                <td>CRID</td>
+              </tr>
+              <tr>
+                <td>
+                  {{ (patient.name[0]?.given)[0] }}
+                  {{ patient.name[0]?.family }}
+                </td>
+
+                <td *ngIf="patient?.telecom; else no_contact">
+                  {{ formatContact(patient?.telecom) }}
+                </td>
+                <ng-template #no_contact><td></td></ng-template>
+
+                <td *ngIf="patient.identifier !== ''; else no_identifier">
+                  {{ formatIdentifier(patient?.identifier) }}
+                </td>
+                <ng-template #no_identifier><td></td></ng-template>
+
+                <td>{{ patient.birthDate }}</td>
+                <td>{{ patient.gender }}</td>
+
+                <td>
+                  {{ (patient.maritalStatus?.coding)[0].display }}
+                </td>
+
+                <td>{{ crid }}</td>
+              </tr>
+            </table>
+
+            <!-- ADD Register Button for Fhir server call-->
+            <div>
+              <button
+                type="button"
+                class="btn btn-primary pull-right"
+                (click)="register(patient)"
+                [disabled]="crid"
+              >
+                Register
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xs-12">
+    <div class="row">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <div class="panel-title">Observations</div>
+        </div>
+        <div class="panel-body">
+          <div class="col-xs-2">
+            <label class="notbold">GVHD Count: {{ bundle.total }}</label>
+          </div>
+          <nav>
+            <div class="col-xs-3">
+              <button
+                type="button"
+                class="btn btn-primary"
+                (click)="getDetails(bundle)"
+              >
+                Details
+              </button>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
