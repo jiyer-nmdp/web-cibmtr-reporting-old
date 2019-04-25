@@ -11,7 +11,7 @@ To Run the previously built docker image, simply execute
 
 'docker run -d -p 4200:4200 --name web-cibmtr-reporting web-cibmtr-reporting'
 
-This will execute the application through the grunt server that is installed on the image. Your application will be accessible at: 0.0.0.0:4200.
+This will execute the application through the Node server that is installed on the image. Your application will be accessible at: 0.0.0.0:4200.
 
 ## Development server
 
