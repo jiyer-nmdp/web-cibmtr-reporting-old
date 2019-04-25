@@ -20,33 +20,34 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
   ) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): any {
-    // Post call to get the STU3 patient id by retreving the patient identifier from local storage
-    // return this.http
-    //   .post(AppConfig.PATIENT_IDENTIFIERS, AppConfig.PATIENT_IDENTIFIER_BODY)
-    //   .subscribe(
-    //     (response: IIdentifiers) => {
-    //       let filteredIdentifiers = response.Identifiers.filter(
-    //         identifier => identifier.IDType === "FHIR STU3"
-    //       );
+    //Post call to get the STU3 patient id by retreving the patient identifier from local storage
+    let ID;
+    return this.http
+      .post(AppConfig.PATIENT_IDENTIFIERS, AppConfig.PATIENT_IDENTIFIER_BODY)
+      .subscribe(
+        (response: IIdentifiers) => {
+          let filteredIdentifiers = response.Identifiers.filter(
+            identifier => identifier.IDType === "FHIR STU3"
+          );
 
-    //       // If there is one
-    //       if (filteredIdentifiers) {
-    //         let ID = filteredIdentifiers[0].ID;
-    //         return forkJoin([
-    //           this.patientDetailService.getPatient(ID),
-    //           this.patientDetailService.getObservation(ID)
-    //         ]);
-    //       } else {
-    //         // there is no patient id hence throw the error
-    //         return throwError("Invalid patient identifier");
-    //       }
-    //     },
-    //     error => {
-    //       throwError(error);
-    //     }
-    //   );
+          // If there is one
+          if (filteredIdentifiers) {
+            ID = filteredIdentifiers[0].ID;
+            return forkJoin([
+              this.patientDetailService.getPatient(ID),
+              this.patientDetailService.getObservation(ID)
+            ]);
+          } else {
+            // there is no patient id hence throw the error
+            return throwError("Invalid patient identifier");
+          }
+        },
+        error => {
+          throwError(error);
+        }
+      );
 
-    let ID = "eyQ4e4Hfq5yH.4vWYwqI9PA3";
+    //let ID = "eyQ4e4Hfq5yH.4vWYwqI9PA3";
 
     return forkJoin([
       this.patientDetailService.getPatient(ID),

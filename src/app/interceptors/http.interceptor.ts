@@ -18,9 +18,8 @@ export class CustomHttpInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     //const token: string = localStorage.getItem("token");
-    const token: string =      
-//    "DJIvxxKSuZgdOM_Bm3QZp1M65-VFR4kgFPZOZP1DxHJrHuFNbQSZwFuG9OmqNtnmXUn-BY6Rlbo-SlhqNKTOLlOcn9QrV-Hu37PVcH5kA4iJej2AQOVWvme-Es2ia0I7";
-      "uKItQU2ckeYotWRlXdcM59Dgcvn9iyigTQhIgjummZBLzBbOH_DtRzveBuwyOlsp4QhXuZ2we37Fk2731LvqLApi0W-M6EI6EZqJtXeFgLUtmpiXiENyMh287vRVgX_G";
+    const token: string =
+      "yQFxbtz2HqorwGx4MLHp4EtNCTnTVu060HKnEIwOcezNm0Y3Q-SE_GCwyscMWghFrsrDXWD4cvp8xCoa6hkd8LWUcKD4cJjxaT2EsvINQnogghdGLXGeyuX1jZJmvtRo";
 
     request = request.clone({
       headers: request.headers
