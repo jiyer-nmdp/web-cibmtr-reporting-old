@@ -60,7 +60,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "CibmtrEHRApp:build"
+            "browserTarget": "CibmtrEHRApp:build",
+            "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {

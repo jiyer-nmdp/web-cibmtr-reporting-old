@@ -9,10 +9,11 @@ import { PatientService } from "./patient/patient.service";
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent implements OnInit {
-  
-  constructor(private loginWidget: NmdpWidget,
-      private ref: ChangeDetectorRef,
-      private patientService: PatientService) {
+  constructor(
+    private loginWidget: NmdpWidget,
+    private ref: ChangeDetectorRef,
+    private patientService: PatientService
+  ) {
     this.loginWidget.init("assets/MyConfig.json", "#nmdp-login-container");
   }
 

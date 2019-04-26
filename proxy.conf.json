@@ -1,0 +1,7 @@
+{
+  "/interconnect-aocurprd-oauth/*": {
+    "target": "https://apporchard.epic.com",
+    "secure": false,
+    "logLevel": "debug"
+  }
+}
