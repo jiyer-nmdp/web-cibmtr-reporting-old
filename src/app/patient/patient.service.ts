@@ -1,17 +1,24 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { AppConfig } from "../app.config";
 import { IPatientContext } from "../model/patient.";
-import { Patient } from "../model/patient.";
 
 @Injectable()
 export class PatientService {
   constructor(private http: HttpClient) {}
 
+  headers: HttpHeaders = new HttpHeaders()
+    .set("Content-Type", "application/json")
+    .set("Accept", "application/json")
+    .set("Authorization", `Bearer ${localStorage.getItem("accessToken")}`);
+
   getPatient(identifier): Observable<IPatientContext> {
     return this.http.get<IPatientContext>(
-      AppConfig.PATIENT_ENDPOINT.concat(identifier)
+      AppConfig.PATIENT_ENDPOINT.concat(identifier),
+      {
+        headers: this.headers
+      }
     );
   }
 
@@ -20,7 +27,10 @@ export class PatientService {
       AppConfig.OBSERVATION_ENDPOINT.concat(identifier).concat(
         "&",
         AppConfig.OBSERVATION_CODES
-      )
+      ),
+      {
+        headers: this.headers
+      }
     );
   }
 

@@ -1,5 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
+import { NgModule, APP_INITIALIZER } from "@angular/core";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { HttpModule, XHRBackend, RequestOptions } from "@angular/http";
 import { AppRoutingModule, routingComponents } from "./app.routing.module";
@@ -13,6 +13,8 @@ import { FormsModule } from "@angular/forms";
 import { NmdpWidgetModule } from "@nmdp/nmdp-login/Angular/service/nmdp.widget.module";
 import { NmdpWidget } from "@nmdp/nmdp-login/Angular/service/nmdp.widget";
 import { NMDPHttpInterceptor } from "@nmdp/nmdp-login/Angular/interceptor/nmdp.interceptor";
+import { AppInitService } from "./services/app.init";
+import { AuthorizationService } from "./services/authorization.service";
 
 export function NmdpHttpFactory(
   backend: XHRBackend,
@@ -37,17 +39,30 @@ export function NmdpHttpFactory(
   providers: [
     PatientResolver,
     PatientService,
+    AuthorizationService,
+    AppInitService,
     {
       provide: NMDPHttpInterceptor,
       useFactory: NmdpHttpFactory,
-      deps: [XHRBackend, RequestOptions, NmdpWidget]
+      deps: [XHRBackend, RequestOptions, NmdpWidget],
+      multi: true
     },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: CustomHttpInterceptor,
+      multi: true
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: appInitFactory,
+      deps: [AppInitService],
       multi: true
     }
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
+
+export function appInitFactory(appInitService: AppInitService) {
+  appInitService.initializeApp();
+}

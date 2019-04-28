@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { AppConfig } from "../app.config";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 @Injectable()
 export class AuthorizationService {
@@ -30,7 +30,11 @@ export class AuthorizationService {
       "&client_id=" +
       AppConfig.non_prod_client_id;
 
-    return this.http.post(tokenurl, body, {});
+    return this.http.post(tokenurl, body, {
+      headers: new HttpHeaders({
+        "Content-Type": "application/x-www-form-urlencoded"
+      })
+    });
   }
 
   constructAuthorizationUrl(baseUrl, launchToken) {
@@ -47,19 +51,28 @@ export class AuthorizationService {
     );
   }
 
-  getAuthorizationUrl(data) {
-    var rests = data["rest"];
+  getMetadata(url) {
+    let metadata = url + "/metadata";
+    return this.http.get(metadata, {
+      headers: new HttpHeaders({
+        Accept: "application/fhir+json"
+      })
+    });
+  }
 
-    for (var i = 0; i < rests.length; i++) {
-      var restObj = rests[i],
+  getAuthorizeUrl(data) {
+    let rests = data["rest"];
+
+    for (let i = 0; i < rests.length; i++) {
+      let restObj = rests[i],
         security = restObj["security"],
         extensions = security["extension"];
 
-      for (var j = 0; j < extensions.length; j++) {
-        var array = extensions[j]["extension"];
+      for (let j = 0; j < extensions.length; j++) {
+        let array = extensions[j]["extension"];
 
-        for (var k = 0; k < array.length; k++) {
-          var extension = array[k];
+        for (let k = 0; k < array.length; k++) {
+          let extension = array[k];
 
           if (extension["url"] === "authorize") {
             return extension["valueUri"];
@@ -67,24 +80,22 @@ export class AuthorizationService {
         }
       }
     }
-
     return null;
   }
 
   getTokenUrl(data) {
-    var rests = data["rest"];
+    let rests = data["rest"];
 
-    for (var i = 0; i < rests.length; i++) {
-      var restObj = rests[i],
+    for (let i = 0; i < rests.length; i++) {
+      let restObj = rests[i],
         security = restObj["security"],
         extensions = security["extension"];
 
-      for (var j = 0; j < extensions.length; j++) {
-        var array = extensions[j]["extension"];
+      for (let j = 0; j < extensions.length; j++) {
+        let array = extensions[j]["extension"];
 
-        for (var k = 0; k < array.length; k++) {
-          var extension = array[k];
-
+        for (let k = 0; k < array.length; k++) {
+          let extension = array[k];
           if (extension["url"] === "token") {
             return extension["valueUri"];
           }
@@ -95,13 +106,12 @@ export class AuthorizationService {
     return null;
   }
 
-  getIss(loc) {
-    var urlSegments = loc.$$absUrl.split("?"),
+  getIss(absUrl) {
+    let urlSegments = absUrl.split("?"),
       params = urlSegments[1].split("&");
 
-    for (var i = 0; i < params.length; i++) {
-      var pv = params[i].split("=");
-
+    for (let i = 0; i < params.length; i++) {
+      let pv = params[i].split("=");
       if (pv[0] === "iss") {
         return decodeURIComponent(pv[1]);
       }
@@ -110,13 +120,12 @@ export class AuthorizationService {
     return null;
   }
 
-  getLaunchToken(loc) {
-    var urlSegments = loc.$$absUrl.split("?"),
+  getLaunchToken(absUrl) {
+    let urlSegments = absUrl.split("?"),
       params = urlSegments[1].split("&");
 
-    for (var i = 0; i < params.length; i++) {
-      var pv = params[i].split("=");
-
+    for (let i = 0; i < params.length; i++) {
+      let pv = params[i].split("=");
       if (pv[0] === "launch") {
         return pv[1].split("#")[0];
       }
