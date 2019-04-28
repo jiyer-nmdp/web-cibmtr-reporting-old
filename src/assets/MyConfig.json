@@ -1,5 +1,5 @@
 {
-  "clientId": "0oabzhisirASXMJgZ0h7",
-  "scopes": ["api_demo"],
+  "clientId": "0oajzup4h7oxaeuib0h7",
+  "scopes": ["api_cibmtr_fhir_ehr_client"],
   "environment": "Dev"
 }

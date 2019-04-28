@@ -2,6 +2,8 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.6.
 
+This application registers hematopoietic cell transplant (HCT) or cellular-therapy (CT) recipients to the Center for International Blood and Marrow Transplant Research (CIBMTR) for outcomes research. CIBMTR will match this patient to its own patient records. If none are found, a new CIBMTR Research ID (CRID) is created and assigned to the patient, and the CRID is displayed in the app. This application will also display acute GVHD data that have been entered into GVHD flowsheets.
+
 ## Build and Run on Docker
 
 To build this application as a docker image, first ensure Docker is installed on your machine (https://www.docker.com/). The image can be built by executing:
@@ -16,10 +18,6 @@ This will execute the application through the Node server that is installed on t
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Build
 

@@ -5,14 +5,7 @@ export class AppConfig {
   public static epic_oauth_redirect_url = "https://agnissubmission.b12x.org";
 
   public static PATIENT_IDENTIFIERS =
-    "interconnect-aocurprd-oauth/api/epic/2015/Common/Patient/GetPatientIdentifiers/Patient/Identifiers";
-
-  public static PATIENT_IDENTIFIER_BODY = {
-    PatientID: "TaMyIWDvBh1bq0IrR4419QBAXR6NGaeGWDGkAbexWETUB",
-    PatientIDType: "FHIR",
-    UserID: "1",
-    UserIDType: "External"
-  };
+    "interconnect-aocurprd-oauth/api/epic/2015/Common/Patient/GetPatientIdentifiers/Patient/Identifiers/";
 
   public static PATIENT_ENDPOINT =
     "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/";
