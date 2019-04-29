@@ -8,37 +8,26 @@ import { IPatientContext } from "../model/patient.";
 export class PatientService {
   constructor(private http: HttpClient) {}
 
-  headers: HttpHeaders = new HttpHeaders()
+  ehrHeaders: HttpHeaders = new HttpHeaders()
     .set("Content-Type", "application/json")
     .set("Accept", "application/json")
     .set("Authorization", `Bearer ${localStorage.getItem("accessToken")}`);
 
   getPatient(identifier): Observable<IPatientContext> {
-    return this.http.get<IPatientContext>(
-      AppConfig.PATIENT_ENDPOINT.concat(identifier),
-      {
-        headers: this.headers
-      }
-    );
+    let url = AppConfig.patient_endpoint + identifier;
+    return this.http.get<IPatientContext>(url, {
+      headers: this.ehrHeaders
+    });
   }
 
   getObservation(identifier): Observable<IPatientContext> {
     return this.http.get<IPatientContext>(
-      AppConfig.OBSERVATION_ENDPOINT.concat(identifier).concat(
-        "&",
-        AppConfig.OBSERVATION_CODES
-      ),
+      AppConfig.observation_endpoint
+        .concat(identifier)
+        .concat("&", AppConfig.observation_codes),
       {
-        headers: this.headers
+        headers: this.ehrHeaders
       }
     );
-  }
-
-  getCrid(payload): Observable<any> {
-    let url = "http://localhost:8080/CRID";
-    let headers = {
-      "Content-Type": "application/json"
-    };
-    return this.http.put(url, payload, { headers });
   }
 }

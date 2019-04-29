@@ -21,7 +21,7 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): any {
     //Post call to get the STU3 patient id by retreving the patient identifier from local storage
 
-    let PATIENT_IDENTIFIER_BODY = {
+    let body = {
       PatientID: localStorage.getItem("patient"),
       PatientIDType: "FHIR",
       UserID: "1",
@@ -29,7 +29,7 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
     };
 
     return this.http
-      .post(AppConfig.PATIENT_IDENTIFIERS, PATIENT_IDENTIFIER_BODY)
+      .post(AppConfig.patient_identifiers, body)
       .switchMap((response: IIdentifiers) => {
         let filteredIdentifiers = response.Identifiers.filter(
           identifier => identifier.IDType === "FHIR STU3"

@@ -5,25 +5,42 @@ export interface IPatientContext {
 
 // patient
 export class Patient {
-  public fhirVersionStr: string;
-  public name: Name[];
-  public telecom: string;
-  public identifier: string;
-  public birthDate: string;
-  public gender: string;
-  public maritalStatus: MaritalStatus;
-  public crid: string;
+  fhirVersionStr: string;
+  name: Name[];
+  telecom: string;
+  identifier: Identifier[];
+  birthDate: string;
+  gender: string;
+  maritalStatus: MaritalStatus;
+  crid: string;
+}
+
+class Identifier {
+  use: string;
+  type: IdentifierType;
+  extension: Extension[];
+  system: string;
+  value: string;
+}
+
+class IdentifierType {
+  text: string;
+}
+
+class Extension {
+  valueString: string;
+  url: string;
 }
 
 class Name {
-  public given: string[];
-  public family: string;
+  given: string[];
+  family: string;
 }
 
 class MaritalStatus {
-  public coding: Coding[];
+  coding: Coding[];
 }
 
 class Coding {
-  public display: string;
+  display: string;
 }

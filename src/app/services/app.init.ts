@@ -9,7 +9,7 @@ export class AppInitService {
     private location: Location
   ) {}
 
-  initializeApp(): void {
+  initializeApp(): Promise<any> {
     if (!window.location.href.includes("?")) {
       console.log(
         "Location doesnt seems to have query paremeters..",
@@ -25,9 +25,9 @@ export class AppInitService {
     console.log("authorizationToken", authorizationToken);
 
     if (authorizationToken !== null) {
-      this.authorizationService
+      return this.authorizationService
         .codeToBearerToken(localStorage.get("tokenUrl"), authorizationToken)
-        .subscribe(response => {
+        .then(response => {
           localStorage.set("accessToken", response["access_token"]);
           localStorage.set("patient", response["patient"]);
           this.location.go("/main");
@@ -41,23 +41,25 @@ export class AppInitService {
 
     if (iss && launchToken) {
       localStorage.set("iss", iss);
-      this.authorizationService.getMetadata(iss).subscribe(function(response) {
-        console.log("after fetching the metadata");
+      return this.authorizationService
+        .getMetadata(iss)
+        .then(function(response) {
+          console.log("after fetching the metadata");
 
-        var tokenUrl = this.authorizationService.getTokenUrl(response),
-          authorizeUrl = this.authorizationService.getAuthorizeUrl(response),
-          authorizationCodeUrl = this.authorizationService.constructAuthorizationUrl(
-            authorizeUrl,
-            launchToken
-          );
+          var tokenUrl = this.authorizationService.getTokenUrl(response),
+            authorizeUrl = this.authorizationService.getAuthorizeUrl(response),
+            authorizationCodeUrl = this.authorizationService.constructAuthorizationUrl(
+              authorizeUrl,
+              launchToken
+            );
 
-        console.log("tokenUrl", tokenUrl);
-        console.log("authorizeUrl", authorizeUrl);
-        console.log("authorizationCodeUrl", authorizationCodeUrl);
+          console.log("tokenUrl", tokenUrl);
+          console.log("authorizeUrl", authorizeUrl);
+          console.log("authorizationCodeUrl", authorizationCodeUrl);
 
-        localStorage.set("tokenUrl", tokenUrl);
-        window.location = authorizationCodeUrl;
-      });
+          localStorage.set("tokenUrl", tokenUrl);
+          window.location = authorizationCodeUrl;
+        });
     }
   }
 }

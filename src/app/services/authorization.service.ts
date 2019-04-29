@@ -30,11 +30,13 @@ export class AuthorizationService {
       "&client_id=" +
       AppConfig.non_prod_client_id;
 
-    return this.http.post(tokenurl, body, {
-      headers: new HttpHeaders({
-        "Content-Type": "application/x-www-form-urlencoded"
+    return this.http
+      .post(tokenurl, body, {
+        headers: new HttpHeaders({
+          "Content-Type": "application/x-www-form-urlencoded"
+        })
       })
-    });
+      .toPromise();
   }
 
   constructAuthorizationUrl(baseUrl, launchToken) {
@@ -53,11 +55,13 @@ export class AuthorizationService {
 
   getMetadata(url) {
     let metadata = url + "/metadata";
-    return this.http.get(metadata, {
-      headers: new HttpHeaders({
-        Accept: "application/fhir+json"
+    return this.http
+      .get(metadata, {
+        headers: new HttpHeaders({
+          Accept: "application/fhir+json"
+        })
       })
-    });
+      .toPromise();
   }
 
   getAuthorizeUrl(data) {

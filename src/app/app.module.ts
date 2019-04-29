@@ -15,6 +15,7 @@ import { NmdpWidget } from "@nmdp/nmdp-login/Angular/service/nmdp.widget";
 import { NMDPHttpInterceptor } from "@nmdp/nmdp-login/Angular/interceptor/nmdp.interceptor";
 import { AppInitService } from "./services/app.init";
 import { AuthorizationService } from "./services/authorization.service";
+import { FhirService } from "./patient/fhir.service";
 
 export function NmdpHttpFactory(
   backend: XHRBackend,
@@ -41,6 +42,7 @@ export function NmdpHttpFactory(
     PatientService,
     AuthorizationService,
     AppInitService,
+    FhirService,
     {
       provide: NMDPHttpInterceptor,
       useFactory: NmdpHttpFactory,
@@ -64,5 +66,7 @@ export function NmdpHttpFactory(
 export class AppModule {}
 
 export function appInitFactory(appInitService: AppInitService) {
-  appInitService.initializeApp();
+  return (): Promise<any> => {
+    return appInitService.initializeApp();
+  };
 }

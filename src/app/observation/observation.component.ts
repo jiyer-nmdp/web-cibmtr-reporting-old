@@ -21,12 +21,12 @@ export class ObservationComponent implements OnInit {
         return item.resource.resourceType === "Observation";
       });
       // loop through the above mentioned codes
-      for (let i = 0; i < AppConfig.INPUT_CODES.length; i++) {
+      for (let i = 0; i < AppConfig.codes.length; i++) {
         let matchingEntries = [];
         for (let j = 0; j < observationEntries.length; j++) {
           let matchingEntry = observationEntries[j].resource.code.coding.filter(
             function(coding) {
-              return AppConfig.INPUT_CODES[i] === coding.code;
+              return AppConfig.codes[i] === coding.code;
             }
           );
           if (matchingEntry && matchingEntry.length > 0) {
@@ -34,7 +34,7 @@ export class ObservationComponent implements OnInit {
           }
         }
         if (matchingEntries && matchingEntries.length > 0) {
-          this.codes[AppConfig.INPUT_CODES[i]] = {
+          this.codes[AppConfig.codes[i]] = {
             matchingEntries: matchingEntries,
             text: matchingEntries[0].resource.code.text
           };

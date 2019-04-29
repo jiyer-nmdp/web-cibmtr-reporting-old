@@ -27,25 +27,27 @@
               </tr>
               <tr>
                 <td>
-                  {{ (patient.name[0]?.given)[0] }}
-                  {{ patient.name[0]?.family }}
+                  {{ (ehrpatient.name[0]?.given)[0] }}
+                  {{ ehrpatient.name[0]?.family }}
                 </td>
 
-                <td *ngIf="patient?.telecom; else no_contact">
-                  {{ formatContact(patient?.telecom) }}
+                <td *ngIf="ehrpatient?.telecom; else no_contact">
+                  {{ formatContact(ehrpatient?.telecom) }}
                 </td>
                 <ng-template #no_contact><td></td></ng-template>
 
-                <td *ngIf="patient.identifier !== ''; else no_identifier">
-                  {{ formatIdentifier(patient?.identifier) }}
+                <td
+                  *ngIf="ehrpatient.identifier?.length > 0; else no_identifier"
+                >
+                  {{ formatIdentifier(ehrpatient?.identifier) }}
                 </td>
                 <ng-template #no_identifier><td></td></ng-template>
 
-                <td>{{ patient.birthDate }}</td>
-                <td>{{ patient.gender }}</td>
+                <td>{{ ehrpatient.birthDate }}</td>
+                <td>{{ ehrpatient.gender }}</td>
 
                 <td>
-                  {{ (patient.maritalStatus?.coding)[0].display }}
+                  {{ (ehrpatient.maritalStatus?.coding)[0].display }}
                 </td>
 
                 <td>{{ crid }}</td>
@@ -57,7 +59,7 @@
               <button
                 type="button"
                 class="btn btn-primary pull-right"
-                (click)="register(patient)"
+                (click)="register(ehrpatient)"
                 [disabled]="crid"
               >
                 Register
