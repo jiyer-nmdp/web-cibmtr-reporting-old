@@ -41,6 +41,7 @@ export class AppInitService {
 
     if (iss && launchToken) {
       localStorage.set("iss", iss);
+
       return this.authorizationService
         .getMetadata(iss)
         .then(function(response) {
