@@ -1,0 +1,12 @@
+{
+  "AWSEBDockerrunVersion": 1,
+  "Image": {
+    "Name": "dockerhub.nmdp.org:8443/nmdp/web-cibmtr-reporting:0.0.1-v1.0-SNAPSHOT.0000"
+  },
+  "Ports": [
+    {
+      "ContainerPort": 4200,
+      "HostPort": 8080
+    }
+  ]
+}
