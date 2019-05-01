@@ -2,7 +2,6 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.6.
 
-This application registers hematopoietic cell transplant (HCT) or cellular-therapy (CT) recipients to the Center for International Blood and Marrow Transplant Research (CIBMTR) for outcomes research. CIBMTR will match this patient to its own patient records. If none are found, a new CIBMTR Research ID (CRID) is created and assigned to the patient, and the CRID is displayed in the app. This application will also display acute GVHD data that have been entered into GVHD flowsheets.
 
 ## Build and Run on Docker
 
