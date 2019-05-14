@@ -16,6 +16,7 @@ import { NMDPHttpInterceptor } from "@nmdp/nmdp-login/Angular/interceptor/nmdp.i
 import { AppInitService } from "./services/app.init";
 import { AuthorizationService } from "./services/authorization.service";
 import { FhirService } from "./patient/fhir.service";
+import { LocalStorageModule } from "angular-2-local-storage";
 
 export function NmdpHttpFactory(
   backend: XHRBackend,
@@ -34,7 +35,11 @@ export function NmdpHttpFactory(
     ModalModule.forRoot(),
     FormsModule,
     HttpModule,
-    NmdpWidgetModule.forRoot()
+    NmdpWidgetModule.forRoot(),
+    LocalStorageModule.forRoot({
+      prefix: "cibmtr",
+      storageType: "localStorage"
+    })
   ],
   entryComponents: [ObservationComponent],
   providers: [

@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
     "@nmdp/nmdp-login": "1.0.2",
+    "angular-2-local-storage": "^3.0.2",
     "bootstrap": "^3.4.1",
     "core-js": "^2.5.4",
     "ng4-loading-spinner": "^1.2.3",

@@ -45,35 +45,26 @@ export class PatientComponent implements OnInit {
     let identifiers = ehrpatient.identifier.map(i => i.value);
     identifiers.forEach(identifier => {
       //make a call to FHIR
-      this.fhirService
-        .lookupPatientCrid(identifier)
-        .then(crid => {
+      this.fhirService.lookupPatientCrid(identifier).subscribe(
+        crid => {
           if (crid && crid != undefined) {
             this.crid = crid;
           }
-        })
-        .catch((error: Response) => {
+        },
+        (error: Response) => {
           this.handleError(error, this.fhirApp);
-        });
+        }
+      );
     });
   }
 
   formatIdentifier(identifiers) {
     let identifier = "";
     if (identifiers && identifiers.length > 0) {
-      let filteredIdentifier = identifiers.filter(function(identifier) {
-        if (identifier && identifier.type) {
-          return (
-            identifier.type.text === "EPIC" ||
-            identifier.type.text === "EXTERNAL"
-          );
-        }
-      });
+      for (let i = 0; i < identifiers.length; i++) {
+        identifier = identifier + identifiers[i].value;
 
-      for (let i = 0; i < filteredIdentifier.length; i++) {
-        identifier = identifier + filteredIdentifier[i].value;
-
-        if (i < filteredIdentifier.length - 1) {
+        if (i < identifiers.length - 1) {
           identifier = identifier + ", ";
         }
       }

@@ -7,8 +7,6 @@ export class AuthorizationService {
   constructor(private http: HttpClient) {}
 
   getEhrCode(url) {
-    //url = "https://agnissubmission.b12x.org/?code=2jEBRg3erVcnee9Qa_hVaDK3kHJeVJhb6leKEWiJLjO9mtsRKcW8bUWARmtkEczLR_xwWY2mSueuk-gmdwR9LrgawR0-xiILBRfb7Zy95swsYaBv-noYNVKiwiDHqi4a&state=search"
-
     let segments = url.split("?")[1].split("&");
 
     for (let i = 0; i < segments.length; i++) {
