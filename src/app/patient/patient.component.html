@@ -47,7 +47,7 @@
                 <td>{{ ehrpatient.gender }}</td>
 
                 <td>
-                  {{ (ehrpatient.maritalStatus?.coding)[0].display }}
+                  {{ displayMaritalStatus(ehrpatient.maritalStatus) }}
                 </td>
 
                 <td>{{ crid }}</td>

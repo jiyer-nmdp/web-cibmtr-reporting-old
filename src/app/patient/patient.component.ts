@@ -120,14 +120,25 @@ export class PatientComponent implements OnInit {
     return contact;
   }
 
+  displayMaritalStatus(status) {
+    if (status && status.coding) {
+      return status.coding[0].display;
+    }
+    return "";
+  }
+
   register(ehrpatient: Patient) {
+    let genderLowerCase;
+    if (ehrpatient.gender) {
+      genderLowerCase = ehrpatient.gender.toLowerCase();
+    }
     let payload = {
       ccn: 11054,
       patient: {
         firstName: ehrpatient.name[0].given[0],
         lastName: ehrpatient.name[0].family,
         birthDate: ehrpatient.birthDate,
-        gender: ehrpatient.gender === "male" ? "M" : "F"
+        gender: genderLowerCase === "male" ? "M" : "F"
       }
     };
 
