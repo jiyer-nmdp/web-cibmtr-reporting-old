@@ -1,46 +1,26 @@
 import { Injectable } from "@angular/core";
-import { Headers, RequestOptions, RequestOptionsArgs } from "@angular/http";
-import { NMDPHttpInterceptor } from "@nmdp/nmdp-login/Angular/interceptor/nmdp.interceptor";
 import { AppConfig } from "../app.config";
 import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+import "rxjs/Rx";
+import { CustomHttpClient } from "../client/custom.http.client";
 
 @Injectable()
 export class FhirService {
-  private headers: Headers = new Headers({
-    "Content-type": "application/json"
-  });
-  private options: RequestOptionsArgs = new RequestOptions({
-    headers: this.headers
-  });
-
-  constructor(private http: NMDPHttpInterceptor) {}
+  constructor(private http: CustomHttpClient) {}
 
   lookupPatientCrid(identifier): Observable<any> {
-    let crid = undefined;
-    let url = AppConfig.fhir_patient_lookup.concat(identifier);
-
-    return this.http.get(url, this.options).pipe(
-      map(resp => {
-        let total = resp.json().total;
-        if (total && total > 0) {
-          crid = resp.json().identifiers.filter(identifier => {
-            return identifier.system === "http://cibmtr.org/fhir/crid";
-          });
-          return crid;
-        }
-      })
-    );
+    let fhirGetUrl = AppConfig.cibmtr_fhir_base_url.concat(identifier);
+    return this.http.get(fhirGetUrl);
   }
 
   getCrid(payload): Observable<any> {
-    let url = AppConfig.crid_service_endpoint;
-    return this.http.put(url, payload, this.options);
+    let cridUrl = AppConfig.crid_service_endpoint;
+    return this.http.put(cridUrl, payload);
   }
 
   submitPatient(updatedEhrPatient) {
-    let fhirUrl = AppConfig.cibmtr_fhir_base_url + "/Patient";
-    return this.http.post(fhirUrl, updatedEhrPatient, this.options);
+    let fhirPostUrl = AppConfig.cibmtr_fhir_update_url + "/Patient";
+    return this.http.post(fhirPostUrl, updatedEhrPatient);
   }
 
   handleError(error: any): Observable<any> {

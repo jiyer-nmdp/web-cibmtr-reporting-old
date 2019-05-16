@@ -42,20 +42,57 @@ export class PatientComponent implements OnInit {
   }
 
   checkPatientExistsInFhir(ehrpatient) {
-    let identifiers = ehrpatient.identifier.map(i => i.value);
+    let identifiers = ehrpatient.identifier
+      .filter(
+        i =>
+          i.system !== undefined &&
+          i.system !== "" &&
+          (i.value !== undefined && i.value !== "")
+      )
+      .map(i => encodeURI("".concat(i.system, "|", i.value)));
     identifiers.forEach(identifier => {
       //make a call to FHIR
-      this.fhirService.lookupPatientCrid(identifier).subscribe(
-        crid => {
-          if (crid && crid != undefined) {
-            this.crid = crid;
+      this.fhirService
+        .lookupPatientCrid(identifier)
+        .toPromise()
+        .then(resp => {
+          let total = resp.total;
+          if (total && total > 0) {
+            if (resp.entry) {
+              resp.entry.filter(entry => {
+                if (entry.resource) {
+                  if (
+                    entry.resource.identifier &&
+                    entry.resource.identifier.length > 0
+                  ) {
+                    let filteredCrid = entry.resource.identifier.filter(
+                      i => i.system === "http://cibmtr.org/fhir/crid"
+                    );
+
+                    if (filteredCrid && filteredCrid.length > 0) {
+                      this.crid = filteredCrid[0].value;
+                    }
+                  }
+                }
+              });
+            }
           }
-        },
-        (error: Response) => {
-          this.handleError(error, this.fhirApp);
-        }
-      );
+        })
+        .catch(this.handleErrorv2);
     });
+  }
+
+  private handleErrorv2(error: any): Promise<any> {
+    if (error == null) {
+      error = "undefined";
+    }
+    if (error != null) {
+      console.error("An error occurred" + error);
+      return Promise.reject(error.message || error);
+    } else {
+      console.error("An unknown error occurred");
+      return Promise.reject("Unknown error");
+    }
   }
 
   formatIdentifier(identifiers) {

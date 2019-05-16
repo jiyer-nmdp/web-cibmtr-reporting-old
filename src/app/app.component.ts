@@ -1,7 +1,7 @@
 import { Component, ChangeDetectorRef, OnInit } from "@angular/core";
 import { NmdpWidget } from "@nmdp/nmdp-login/Angular/service/nmdp.widget";
-import { NMDPHttpInterceptor } from "@nmdp/nmdp-login/Angular/interceptor/nmdp.interceptor";
 import { PatientService } from "./patient/patient.service";
+import { CustomHttpClient } from "./client/custom.http.client";
 
 @Component({
   selector: "app-root",
@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    NMDPHttpInterceptor.callbackFunction(this.processTimeout.bind(this));
+    CustomHttpClient.callbackFunction(this.processTimeout.bind(this));
     this.loginWidget.getNewToken((accessToken: any) => {
       this.ref.detectChanges();
     });

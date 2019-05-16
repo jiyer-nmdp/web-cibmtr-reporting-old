@@ -1,7 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule, APP_INITIALIZER } from "@angular/core";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
-import { HttpModule, XHRBackend, RequestOptions } from "@angular/http";
+import { HttpModule } from "@angular/http";
 import { AppRoutingModule, routingComponents } from "./app.routing.module";
 import { AppComponent } from "./app.component";
 import { CustomHttpInterceptor } from "./interceptors/http.interceptor";
@@ -11,20 +11,11 @@ import { ObservationComponent } from "./observation/observation.component";
 import { ModalModule } from "ngx-bootstrap";
 import { FormsModule } from "@angular/forms";
 import { NmdpWidgetModule } from "@nmdp/nmdp-login/Angular/service/nmdp.widget.module";
-import { NmdpWidget } from "@nmdp/nmdp-login/Angular/service/nmdp.widget";
-import { NMDPHttpInterceptor } from "@nmdp/nmdp-login/Angular/interceptor/nmdp.interceptor";
-import { AppInitService } from "./services/app.init";
 import { AuthorizationService } from "./services/authorization.service";
 import { FhirService } from "./patient/fhir.service";
 import { LocalStorageModule } from "angular-2-local-storage";
-
-export function NmdpHttpFactory(
-  backend: XHRBackend,
-  defaultOptions: RequestOptions,
-  nmdpWidget: NmdpWidget
-) {
-  return new NMDPHttpInterceptor(backend, defaultOptions, nmdpWidget);
-}
+import { CustomHttpClient } from "./client/custom.http.client";
+import { AppInitService } from "./services/app.init";
 
 @NgModule({
   declarations: [AppComponent, routingComponents, ObservationComponent],
@@ -48,12 +39,7 @@ export function NmdpHttpFactory(
     AuthorizationService,
     AppInitService,
     FhirService,
-    {
-      provide: NMDPHttpInterceptor,
-      useFactory: NmdpHttpFactory,
-      deps: [XHRBackend, RequestOptions, NmdpWidget],
-      multi: true
-    },
+    CustomHttpClient,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: CustomHttpInterceptor,
