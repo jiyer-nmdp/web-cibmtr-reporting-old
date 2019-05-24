@@ -21,20 +21,25 @@ export class PatientService {
     );
 
   getPatient(identifier): Observable<IPatientContext> {
-    let url = AppConfig.patient_endpoint + identifier;
+    let url =
+      this._localStorageService.get("iss") +
+      "/Patient/" +
+      this._localStorageService.get("patient");
+
     return this.http.get<IPatientContext>(url, {
       headers: this.ehrHeaders
     });
   }
 
   getObservation(identifier): Observable<IPatientContext> {
-    return this.http.get<IPatientContext>(
-      AppConfig.observation_endpoint
-        .concat(identifier)
-        .concat("&", AppConfig.observation_codes),
-      {
-        headers: this.ehrHeaders
-      }
-    );
+    var observationUrl =
+      this._localStorageService.get("iss") +
+      "/Observation?patient=" +
+      this._localStorageService.get("patient") +
+      AppConfig.observation_codes;
+
+    return this.http.get<IPatientContext>(observationUrl, {
+      headers: this.ehrHeaders
+    });
   }
 }
