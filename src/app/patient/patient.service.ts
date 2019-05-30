@@ -21,10 +21,7 @@ export class PatientService {
     );
 
   getPatient(identifier): Observable<IPatientContext> {
-    let url =
-      this._localStorageService.get("iss") +
-      "/Patient/" +
-      this._localStorageService.get("patient");
+    let url = this._localStorageService.get("iss") + "/Patient/" + identifier;
 
     return this.http.get<IPatientContext>(url, {
       headers: this.ehrHeaders
@@ -35,7 +32,7 @@ export class PatientService {
     var observationUrl =
       this._localStorageService.get("iss") +
       "/Observation?patient=" +
-      this._localStorageService.get("patient") +
+      identifier +
       AppConfig.observation_codes;
 
     return this.http.get<IPatientContext>(observationUrl, {
