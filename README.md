@@ -2,6 +2,8 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.6.
 
+The App Currently retriving EHR Patient and Observations and  Save/update in CIBMTR FHIR Server with CRID.
+
 
 ## Build and Run on Docker
 
