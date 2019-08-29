@@ -1,8 +1,6 @@
-
-@import '../node_modules/@nmdp/nmdp-login/css/okta-sign-in.min.css'; 
-@import '../node_modules/@nmdp/nmdp-login/css/okta-theme.css'; 
-@import '../node_modules/@nmdp/nmdp-login/css/nmdp-login.css'; 
-
+@import "../node_modules/@nmdp/nmdp-login/css/okta-sign-in.min.css";
+@import "../node_modules/@nmdp/nmdp-login/css/okta-theme.css";
+@import "../node_modules/@nmdp/nmdp-login/css/nmdp-login.css";
 
 .browsehappy {
   margin: 0.2em 0;
@@ -35,6 +33,11 @@ body {
     line-height: 40px;
     padding-bottom: 19px;
   }
+}
+
+.fixed-panel {
+  height: 450px;
+  overflow-y: auto;
 }
 
 .pull-right {

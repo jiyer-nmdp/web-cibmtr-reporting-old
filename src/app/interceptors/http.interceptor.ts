@@ -19,9 +19,6 @@ export class CustomHttpInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
       map((event: HttpEvent<any>) => {
-        if (event instanceof HttpResponse) {
-          console.log("response ", event);
-        }
         return event;
       })
     );

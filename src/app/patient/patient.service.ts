@@ -21,7 +21,8 @@ export class PatientService {
     );
 
   getPatient(identifier): Observable<IPatientContext> {
-    let url = this._localStorageService.get("iss") + "/Patient/" + identifier;
+    //let url = this._localStorageService.get("iss") + "/Patient/" + identifier;
+    let url = AppConfig.patient_endpoint + identifier;
 
     return this.http.get<IPatientContext>(url, {
       headers: this.ehrHeaders
@@ -29,6 +30,14 @@ export class PatientService {
   }
 
   getObservation(identifier): Observable<IPatientContext> {
+    return this.http.get<IPatientContext>(
+      AppConfig.observation_endpoint +
+        "?patient=".concat(identifier).concat("&", AppConfig.observation_codes),
+      {
+        headers: this.ehrHeaders
+      }
+    );
+    /* Unable to retrive url from localstorage because of url is formed with DSTU2 but we are referring to STU3
     var observationUrl =
       this._localStorageService.get("iss") +
       "/Observation?patient=" +
@@ -37,6 +46,6 @@ export class PatientService {
 
     return this.http.get<IPatientContext>(observationUrl, {
       headers: this.ehrHeaders
-    });
+    });*/
   }
 }

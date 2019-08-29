@@ -1,4 +1,14 @@
 <div class="container">
+  <div class="col-xs-12" *ngIf="cridCallComplete == true && !crid">
+    <div class="row">
+      <div class="col-xs-12">
+        <p class="alert alert-danger">
+          <strong>Please register the Patient with CIBMTR</strong>
+        </p>
+      </div>
+    </div>
+  </div>
+
   <div class="col-xs-12">
     <div class="row">
       <div class="panel panel-primary">
@@ -18,23 +28,23 @@
             <table class="table table-striped table-bordered table-hover">
               <tr>
                 <td>Name</td>
-                <td>Contact Info</td>
+                <!--<td>Contact Info</td>-->
                 <td>Identifier</td>
                 <td>D.O.B.</td>
                 <td>Gender</td>
-                <td>Marital Status</td>
+                <!--<td>Marital Status</td>-->
                 <td>CRID</td>
               </tr>
               <tr>
                 <td>
-                  {{ (ehrpatient.name[0]?.given)[0] }}
+                  {{ getGivenName(ehrpatient) }}
                   {{ ehrpatient.name[0]?.family }}
                 </td>
 
-                <td *ngIf="ehrpatient?.telecom; else no_contact">
+                <!--<td *ngIf="ehrpatient?.telecom; else no_contact">
                   {{ formatContact(ehrpatient?.telecom) }}
                 </td>
-                <ng-template #no_contact><td></td></ng-template>
+                <ng-template #no_contact><td></td></ng-template>-->
 
                 <td
                   *ngIf="ehrpatient.identifier?.length > 0; else no_identifier"
@@ -46,9 +56,9 @@
                 <td>{{ ehrpatient.birthDate }}</td>
                 <td>{{ ehrpatient.gender }}</td>
 
-                <td>
+                <!--<td>
                   {{ displayMaritalStatus(ehrpatient.maritalStatus) }}
-                </td>
+                </td>-->
 
                 <td>{{ crid }}</td>
               </tr>
@@ -59,7 +69,7 @@
               <button
                 type="button"
                 class="btn btn-primary pull-right"
-                (click)="register(ehrpatient)"
+                (click)="register($event, ehrpatient)"
                 [disabled]="crid"
               >
                 Register
@@ -71,15 +81,15 @@
     </div>
   </div>
 
-  <div class="col-xs-12">
-    <div class="row">
+  <div class="col-xs-12" *ngIf="cridCallComplete == true && crid">
+    <div class="row" *ngIf="crid">
       <div class="panel panel-primary">
         <div class="panel-heading">
-          <div class="panel-title">Observations</div>
+          <div class="panel-title">Collections</div>
         </div>
         <div class="panel-body">
           <div class="col-xs-2">
-            <label class="notbold">GVHD Count: {{ bundle.total }}</label>
+            <label class="notbold"> aGVHD Count: {{ bundle.total }}</label>
           </div>
           <nav>
             <div class="col-xs-3">

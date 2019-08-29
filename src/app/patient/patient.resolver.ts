@@ -14,7 +14,6 @@ import {
   LocalStorageModule,
   LocalStorageService
 } from "angular-2-local-storage";
-
 @Injectable()
 export class PatientResolver implements Resolve<IPatientContext[]> {
   constructor(

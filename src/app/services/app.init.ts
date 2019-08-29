@@ -23,8 +23,6 @@ export class AppInitService {
       window.location.href
     );
 
-    console.log("authorizationToken", authorizationToken);
-
     if (authorizationToken !== null) {
       return this.authorizationService
         .codeToBearerToken(
@@ -50,18 +48,12 @@ export class AppInitService {
       this._localStorageService.set("iss", iss);
 
       return this.authorizationService.getMetadata(iss).then(response => {
-        console.log("after fetching the metadata");
-
         let tokenUrl = this.authorizationService.getTokenUrl(response),
           authorizeUrl = this.authorizationService.getAuthorizeUrl(response),
           authorizationCodeUrl = this.authorizationService.constructAuthorizationUrl(
             authorizeUrl,
             launchToken
           );
-
-        console.log("tokenUrl", tokenUrl);
-        console.log("authorizeUrl", authorizeUrl);
-        console.log("authorizationCodeUrl", authorizationCodeUrl);
 
         this._localStorageService.set("tokenUrl", tokenUrl);
         window.location.href = authorizationCodeUrl;

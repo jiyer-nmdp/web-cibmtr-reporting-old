@@ -1,11 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 import { Patient } from "../model/patient.";
 import { ActivatedRoute } from "@angular/router";
-import { throwError } from "rxjs";
+import { throwError, Observable } from "rxjs";
 import { ObservationComponent } from "../observation/observation.component";
 import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
-import { PatientService } from "./patient.service";
 import { FhirService } from "./fhir.service";
+import { ObservationService } from "../observation/observation.service";
+import { NgForOf } from "@angular/common";
+import { take } from "rxjs/operators";
 
 @Component({
   selector: "app-main",
@@ -15,15 +17,19 @@ export class PatientComponent implements OnInit {
   bsModalRef: BsModalRef;
   ehrpatient: Patient;
   bundle: any;
+  cibmtrObservations: any;
   fhirVersionStr: string = "STU3";
   crid: string;
   fhirApp: string = "FHIR";
   cridApp: string = "CRID";
+  lookupPatientCrid$: Observable<any>;
+  crid$: Observable<any>;
+  cridCallComplete: Boolean = false;
 
   constructor(
     private _route: ActivatedRoute,
     private modalService: BsModalService,
-    private patientService: PatientService,
+    private observationService: ObservationService,
     private fhirService: FhirService
   ) {}
 
@@ -41,7 +47,16 @@ export class PatientComponent implements OnInit {
     );
   }
 
+  getGivenName(ehrpatient) {
+    let givenName;
+    if (ehrpatient.name[0].given.length > 0) {
+      givenName = ehrpatient.name[0].given.join(" ");
+    }
+    return givenName;
+  }
+
   checkPatientExistsInFhir(ehrpatient) {
+    this.cridCallComplete = false;
     let identifiers = ehrpatient.identifier
       .filter(
         i =>
@@ -54,6 +69,7 @@ export class PatientComponent implements OnInit {
       //make a call to FHIR
       this.fhirService
         .lookupPatientCrid(identifier)
+        .pipe(take(1))
         .toPromise()
         .then(resp => {
           let total = resp.total;
@@ -78,6 +94,7 @@ export class PatientComponent implements OnInit {
             }
           }
         })
+        .finally(() => (this.cridCallComplete = true))
         .catch(this.handleErrorv2);
     });
   }
@@ -127,45 +144,60 @@ export class PatientComponent implements OnInit {
     return "";
   }
 
-  register(ehrpatient: Patient) {
+  register(e: any, ehrpatient: Patient) {
+    this.cridCallComplete = false;
+    e.stopPropagation();
+    e.preventDefault();
     let genderLowerCase;
     if (ehrpatient.gender) {
       genderLowerCase = ehrpatient.gender.toLowerCase();
     }
+
     let payload = {
       ccn: 11054,
       patient: {
-        firstName: ehrpatient.name[0].given[0],
+        firstName: this.getGivenName(ehrpatient),
         lastName: ehrpatient.name[0].family,
         birthDate: ehrpatient.birthDate,
         gender: genderLowerCase === "male" ? "M" : "F"
       }
     };
 
-    this.fhirService.getCrid(payload).subscribe(
-      result => {
-        // look for Perfect Match
-        if (result && result.perfectMatch) {
-          this.crid = result.perfectMatch[0].crid;
-        } else {
-          this.crid = result.crid;
-        }
+    this.fhirService
+      .getCrid(payload)
+      .pipe(take(1))
+      .subscribe(
+        result => {
+          // look for Perfect Match
+          if (result && result.perfectMatch) {
+            this.crid = result.perfectMatch[0].crid;
+          } else {
+            this.crid = result.crid;
+          }
 
-        let updatedEhrPatient = this.appendCridIdentifier(
-          ehrpatient,
-          this.crid
-        );
+          let updatedEhrPatient = this.appendCridIdentifier(
+            ehrpatient,
+            this.crid
+          );
 
-        //Now that we got the CRID save the Info into FHIR
-        this.fhirService.submitPatient(updatedEhrPatient).subscribe(
-          result => {
-            console.log("Successfully Updated the EHR Patient into FHIR");
-          },
-          error => this.handleError(error, this.fhirApp)
-        );
-      },
-      error => this.handleError(error, this.cridApp)
-    );
+          //Now that we got the CRID save the Info into FHIR
+          this.fhirService
+            .submitPatient(updatedEhrPatient)
+            .retry(0)
+            .subscribe(
+              () => {
+                console.log("Submitted patient");
+              },
+              error => {
+                this.handleError(error, this.fhirApp);
+              }
+            );
+        },
+        error => {
+          this.handleError(error, this.cridApp);
+        },
+        () => (this.cridCallComplete = true)
+      );
   }
 
   // Update the existing ehr patient with the CRID value
@@ -185,9 +217,34 @@ export class PatientComponent implements OnInit {
   }
 
   getDetails(bundle: any) {
-    this.bsModalRef = this.modalService.show(ObservationComponent, {
-      initialState: bundle
-    });
+    // make a http get call to fhir to get the list of saved observations
+    let savedBundle = {};
+    if (
+      bundle &&
+      bundle.entry &&
+      bundle.entry.length > 0 &&
+      bundle.entry[0].resource.subject
+    ) {
+      const subj = bundle.entry[0].resource.subject.reference;
+      const now = new Date();
+      this.observationService.getCibmtrObservations(subj).subscribe(
+        response => (savedBundle = response),
+        error =>
+          console.log(
+            "error occurred while fetching saved observations",
+            error
+          ),
+        () => {
+          this.bsModalRef = this.modalService.show(ObservationComponent, {
+            initialState: {
+              bundle,
+              savedBundle,
+              now
+            }
+          });
+        }
+      );
+    }
   }
 
   getPatientidetifier() {

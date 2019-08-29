@@ -16,6 +16,8 @@ import { FhirService } from "./patient/fhir.service";
 import { LocalStorageModule } from "angular-2-local-storage";
 import { CustomHttpClient } from "./client/custom.http.client";
 import { AppInitService } from "./services/app.init";
+import { ObservationService } from "./observation/observation.service";
+import { AlertModule } from "ngx-bootstrap/alert";
 
 @NgModule({
   declarations: [AppComponent, routingComponents, ObservationComponent],
@@ -27,6 +29,7 @@ import { AppInitService } from "./services/app.init";
     FormsModule,
     HttpModule,
     NmdpWidgetModule.forRoot(),
+    AlertModule.forRoot(),
     LocalStorageModule.forRoot({
       prefix: "cibmtr",
       storageType: "localStorage"
@@ -36,6 +39,7 @@ import { AppInitService } from "./services/app.init";
   providers: [
     PatientResolver,
     PatientService,
+    ObservationService,
     AuthorizationService,
     AppInitService,
     FhirService,
