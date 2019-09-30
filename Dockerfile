@@ -12,12 +12,14 @@ COPY package.json /usr/src/app/
 # Multiple registries - NMDP scope Login Widget and Angular Libraries
 COPY .npmrc /usr/src/app/
 
+# Install Angular Cli globally 
 RUN npm install -g @angular/cli
 
+# Install Node Modules
 RUN npm install
 
 # add app
 COPY . /usr/src/app
 
 # start app
-CMD ng serve --host 0.0.0.0 --disable-host-check
+CMD ng serve --host 0.0.0.0 --disable-host-check 

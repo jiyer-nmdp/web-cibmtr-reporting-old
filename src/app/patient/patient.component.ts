@@ -208,7 +208,7 @@ export class PatientComponent implements OnInit {
         ...ehrpatient.identifier,
         {
           use: "official",
-          system: "http://cibmtr.org/fhir/crid",
+          system: "http://cibmtr.org/identifier/CRID",
           value: crid
         }
       ]

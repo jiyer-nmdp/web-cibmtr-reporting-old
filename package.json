@@ -1,6 +1,6 @@
 {
   "name": "cibmtr-ehrapp",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -28,7 +28,7 @@
     "ngx-bootstrap": "^4.0.1",
     "rxjs": "6.3.3",
     "rxjs-compat": "6.3.3",
-    "tslib": "^1.9.0",
+    "tslib": "^1.10.0",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
