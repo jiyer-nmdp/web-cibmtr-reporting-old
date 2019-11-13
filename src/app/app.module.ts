@@ -18,9 +18,15 @@ import { CustomHttpClient } from "./client/custom.http.client";
 import { AppInitService } from "./services/app.init";
 import { ObservationService } from "./observation/observation.service";
 import { AlertModule } from "ngx-bootstrap/alert";
+import { DialogComponent } from "./dialog/dialog.component";
 
 @NgModule({
-  declarations: [AppComponent, routingComponents, ObservationComponent],
+  declarations: [
+    AppComponent,
+    routingComponents,
+    ObservationComponent,
+    DialogComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -35,7 +41,7 @@ import { AlertModule } from "ngx-bootstrap/alert";
       storageType: "localStorage"
     })
   ],
-  entryComponents: [ObservationComponent],
+  entryComponents: [ObservationComponent, DialogComponent],
   providers: [
     PatientResolver,
     PatientService,

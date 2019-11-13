@@ -42,7 +42,7 @@ export class ObservationService {
   getCibmtrObservations(subject): Observable<any> {
     const url =
       AppConfig.cibmtr_fhir_update_url +
-      "/Observation?subject=" +
+      "Observation?subject=" +
       subject +
       "&_total=accurate&_count=1000";
     return this.http.get(url);

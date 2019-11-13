@@ -12,6 +12,7 @@ const routes: Routes = [
   {
     path: "main",
     component: PatientComponent,
+    pathMatch: "full",
     resolve: {
       pageData: PatientResolver
     }

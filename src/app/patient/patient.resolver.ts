@@ -4,30 +4,27 @@ import {
   RouterStateSnapshot,
   Resolve
 } from "@angular/router";
-import { forkJoin, throwError } from "rxjs";
+import { BsModalRef } from "ngx-bootstrap/modal";
+import { forkJoin } from "rxjs";
 import { IPatientContext } from "../model/patient.";
 import { PatientService } from "./patient.service";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { AppConfig } from "../app.config";
-import { IIdentifiers } from "../model/identifiers";
-import {
-  LocalStorageModule,
-  LocalStorageService
-} from "angular-2-local-storage";
+import { LocalStorageService } from "angular-2-local-storage";
 @Injectable()
 export class PatientResolver implements Resolve<IPatientContext[]> {
+  bsModalRef: BsModalRef;
   constructor(
     private patientDetailService: PatientService,
-    private http: HttpClient,
     private _localStorageService: LocalStorageService
   ) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): any {
-    //Post call to get the STU3 patient id by retreving the patient identifier from local storage
+    //Commented the below code as EPIC STU3 identifiers
 
-    let body = {
+    //Post call to get the STU3 patient id by retreving the patient identifier from local storage
+    /*let body = {
       PatientID: this._localStorageService.get("patient"),
       PatientIDType: "FHIR",
+
       UserID: "1",
       UserIDType: "External"
     };
@@ -46,20 +43,19 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
       })
       .switchMap((response: IIdentifiers) => {
         let filteredIdentifiers = response.Identifiers.filter(
-          identifier => identifier.IDType === "FHIR STU3"
-        );
+          identifier => identifier.IDType === "FHIR STU3"s
+        );*/
 
-        // If there is one
-        if (filteredIdentifiers) {
-          let ID = filteredIdentifiers[0].ID;
-          return forkJoin([
-            this.patientDetailService.getPatient(ID),
-            this.patientDetailService.getObservation(ID)
-          ]);
-        } else {
-          // there is no patient id hence throw the error
-          return throwError("Invalid patient identifier");
-        }
-      });
+    // if (!this.nmdpWidget.isLoggedIn()) {
+    //   return;
+    // }
+
+    //let decodedValue = this.getDecodedAccessToken(this.nmdpWidget.getAccessToken());
+
+    let id = this._localStorageService.get("patient");
+    return forkJoin([
+      this.patientDetailService.getPatient(id),
+      this.patientDetailService.getObservation(id)
+    ]);
   }
 }

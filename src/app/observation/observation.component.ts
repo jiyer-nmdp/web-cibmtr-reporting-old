@@ -3,6 +3,8 @@ import { AppConfig } from "../app.config";
 import { BsModalRef } from "ngx-bootstrap/modal";
 import { ObservationService } from "./observation.service";
 import { Observable } from "rxjs";
+import { LocalStorageService } from "angular-2-local-storage";
+
 @Component({
   selector: "app-observation",
   templateUrl: "./observation.component.html"
@@ -10,7 +12,8 @@ import { Observable } from "rxjs";
 export class ObservationComponent implements OnInit {
   constructor(
     public bsModalRef: BsModalRef,
-    public observationService: ObservationService
+    public observationService: ObservationService,
+    private _localStorageService: LocalStorageService
   ) {}
   bundle: any;
   savedBundle: any;
@@ -210,7 +213,7 @@ export class ObservationComponent implements OnInit {
     flattenSelectedEntries.forEach(selectedEntry => {
       let Ehrid = selectedEntry.resource.id;
       selectedEntry.resource.extension = this.buildExtensionArray(
-        AppConfig.observation_endpoint + "/" + Ehrid
+        this._localStorageService.get("iss") + "/Observation"  + "/" + Ehrid
       );
       selectedResources.push(selectedEntry.resource);
     });

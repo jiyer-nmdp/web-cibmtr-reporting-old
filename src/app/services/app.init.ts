@@ -2,17 +2,15 @@ import { Injectable, NgZone } from "@angular/core";
 import { AuthorizationService } from "./authorization.service";
 import { Location } from "@angular/common";
 import { LocalStorageService } from "angular-2-local-storage";
+
 @Injectable()
 export class AppInitService {
   constructor(
     private authorizationService: AuthorizationService,
     private location: Location,
-    private _localStorageService: LocalStorageService,
-    private zone: NgZone
+    private _localStorageService: LocalStorageService
   ) {}
-
   initializeApp(): Promise<any> {
-    return this.zone.runOutsideAngular(() => {
       if (!window.location.href.includes("?")) {
         console.log(
           "Location doesnt seems to have query paremeters..",
@@ -36,8 +34,8 @@ export class AppInitService {
               "accessToken",
               response["access_token"]
             );
-            this._localStorageService.set("patient", response["patient"]);
-            this.location.go("/main");
+            this._localStorageService.set("patient", response["patient"]);            
+            this.location.go("/main");            
           });
       }
 
@@ -61,6 +59,5 @@ export class AppInitService {
           window.location.href = authorizationCodeUrl;
         });
       }
-    });
   }
 }

@@ -174,9 +174,10 @@ export class CustomHttpClient {
    * @returns {RequestOptionsArgs}
    */
   private requestOptions(): any {
-    let accessToken = this.nmdpWidget.getAccessToken();
     //If there is a valid access token proceeed with the request and
     //add the bearer token to the header
+
+    let accessToken = this.nmdpWidget.getAccessToken();
     if (accessToken) {
       return {
         headers: new HttpHeaders()
@@ -191,10 +192,6 @@ export class CustomHttpClient {
       );
     }
   }
-
-  /**
-   * Before any Request.
-   */
   private beforeRequest(): void {
     this.isActive = this.nmdpWidget.markActive(
       CustomHttpClient.timeoutCallback

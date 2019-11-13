@@ -13,6 +13,7 @@ export class Patient {
   gender: string;
   maritalStatus: MaritalStatus;
   crid: string;
+  center: string;
 }
 
 class Identifier {

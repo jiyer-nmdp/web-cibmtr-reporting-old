@@ -12,40 +12,50 @@ export class PatientService {
     private _localStorageService: LocalStorageService
   ) {}
 
-  ehrHeaders: HttpHeaders = new HttpHeaders()
-    .set("Content-Type", "application/json")
-    .set("Accept", "application/json")
-    .set(
-      "Authorization",
-      `Bearer ${this._localStorageService.get("accessToken")}`
-    );
-
   getPatient(identifier): Observable<IPatientContext> {
-    //let url = this._localStorageService.get("iss") + "/Patient/" + identifier;
-    let url = AppConfig.patient_endpoint + identifier;
-
+    let url = this._localStorageService.get("iss") + "/Patient/" + identifier;
+    //let url ="https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/" +
+    identifier;
     return this.http.get<IPatientContext>(url, {
-      headers: this.ehrHeaders
+      headers: this.buildEhrHeaders()
     });
   }
 
   getObservation(identifier): Observable<IPatientContext> {
     return this.http.get<IPatientContext>(
-      AppConfig.observation_endpoint +
-        "?patient=".concat(identifier).concat("&", AppConfig.observation_codes),
+      this._localStorageService.get("iss") +
+        "/Observation?patient=" +
+        identifier +
+        "&" +
+        AppConfig.observation_codes,
       {
-        headers: this.ehrHeaders
+        headers: this.buildEhrHeaders()
       }
     );
-    /* Unable to retrive url from localstorage because of url is formed with DSTU2 but we are referring to STU3
-    var observationUrl =
-      this._localStorageService.get("iss") +
-      "/Observation?patient=" +
-      identifier +
-      AppConfig.observation_codes;
+  }
 
-    return this.http.get<IPatientContext>(observationUrl, {
-      headers: this.ehrHeaders
-    });*/
+  /*getObservation(identifier): Observable<IPatientContext> {
+    return this.http.get<IPatientContext>(
+      "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation?patient=" +
+        identifier +
+        "&" +
+        AppConfig.observation_codes,
+      {
+        headers: this.buildEhrHeaders()
+      }
+    );
+  }*/
+
+  buildEhrHeaders() {
+    let ehrHeaders: HttpHeaders = new HttpHeaders()
+      .set("Content-Type", "application/json")
+      .set("Accept", "application/json")
+      .set(
+        "Authorization",
+        //"Bearer mJuux-KLDyyP3kULvJNralCxlLFCukXdHjIt8GCgGHapCkoVryk1rcj-KUge0dA2gWtY2dhXsPeF08MsWHLZUnm5JXWoJcnPuRHfFQdV8plBDKDZjIggjO9HlyIuDzwg"
+        `Bearer ${this._localStorageService.get("accessToken")}`
+      );
+
+    return ehrHeaders;
   }
 }

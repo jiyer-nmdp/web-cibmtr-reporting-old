@@ -8,7 +8,6 @@ export class AuthorizationService {
 
   getEhrCode(url) {
     let segments = url.split("?")[1].split("&");
-
     for (let i = 0; i < segments.length; i++) {
       if (segments[i].substr(0, 5) === "code=") {
         return segments[i].replace("code=", "").split("#")[0];
