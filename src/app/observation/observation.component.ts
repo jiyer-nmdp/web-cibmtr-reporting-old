@@ -26,12 +26,13 @@ export class ObservationComponent implements OnInit {
   selectedUpdatedEntries = [];
   selectedNewResources = [];
   selectedUpdatedResources = [];
-
+  psScope: string;
   success: boolean;
   fail: boolean;
 
   ngOnInit() {
     let now = this.now;
+    let psScope = this.psScope;
     let entries = this.bundle.entry;
     let savedEntries = this.savedBundle.entry;
     if (entries && entries.length > 0) {
@@ -132,7 +133,7 @@ export class ObservationComponent implements OnInit {
     );
     if (this.selectedNewResources && this.selectedNewResources.length > 0) {
       this.observationService
-        .postNewRecords(this.selectedNewResources)
+        .postNewRecords(this.selectedNewResources, this.psScope)
         .subscribe(
           response => {
             let id = response.extension[0].valueUri.substring(
@@ -172,7 +173,7 @@ export class ObservationComponent implements OnInit {
       this.selectedUpdatedResources.length > 0
     ) {
       this.observationService
-        .postUpdatedRecords(this.selectedUpdatedResources)
+        .postUpdatedRecords(this.selectedUpdatedResources, this.psScope)
         .subscribe(
           response => {
             Array.prototype.concat
@@ -213,7 +214,7 @@ export class ObservationComponent implements OnInit {
     flattenSelectedEntries.forEach(selectedEntry => {
       let Ehrid = selectedEntry.resource.id;
       selectedEntry.resource.extension = this.buildExtensionArray(
-        this._localStorageService.get("iss") + "/Observation"  + "/" + Ehrid
+        this._localStorageService.get("iss") + "/Observation" + "/" + Ehrid
       );
       selectedResources.push(selectedEntry.resource);
     });
