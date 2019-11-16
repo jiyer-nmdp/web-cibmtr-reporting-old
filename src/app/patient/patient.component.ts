@@ -49,11 +49,13 @@ export class PatientComponent implements OnInit {
         });
         this.bsModalRef.content.onClose.subscribe(result => {
           if (result === "Continue") {
-            this.subscribeRouteData(this.bsModalRef.content.currentItem.value);
+            this.subscribeRouteData(
+              "rc_" + this.bsModalRef.content.currentItem.value
+            );
           }
         });
       } else {
-        this.subscribeRouteData(cibmtrCenters[0]);
+        this.subscribeRouteData("rc_" + cibmtrCenters[0].value);
       }
     });
   }
@@ -142,8 +144,11 @@ export class PatientComponent implements OnInit {
     let mrn = ehrpatient.identifier
       .filter(i => i.type !== undefined && i.type.text === "MRN")
       .map(i => encodeURI("".concat(i.system, "|", i.value)));
+    let encodedScope = encodeURI(
+      "".concat(AppConfig.cibmtr_centers_namespace, "|", selectedScope)
+    );
     this.fhirService
-      .lookupPatientCrid(mrn.concat(`&_security=${selectedScope}`).join(""))
+      .lookupPatientCrid(mrn.concat(`&_security=${encodedScope}`).join(""))
       .pipe(take(1))
       .toPromise()
       .then(resp => {
@@ -248,7 +253,7 @@ export class PatientComponent implements OnInit {
     }
 
     let payload = {
-      ccn: this.psScope,
+      ccn: this.psScope.substring(3),
       patient: {
         firstName: this.getGivenName(ehrpatient),
         lastName: ehrpatient.name[0].family,
