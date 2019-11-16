@@ -28,6 +28,7 @@ export class PatientComponent implements OnInit {
   lookupPatientCrid$: Observable<any>;
   crid$: Observable<any>;
   cridCallComplete: Boolean = false;
+  psScope: string;
 
   constructor(
     private _route: ActivatedRoute,
@@ -48,11 +49,13 @@ export class PatientComponent implements OnInit {
         });
         this.bsModalRef.content.onClose.subscribe(result => {
           if (result === "Continue") {
-            this.subscribeRouteData(this.bsModalRef.content.currentItem.value);
+            this.subscribeRouteData(
+              "rc_" + this.bsModalRef.content.currentItem.value
+            );
           }
         });
       } else {
-        this.subscribeRouteData(cibmtrCenters[0]);
+        this.subscribeRouteData("rc_" + cibmtrCenters[0].value);
       }
     });
   }
@@ -71,7 +74,7 @@ export class PatientComponent implements OnInit {
 
     //Scope format - "l1_role_rc_10121_fn3"
     scopes.forEach((scope, index) => {
-      scopes[index] = scope.match(/rc_(\d+)_fn3/)[1];
+      scopes[index] = scope.match(/(rc_\d+)_fn3/)[1];
     });
     scopes = scopes.join(",");
     return this.fetchData(scopes);
@@ -137,12 +140,15 @@ export class PatientComponent implements OnInit {
    */
   retreiveFhirPatient(ehrpatient, selectedScope) {
     this.cridCallComplete = false;
-    ehrpatient.center = selectedScope;
+    this.psScope = selectedScope;
     let mrn = ehrpatient.identifier
       .filter(i => i.type !== undefined && i.type.text === "MRN")
       .map(i => encodeURI("".concat(i.system, "|", i.value)));
+    let encodedScope = encodeURI(
+      "".concat(AppConfig.cibmtr_centers_namespace, "|", selectedScope)
+    );
     this.fhirService
-      .lookupPatientCrid(mrn.concat(`&_security=${selectedScope}`).join(""))
+      .lookupPatientCrid(mrn.concat(`&_security=${encodedScope}`).join(""))
       .pipe(take(1))
       .toPromise()
       .then(resp => {
@@ -247,7 +253,7 @@ export class PatientComponent implements OnInit {
     }
 
     let payload = {
-      ccn: ehrpatient.center,
+      ccn: this.psScope.substring(3),
       patient: {
         firstName: this.getGivenName(ehrpatient),
         lastName: ehrpatient.name[0].family,
@@ -306,7 +312,7 @@ export class PatientComponent implements OnInit {
         security: [
           {
             system: AppConfig.cibmtr_centers_namespace,
-            code: ehrpatient.center
+            code: this.psScope
           }
         ]
       },
@@ -337,23 +343,27 @@ export class PatientComponent implements OnInit {
     ) {
       const subj = bundle.entry[0].resource.subject.reference;
       const now = new Date();
-      this.observationService.getCibmtrObservations(subj).subscribe(
-        response => (savedBundle = response),
-        error =>
-          console.log(
-            "error occurred while fetching saved observations",
-            error
-          ),
-        () => {
-          this.bsModalRef = this.modalService.show(ObservationComponent, {
-            initialState: {
-              bundle,
-              savedBundle,
-              now
-            }
-          });
-        }
-      );
+      const psScope = this.psScope;
+      this.observationService
+        .getCibmtrObservations(subj, this.psScope)
+        .subscribe(
+          response => (savedBundle = response),
+          error =>
+            console.log(
+              "error occurred while fetching saved observations",
+              error
+            ),
+          () => {
+            this.bsModalRef = this.modalService.show(ObservationComponent, {
+              initialState: {
+                bundle,
+                savedBundle,
+                now,
+                psScope
+              }
+            });
+          }
+        );
     }
   }
 
