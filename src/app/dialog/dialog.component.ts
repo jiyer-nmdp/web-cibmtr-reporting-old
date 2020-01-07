@@ -26,7 +26,7 @@ export class DialogComponent implements OnInit {
         this.currentItem = item;
       }
     });
-    this.onClose.next("rowSelected");
+    this.onClose.next("rowSelected"); 
   }
 
   public onContinue(): void {

@@ -16,7 +16,7 @@ export class AppConfig {
 
   public static cibmtr_centers_namespace =
     "http://cibmtr.org/codesystem/transplant-center";
-  
+
   //Middleware URLs
 
   public static crid_service_endpoint =

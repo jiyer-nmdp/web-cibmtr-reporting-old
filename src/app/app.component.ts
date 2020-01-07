@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
   logout() {
     this.loginWidget.signout((err: any) => {
       this.ref.detectChanges();
-      this.ngOnInit();
+       this.ngOnInit();
     });
   }
 
