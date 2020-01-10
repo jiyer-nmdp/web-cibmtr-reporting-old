@@ -14,7 +14,7 @@ export class ObservationService {
     return from(selectedResources).pipe(
       concatMap(selectedResource => {
         return this.http.post(
-          AppConfig.cibmtr_fhir_update_url + "/Observation",
+          AppConfig.cibmtr_fhir_update_url + "Observation",
           {
             ...selectedResource,
             meta: {
@@ -42,7 +42,7 @@ export class ObservationService {
     return from(Object.keys(sMap)).pipe(
       concatMap(key => {
         return this.http.put(
-          AppConfig.cibmtr_fhir_update_url + "/Observation/" + key,
+          AppConfig.cibmtr_fhir_update_url + "Observation/" + key,
           {
             ...sMap[key],
             meta: {
