@@ -73,11 +73,13 @@ export class PatientComponent implements OnInit {
     );
 
     //Scope format - "l1_role_rc_10121_fn3"
+    //if (scopes.includes("role")) {
     scopes.forEach((scope, index) => {
       scopes[index] = scope.match(/(rc_\d+)_fn3/)[1];
     });
     scopes = scopes.join(",");
     return this.fetchData(scopes);
+    //} else alert("User is not Associated with RC Group ");
   }
 
   /**
@@ -360,7 +362,9 @@ export class PatientComponent implements OnInit {
                 savedBundle,
                 now,
                 psScope
-              }
+              },
+              ignoreBackdropClick: true,
+              keyboard: false
             });
           }
         );
