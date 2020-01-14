@@ -20,7 +20,7 @@ export class FhirService {
 
   //Updated EHR Patient in Cibmtr FHIR Server
   submitPatient(updatedEhrPatient) {
-    let fhirPostUrl = AppConfig.cibmtr_fhir_update_url + "/Patient";
+    let fhirPostUrl = AppConfig.cibmtr_fhir_update_url + "Patient";
     return this.http.post(fhirPostUrl, updatedEhrPatient);
   }
 
