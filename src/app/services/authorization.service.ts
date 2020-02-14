@@ -43,7 +43,7 @@ export class AuthorizationService {
       "&redirect_uri=" +
       encodeURIComponent(AppConfig.epic_oauth_redirect_url) +
       "&client_id=" +
-      AppConfig.non_prod_client_id +
+      AppConfig.client_id +
       "&launch=" +
       launchToken +
       "&state=search"
@@ -55,7 +55,8 @@ export class AuthorizationService {
     return this.http
       .get(metadata, {
         headers: new HttpHeaders({
-          Accept: "application/fhir+json"
+          Accept: "application/fhir+json",
+          "Epic-Client-ID": AppConfig.client_id
         })
       })
       .toPromise();
