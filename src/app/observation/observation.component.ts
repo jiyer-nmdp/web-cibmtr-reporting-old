@@ -53,7 +53,7 @@ export class ObservationComponent implements OnInit {
 
           if (matchingEntry && matchingEntry.length > 0) {
             let observationEntry = observationEntries[j];
-            // Case I - The record has not been submitted
+            // Case I - The record has not been submittednn
             observationEntry.state = "bold";
             if (savedEntries && savedEntries.length > 0) {
               // Case II - The record has been submitted and there were no updates

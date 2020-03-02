@@ -11,53 +11,52 @@ export class AppInitService {
     private _localStorageService: LocalStorageService
   ) {}
   initializeApp(): Promise<any> {
-      if (!window.location.href.includes("?")) {
-        console.log(
-          "Location doesnt seems to have query paremeters..",
-          window.location.href
-        );
-        return;
-      }
+    if (!window.location.href.includes("?")) {
+      console.log(
+        "Location doesnt seems to have query paremeters..",
+        window.location.href
+      );
+      return;
+    }
 
-      let authorizationToken = this.authorizationService.getEhrCode(
+    let authorizationToken = this.authorizationService.getEhrCode(
+      window.location.href
+    );
+
+    if (authorizationToken !== null) {
+      return this.authorizationService
+        .codeToBearerToken(
+          this._localStorageService.get("tokenUrl"),
+          authorizationToken
+        )
+        .then(response => {
+          this._localStorageService.set(
+            "accessToken",
+            response["access_token"]
+          );
+          this._localStorageService.set("patient", response["patient"]);
+          this.location.go("/main");
+        });
+    }
+
+    let iss = this.authorizationService.getIss(window.location.href),
+      launchToken = this.authorizationService.getLaunchToken(
         window.location.href
       );
 
-      if (authorizationToken !== null) {
-        return this.authorizationService
-          .codeToBearerToken(
-            this._localStorageService.get("tokenUrl"),
-            authorizationToken
-          )
-          .then(response => {
-            this._localStorageService.set(
-              "accessToken",
-              response["access_token"]
-            );
-            this._localStorageService.set("patient", response["patient"]);            
-            this.location.go("/main");            
-          });
-      }
+    if (iss && launchToken) {
+      this._localStorageService.set("iss", iss);
 
-      let iss = this.authorizationService.getIss(window.location.href),
-        launchToken = this.authorizationService.getLaunchToken(
-          window.location.href
-        );
-
-      if (iss && launchToken) {
-        this._localStorageService.set("iss", iss);
-
-        return this.authorizationService.getMetadata(iss).then(response => {
-          let tokenUrl = this.authorizationService.getTokenUrl(response),
-            authorizeUrl = this.authorizationService.getAuthorizeUrl(response),
-            authorizationCodeUrl = this.authorizationService.constructAuthorizationUrl(
-              authorizeUrl,
-              launchToken
-            );
-
-          this._localStorageService.set("tokenUrl", tokenUrl);
-          window.location.href = authorizationCodeUrl;
-        });
-      }
+      return this.authorizationService.getMetadata(iss).then(response => {
+        let tokenUrl = this.authorizationService.getTokenUrl(response),
+          authorizeUrl = this.authorizationService.getAuthorizeUrl(response),
+          authorizationCodeUrl = this.authorizationService.constructAuthorizationUrl(
+            authorizeUrl,
+            launchToken
+          );
+        this._localStorageService.set("tokenUrl", tokenUrl);
+        window.location.href = authorizationCodeUrl;
+      });
+    }
   }
 }

@@ -7,6 +7,7 @@ export interface IPatientContext {
 export class Patient {
   fhirVersionStr: string;
   name: Name[];
+  id: string;
   telecom: string;
   identifier: Identifier[];
   birthDate: string;

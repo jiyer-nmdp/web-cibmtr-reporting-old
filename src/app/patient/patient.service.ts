@@ -11,6 +11,7 @@ export class PatientService {
     private http: HttpClient,
     private _localStorageService: LocalStorageService
   ) {}
+
   getPatient(identifier): Observable<IPatientContext> {
     let url = this._localStorageService.get("iss") + "/Patient/" + identifier;
 
