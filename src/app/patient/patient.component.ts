@@ -268,14 +268,17 @@ export class PatientComponent implements OnInit {
       .map(i => i.value)
       .join("");
 
-    if (!ehrpatient.gender) {
+    if (
+      !ehrpatient.gender &&
+      (ehrpatient.gender.toLowerCase() !== "unknown" ||
+        ehrpatient.gender.toLowerCase() !== "other")
+    ) {
       alert("Gender cannot be acceptable as per CIBMTR Specifications");
-      return
+      return;
     } else {
       genderLowerCase = ehrpatient.gender.toLowerCase();
     }
 
-  
     let payload = {
       ccn: this.psScope.substring(3),
       patient: {
