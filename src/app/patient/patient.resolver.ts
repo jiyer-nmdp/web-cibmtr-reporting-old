@@ -54,7 +54,6 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
 
     let id = this._localStorageService.get("patient");
 
-    //let id = this._localStorageService.get("patient");
     return forkJoin([
       this.patientDetailService.getPatient(id),
       this.patientDetailService.getObservation(id)

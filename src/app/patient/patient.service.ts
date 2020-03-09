@@ -33,18 +33,6 @@ export class PatientService {
     );
   }
 
-  /*getObservation(identifier): Observable<IPatientContext> {
-    return this.http.get<IPatientContext>(
-      "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation?patient=" +
-        identifier +
-        "&" +
-        AppConfig.observation_codes,
-      {
-        headers: this.buildEhrHeaders()
-      }
-    );
-  }*/
-
   buildEhrHeaders() {
     let ehrHeaders: HttpHeaders = new HttpHeaders()
       .set("Content-Type", "application/json")

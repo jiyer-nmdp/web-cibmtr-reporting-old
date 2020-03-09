@@ -258,19 +258,38 @@ export class PatientComponent implements OnInit {
     e.stopPropagation();
     e.preventDefault();
     let genderLowerCase;
-    if (ehrpatient.gender) {
+
+    let ehrSsn = ehrpatient.identifier
+      .filter(
+        i =>
+          i.system === "urn:oid:2.16.840.1.113883.4.1" ||
+          i.system === "http://hl7.org/fhir/sid/us-ssn"
+      )
+      .map(i => i.value)
+      .join("");
+
+    if (!ehrpatient.gender) {
+      alert("Gender cannot be acceptable as per CIBMTR Specifications");
+      return
+    } else {
       genderLowerCase = ehrpatient.gender.toLowerCase();
     }
 
+  
     let payload = {
       ccn: this.psScope.substring(3),
       patient: {
-        firstName: this.getGivenName(ehrpatient),
+        firstName: ehrpatient.name[0].given[0],
         lastName: ehrpatient.name[0].family,
         birthDate: ehrpatient.birthDate,
-        gender: genderLowerCase === "male" ? "M" : "F"
+        gender: genderLowerCase === "male" ? "M" : "F",
+        ssn: ehrSsn
       }
     };
+
+    if (payload.patient.ssn === "") {
+      delete payload.patient.ssn;
+    }
 
     this.fhirService
       .getCrid(payload)

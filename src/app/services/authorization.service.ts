@@ -25,7 +25,7 @@ export class AuthorizationService {
       "&redirect_uri=" +
       AppConfig.epic_oauth_redirect_url +
       "&client_id=" +
-      AppConfig.non_prod_client_id;
+      AppConfig.client_id;
 
     return this.http
       .post(tokenurl, body, {
@@ -55,8 +55,7 @@ export class AuthorizationService {
     return this.http
       .get(metadata, {
         headers: new HttpHeaders({
-          Accept: "application/fhir+json",
-          "Epic-Client-ID": AppConfig.client_id
+          Accept: "application/fhir+json"
         })
       })
       .toPromise();
