@@ -259,6 +259,7 @@ export class PatientComponent implements OnInit {
     e.preventDefault();
     let genderLowerCase;
 
+    //SSN
     let ehrSsn = ehrpatient.identifier
       .filter(
         i =>
@@ -268,16 +269,25 @@ export class PatientComponent implements OnInit {
       .map(i => i.value)
       .join("");
 
+    //Gender
+    //let genderenums = ["unknown", "other"];
+
     if (
-      !ehrpatient.gender &&
-      (ehrpatient.gender.toLowerCase() !== "unknown" ||
-        ehrpatient.gender.toLowerCase() !== "other")
+      !ehrpatient.gender ||
+      ehrpatient.gender === "unknown" ||
+      ehrpatient.gender === "other"
     ) {
-      alert("Gender cannot be acceptable as per CIBMTR Specifications");
+      alert(
+        "Unable to register this patient " +
+          ehrpatient.gender +
+          " is not currently supported as a gender value. Please contact your center's CIBMTR CRC to review this case."
+      );
       return;
     } else {
       genderLowerCase = ehrpatient.gender.toLowerCase();
     }
+
+    //CRID Payload
 
     let payload = {
       ccn: this.psScope.substring(3),
@@ -290,7 +300,7 @@ export class PatientComponent implements OnInit {
       }
     };
 
-    if (payload.patient.ssn === "") {
+    if (!payload.patient.ssn) {
       delete payload.patient.ssn;
     }
 

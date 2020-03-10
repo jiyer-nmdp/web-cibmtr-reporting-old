@@ -34,6 +34,7 @@ class Extension {
 }
 
 class Name {
+  use: string;
   given: string[];
   family: string;
 }
