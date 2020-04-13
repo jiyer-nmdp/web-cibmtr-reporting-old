@@ -31,15 +31,15 @@ export class AppComponent implements OnInit {
   logout() {
     this.loginWidget.signout((err: any) => {
       this.ref.detectChanges();
-       this.ngOnInit();
+      this.ngOnInit();
     });
   }
 
   processTimeout(timeoutType) {
     if (timeoutType === "SESSION_IDLE_TIMEOUT") {
-      alert("Hey, its an idle timeout");
+      alert("An idle application session timeout has occurred");
     } else if (timeoutType === "SESSION_LIFETIME_TIMEOUT") {
-      alert("Hey, its a session lifetime Timeout, need to re-authn");
+      alert("Application session is lifetime Timeout, need to re-authn");
     }
     const oldSubject = this.loginWidget.subject;
     // check to see if session is active
@@ -48,7 +48,7 @@ export class AppComponent implements OnInit {
       if (oldSubject == null || this.loginWidget.subject != oldSubject) {
         // clean out any old data from previous usage
         // as a different user may be at the browser
-        alert("a different user has logged in");
+        alert("Different user has logged in");
       }
     });
   }

@@ -86,7 +86,7 @@
                 <input
                   class="checkbox i-checks"
                   type="checkbox"
-                  (click)="selectAll(key)"
+                  (ngModelChange)="selectAll(key)"
                   [(ngModel)]="codes[key].isAllSelected"
                   [disabled]="codes[key].isAlldisabled"
                 />

@@ -3,7 +3,7 @@
   "version": "0.0.2",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --sourceMap",
+    "start": "ng serve",
     "build": "ng build",
     "build:prod": "ng build --prod",
     "build:docker": "docker build -t web-cibmtr-reporting .",

@@ -11,6 +11,7 @@ export class PatientService {
     private http: HttpClient,
     private _localStorageService: LocalStorageService
   ) {}
+
   getPatient(identifier): Observable<IPatientContext> {
     let url = this._localStorageService.get("iss") + "/Patient/" + identifier;
 
@@ -31,18 +32,6 @@ export class PatientService {
       }
     );
   }
-
-  /*getObservation(identifier): Observable<IPatientContext> {
-    return this.http.get<IPatientContext>(
-      "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation?patient=" +
-        identifier +
-        "&" +
-        AppConfig.observation_codes,
-      {
-        headers: this.buildEhrHeaders()
-      }
-    );
-  }*/
 
   buildEhrHeaders() {
     let ehrHeaders: HttpHeaders = new HttpHeaders()

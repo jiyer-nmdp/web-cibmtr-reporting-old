@@ -25,7 +25,7 @@ export class AuthorizationService {
       "&redirect_uri=" +
       AppConfig.epic_oauth_redirect_url +
       "&client_id=" +
-      AppConfig.non_prod_client_id;
+      AppConfig.client_id;
 
     return this.http
       .post(tokenurl, body, {
@@ -43,7 +43,7 @@ export class AuthorizationService {
       "&redirect_uri=" +
       encodeURIComponent(AppConfig.epic_oauth_redirect_url) +
       "&client_id=" +
-      AppConfig.non_prod_client_id +
+      AppConfig.client_id +
       "&launch=" +
       launchToken +
       "&state=search"
