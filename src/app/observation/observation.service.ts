@@ -34,10 +34,7 @@ export class ObservationService {
               {
                 use: "official",
                 system: AppConfig.epic_logicalId_namespace,
-                value:
-                  this._localStorageService.get("iss") +
-                  "/Observation/" +
-                  tmpResource.id
+                value:tmpResource.id
               }
             ]
           }
