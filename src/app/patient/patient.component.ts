@@ -289,6 +289,7 @@ export class PatientComponent implements OnInit {
           ehrpatient.gender +
           " is not currently supported as a gender value. Please contact your center's CIBMTR CRC to review this case."
       );
+      this.isLoading = false
       return;
     } else {
       genderLowerCase = ehrpatient.gender.toLowerCase();
@@ -445,7 +446,7 @@ export class PatientComponent implements OnInit {
   handleError(error: HttpErrorResponse, system: string) {
 
     this.isLoading = false;
-    let errorMessage = `An unexpected Error ${system} has occurred. Please try again. If the error persists, please report this to CIBMTR. Status: ${error.status} \n Message : ${error.error.errorMessage || error.message} `;
+    let errorMessage = `An unexpected failure for ${system} Server has occurred. Please try again. If the error persists, please report this to CIBMTR. Status: ${error.status} \n Message : ${error.error.errorMessage || error.message} \n Request TimeStamp : `;
 
     alert(errorMessage);
 
