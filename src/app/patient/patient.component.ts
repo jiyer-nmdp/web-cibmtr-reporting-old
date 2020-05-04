@@ -157,7 +157,7 @@ export class PatientComponent implements OnInit {
       "".concat(
         AppConfig.epic_logicalId_namespace,
         "|",
-        ehrpatient.id
+        this._localStorageService.get("iss") + "/Patient/" + ehrpatient.id
       )
     );
     let encodedScope = encodeURI(
@@ -377,7 +377,7 @@ export class PatientComponent implements OnInit {
         {
           use: "official",
           system: AppConfig.epic_logicalId_namespace,
-          value: logicalId
+          value: this._localStorageService.get("iss") + "/Patient/" + logicalId
         },
         {
           use: "official",
