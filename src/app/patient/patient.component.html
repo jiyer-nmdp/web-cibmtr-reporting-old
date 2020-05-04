@@ -63,12 +63,8 @@
 
             <!-- ADD Register Button for Fhir server call-->
             <div>
-              <button
-                type="button"
-                class="btn btn-primary pull-right"
-                (click)="register($event, ehrpatient)"
-                [disabled]="crid"
-              >
+              <button type="button" class="btn btn-primary pull-right" (click)="register($event, ehrpatient)" [disabled]="crid || isLoading">
+                <img *ngIf="isLoading" style="width : 24px" src="assets/spinner.gif" /> 
                 Register
               </button>
             </div>

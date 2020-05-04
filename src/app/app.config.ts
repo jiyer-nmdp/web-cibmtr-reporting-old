@@ -1,15 +1,16 @@
 export class AppConfig {
   // Define all the constants of the app
 
+  public static backendOrigin="https://dev-api.nmdp.org";
+
   //EPIC Client ID's
 
   public static client_id = "b5aaa0c6-6909-4473-a11e-fa7492cdce6d";
-  //public static non_prod_client_id = "c8552975-89f8-4a9b-9fb4-071cb1c19646";
 
   //AWSEnv
   public static epic_oauth_redirect_url =
     "https://cibmtr-fhir-ehr-dev.nmdp.org";
-
+   
   //CIBMTR Namespaces
 
   public static cibmtr_crid_namespace = "http://cibmtr.org/identifier/CRID";
@@ -23,16 +24,16 @@ export class AppConfig {
   //Middleware URLs
 
   public static crid_service_endpoint =
-    "https://qa-internal-api.nmdp.org/cibmtrehrclientbackendqa/v1/CRID";
+    "https://dev-api.nmdp.org/cibmtrehrclientbackend/v2/CRID";
 
   public static observation_codes =
     "code=https://cdebrowser.nci.nih.gov|88,https://cdebrowser.nci.nih.gov|64159,https://cdebrowser.nci.nih.gov|2003853,https://cdebrowser.nci.nih.gov|2603692,https://cdebrowser.nci.nih.gov|2787346,https://cdebrowser.nci.nih.gov|2787385,https://cdebrowser.nci.nih.gov|2787392,https://cdebrowser.nci.nih.gov|2787396,https://cdebrowser.nci.nih.gov|2787403,https://cdebrowser.nci.nih.gov|2787415,https://cdebrowser.nci.nih.gov|2787423,https://cdebrowser.nci.nih.gov|2787453,https://cdebrowser.nci.nih.gov|2787459,https://cdebrowser.nci.nih.gov|2787467,https://cdebrowser.nci.nih.gov|2787484,https://cdebrowser.nci.nih.gov|2787521,https://cdebrowser.nci.nih.gov|2787539,https://cdebrowser.nci.nih.gov|2787565,https://cdebrowser.nci.nih.gov|2787579,https://cdebrowser.nci.nih.gov|2787616,https://cdebrowser.nci.nih.gov|2787667,https://cdebrowser.nci.nih.gov|2787671,https://cdebrowser.nci.nih.gov|2787840,https://cdebrowser.nci.nih.gov|2787856,https://cdebrowser.nci.nih.gov|2787862,https://cdebrowser.nci.nih.gov|2787870,https://cdebrowser.nci.nih.gov|2787872,https://cdebrowser.nci.nih.gov|2787874,https://cdebrowser.nci.nih.gov|2793688,https://cdebrowser.nci.nih.gov|2793723,https://cdebrowser.nci.nih.gov|2793723,https://cdebrowser.nci.nih.gov|2797618,https://cdebrowser.nci.nih.gov|2797645,https://cdebrowser.nci.nih.gov|2797671,https://cdebrowser.nci.nih.gov|2860477,https://cdebrowser.nci.nih.gov|2861433,https://cdebrowser.nci.nih.gov|3578143,https://cdebrowser.nci.nih.gov|4492414,https://cdebrowser.nci.nih.gov|492418,https://cdebrowser.nci.nih.gov|4492434,https://cdebrowser.nci.nih.gov|4492471,https://cdebrowser.nci.nih.gov|4492511,https://cdebrowser.nci.nih.gov|4492571,https://cdebrowser.nci.nih.gov|4492575";
 
   public static cibmtr_fhir_base_url =
-    "https://qa-internal-api.nmdp.org/cibmtrehrclientbackendqa/v1/Patient?identifier=";
+    "https://dev-api.nmdp.org/cibmtrehrclientbackend/v2/Patient?identifier=";
 
   public static cibmtr_fhir_update_url =
-    "https://qa-internal-api.nmdp.org/cibmtrehrclientbackendqa/v1/";
+    "https://dev-api.nmdp.org/cibmtrehrclientbackend/v2/";  
 
   public static codes = [
     "88",
