@@ -35,6 +35,7 @@ export class PatientComponent implements OnInit {
   cridCallComplete: Boolean = false;
   psScope: string;
   isLoading : Boolean;
+  now : Date;
 
   constructor(
     private _route: ActivatedRoute,
@@ -203,7 +204,7 @@ export class PatientComponent implements OnInit {
     }
     if (error != null) {
       console.error("An error occurred" + error);
-      return Promise.reject(error.message || error.status);
+      return Promise.reject(error.message || error.status );
     } else {
       console.error("An unknown error occurred");
       return Promise.reject("Unknown error");
@@ -316,7 +317,9 @@ export class PatientComponent implements OnInit {
       .getCrid(payload)
       .pipe(take(1))
       .subscribe(
+
         result => {
+          const now = new Date();
           this.isLoading = false
           // look for Perfect Match
           if (result && result.perfectMatch) {
@@ -340,15 +343,16 @@ export class PatientComponent implements OnInit {
             .retry(0)
             .subscribe(
               () => {
+                const now = new Date();
                 console.log("Submitted patient");
               },
               error => {
-                this.handleError(error, this.fhirApp);
+                this.handleError(error, this.fhirApp,this.now);
               }
             );
         },
         error => {
-          this.handleError(error, this.cridApp);
+          this.handleError(error, this.cridApp,this.now);
         },
         () => (this.cridCallComplete = true)
        
@@ -443,10 +447,10 @@ export class PatientComponent implements OnInit {
    * @param error
    * @param system
    */
-  handleError(error: HttpErrorResponse, system: string) {
+  handleError(error: HttpErrorResponse, system: string, now: Date) {
 
     this.isLoading = false;
-    let errorMessage = `An unexpected failure for ${system} Server has occurred. Please try again. If the error persists, please report this to CIBMTR. Status: ${error.status} \n Message : ${error.error.errorMessage || error.message} \n Request TimeStamp : `;
+    let errorMessage = `An unexpected failure for ${system} Server has occurred. Please try again. If the error persists, please report this to CIBMTR. Status: ${error.status} \n Message : ${error.error.errorMessage || error.message} \n Request TimeStamp : ${now.toISOString} `;
 
     alert(errorMessage);
 
