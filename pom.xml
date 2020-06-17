@@ -1,360 +1,215 @@
-<?xml version="1.0"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <modelVersion>4.0.0</modelVersion>
-  
-  <parent>
-    <groupId>org.nmdp.CibmtrReportingApp</groupId>
-    <artifactId>CIBMTR-Reporting-App</artifactId>
-    <version>0.0.2</version>
-    <name>CibmtrReportingApp Frontend</name>
-    <description>CibmtrReportingApp Project</description>
-    <relativePath>../pom.xml</relativePath>
-  </parent>
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
- <scm>
-    <connection>scm:git:github.com/nmdp-bioinformatics/web-cibmtr-reporting.git</connection>
-    <developerConnection>scm:git:https://github.com/nmdp-bioinformatics/web-cibmtr-reporting.git</developerConnection>
-    <url>https://github.com/nmdp-bioinformatics/web-cibmtr-reporting</url>
-  </scm>  
+	<modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.nmdp.CibmtrReportingApp</groupId>
+  <artifactId>reporting-app-frontend</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>CibmtrReportingApp Frontend</name>
+  <description>CibmtrReportingApp Project</description>
 
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <output.directory>www</output.directory>
-  </properties>
+	<scm>
+		<connection>scm:git:github.com/nmdp-bioinformatics/web-cibmtr-reporting.git</connection>
+		<developerConnection>scm:git:https://github.com/nmdp-bioinformatics/web-cibmtr-reporting.git</developerConnection>
+		<url>https://github.com/nmdp-bioinformatics/web-cibmtr-reporting</url>
+	</scm>
 
-  <!--<properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <npm.build.cmd>build</npm.build.cmd>
-    <nodejs.version>v8.9.4</nodejs.version>
-    <npm.version>5.6.0</npm.version>
-    <skipTests>true</skipTests>
-    <sonar.exclusions>**/*.spec.js, bower_components/**, node_modules/**, src/content/css/vendor.css</sonar.exclusions>
-    <sonar.javascript.jstestdriver.reportsPath>${project.build.directory}/test-results/karma</sonar.javascript.jstestdriver.reportsPath>
-    <sonar.javascript.lcov.reportPath>${project.build.directory}/test-results/coverage/report-lcov/lcov.info</sonar.javascript.lcov.reportPath>
-    <sonar.sources>src</sonar.sources>
-    <sonar.test.inclusions>**/*.spec.js</sonar.test.inclusions>
-    <sonar.tests>src/test/javascript</sonar.tests>
-  </properties>-->
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<output.directory>www</output.directory>
+		<npm.version>6.11.3</npm.version>
+		<skipTests>true</skipTests>
+	</properties>
 
-  <build>
-    <plugins>
-       <plugin>
-        <artifactId>maven-assembly-plugin</artifactId>
-        <version>2.6</version>
-        <executions>
-          <execution>
-            <id>make-zip</id>
-            <phase>package</phase>
-            <goals>
-              <goal>single</goal>
-            </goals>
-            <configuration>
-              <descriptors>
-                <descriptor>assembly.xml</descriptor>
-              </descriptors>
-              <appendAssemblyId>false</appendAssemblyId>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-
-      <plugin>
-        <artifactId>maven-clean-plugin</artifactId>
-        <version>3.1.0</version>
-        <configuration>
-          <filesets>
-            <fileSet>
-              <directory>dev</directory>
-            </fileSet>
-            <fileSet>
-              <directory>qa</directory>
-            </fileSet>
-            <fileSet>
-              <directory>preprod</directory>
-            </fileSet>
-            <fileSet>
-              <directory>prod</directory>
-            </fileSet>
-          </filesets>
-        </configuration>
-      </plugin>
-
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>exec-maven-plugin</artifactId>
-        <version>1.6.0</version>
-        <executions>
-
-
-          <!-- Required: The following will ensure `npm install` is called
+	<!--<properties><project.build.sourceEncoding>UTF-8</project.build.sourceEncoding><npm.build.cmd>build</npm.build.cmd><nodejs.version>v8.9.4</nodejs.version><npm.version>5.6.0</npm.version><skipTests>true</skipTests><sonar.exclusions>**/*.spec.js, bower_components/**, node_modules/**, src/content/css/vendor.css</sonar.exclusions><sonar.javascript.jstestdriver.reportsPath>${project.build.directory}/test-results/karma</sonar.javascript.jstestdriver.reportsPath><sonar.javascript.lcov.reportPath>${project.build.directory}/test-results/coverage/report-lcov/lcov.info</sonar.javascript.lcov.reportPath><sonar.sources>src</sonar.sources><sonar.test.inclusions>**/*.spec.js</sonar.test.inclusions><sonar.tests>src/test/javascript</sonar.tests></properties>-->
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.6</version>
+				<executions>
+					<execution>
+						<id>make-zip</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<descriptors>
+								<descriptor>assembly.xml</descriptor>
+							</descriptors>
+							<appendAssemblyId>false</appendAssemblyId>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			
+			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>3.1.0</version>
+				<configuration>
+					<filesets>
+						<fileSet>
+							<directory>dev</directory>
+						</fileSet>
+						<fileSet>
+							<directory>qa</directory>
+						</fileSet>
+						<fileSet>
+							<directory>preprod</directory>
+						</fileSet>
+						<fileSet>
+							<directory>prod</directory>
+						</fileSet>
+					</filesets>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.6.0</version>
+				<executions>
+					<!-- Required: The following will ensure `npm install` is called
                before anything else during the 'Default Lifecycle' -->
-          <execution>
-            <id>npm install (initialize)</id>
-            <goals>
-              <goal>exec</goal>
-            </goals>
-            <phase>initialize</phase>
-            <configuration>
-              <executable>npm</executable>
-              <arguments>
-                <argument>install</argument>
-              </arguments>
-            </configuration>
-          </execution>
-
-
-          <!-- Required: The following will ensure `npm install` is called
+					<execution>
+						<id>npm install (initialize)</id>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<phase>initialize</phase>
+						<configuration>
+							<executable>npm</executable>
+							<arguments>
+								<argument>install</argument>
+							</arguments>
+						</configuration>
+					</execution>
+					<!-- Required: The following will ensure `npm install` is called
                          before anything else during the 'Clean Lifecycle' -->
-          <execution>
-            <id>npm install (clean)</id>
-            <goals>
-              <goal>exec</goal>
-            </goals>
-            <phase>pre-clean</phase>
-            <configuration>
-              <executable>npm</executable>
-              <arguments>
-                <argument>install</argument>
-              </arguments>
-            </configuration>
-          </execution>
-
-
-          <!-- Optional: The following will output the npm configuration.
+					<execution>
+						<id>npm install (clean)</id>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<phase>pre-clean</phase>
+						<configuration>
+							<executable>npm</executable>
+							<arguments>
+								<argument>install</argument>
+							</arguments>
+						</configuration>
+					</execution>
+					<!-- Optional: The following will output the npm configuration.
                          I do this so my CI logs will show the npm information used
                              for the build -->
-          <execution>
-            <id>npm config list (validate)</id>
-            <goals>
-              <goal>exec</goal>
-            </goals>
-            <phase>validate</phase>
-            <configuration>
-              <executable>npm</executable>
-              <arguments>
-                <argument>config</argument>
-                <argument>list</argument>
-              </arguments>
-            </configuration>
-          </execution>
+					<execution>
+						<id>npm config list (validate)</id>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<phase>validate</phase>
+						<configuration>
+							<executable>npm</executable>
+							<arguments>
+								<argument>config</argument>
+								<argument>list</argument>
+							</arguments>
+						</configuration>
+					</execution>
+					<!-- Execute eslint -->
+					<!--<execution>
+						<id>npm lint</id>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<phase>process-sources</phase>
+						<configuration>
+							<executable>npm</executable>
+							<arguments>
+								<argument>run</argument>
+								<argument>lint:ci</argument>
+							</arguments>
+						</configuration>
+					</execution>-->
 
-           <!-- Execute eslint -->
-          <execution>
-            <id>npm lint</id>
-            <goals>
-              <goal>exec</goal>
-            </goals>
-            <phase>process-sources</phase>
-            <configuration>
-              <executable>npm</executable>
-              <arguments>
-                <argument>run</argument>
-                <argument>lint:ci</argument>
-              </arguments>
-            </configuration>
-          </execution>
-
-          <!-- Execute tslint -->
-          <execution>
-            <id>npm tslint</id>
-            <goals>
-              <goal>exec</goal>
-            </goals>
-            <phase>process-sources</phase>
-            <configuration>
-              <executable>npm</executable>
-              <arguments>
-                <argument>run</argument>
-                <argument>tslint:ci</argument>
-              </arguments>
-            </configuration>
-          </execution>
-
-          <!-- Execute tests -->
-          <execution>
-            <id>npm test</id>
-            <goals>
-              <goal>exec</goal>
-            </goals>
-            <phase>process-sources</phase>
-            <configuration>
-              <executable>npm</executable>
-              <arguments>
-                <argument>run</argument>
-                <argument>test:ci</argument>
-              </arguments>
-            </configuration>
-          </execution>
-           
-           <!-- Required: This following calls `npm run build` where 'build' is
-                         the script name I used in my project, change this if yours is
-                             different -->
-
-          <!-- dev -->
-          <execution>
-            <id>npm run build dev1</id>
-            <goals>
-              <goal>exec</goal>
-            </goals>
-            <phase>compile</phase>
-            <configuration>
-              <executable>npm</executable>
-              <environmentVariables>
-                <NODE_ENV>dev</NODE_ENV>
-              </environmentVariables>
-              <arguments>
-                <argument>run</argument>
-                <argument>build:prod</argument>
-              </arguments>
-            </configuration>
-          </execution>
-
-
-    </plugins>
-  </build>
-
-  <profiles>
-
-    <profile>
-      <id>clean</id>
-      <build>
-        <plugins>
-          <plugin>
-            <artifactId>maven-clean-plugin</artifactId>
-            <configuration>
-              <filesets>
-                <fileset>
-                  <directory>node</directory>
-                </fileset>
-                <fileset>
-                  <directory>node_modules</directory>
-                </fileset>
-                <fileset>
-                  <directory>target</directory>
-                </fileset>
-              </filesets>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-
-    <profile>
-      <id>npm-global</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>exec-maven-plugin</artifactId>
-            <!--don't use latest version 1.6.0 due to https://github.com/mojohaus/exec-maven-plugin/issues/64-->
-            <version>1.4.0</version>
-            <executions>
-              <execution>
-                <id>npm run build</id>
-                <goals>
-                  <goal>exec</goal>
-                </goals>
-                <phase>compile</phase>
-                <configuration>
-                  <executable>npm</executable>
-                  <arguments>
-                    <argument>run</argument>
-                    <argument>${npm.build.cmd}</argument>
-                  </arguments>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-
-    <profile>
-      <id>npm-local</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>com.github.eirslett</groupId>
-            <artifactId>frontend-maven-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>install node and npm</id>
-                <goals>
-                  <goal>install-node-and-npm</goal>
-                </goals>
-                <configuration>
-                  <nodeVersion>${nodejs.version}</nodeVersion>
-                  <npmVersion>${npm.version}</npmVersion>
-                </configuration>
-              </execution>
-              <execution>
-                <id>npm build</id>
-                <goals>
-                  <goal>npm</goal>
-                </goals>
-                <configuration>
-                  <arguments>${npm.build.cmd}</arguments>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-
-    <profile>
-      <id>prepare-web</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <artifactId>maven-resources-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>copy-resources-www</id>
-                <phase>compile</phase>
-                <goals>
-                  <goal>copy-resources</goal>
-                </goals>
-                <configuration>
-                  <outputDirectory>target/www</outputDirectory>
-                  <resources>
-                    <resource>
-                      <directory>src</directory>
-                      <excludes>
-                        <exclude>*.ts</exclude>
-                      </excludes>
-                    </resource>
-                  </resources>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-
-    <profile>
-      <id>no-web</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-assembly-plugin</artifactId>
-            <configuration>
-              <skipAssembly>true</skipAssembly>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-
-  </profiles>
+					<!-- Execute tslint -->
+					<!--<execution>
+						<id>npm tslint</id>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<phase>process-sources</phase>
+						<configuration>
+							<executable>npm</executable>
+							<arguments>
+								<argument>run</argument>
+								<argument>tslint:ci</argument>
+							</arguments>
+						</configuration>
+					</execution>-->
+					<!-- Execute tests -->
+					<!--<execution>
+						<id>npm test</id>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<phase>process-sources</phase>
+						<configuration>
+							<executable>npm</executable>
+							<arguments>
+								<argument>run</argument>
+								<argument>test:ci</argument>
+							</arguments>
+						</configuration>
+					</execution>-->
+					<execution>
+						<id>npm run build dev1</id>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<phase>compile</phase>
+						<configuration>
+							<executable>npm</executable>
+							<environmentVariables>
+								<NODE_ENV>dev</NODE_ENV>
+							</environmentVariables>
+							<arguments>
+								<argument>run</argument>
+								<argument>build:prod</argument>
+							</arguments>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	<profiles>
+		<profile>
+			<id>clean</id>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-clean-plugin</artifactId>
+						<configuration>
+							<filesets>
+								<fileset>
+									<directory>node</directory>
+								</fileset>
+								<fileset>
+									<directory>node_modules</directory>
+								</fileset>
+								<fileset>
+									<directory>target</directory>
+								</fileset>
+							</filesets>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>

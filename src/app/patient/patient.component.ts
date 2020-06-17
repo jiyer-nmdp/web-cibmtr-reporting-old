@@ -450,7 +450,7 @@ export class PatientComponent implements OnInit {
   handleError(error: HttpErrorResponse, system: string, now: Date) {
 
     this.isLoading = false;
-    let errorMessage = `An unexpected failure for ${system} Server has occurred. Please try again. If the error persists, please report this to CIBMTR. Status: ${error.status} \n Message : ${error.error.errorMessage || error.message} \n Request TimeStamp : ${now.toISOString} `;
+    let errorMessage = `An unexpected failure for ${system} Server has occurred. Please try again. If the error persists, please report this to CIBMTR. Status: ${error.status} \n Message : ${error.error.errorMessage || error.message}`;
 
     alert(errorMessage);
 
