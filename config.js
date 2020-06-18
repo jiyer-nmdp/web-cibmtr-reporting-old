@@ -5,7 +5,7 @@ module.exports = {
 
     environments: {
         local: {
-            api_endpoint: 'http://localhost:4200', 
+            api_endpoint: 'http://localhost:8080', 
             nmdpWidget: {
                 environment: 'Dev',
                 oktaConfig: {
