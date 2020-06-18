@@ -9,7 +9,9 @@
     "build:docker": "docker build -t web-cibmtr-reporting .",
     "run:docker": "docker run -d -p 80:80 --name web-cibmtr-reporting web-cibmtr-reporting",
     "test": "ng test",
-    "lint": "ng lint",
+    "test:ci": "ng test",
+    "lint:ci": "npm run lint -- -f node_modules/eslint-bamboo-formatter/reporter.js",
+    "tslint:ci": "npm run --silent tslint -- --force=true --format tslint-junit-formatter > tslint-junit.xml",
     "e2e": "ng e2e"
   },
   "private": true,
