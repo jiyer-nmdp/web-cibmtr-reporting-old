@@ -113,6 +113,8 @@ export class PatientComponent implements OnInit {
               selected: false
             });
           });     
+      }).catch(error => {
+        this.handleError(error, this.fhirApp);
       });
     return cibmtrCenters;
     }
@@ -305,7 +307,8 @@ export class PatientComponent implements OnInit {
         lastName: ehrpatient.name[0].family,
         birthDate: ehrpatient.birthDate,
         gender: genderLowerCase === "male" ? "M" : "F",
-        ssn: ehrSsn
+        ssn: ehrSsn,
+        ethinicity : ehrpatient.identifier.
       }
     };
 
@@ -347,12 +350,12 @@ export class PatientComponent implements OnInit {
                 console.log("Submitted patient");
               },
               error => {
-                this.handleError(error, this.fhirApp,this.now);
+                this.handleError(error, this.fhirApp);
               }
             );
         },
         error => {
-          this.handleError(error, this.cridApp,this.now);
+          this.handleError(error, this.cridApp);
         },
         () => (this.cridCallComplete = true)
        
@@ -447,7 +450,7 @@ export class PatientComponent implements OnInit {
    * @param error
    * @param system
    */
-  handleError(error: HttpErrorResponse, system: string, now: Date) {
+  handleError(error: HttpErrorResponse, system: string) {
 
     this.isLoading = false;
     let errorMessage = `An unexpected failure for ${system} Server has occurred. Please try again. If the error persists, please report this to CIBMTR. Status: ${error.status} \n Message : ${error.error.errorMessage || error.message}`;
