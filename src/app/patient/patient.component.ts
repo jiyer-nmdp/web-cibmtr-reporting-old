@@ -115,7 +115,7 @@ export class PatientComponent implements OnInit {
             });
           });     
       }).catch(error => {
-        this.handleError(error, this.fhirApp);
+        this.handleError(error, this.fhirApp,new Date().getTime());
       });
     return cibmtrCenters;
     }
@@ -354,12 +354,12 @@ export class PatientComponent implements OnInit {
                 console.log("Submitted patient");
               },
               error => {
-                this.handleError(error, this.fhirApp);
+                this.handleError(error, this.fhirApp,new Date().getTime());
               }
             );
         },
         error => {
-          this.handleError(error, this.cridApp);
+          this.handleError(error, this.cridApp,new Date().getTime());
         },
         () => (this.cridCallComplete = true)
        
@@ -454,12 +454,13 @@ export class PatientComponent implements OnInit {
    * @param error
    * @param system
    */
-  handleError(error: HttpErrorResponse, system: string) {
+  handleError(error: HttpErrorResponse, system: string , timestamp : any) {
 
     this.isLoading = false;
-    let errorMessage = `An unexpected failure for ${system} Server has occurred. Please try again. If the error persists, please report this to CIBMTR. Status: ${error.status} \n Message : ${error.error.errorMessage || error.message}`;
+    let errorMessage = `An unexpected failure for ${system} Server has occurred. Please try again. If the error persists, please report this to CIBMTR. Status: ${error.status} \n Message : ${error.error.errorMessage || error.message}. \nTimestamp : ${timestamp} `;
 
     alert(errorMessage);
+    console.log(errorMessage);
 
     return throwError(error);
 
