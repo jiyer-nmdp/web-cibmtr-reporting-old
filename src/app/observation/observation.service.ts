@@ -14,7 +14,7 @@ export class ObservationService {
   ) {}
 
   // Below method submit new records to the cibmtr
-  postNewRecords(selectedResources, psScope): Observable<any> {
+  postNewRecords(selectedResources, psScope ,cibmtrPatientFullUri): Observable<any> {
     return from(selectedResources).pipe(
       concatMap(selectedResource => {
         const tmpResource: any = selectedResource;
@@ -36,7 +36,10 @@ export class ObservationService {
                 system: AppConfig.epic_logicalId_namespace,
                 value:  this._localStorageService.get("iss") + "/Observation/" +tmpResource.id
               }
-            ]
+            ],
+            subject: {
+              reference: cibmtrPatientFullUri
+            }
           }
         );
       })
@@ -44,7 +47,7 @@ export class ObservationService {
   }
 
   // Below method submit updated records to the cibmtr
-  postUpdatedRecords(selectedResources, psScope): Observable<any> {
+  postUpdatedRecords(selectedResources, psScope ,cibmtrPatientFullUri): Observable<any> {
     // Prepare the map of Id and resources
     let sMap = {};
 
@@ -74,7 +77,10 @@ export class ObservationService {
                 system: AppConfig.epic_logicalId_namespace,
                 value: ehrId.extension[0].valueUri
               }
-            ]
+            ],
+            subject: {
+              reference: cibmtrPatientFullUri
+            }
           }
         );
       })

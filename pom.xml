@@ -74,21 +74,8 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
-				<version>1.4.0</version>
+                <version>1.6.0</version>
 				<executions>
-				    <execution>
-                        <id>compile</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>compile</phase>
-                        <configuration>
-                            <executable>npm</executable>
-                            <arguments>
-                                <argument>install</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
 					<!-- Required: The following will ensure `npm install` is called
                before anything else during the 'Default Lifecycle' -->
 					<execution>

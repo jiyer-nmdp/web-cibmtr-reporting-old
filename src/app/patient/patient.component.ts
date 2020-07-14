@@ -36,6 +36,7 @@ export class PatientComponent implements OnInit {
   psScope: string;
   isLoading : Boolean;
   now : Date;
+  cibmtrPatientId : Observable<any>;
 
   constructor(
     private _route: ActivatedRoute,
@@ -98,7 +99,7 @@ export class PatientComponent implements OnInit {
       AppConfig.cibmtr_fhir_update_url + "Organization?_security=";
 
     let cibmtrCenters = [];
-    if(scopes !== ""){
+    if(scopes !== "" ){
     await this.http
       .get(`${cibmtrUrl}${scopes}`)
       .toPromise()
@@ -113,6 +114,8 @@ export class PatientComponent implements OnInit {
               selected: false
             });
           });     
+      }).catch(error => {
+        this.handleError(error, this.fhirApp,new Date().getTime());
       });
     return cibmtrCenters;
     }
@@ -185,6 +188,10 @@ export class PatientComponent implements OnInit {
                     this.crid = filteredCrid[0].value;
                   }
                 }
+                if(entry.resource.fullUri){
+                  let fullUri = entry.resource.fullUri;
+                }
+
               }
             });
           }
@@ -305,7 +312,7 @@ export class PatientComponent implements OnInit {
         lastName: ehrpatient.name[0].family,
         birthDate: ehrpatient.birthDate,
         gender: genderLowerCase === "male" ? "M" : "F",
-        ssn: ehrSsn
+        ssn: ehrSsn      
       }
     };
 
@@ -347,12 +354,12 @@ export class PatientComponent implements OnInit {
                 console.log("Submitted patient");
               },
               error => {
-                this.handleError(error, this.fhirApp,this.now);
+                this.handleError(error, this.fhirApp,new Date().getTime());
               }
             );
         },
         error => {
-          this.handleError(error, this.cridApp,this.now);
+          this.handleError(error, this.cridApp,new Date().getTime());
         },
         () => (this.cridCallComplete = true)
        
@@ -447,12 +454,13 @@ export class PatientComponent implements OnInit {
    * @param error
    * @param system
    */
-  handleError(error: HttpErrorResponse, system: string, now: Date) {
+  handleError(error: HttpErrorResponse, system: string , timestamp : any) {
 
     this.isLoading = false;
-    let errorMessage = `An unexpected failure for ${system} Server has occurred. Please try again. If the error persists, please report this to CIBMTR. Status: ${error.status} \n Message : ${error.error.errorMessage || error.message}`;
+    let errorMessage = `An unexpected failure for ${system} Server has occurred. Please try again. If the error persists, please report this to CIBMTR. Status: ${error.status} \n Message : ${error.error.errorMessage || error.message}. \nTimestamp : ${timestamp} `;
 
     alert(errorMessage);
+    console.log(errorMessage);
 
     return throwError(error);
 
