@@ -52,11 +52,19 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
 
     //let decodedValue = this.getDecodedAccessToken(this.nmdpWidget.getAccessToken());
 
+    //let id = "enh2Q1c0oNRtWzXArnG4tKw3"
+    //let id ="eyQ4e4Hfq5yH.4vWYwqI9PA3"
     let id = this._localStorageService.get("patient");
 
     return forkJoin([
       this.patientDetailService.getPatient(id),
-      this.patientDetailService.getObservation(id)
+      this.patientDetailService.getObservation(id),
+      this.patientDetailService.getObservationVitalSigns(id),
+      this.patientDetailService.getObservationLabs(id),
+      this.patientDetailService.getCondition(id),
+      this.patientDetailService.getProcedure(id),
+      this.patientDetailService.getDiagnosticReport(id),
+      this.patientDetailService.getMedicationStatement(id)   
     ]);
   }
 }
