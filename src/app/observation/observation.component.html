@@ -20,133 +20,129 @@
   <strong>Error Occurred while Submitting the Observation(s).</strong>
 </alert>
 
-<div class="row clearfix">
-  <div class="col-xs-12">
-    <div class="panel panel-primary" style="margin-bottom: 0px">
-      <div class="panel-heading">
-        <div class="panel-title">Observation Details</div>
-      </div>
+<div class="container">
 
-      <div class="panel-footer">
-        <div class="row form-group">
-          <div class="col-xs-12">
-            <div class="col-xs-3">
-              <b>Date Retrieved </b> : {{ now | date: "yyyy-MM-dd HH:mm" }}
-            </div>
-            <div class="col-xs-9 btn-toolbar">
-              <button
-                type="button"
-                class="btn btn-primary pull-right"
-                (click)="toggleAllObservations()"
-              >
-                {{ toggleAll == false ? "HideAll" : "Expand All" }}
-              </button>
-              <!--<button
-                type="button"
-                class="btn btn-primary pull-right"
-                (click)="submitToCibmtr()"
-                enabled
-              >
-                Submit to CIBMTR</button
-              >-->
-            </div>
+  <div class="row">
+      <div class="patient-detail-box-shadow">
+          <div class="col-md-8 patient-name">
+            <p>{{ ehrpatient.name[0].text }}</p>
           </div>
-        </div>
-      </div>
-
-      <div class="panel-body fixed-panel">
-        <div *ngFor="let key of keys; let i = index" class="table-responsive">
-          <!--<div>
-            <div class="col-xs-12">caDSR CDE : {{ key }}</div>
-          </div>-->
-          <div>
-            <div class="col-sm-6">{{ codes[key].text }}</div>
-            <div class="col-sm-3">
-              Count : {{ codes[key].matchingEntries.length }}
-            </div>
-            <div class="col-sm-2 form-group">
-              <button
-                type="button"
-                class="btn btn-primary pull-right"
-                (click)="toggleObservations(i)"
-              >
-                {{ toggle[i] == true ? "Hide" : "Show" }}
-              </button>
-            </div>
+          <div class="col-md-4 patient-crid">
+            <p>{{ crid }}</p>
           </div>
-
-          <table
-            class="table table-striped table-bordered table-hover"
-            *ngIf="toggle[i]"
-          >
-            <thead>
-              <td><b>Effective Time</b></td>
-              <td><b>Value</b></td>
-              <td>
-                <input
-                  class="checkbox i-checks"
-                  type="checkbox"
-                  (ngModelChange)="selectAll(key)"
-                  [(ngModel)]="codes[key].isAllSelected"
-                  [disabled]="codes[key].isAlldisabled"
-                />
-              </td>
-            </thead>
-            <tbody>
-              <tr
-                *ngFor="let entry of codes[key].matchingEntries"
-                [style.fontWeight]="entry.state"
-              >
-                <td>
-                  {{
-                    entry.resource.effectiveDateTime
-                      | date: "yyyy-MM-dd HH:mm:ssZ"
-                  }}
-                </td>
-                <td>
-                  {{
-                    (entry.resource.valueCodeableConcept?.coding)[0].code ||
-                      entry.resource.valueDateTime ||
-                      entry.resource.valueString ||
-                      entry.resource.valueQuantity.value
-                  }}
-                </td>
-                <td>
-                  <input
-                    class="checkbox i-checks"
-                    type="checkbox"
-                    [(ngModel)]="entry.selected"
-                    (ngModelChange)="toggleOption(key)"
-                    [disabled]="entry.state == 'lighter'"
-                  />
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
       </div>
 
-      <div class="panel-footer">
-        <div class="row">
-          <div class="col-xs-12">
-            <button
-              type="button"
-              class="btn btn-danger"
-              (click)="bsModalRef.hide()"
-            >
-              Close
-            </button>
-            <button
-              type="button"
-              class="btn btn-primary pull-right"
-              (click)="submitToCibmtr()"
-              enabled
-            >
-              Submit to CIBMTR
-            </button>
+      <div class="col-md-12 observation-label" >
+        Please select observation values you want to submit
+      </div> 
+
+      <div>
+          <div class="col-md-3 observation-collections">
+            <div>
+              <div class="resource-label"><a href="#">Observation-Labs{{ bundle.total }}</a></div>
+              <div class="resource-label"><a href="#">Observation-VitalSigns{{ bundle.total }}</a></div>
+              <div class="resource-label"><a href="#">Observation-aGVHD{{ bundle.total }}</a></div>
+            </div>          
           </div>
-        </div>
+          <div class="col-md-1"></div>
+          <div class="col-md-8 observations-box-shadow">
+              <div class="row form-group">              
+                <div class="col-xs-12">
+                  <div class="col-xs-6 date-label">
+                    <b>Date Retrieved </b> : {{ now | date: "yyyy-MM-dd HH:mm" }}
+                  </div>
+                  <div class="col-xs-6 select-btn">
+                    <button
+                      type="button"
+                      class="btn btn-primary pull-right"
+                      (click)="toggleAllObservations()"
+                    >
+                      {{ toggleAll == false ? "HideAll" : "Expand All" }}
+                    </button>
+                  </div>
+                </div>
+              </div>              
+              <div class="line">
+              </div>          
+              <div class="panel-body overflow-auto">
+                <div *ngFor="let key of keys; let i = index" class="table-responsive">
+                  <div>
+                    <div class="col-sm-6">{{ codes[key].text }}</div>
+                    <div class="col-sm-3">
+                      Count : {{ codes[key].matchingEntries.length }}
+                    </div>
+                    <div class="col-sm-2 form-group">
+                      <button
+                        type="button"
+                        class="btn btn-primary pull-right"
+                        (click)="toggleObservations(i)"
+                      >
+                        {{ toggle[i] == true ? "Hide" : "Show" }}
+                      </button>
+                    </div>
+                  </div>
+        
+                  <table
+                    class="table table-striped table-bordered table-hover"
+                    *ngIf="toggle[i]"
+                  >
+                    <thead>
+                      <td><b>Effective Time</b></td>
+                      <td><b>Value</b></td>
+                      <td>
+                        <input
+                          class="checkbox i-checks"
+                          type="checkbox"
+                          (ngModelChange)="selectAll(key)"
+                          [(ngModel)]="codes[key].isAllSelected"
+                          [disabled]="codes[key].isAlldisabled"
+                        />
+                      </td>
+                    </thead>
+                    <tbody>
+                      <tr
+                        *ngFor="let entry of codes[key].matchingEntries"
+                        [style.fontWeight]="entry.state"
+                      >
+                        <td>
+                          {{
+                            entry.resource.effectiveDateTime
+                              | date: "yyyy-MM-dd HH:mm:ssZ"
+                          }}
+                        </td>
+                        <td>
+                          {{
+                            (entry.resource.valueCodeableConcept?.coding)[0].code ||
+                              entry.resource.valueDateTime ||
+                              entry.resource.valueString ||
+                              entry.resource.valueQuantity.value
+                          }}
+                        </td>
+                        <td>
+                          <input
+                            class="checkbox i-checks"
+                            type="checkbox"
+                            [(ngModel)]="entry.selected"
+                            (ngModelChange)="toggleOption(key)"
+                            [disabled]="entry.state == 'lighter'"
+                          />
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>                                       
+          </div>
       </div>
+  </div>
+  <div class="row top-buffer">
+    <div class="col-xs-12">
+      <button type="button" class="btn btn-primary pull-right"
+        (click)="submitToCibmtr()"
+        enabled
+      >
+        Submit to CIBMTR
+      </button>
     </div>
   </div>
 </div>

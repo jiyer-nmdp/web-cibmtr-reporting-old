@@ -6,27 +6,28 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width" />
   </head>
-  <body>
+  <body class="container-background">
     <div *ngIf="!getLoginWidget().isLoggedIn()" id="nmdp-login-container"></div>
     <div *ngIf="getLoginWidget().isLoggedIn()">
       <div class="header">
-        <div class="navbar navbar-default" role="navigation">
+        <div class="navbar-default" role="navigation">
           <div class="container">
-            <div class="navbar-header">
-              <a class="navbar-brand CIBMTR-Reporting"><b>CIBMTR Reporting</b></a>
-              <div>
-                <button class="mybutton" (click)="logout()">
-                  CIBMTR Logout
-                </button>
-              </div>
-            </div>
             <img
-              class="img-responsive navbar-right"
-              img
-              src="assets/images/logo.png"
-              height="280"
-              width="280"
-            />
+            class="btm-logo img-responsive navbar-left "
+            img
+            src="assets/images/logo.png"
+            height="280"
+            width="280"
+          />
+            <div class="navbar-header">
+              <a class="navbar-brand CIBMTR-Reporting-label"><b>CIBMTR Reporting</b></a> 
+            </div>
+            <div class= "navbar-brand navbar-right">
+              <button class="mybutton" (click)="logout()">
+                CIBMTR Logout
+              </button>
+            </div>
+           
           </div>
         </div>
       </div>
