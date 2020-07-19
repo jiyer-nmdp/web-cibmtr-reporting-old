@@ -14,7 +14,7 @@ export class ObservationService {
   ) {}
 
   // Below method submit new records to the cibmtr
-  postNewRecords(selectedResources, psScope ,cibmtrPatientFullUri): Observable<any> {
+  postNewRecords(selectedResources, psScope ): Observable<any> {
     return from(selectedResources).pipe(
       concatMap(selectedResource => {
         const tmpResource: any = selectedResource;
@@ -37,9 +37,6 @@ export class ObservationService {
                 value:  this._localStorageService.get("iss") + "/Observation/" +tmpResource.id
               }
             ],
-            subject: {
-              reference: cibmtrPatientFullUri
-            }
           }
         );
       })
@@ -47,7 +44,7 @@ export class ObservationService {
   }
 
   // Below method submit updated records to the cibmtr
-  postUpdatedRecords(selectedResources, psScope ,cibmtrPatientFullUri): Observable<any> {
+  postUpdatedRecords(selectedResources, psScope ): Observable<any> {
     // Prepare the map of Id and resources
     let sMap = {};
 
@@ -78,9 +75,6 @@ export class ObservationService {
                 value: ehrId.extension[0].valueUri
               }
             ],
-            subject: {
-              reference: cibmtrPatientFullUri
-            }
           }
         );
       })

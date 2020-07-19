@@ -1,6 +1,6 @@
 import { Component, OnInit, ErrorHandler } from "@angular/core";
 import { Patient } from "../model/patient.";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { throwError, Observable } from "rxjs";
 import * as jwt_decode from "jwt-decode";
 import { ObservationComponent } from "../observation/observation.component";
@@ -45,7 +45,8 @@ export class PatientComponent implements OnInit {
     private fhirService: FhirService,
     private nmdpWidget: NmdpWidget,
     private _localStorageService: LocalStorageService,
-    private http: CustomHttpClient
+    private http: CustomHttpClient,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -404,7 +405,7 @@ export class PatientComponent implements OnInit {
    *
    * @param bundle
    */
-  getDetails(bundle: any) {
+  getDetails(bundle: any, ehrpatient: Patient, crid : string) {
     // make a http get call to fhir to get the list of saved observations
     let savedBundle = {};
     if (
@@ -426,7 +427,15 @@ export class PatientComponent implements OnInit {
               error
             ),
           () => {
-            this.bsModalRef = this.modalService.show(ObservationComponent, {
+            this.router.navigate(['/observation'], { state: { data: {
+              bundle,
+              savedBundle,
+              now,
+              psScope,
+              ehrpatient,
+              crid
+            }}});
+            /*this.bsModalRef = this.modalService.show(ObservationComponent, {
               initialState: {
                 bundle,
                 savedBundle,
@@ -435,7 +444,7 @@ export class PatientComponent implements OnInit {
               },
               ignoreBackdropClick: true,
               keyboard: false
-            });
+            }); */
           }
         );
     }

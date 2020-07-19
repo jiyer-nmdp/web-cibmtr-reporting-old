@@ -1,20 +1,17 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { AppConfig } from "../app.config";
-import { BsModalRef } from "ngx-bootstrap/modal";
 import { ObservationService } from "./observation.service";
-import { Observable } from "rxjs";
 import { LocalStorageService } from "angular-2-local-storage";
+import { Router, ActivatedRoute } from '@angular/router';
+import { Patient } from '../model/patient.';
 
 @Component({
   selector: "app-observation",
-  templateUrl: "./observation.component.html"
+  templateUrl: "./observation.component.html",
+  styleUrls: ["./observation.component.scss"]
 })
 export class ObservationComponent implements OnInit {
-  constructor(
-    public bsModalRef: BsModalRef,
-    public observationService: ObservationService,
-    private _localStorageService: LocalStorageService
-  ) {}
+
   bundle: any;
   savedBundle: any;
   toggle: any = [];
@@ -30,9 +27,25 @@ export class ObservationComponent implements OnInit {
   cibmtrPatientFullUri: string;
   success: boolean;
   fail: boolean;
+  ehrpatient : Patient;
+  crid : string
+
+  constructor(    
+    public observationService: ObservationService,
+    private _localStorageService: LocalStorageService,
+    private route : ActivatedRoute,
+    private router : Router
+  ) {
+    let data = this.router.getCurrentNavigation().extras.state.data
+    this.bundle = data.bundle;
+    this.savedBundle = data.savedBundle;
+    this.now = data.now;
+    this.psScope = data.psScope;
+    this.ehrpatient = data.ehrpatient;
+    this.crid = data.crid
+  }
 
   ngOnInit() {
-    let now = this.now;
     let entries = this.bundle.entry;
     let savedEntries = this.savedBundle.entry;
     if (entries && entries.length > 0) {
@@ -133,7 +146,7 @@ export class ObservationComponent implements OnInit {
     );
     if (this.selectedNewResources && this.selectedNewResources.length > 0) {
       this.observationService
-        .postNewRecords(this.selectedNewResources, this.psScope,this.cibmtrPatientFullUri)
+        .postNewRecords(this.selectedNewResources, this.psScope)
         .subscribe(
           response => {
             let id = response.extension[0].valueUri.substring(
@@ -173,7 +186,7 @@ export class ObservationComponent implements OnInit {
       this.selectedUpdatedResources.length > 0
     ) {
       this.observationService
-        .postUpdatedRecords(this.selectedUpdatedResources, this.psScope,this.cibmtrPatientFullUri)
+        .postUpdatedRecords(this.selectedUpdatedResources, this.psScope)
         .subscribe(
           response => {
             Array.prototype.concat
