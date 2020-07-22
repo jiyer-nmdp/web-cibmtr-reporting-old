@@ -3,11 +3,10 @@ import { Patient } from "../model/patient.";
 import { ActivatedRoute, Router } from "@angular/router";
 import { throwError, Observable } from "rxjs";
 import * as jwt_decode from "jwt-decode";
-import { ObservationComponent } from "../observation/observation.component";
 import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
 import { FhirService } from "./fhir.service";
 import { AppConfig } from "../app.config";
-import { ObservationService } from "../observation/observation.service";
+import { ObservationAgvhdService } from "../observation.agvhd/observation.agvhd.service";
 import { take } from "rxjs/operators";
 import { NmdpWidget } from "@nmdp/nmdp-login/Angular/service/nmdp.widget";
 import { CustomHttpClient } from "../client/custom.http.client";
@@ -41,7 +40,7 @@ export class PatientComponent implements OnInit {
   constructor(
     private _route: ActivatedRoute,
     private modalService: BsModalService,
-    private observationService: ObservationService,
+    private observationagvhdService: ObservationAgvhdService,
     private fhirService: FhirService,
     private nmdpWidget: NmdpWidget,
     private _localStorageService: LocalStorageService,
@@ -417,7 +416,7 @@ export class PatientComponent implements OnInit {
       const subj = bundle.entry[0].resource.subject.reference;
       const now = new Date();
       const psScope = this.psScope;
-      this.observationService
+      this.observationagvhdService
         .getCibmtrObservations(subj, this.psScope)
         .subscribe(
           response => (savedBundle = response),
@@ -427,7 +426,7 @@ export class PatientComponent implements OnInit {
               error
             ),
           () => {
-            this.router.navigate(['/observation'], { state: { data: {
+            this.router.navigate(['/patientdetail'], { state: { data: {
               bundle,
               savedBundle,
               now,
@@ -435,16 +434,7 @@ export class PatientComponent implements OnInit {
               ehrpatient,
               crid
             }}});
-            /*this.bsModalRef = this.modalService.show(ObservationComponent, {
-              initialState: {
-                bundle,
-                savedBundle,
-                now,
-                psScope
-              },
-              ignoreBackdropClick: true,
-              keyboard: false
-            }); */
+            
           }
         );
     }

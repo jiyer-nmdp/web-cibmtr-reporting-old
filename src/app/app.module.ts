@@ -7,7 +7,7 @@ import { AppComponent } from "./app.component";
 import { CustomHttpInterceptor } from "./interceptors/http.interceptor";
 import { PatientService } from "./patient/patient.service";
 import { PatientResolver } from "./patient/patient.resolver";
-import { ObservationComponent } from "./observation/observation.component";
+import { ObservationAgvhdComponent } from "./observation.agvhd/observation.agvhd.component";
 import { ModalModule } from "ngx-bootstrap";
 import { FormsModule } from "@angular/forms";
 import { NmdpWidgetModule } from "@nmdp/nmdp-login/Angular/service/nmdp.widget.module";
@@ -16,16 +16,24 @@ import { FhirService } from "./patient/fhir.service";
 import { LocalStorageModule } from "angular-2-local-storage";
 import { CustomHttpClient } from "./client/custom.http.client";
 import { AppInitService } from "./services/app.init";
-import { ObservationService } from "./observation/observation.service";
+import { ObservationAgvhdService } from "./observation.agvhd/observation.agvhd.service";
 import { AlertModule } from "ngx-bootstrap/alert";
 import { DialogComponent } from "./dialog/dialog.component";
+import { PatientDetailComponent } from "./patient.detail/patient.detail.component";
+import { DefaultComponent } from "./default/default.component";
+import { ObservationLabsComponent } from "./observation.labs/observation.labs.component";
+import { ObservationVitalsComponent } from "./observation.vitals/observation.vitals.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
-    ObservationComponent,
-    DialogComponent
+    ObservationAgvhdComponent,
+    DialogComponent,
+    PatientDetailComponent,
+    DefaultComponent,
+    ObservationLabsComponent,
+    ObservationVitalsComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,14 +46,14 @@ import { DialogComponent } from "./dialog/dialog.component";
     AlertModule.forRoot(),
     LocalStorageModule.forRoot({
       prefix: "cibmtr",
-      storageType: "localStorage"
-    })
+      storageType: "localStorage",
+    }),
   ],
-  entryComponents: [ObservationComponent, DialogComponent],
+  entryComponents: [ObservationAgvhdComponent, DialogComponent],
   providers: [
     PatientResolver,
     PatientService,
-    ObservationService,
+    ObservationAgvhdService,
     AuthorizationService,
     AppInitService,
     FhirService,
@@ -53,16 +61,16 @@ import { DialogComponent } from "./dialog/dialog.component";
     {
       provide: HTTP_INTERCEPTORS,
       useClass: CustomHttpInterceptor,
-      multi: true
+      multi: true,
     },
     {
       provide: APP_INITIALIZER,
       useFactory: appInitFactory,
       deps: [AppInitService],
-      multi: true
-    }
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
 

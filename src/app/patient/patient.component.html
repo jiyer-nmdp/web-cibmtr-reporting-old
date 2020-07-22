@@ -1,13 +1,5 @@
 <div class="container">
-  <div class="col-xs-12" *ngIf="cridCallComplete == true && !crid">
-    <div class="row">
-      <div class="col-xs-12">
-        <p class="alert alert-danger">
-          <strong>Please register the Patient with CIBMTR</strong>
-        </p>
-      </div>
-    </div>
-  </div>
+
 
   <div *ngIf="ehrpatient" class="col-xs-12">
     <div class="row">
@@ -65,7 +57,7 @@
             <div>
               <button type="button" class="btn btn-primary pull-right" (click)="register($event, ehrpatient)" [disabled]="crid || isLoading">
                 <img *ngIf="isLoading" style="width : 24px" src="assets/spinner.gif" /> 
-                Register
+                Register and Proceed
               </button>
             </div>
           </div>
