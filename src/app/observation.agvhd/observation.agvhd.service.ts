@@ -7,7 +7,7 @@ import { concatMap } from "rxjs-compat/operators/concatMap";
 import { LocalStorageService } from "angular-2-local-storage";
 
 @Injectable()
-export class ObservationService {
+export class ObservationAgvhdService {
   constructor(
     private http: CustomHttpClient,
     private _localStorageService: LocalStorageService

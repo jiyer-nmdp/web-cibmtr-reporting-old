@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="row">
+    <div class="patient-detail-box-shadow">
+      <div class="col-md-8 patient-name">
+        <p>{{ ehrpatient.name[0].text }}</p>
+      </div>
+      <div class="col-md-4 patient-crid">
+        <p>{{ crid }}</p>
+      </div>
+    </div>
+
+    <div class="col-md-12 observation-label">
+      Please select resource values you want to submit
+    </div>
+
+    <div>
+      <div class="col-md-3 resource-collection">
+        <div class="col-md-12">
+          <div class="resource-label">
+            <a
+              [routerLink]="['labs']"
+              [state]="{
+                data: {
+                  bundle: bundle,
+                  savedBundle: savedBundle,
+                  now: now,
+                  psScope: psScope,
+                  ehrpatient: ehrpatient,
+                }
+              }"
+              >Observation-Labs : {{ bundle.total }}
+            </a>
+          </div>
+          <div class="resource-label">
+            <a href="#">Observation-VitalSigns : {{ bundle.total }}</a>
+          </div>
+          <div class="resource-label">
+            <a
+              [routerLink]="['agvhd']"
+              [state]="{
+                data: {
+                  bundle: bundle,
+                  savedBundle: savedBundle,
+                  now: now,
+                  psScope: psScope,
+                  ehrpatient: ehrpatient,  
+                }
+              }"
+              >Observation-aGVHD :{{ bundle.total }}
+            </a>
+          </div>
+          <div class="resource-label">
+            <a class="btn disabled" href="#">Condition : {{ bundle.total }}</a>
+          </div>
+          <div class="resource-label">
+            <a class="btn disabled" href="#"
+              >DiagnosticReport : {{ bundle.total }}</a
+            >
+          </div>
+          <div class="resource-label">
+            <a class="btn disabled" href="#">Procedure : {{ bundle.total }}</a>
+          </div>
+          <div class="resource-label">
+            <a class="btn disabled" href="#"
+              >MedicationStatement : {{ bundle.total }}</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="col-md-1"></div>
+      <div class="col-md-8 observations-box-shadow">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

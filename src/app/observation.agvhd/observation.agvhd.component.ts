@@ -1,16 +1,16 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { AppConfig } from "../app.config";
-import { ObservationService } from "./observation.service";
+import { ObservationAgvhdService } from "./observation.agvhd.service";
 import { LocalStorageService } from "angular-2-local-storage";
 import { Router, ActivatedRoute } from '@angular/router';
 import { Patient } from '../model/patient.';
 
 @Component({
   selector: "app-observation",
-  templateUrl: "./observation.component.html",
-  styleUrls: ["./observation.component.scss"]
+  templateUrl: "./observation.agvhd.component.html",
+  styleUrls: ["./observation.agvhd.component.scss"]
 })
-export class ObservationComponent implements OnInit {
+export class ObservationAgvhdComponent implements OnInit {
 
   bundle: any;
   savedBundle: any;
@@ -31,7 +31,7 @@ export class ObservationComponent implements OnInit {
   crid : string
 
   constructor(    
-    public observationService: ObservationService,
+    public observationagvhdService: ObservationAgvhdService,
     private _localStorageService: LocalStorageService,
     private route : ActivatedRoute,
     private router : Router
@@ -145,7 +145,7 @@ export class ObservationComponent implements OnInit {
       this.selectedNewEntries
     );
     if (this.selectedNewResources && this.selectedNewResources.length > 0) {
-      this.observationService
+      this.observationagvhdService
         .postNewRecords(this.selectedNewResources, this.psScope)
         .subscribe(
           response => {
@@ -185,7 +185,7 @@ export class ObservationComponent implements OnInit {
       this.selectedUpdatedResources &&
       this.selectedUpdatedResources.length > 0
     ) {
-      this.observationService
+      this.observationagvhdService
         .postUpdatedRecords(this.selectedUpdatedResources, this.psScope)
         .subscribe(
           response => {
