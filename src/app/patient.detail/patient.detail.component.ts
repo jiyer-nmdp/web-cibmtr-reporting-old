@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Patient } from "../model/patient.";
 import { Router } from "@angular/router";
-import { ObservationLabsService } from "../observation.labs/observation.labs.service";
 
 @Component({
   selector: "app-patient.detail",
@@ -16,10 +15,7 @@ export class PatientDetailComponent implements OnInit {
   crid: string;
   savedBundle: any = {};
 
-  constructor(
-    private router: Router,
-    private observationlabsService: ObservationLabsService
-  ) {
+  constructor(private router: Router) {
     let data = this.router.getCurrentNavigation().extras.state.data;
     this.bundle = data.bundle;
     this.savedBundle = data.savedBundle;
@@ -31,7 +27,7 @@ export class PatientDetailComponent implements OnInit {
 
   ngOnInit() {}
 
-  getLabs(bundle: any, ehrpatient: Patient) {
+  /*getLabs(bundle: any, ehrpatient: Patient) {
     // make a http get call to fhir to get the list of saved observations
     let savedBundle = {};
     if (
@@ -67,5 +63,5 @@ export class PatientDetailComponent implements OnInit {
           }
         );
     }
-  }
+  }*/
 }
