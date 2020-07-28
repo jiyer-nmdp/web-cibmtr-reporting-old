@@ -31,3 +31,12 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 ## Running end-to-end tests
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+
+# Docker Build Steps
+
+docker build -t web-cibmtr-reporting .
+docker tag web-cibmtr-reporting:latest  dockerhub.nmdp.org:8443/nmdp/web-cibmtr-reporting-{env}:mmddyyyy
+docker push dockerhub.nmdp.org:8443/nmdp/web-cibmtr-reporting-{env}:mmddyyyy
+
+
+
