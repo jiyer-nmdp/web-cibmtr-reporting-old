@@ -12,18 +12,18 @@ import { NmdpWidget } from "@nmdp/nmdp-login/Angular/service/nmdp.widget";
 import { CustomHttpClient } from "../client/custom.http.client";
 import { DialogComponent } from "../dialog/dialog.component";
 import { LocalStorageService } from "angular-2-local-storage";
-import { HttpErrorResponse } from '@angular/common/http';
-
+import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
   selector: "app-main",
-  templateUrl: "./patient.component.html"
+  templateUrl: "./patient.component.html",
 })
-
 export class PatientComponent implements OnInit {
   bsModalRef: BsModalRef;
   ehrpatient: Patient;
-  bundle: any;
+  agvhd: any;
+  labs: any;
+  vitals: any;
   cibmtrObservations: any;
   crid: string;
   logicalId: string;
@@ -33,9 +33,9 @@ export class PatientComponent implements OnInit {
   crid$: Observable<any>;
   cridCallComplete: Boolean = false;
   psScope: string;
-  isLoading : Boolean;
-  now : Date;
-  cibmtrPatientId : Observable<any>;
+  isLoading: Boolean;
+  now: Date;
+  cibmtrPatientId: Observable<any>;
 
   constructor(
     private _route: ActivatedRoute,
@@ -49,23 +49,23 @@ export class PatientComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.determineModal().then(cibmtrCenters => {
+    this.determineModal().then((cibmtrCenters) => {
       if (cibmtrCenters && cibmtrCenters.length > 1) {
         this.bsModalRef = this.modalService.show(DialogComponent, {
           initialState: { cibmtrCenters },
           ignoreBackdropClick: true,
-          keyboard: false
+          keyboard: false,
         });
-        this.bsModalRef.content.onClose.subscribe(result => {
+        this.bsModalRef.content.onClose.subscribe((result) => {
           if (result === "Continue") {
             this.subscribeRouteData(
               "rc_" + this.bsModalRef.content.currentItem.value
             );
           }
         });
-      } else if(cibmtrCenters){
+      } else if (cibmtrCenters) {
         this.subscribeRouteData("rc_" + cibmtrCenters[0].value);
-      } 
+      }
     });
   }
 
@@ -77,7 +77,7 @@ export class PatientComponent implements OnInit {
       this.nmdpWidget.getAccessToken()
     );
 
-    let scopes = decodedValue.authz_cibmtr_fhir_ehr_client.filter(item =>
+    let scopes = decodedValue.authz_cibmtr_fhir_ehr_client.filter((item) =>
       item.includes("role")
     );
 
@@ -87,7 +87,6 @@ export class PatientComponent implements OnInit {
     });
     scopes = scopes.join(",");
     return this.fetchData(scopes);
-  
   }
 
   /**
@@ -99,27 +98,30 @@ export class PatientComponent implements OnInit {
       AppConfig.cibmtr_fhir_update_url + "Organization?_security=";
 
     let cibmtrCenters = [];
-    if(scopes !== "" ){
-    await this.http
-      .get(`${cibmtrUrl}${scopes}`)
-      .toPromise()
-      .then(cibmtrResponse => {   
+    if (scopes !== "") {
+      await this.http
+        .get(`${cibmtrUrl}${scopes}`)
+        .toPromise()
+        .then((cibmtrResponse) => {
           let cibmtrEntry = cibmtrResponse.entry;
-          cibmtrEntry.forEach(element => {
+          cibmtrEntry.forEach((element) => {
             let value = element.resource.identifier[0].value;
             let name = element.resource.name;
             cibmtrCenters.push({
               value,
               name,
-              selected: false
+              selected: false,
             });
-          });     
-      }).catch(error => {
-        this.handleError(error, this.fhirApp,new Date().getTime());
-      });
-    return cibmtrCenters;
+          });
+        })
+        .catch((error) => {
+          this.handleError(error, this.fhirApp, new Date().getTime());
+        });
+      return cibmtrCenters;
     }
-      alert("your User ID has not been provisioned correctly. \n Please contact the Service Desk at (763) 406-3411 or (800) 526-7809 x3411");
+    alert(
+      "your User ID has not been provisioned correctly. \n Please contact the Service Desk at (763) 406-3411 or (800) 526-7809 x3411"
+    );
   }
 
   /**
@@ -134,14 +136,16 @@ export class PatientComponent implements OnInit {
     return givenName;
   }
 
-  subscribeRouteData = selectedScope => {
+  subscribeRouteData = (selectedScope) => {
     this._route.data.subscribe(
-      results => {
+      (results) => {
         this.ehrpatient = results.pageData[0];
-        this.bundle = results.pageData[1];
+        this.agvhd = results.pageData[1];
+        this.labs = results.pageData[2];
+        this.vitals = results.pageData[3];
         this.retreiveFhirPatient(this.ehrpatient, selectedScope);
       },
-      error => {
+      (error) => {
         return throwError(error);
       }
     );
@@ -171,35 +175,34 @@ export class PatientComponent implements OnInit {
       .lookupPatientCrid(logicalId.concat(`&_security=${encodedScope}`))
       .pipe(take(1))
       .toPromise()
-      .then(resp => {
+      .then((resp) => {
         let total = resp.total;
         if (total && total > 0) {
           if (resp.entry) {
-            resp.entry.filter(entry => {
+            resp.entry.filter((entry) => {
               if (entry.resource) {
                 if (
                   entry.resource.identifier &&
                   entry.resource.identifier.length > 0
                 ) {
                   let filteredCrid = entry.resource.identifier.filter(
-                    i => i.system === AppConfig.cibmtr_crid_namespace
+                    (i) => i.system === AppConfig.cibmtr_crid_namespace
                   );
                   if (filteredCrid && filteredCrid.length > 0) {
                     this.crid = filteredCrid[0].value;
                   }
                 }
-                if(entry.resource.fullUri){
+                if (entry.resource.fullUri) {
                   let fullUri = entry.resource.fullUri;
                 }
-
               }
             });
           }
         }
       })
       .finally(() => (this.cridCallComplete = true))
-      .catch(this.handleErrorv2);  
-    }
+      .catch(this.handleErrorv2);
+  }
 
   /**
    *
@@ -211,7 +214,7 @@ export class PatientComponent implements OnInit {
     }
     if (error != null) {
       console.error("An error occurred" + error);
-      return Promise.reject(error.message || error.status );
+      return Promise.reject(error.message || error.status);
     } else {
       console.error("An unknown error occurred");
       return Promise.reject("Unknown error");
@@ -272,16 +275,16 @@ export class PatientComponent implements OnInit {
     e.preventDefault();
     e.stopPropagation();
     this.isLoading = true;
-    
+
     let genderLowerCase;
 
     let ehrSsn = ehrpatient.identifier
       .filter(
-        i =>
+        (i) =>
           i.system === "urn:oid:2.16.840.1.113883.4.1" ||
           i.system === "http://hl7.org/fhir/sid/us-ssn"
       )
-      .map(i => i.value)
+      .map((i) => i.value)
       .join("");
 
     //Gender
@@ -297,7 +300,7 @@ export class PatientComponent implements OnInit {
           ehrpatient.gender +
           " is not currently supported as a gender value. Please contact your center's CIBMTR CRC to review this case."
       );
-      this.isLoading = false
+      this.isLoading = false;
       return;
     } else {
       genderLowerCase = ehrpatient.gender.toLowerCase();
@@ -312,8 +315,8 @@ export class PatientComponent implements OnInit {
         lastName: ehrpatient.name[0].family,
         birthDate: ehrpatient.birthDate,
         gender: genderLowerCase === "male" ? "M" : "F",
-        ssn: ehrSsn      
-      }
+        ssn: ehrSsn,
+      },
     };
 
     if (!payload.patient.ssn) {
@@ -324,10 +327,9 @@ export class PatientComponent implements OnInit {
       .getCrid(payload)
       .pipe(take(1))
       .subscribe(
-
-        result => {
+        (result) => {
           const now = new Date();
-          this.isLoading = false
+          this.isLoading = false;
           // look for Perfect Match
           if (result && result.perfectMatch) {
             this.crid = result.perfectMatch[0].crid;
@@ -353,16 +355,15 @@ export class PatientComponent implements OnInit {
                 const now = new Date();
                 console.log("Submitted patient");
               },
-              error => {
-                this.handleError(error, this.fhirApp,new Date().getTime());
+              (error) => {
+                this.handleError(error, this.fhirApp, new Date().getTime());
               }
             );
         },
-        error => {
-          this.handleError(error, this.cridApp,new Date().getTime());
+        (error) => {
+          this.handleError(error, this.cridApp, new Date().getTime());
         },
         () => (this.cridCallComplete = true)
-       
       );
   }
 
@@ -379,65 +380,45 @@ export class PatientComponent implements OnInit {
         security: [
           {
             system: AppConfig.cibmtr_centers_namespace,
-            code: this.psScope
-          }
-        ]
+            code: this.psScope,
+          },
+        ],
       },
       identifier: [
         ...ehrpatient.identifier,
         {
           use: "official",
           system: AppConfig.epic_logicalId_namespace,
-          value: this._localStorageService.get("iss") + "/Patient/" + logicalId
+          value: this._localStorageService.get("iss") + "/Patient/" + logicalId,
         },
         {
           use: "official",
           system: AppConfig.cibmtr_crid_namespace,
-          value: crid
-        }
-      ]
+          value: crid,
+        },
+      ],
     };
     return updatedEhrPatient;
   }
 
   /**
    *
-   * @param bundle
+   * @param
    */
-  getDetails(bundle: any, ehrpatient: Patient, crid : string) {
-    // make a http get call to fhir to get the list of saved observations
-    let savedBundle = {};
-    if (
-      bundle &&
-      bundle.entry &&
-      bundle.entry.length > 0 &&
-      bundle.entry[0].resource.subject
-    ) {
-      const subj = bundle.entry[0].resource.subject.reference;
-      const now = new Date();
-      const psScope = this.psScope;
-      this.observationagvhdService
-        .getCibmtrObservations(subj, this.psScope)
-        .subscribe(
-          response => (savedBundle = response),
-          error =>
-            console.log(
-              "error occurred while fetching saved observations",
-              error
-            ),
-          () => {
-            this.router.navigate(['/patientdetail'], { state: { data: {
-              bundle,
-              savedBundle,
-              now,
-              psScope,
-              ehrpatient,
-              crid
-            }}});
-            
-          }
-        );
-    }
+  proceed() {
+    // Navigate to the Patient Details Component
+    this.router.navigate(["/patientdetail"], {
+      state: {
+        data: {
+          agvhd: this.agvhd,
+          labs: this.labs,
+          vitals: this.vitals,
+          ehrpatient: this.ehrpatient,
+          crid: this.crid,
+          psScope: this.psScope,
+        },
+      },
+    });
   }
 
   /**
@@ -453,16 +434,17 @@ export class PatientComponent implements OnInit {
    * @param error
    * @param system
    */
-  handleError(error: HttpErrorResponse, system: string , timestamp : any) {
-
+  handleError(error: HttpErrorResponse, system: string, timestamp: any) {
     this.isLoading = false;
-    let errorMessage = `An unexpected failure for ${system} Server has occurred. Please try again. If the error persists, please report this to CIBMTR. Status: ${error.status} \n Message : ${error.error.errorMessage || error.message}. \nTimestamp : ${timestamp} `;
+    let errorMessage = `An unexpected failure for ${system} Server has occurred. Please try again. If the error persists, please report this to CIBMTR. Status: ${
+      error.status
+    } \n Message : ${
+      error.error.errorMessage || error.message
+    }. \nTimestamp : ${timestamp} `;
 
     alert(errorMessage);
     console.log(errorMessage);
 
     return throwError(error);
-
   }
 }
- 

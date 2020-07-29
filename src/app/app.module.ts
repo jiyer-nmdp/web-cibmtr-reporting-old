@@ -23,6 +23,7 @@ import { PatientDetailComponent } from "./patient.detail/patient.detail.componen
 import { DefaultComponent } from "./default/default.component";
 import { ObservationLabsComponent } from "./observation.labs/observation.labs.component";
 import { ObservationVitalsComponent } from "./observation.vitals/observation.vitals.component";
+import { ObservationLabsService } from "./observation.labs/observation.labs.service";
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { ObservationVitalsComponent } from "./observation.vitals/observation.vit
     PatientResolver,
     PatientService,
     ObservationAgvhdService,
+    ObservationLabsService,
     AuthorizationService,
     AppInitService,
     FhirService,

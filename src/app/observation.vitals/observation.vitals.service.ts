@@ -84,14 +84,14 @@ export class ObservationLabsService {
     );
   }
 
-  getCibmtrObservationsLabs(subject, psScope): Observable<any> {
+  getCibmtrObservationsVitals(subject, psScope): Observable<any> {
     const url =
       AppConfig.cibmtr_fhir_update_url +
       "Observation?subject=" +
       subject +
       "&_security=" +
       psScope +
-      "&_total=accurate&_count=1000&category=laboratory";
+      "&_total=accurate&_count=1000&category=vital-signs";
     return this.http.get(url);
   }
 }

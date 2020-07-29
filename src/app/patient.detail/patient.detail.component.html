@@ -16,55 +16,52 @@
     <div>
       <div class="col-md-3 resource-collection">
         <div class="col-md-12">
-          <div class="resource-label">
+          <div *ngIf="labs.total > 0" class="resource-label">
             <a
               [routerLink]="['labs']"
               [state]="{
                 data: {
-                  bundle: bundle,
-                  savedBundle: savedBundle,
-                  now: now,
-                  psScope: psScope,
-                  ehrpatient: ehrpatient
+                  labs: labs,
+                  psScope: psScope
                 }
               }"
-              >Observation-labs :{{ bundle.total }}
+              >Observation-labs :{{ labs.total }}
             </a>
           </div>
-          <div class="resource-label">
-            <a href="#">Observation-VitalSigns : {{ bundle.total }}</a>
+
+          <div *ngIf="vitals.total > 0" class="resource-label">
+            <a href="#">Observation-VitalSigns : {{ vitals.total }}</a>
           </div>
-          <div class="resource-label">
+
+          <div *ngIf="agvhd.total > 0" class="resource-label">
             <a
               [routerLink]="['agvhd']"
               [state]="{
                 data: {
-                  bundle: bundle,
-                  savedBundle: savedBundle,
-                  now: now,
-                  psScope: psScope,
-                  ehrpatient: ehrpatient
+                  agvhd: agvhd,
+                  psScope: psScope
                 }
               }"
-              >Observation-aGVHD :{{ bundle.total }}
+              >Observation-aGVHD :{{ agvhd.total }}
             </a>
           </div>
-          <div class="resource-label">
-            <a class="btn disabled" href="#">Condition : {{ bundle.total }}</a>
+
+          <!-- <div class="resource-label">
+            <a class="link-disabled" href="#">Condition : {{ bundle.total }}</a>
           </div>
           <div class="resource-label">
-            <a class="btn disabled" href="#"
+            <a class="link-disabled" href="#"
               >DiagnosticReport : {{ bundle.total }}</a
             >
           </div>
           <div class="resource-label">
-            <a class="btn disabled" href="#">Procedure : {{ bundle.total }}</a>
+            <a class="link-disabled" href="#">Procedure : {{ bundle.total }}</a>
           </div>
           <div class="resource-label">
-            <a class="btn disabled" href="#"
+            <a class="link-disabled" href="#"
               >MedicationStatement : {{ bundle.total }}</a
             >
-          </div>
+          </div> -->
         </div>
       </div>
       <div class="col-md-1"></div>
