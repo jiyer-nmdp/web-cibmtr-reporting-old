@@ -14,9 +14,13 @@ export class ObservationService {
   ) {}
 
   // Below method submit new records to the cibmtr
-  postNewRecords(selectedResources, psScope ,cibmtrPatientFullUri): Observable<any> {
+  postNewRecords(
+    selectedResources,
+    psScope,
+    cibmtrPatientFullUri
+  ): Observable<any> {
     return from(selectedResources).pipe(
-      concatMap(selectedResource => {
+      concatMap((selectedResource) => {
         const tmpResource: any = selectedResource;
         return this.http.post(
           AppConfig.cibmtr_fhir_update_url + "Observation",
@@ -26,38 +30,41 @@ export class ObservationService {
               security: [
                 {
                   system: AppConfig.cibmtr_centers_namespace,
-                  code: psScope
-                }
-              ]
+                  code: psScope,
+                },
+              ],
             },
             identifier: [
               {
                 use: "official",
                 system: AppConfig.epic_logicalId_namespace,
-                value:  this._localStorageService.get("iss") + "/Observation/" +tmpResource.id
-              }
+                value:
+                  this._localStorageService.get("iss") +
+                  "/Observation/" +
+                  tmpResource.id,
+              },
             ],
-            subject: {
-              reference: cibmtrPatientFullUri
-            }
           }
         );
       })
     );
   }
-
   // Below method submit updated records to the cibmtr
-  postUpdatedRecords(selectedResources, psScope ,cibmtrPatientFullUri): Observable<any> {
+  postUpdatedRecords(
+    selectedResources,
+    psScope,
+    cibmtrPatientFullUri
+  ): Observable<any> {
     // Prepare the map of Id and resources
     let sMap = {};
 
-    selectedResources.forEach(selectedResource => {
+    selectedResources.forEach((selectedResource) => {
       sMap[selectedResource.resource.id] = selectedResource.resource;
     });
 
     //Updated the FHIR will Overwrite the Existing Attribute , Creating the Identifier and Meta tags again.
     return from(Object.keys(sMap)).pipe(
-      concatMap(key => {
+      concatMap((key) => {
         const ehrId: any = sMap[key];
         return this.http.put(
           AppConfig.cibmtr_fhir_update_url + "Observation/" + key,
@@ -67,20 +74,17 @@ export class ObservationService {
               security: [
                 {
                   system: AppConfig.cibmtr_centers_namespace,
-                  code: psScope
-                }
-              ]
+                  code: psScope,
+                },
+              ],
             },
             identifier: [
               {
                 use: "official",
                 system: AppConfig.epic_logicalId_namespace,
-                value: ehrId.extension[0].valueUri
-              }
+                value: ehrId.extension[0].valueUri,
+              },
             ],
-            subject: {
-              reference: cibmtrPatientFullUri
-            }
           }
         );
       })
