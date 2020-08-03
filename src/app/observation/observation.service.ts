@@ -17,7 +17,6 @@ export class ObservationService {
   postNewRecords(
     selectedResources,
     psScope,
-    cibmtrPatientFullUri
   ): Observable<any> {
     return from(selectedResources).pipe(
       concatMap((selectedResource) => {
@@ -53,7 +52,6 @@ export class ObservationService {
   postUpdatedRecords(
     selectedResources,
     psScope,
-    cibmtrPatientFullUri
   ): Observable<any> {
     // Prepare the map of Id and resources
     let sMap = {};
