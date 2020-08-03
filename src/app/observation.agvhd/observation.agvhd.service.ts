@@ -14,9 +14,9 @@ export class ObservationAgvhdService {
   ) {}
 
   // Below method submit new records to the cibmtr
-  postNewRecords(selectedResources, psScope ): Observable<any> {
+  postNewRecords(selectedResources, psScope): Observable<any> {
     return from(selectedResources).pipe(
-      concatMap(selectedResource => {
+      concatMap((selectedResource) => {
         const tmpResource: any = selectedResource;
         return this.http.post(
           AppConfig.cibmtr_fhir_update_url + "Observation",
@@ -26,16 +26,19 @@ export class ObservationAgvhdService {
               security: [
                 {
                   system: AppConfig.cibmtr_centers_namespace,
-                  code: psScope
-                }
-              ]
+                  code: psScope,
+                },
+              ],
             },
             identifier: [
               {
                 use: "official",
                 system: AppConfig.epic_logicalId_namespace,
-                value:  this._localStorageService.get("iss") + "/Observation/" +tmpResource.id
-              }
+                value:
+                  this._localStorageService.get("iss") +
+                  "/Observation/" +
+                  tmpResource.id,
+              },
             ],
           }
         );
@@ -44,17 +47,17 @@ export class ObservationAgvhdService {
   }
 
   // Below method submit updated records to the cibmtr
-  postUpdatedRecords(selectedResources, psScope ): Observable<any> {
+  postUpdatedRecords(selectedResources, psScope): Observable<any> {
     // Prepare the map of Id and resources
     let sMap = {};
 
-    selectedResources.forEach(selectedResource => {
+    selectedResources.forEach((selectedResource) => {
       sMap[selectedResource.resource.id] = selectedResource.resource;
     });
 
     //Updated the FHIR will Overwrite the Existing Attribute , Creating the Identifier and Meta tags again.
     return from(Object.keys(sMap)).pipe(
-      concatMap(key => {
+      concatMap((key) => {
         const ehrId: any = sMap[key];
         return this.http.put(
           AppConfig.cibmtr_fhir_update_url + "Observation/" + key,
@@ -64,16 +67,16 @@ export class ObservationAgvhdService {
               security: [
                 {
                   system: AppConfig.cibmtr_centers_namespace,
-                  code: psScope
-                }
-              ]
+                  code: psScope,
+                },
+              ],
             },
             identifier: [
               {
                 use: "official",
                 system: AppConfig.epic_logicalId_namespace,
-                value: ehrId.extension[0].valueUri
-              }
+                value: ehrId.extension[0].valueUri,
+              },
             ],
           }
         );

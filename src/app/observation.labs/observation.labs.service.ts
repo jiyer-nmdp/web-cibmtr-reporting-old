@@ -75,7 +75,10 @@ export class ObservationLabsService {
               {
                 use: "official",
                 system: AppConfig.epic_logicalId_namespace,
-                value: ehrId.extension[0].valueUri,
+                value:
+                  this._localStorageService.get("iss") +
+                  "/Observation/" +
+                  sMap[key].id,
               },
             ],
           }

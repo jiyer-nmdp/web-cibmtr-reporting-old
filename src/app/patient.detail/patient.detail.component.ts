@@ -26,4 +26,12 @@ export class PatientDetailComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  getFullName(ehrpatient) {
+    let givenName;
+    if (ehrpatient.name[0].text.length > 0) {
+      givenName = ehrpatient.name[0].text;
+    }
+    return givenName;
+  }
 }
