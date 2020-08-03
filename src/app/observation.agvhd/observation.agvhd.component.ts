@@ -74,7 +74,7 @@ export class ObservationAgvhdComponent implements OnInit {
 
                   if (matchingEntry && matchingEntry.length > 0) {
                     let observationEntry = observationEntries[j];
-                    // Case I - The record has not been submittednn
+                    // Case I - The record has not been submitted
                     observationEntry.state = "bold";
                     if (savedEntries && savedEntries.length > 0) {
                       // Case II - The record has been submitted and there were no updates
