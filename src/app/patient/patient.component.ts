@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ErrorHandler } from "@angular/core";
 import { Patient } from "../model/patient.";
 import { ActivatedRoute } from "@angular/router";
 import { throwError, Observable } from "rxjs";
@@ -13,11 +13,14 @@ import { NmdpWidget } from "@nmdp/nmdp-login/Angular/service/nmdp.widget";
 import { CustomHttpClient } from "../client/custom.http.client";
 import { DialogComponent } from "../dialog/dialog.component";
 import { LocalStorageService } from "angular-2-local-storage";
+import { HttpErrorResponse } from '@angular/common/http';
+
 
 @Component({
   selector: "app-main",
   templateUrl: "./patient.component.html"
 })
+
 export class PatientComponent implements OnInit {
   bsModalRef: BsModalRef;
   ehrpatient: Patient;
@@ -31,6 +34,9 @@ export class PatientComponent implements OnInit {
   crid$: Observable<any>;
   cridCallComplete: Boolean = false;
   psScope: string;
+  isLoading : Boolean;
+  now : Date;
+  cibmtrPatientId : Observable<any>;
 
   constructor(
     private _route: ActivatedRoute,
@@ -57,9 +63,9 @@ export class PatientComponent implements OnInit {
             );
           }
         });
-      } else {
+      } else if(cibmtrCenters){
         this.subscribeRouteData("rc_" + cibmtrCenters[0].value);
-      }
+      } 
     });
   }
 
@@ -76,13 +82,12 @@ export class PatientComponent implements OnInit {
     );
 
     //Scope format - "l1_role_rc_10121_fn3"
-    //if (scopes.includes("role")) {
     scopes.forEach((scope, index) => {
       scopes[index] = scope.match(/(rc_\d+)_fn3/)[1];
     });
     scopes = scopes.join(",");
     return this.fetchData(scopes);
-    //} else alert("User is not Associated with RC Group ");
+  
   }
 
   /**
@@ -94,22 +99,27 @@ export class PatientComponent implements OnInit {
       AppConfig.cibmtr_fhir_update_url + "Organization?_security=";
 
     let cibmtrCenters = [];
+    if(scopes !== "" ){
     await this.http
       .get(`${cibmtrUrl}${scopes}`)
       .toPromise()
-      .then(cibmtrResponse => {
-        let cibmtrEntry = cibmtrResponse.entry;
-        cibmtrEntry.forEach(element => {
-          let value = element.resource.identifier[0].value;
-          let name = element.resource.name;
-          cibmtrCenters.push({
-            value,
-            name,
-            selected: false
-          });
-        });
+      .then(cibmtrResponse => {   
+          let cibmtrEntry = cibmtrResponse.entry;
+          cibmtrEntry.forEach(element => {
+            let value = element.resource.identifier[0].value;
+            let name = element.resource.name;
+            cibmtrCenters.push({
+              value,
+              name,
+              selected: false
+            });
+          });     
+      }).catch(error => {
+        this.handleError(error, this.fhirApp,new Date().getTime());
       });
     return cibmtrCenters;
+    }
+      alert("your User ID has not been provisioned correctly. \n Please contact the Service Desk at (763) 406-3411 or (800) 526-7809 x3411");
   }
 
   /**
@@ -178,14 +188,18 @@ export class PatientComponent implements OnInit {
                     this.crid = filteredCrid[0].value;
                   }
                 }
+                if(entry.resource.fullUri){
+                  let fullUri = entry.resource.fullUri;
+                }
+
               }
             });
           }
         }
       })
       .finally(() => (this.cridCallComplete = true))
-      .catch(this.handleErrorv2);
-  }
+      .catch(this.handleErrorv2);  
+    }
 
   /**
    *
@@ -197,7 +211,7 @@ export class PatientComponent implements OnInit {
     }
     if (error != null) {
       console.error("An error occurred" + error);
-      return Promise.reject(error.message || error);
+      return Promise.reject(error.message || error.status );
     } else {
       console.error("An unknown error occurred");
       return Promise.reject("Unknown error");
@@ -255,11 +269,12 @@ export class PatientComponent implements OnInit {
    */
   register(e: any, ehrpatient: Patient) {
     this.cridCallComplete = false;
-    e.stopPropagation();
     e.preventDefault();
+    e.stopPropagation();
+    this.isLoading = true;
+    
     let genderLowerCase;
 
-    //SSN
     let ehrSsn = ehrpatient.identifier
       .filter(
         i =>
@@ -282,6 +297,7 @@ export class PatientComponent implements OnInit {
           ehrpatient.gender +
           " is not currently supported as a gender value. Please contact your center's CIBMTR CRC to review this case."
       );
+      this.isLoading = false
       return;
     } else {
       genderLowerCase = ehrpatient.gender.toLowerCase();
@@ -296,7 +312,7 @@ export class PatientComponent implements OnInit {
         lastName: ehrpatient.name[0].family,
         birthDate: ehrpatient.birthDate,
         gender: genderLowerCase === "male" ? "M" : "F",
-        ssn: ehrSsn
+        ssn: ehrSsn      
       }
     };
 
@@ -308,7 +324,10 @@ export class PatientComponent implements OnInit {
       .getCrid(payload)
       .pipe(take(1))
       .subscribe(
+
         result => {
+          const now = new Date();
+          this.isLoading = false
           // look for Perfect Match
           if (result && result.perfectMatch) {
             this.crid = result.perfectMatch[0].crid;
@@ -331,17 +350,19 @@ export class PatientComponent implements OnInit {
             .retry(0)
             .subscribe(
               () => {
+                const now = new Date();
                 console.log("Submitted patient");
               },
               error => {
-                this.handleError(error, this.fhirApp);
+                this.handleError(error, this.fhirApp,new Date().getTime());
               }
             );
         },
         error => {
-          this.handleError(error, this.cridApp);
+          this.handleError(error, this.cridApp,new Date().getTime());
         },
         () => (this.cridCallComplete = true)
+       
       );
   }
 
@@ -433,12 +454,16 @@ export class PatientComponent implements OnInit {
    * @param error
    * @param system
    */
-  handleError(error: Response, system: string) {
-    let text: string =
-      `ERROR in call to ${system} web service.  Status: ` +
-      error.status +
-      ".  Text: " +
-      error.statusText;
-    alert(text);
+  handleError(error: HttpErrorResponse, system: string , timestamp : any) {
+
+    this.isLoading = false;
+    let errorMessage = `An unexpected failure for ${system} Server has occurred. Please try again. If the error persists, please report this to CIBMTR. Status: ${error.status} \n Message : ${error.error.errorMessage || error.message}. \nTimestamp : ${timestamp} `;
+
+    alert(errorMessage);
+    console.log(errorMessage);
+
+    return throwError(error);
+
   }
 }
+ 
