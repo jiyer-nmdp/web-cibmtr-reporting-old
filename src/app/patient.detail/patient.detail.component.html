@@ -1,11 +1,12 @@
 <div class="container">
   <div class="row">
     <div class="patient-detail-box-shadow">
-      <div class="col-md-8 patient-name">
+      <div class="col-md-6 patient-name">
         <p>{{ getFullName(ehrpatient) }}</p>
       </div>
-      <div class="col-md-4 patient-crid">
-        <p>CIBMTR Research ID (CRID){{ crid }}</p>
+      <div class="col-md-6 patient-crid">
+        <span class="research-id-text">CIBMTR Research ID (CRID) : </span>
+        <span>{{ crid }}</span>
       </div>
     </div>
 
@@ -25,14 +26,23 @@
                   psScope: psScope
                 }
               }"
-              >Observation-labs :{{ labs.total }}
+              >Observation-labs
             </a>
+            <b class="badge pull-right">{{ labs.total }}</b>
           </div>
 
           <div class="resource-label">
-            <a class="link-disabled" href="#"
-              >Observation-VitalSigns : {{ vitals.total }}</a
-            >
+            <a
+              [routerLink]="['vitals']"
+              [state]="{
+                data: {
+                  vitals: vitals,
+                  psScope: psScope
+                }
+              }"
+              >Observation-VitalSigns
+            </a>
+            <b class="badge pull-right">{{ vitals.total }}</b>
           </div>
 
           <div class="resource-label">
@@ -44,8 +54,9 @@
                   psScope: psScope
                 }
               }"
-              >Observation-aGVHD :{{ agvhd.total }}
+              >Flowsheet-aGVHD
             </a>
+            <b class="badge pull-right">{{ agvhd.total }}</b>
           </div>
 
           <!-- <div class="resource-label">

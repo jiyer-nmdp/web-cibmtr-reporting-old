@@ -73,12 +73,13 @@ export class PatientComponent implements OnInit {
     if (!this.nmdpWidget.isLoggedIn) {
       return;
     }
+
     let decodedValue = this.getDecodedAccessToken(
       this.nmdpWidget.getAccessToken()
     );
 
-    let scopes = decodedValue.authz_cibmtr_fhir_ehr_client.filter((item) =>
-      item.includes("role")
+    let scopes = decodedValue.authz_cibmtr_fhir_ehr_client.filter(
+      (item) => item.includes("_role_rc") && item.includes("_fn3")
     );
 
     //Scope format - "l1_role_rc_10121_fn3"

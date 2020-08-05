@@ -7,7 +7,7 @@ import { concatMap } from "rxjs-compat/operators/concatMap";
 import { LocalStorageService } from "angular-2-local-storage";
 
 @Injectable()
-export class ObservationLabsService {
+export class ObservationVitalsService {
   constructor(
     private http: CustomHttpClient,
     private _localStorageService: LocalStorageService
@@ -75,7 +75,10 @@ export class ObservationLabsService {
               {
                 use: "official",
                 system: AppConfig.epic_logicalId_namespace,
-                value: ehrId.extension[0].valueUri,
+                value:
+                  this._localStorageService.get("iss") +
+                  "/Observation/" +
+                  sMap[key].id,
               },
             ],
           }
