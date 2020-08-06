@@ -34,7 +34,8 @@ export class AppComponent implements OnInit {
     this.loginWidget.signout((err: any) => {
       this.ref.detectChanges();
       this.ngOnInit();
-      this.router.navigateByUrl("/");
+      //when User click logout of navigation , and patient conext is cleared.
+      this.router.navigateByUrl("/main");
     });
   }
 

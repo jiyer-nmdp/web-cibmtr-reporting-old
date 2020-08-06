@@ -21,7 +21,6 @@ export class ObservationVitalsComponent implements OnInit {
   selectedNewResources = [];
   selectedUpdatedResources = [];
   psScope: string;
-  cibmtrPatientFullUri: string;
   success: boolean;
   fail: boolean;
   ehrpatient: Patient;

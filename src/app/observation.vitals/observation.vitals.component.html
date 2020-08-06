@@ -54,10 +54,12 @@
           </td>
           <td>
             {{
-              (entry.resource.valueCodeableConcept?.coding)[0]?.code ||
+              (entry.resource.valueCodeableConcept?.coding)[0].code ||
                 entry.resource.valueDateTime ||
                 entry.resource.valueString ||
-                entry.resource.valueQuantity?.value ||
+                entry.resource.valueQuantity?.value +
+                  " " +
+                  entry.resource.valueQuantity?.unit  ||
                 entry.resource.valueTime ||
                 entry.resource.valueBoolean
             }}

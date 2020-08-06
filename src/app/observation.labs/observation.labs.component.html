@@ -50,14 +50,16 @@
       <tbody>
         <tr *ngFor="let entry of labs.entry" [style.fontWeight]="entry.state">
           <td>
-            {{ entry.resource.code.text }}
+            {{ entry.resource.code?.text }}
           </td>
           <td>
             {{
               (entry.resource.valueCodeableConcept?.coding)[0].code ||
                 entry.resource.valueDateTime ||
                 entry.resource.valueString ||
-                entry.resource.valueQuantity.value ||
+                entry.resource.valueQuantity?.value +
+                  " " +
+                  entry.resource.valueQuantity?.unit ||
                 entry.resource.valueTime ||
                 entry.resource.valueBoolean
             }}
