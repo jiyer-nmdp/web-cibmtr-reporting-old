@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
-  Resolve
+  Resolve,
 } from "@angular/router";
 import { BsModalRef } from "ngx-bootstrap/modal";
 import { forkJoin } from "rxjs";
@@ -61,10 +61,6 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
       this.patientDetailService.getObservation(id),
       this.patientDetailService.getObservationVitalSigns(id),
       this.patientDetailService.getObservationLabs(id),
-      this.patientDetailService.getCondition(id),
-      this.patientDetailService.getProcedure(id),
-      this.patientDetailService.getDiagnosticReport(id),
-      this.patientDetailService.getMedicationStatement(id)   
     ]);
   }
 }

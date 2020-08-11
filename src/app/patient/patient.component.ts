@@ -142,8 +142,8 @@ export class PatientComponent implements OnInit {
       (results) => {
         this.ehrpatient = results.pageData[0];
         this.agvhd = results.pageData[1];
-        this.labs = results.pageData[2];
-        this.vitals = results.pageData[3];
+        this.vitals = results.pageData[2];
+        this.labs = results.pageData[3];
         this.retreiveFhirPatient(this.ehrpatient, selectedScope);
       },
       (error) => {
