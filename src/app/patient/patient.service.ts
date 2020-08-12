@@ -19,7 +19,12 @@ export class PatientService {
   //iss_possible_format - https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/DSTU2 or https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3
 
   getPatient(identifier): Observable<IPatientContext> {
-    let url = this._localStorageService.get("iss") + "/Patient/" + identifier;
+    let url =
+      this.rebuild_DSTU2_STU3_Url(
+        this._localStorageService.get("iss").toString()
+      ) +
+      "/Patient/" +
+      identifier;
     return this.http
       .get<IPatientContext>(url, {
         headers: this.buildEhrHeaders(),
@@ -32,7 +37,9 @@ export class PatientService {
   getObservation(identifier): Observable<IPatientContext> {
     return this.http
       .get<IPatientContext>(
-        this._localStorageService.get("iss") +
+        this.rebuild_DSTU2_STU3_Url(
+          this._localStorageService.get("iss").toString()
+        ) +
           "/Observation?patient=" +
           identifier +
           "&" +
