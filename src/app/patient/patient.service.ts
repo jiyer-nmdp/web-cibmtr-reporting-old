@@ -20,9 +20,7 @@ export class PatientService {
 
   getPatient(identifier): Observable<IPatientContext> {
     let url =
-      this.rebuild_DSTU2_STU3_Url(
-        this._localStorageService.get("iss").toString()
-      ) +
+      this.rebuild_DSTU2_STU3_Url(this._localStorageService.get("iss")) +
       "/Patient/" +
       identifier;
     return this.http
@@ -37,9 +35,7 @@ export class PatientService {
   getObservation(identifier): Observable<IPatientContext> {
     return this.http
       .get<IPatientContext>(
-        this.rebuild_DSTU2_STU3_Url(
-          this._localStorageService.get("iss").toString()
-        ) +
+        this.rebuild_DSTU2_STU3_Url(this._localStorageService.get("iss")) +
           "/Observation?patient=" +
           identifier +
           "&" +
@@ -75,5 +71,6 @@ export class PatientService {
     if (url.includes("DSTU2")) {
       return url.replace("DSTU2", "STU3");
     }
+    return url;
   }
 }
