@@ -1,15 +1,15 @@
 import { Component, OnInit } from "@angular/core";
 import { Patient } from "../model/patient.";
 import { Router, ActivatedRoute } from "@angular/router";
-import { ObservationLabsService } from "./observation.labs.service";
+import { ObservationCoreService } from "./observation.corecharacteristics.service";
 
 @Component({
-  selector: "app-observation.labs",
-  templateUrl: "./observation.labs.component.html",
-  styleUrls: ["./observation.labs.component.scss"],
+  selector: "app-observation.core",
+  templateUrl: "./observation.corecharacteristics.component.html",
+  styleUrls: ["./observation.corecharacteristics.component.scss"],
 })
-export class ObservationLabsComponent implements OnInit {
-  labs: any;
+export class ObservationCoreComponent implements OnInit {
+  core: any;
   savedBundle: any;
   toggle: any = [];
   codes: any = [];
@@ -29,33 +29,33 @@ export class ObservationLabsComponent implements OnInit {
   isAlldisabled: boolean;
 
   constructor(
-    public observationlabsService: ObservationLabsService,
+    public observationcoreService: ObservationCoreService,
     private route: ActivatedRoute,
     private router: Router
   ) {
     let data = this.router.getCurrentNavigation().extras.state.data;
-    this.labs = data.labs;
+    this.core = data.core;
     this.psScope = data.psScope;
   }
 
   ngOnInit() {
-    const subj = this.labs.entry[0].resource.subject.reference;
+    const subj = this.core.entry[0].resource.subject.reference;
     const psScope = this.psScope;
 
     this.now = new Date();
 
     if (
-      this.labs &&
-      this.labs.entry &&
-      this.labs.entry.length > 0 &&
-      this.labs.entry[0].resource.subject
+      this.core &&
+      this.core.entry &&
+      this.core.entry.length > 0 &&
+      this.core.entry[0].resource.subject
     ) {
-      this.observationlabsService
-        .getCibmtrObservationsLabs(subj, psScope)
+      this.observationcoreService
+        .getCibmtrObservationsCoreChar(subj, psScope)
         .subscribe(
           (response) => {
             this.savedBundle = response;
-            let entries = this.labs.entry;
+            let entries = this.core.entry;
             let savedEntries = this.savedBundle.entry;
             if (entries && entries.length > 0) {
               // filtering the entries to only Observations
@@ -126,7 +126,7 @@ export class ObservationLabsComponent implements OnInit {
     this.selectedUpdatedResources = [];
     // New Records
     this.selectedNewEntries.push(
-      this.labs.entry.filter((m) => m.selected === true && m.state === "bold")
+      this.core.entry.filter((m) => m.selected === true && m.state === "bold")
     );
 
     this.selectedNewResources = this.buildSelectedResources(
@@ -134,7 +134,7 @@ export class ObservationLabsComponent implements OnInit {
     );
 
     if (this.selectedNewResources && this.selectedNewResources.length > 0) {
-      this.observationlabsService
+      this.observationcoreService
         .postNewRecords(this.selectedNewResources, this.psScope)
         .subscribe(
           (response) => {
@@ -159,7 +159,7 @@ export class ObservationLabsComponent implements OnInit {
 
     // Updated Records
     this.selectedUpdatedEntries.push(
-      this.labs.entry.filter((m) => m.selected === true && m.state === "normal")
+      this.core.entry.filter((m) => m.selected === true && m.state === "normal")
     );
 
     this.selectedUpdatedResources = Array.prototype.concat.apply(
@@ -170,7 +170,7 @@ export class ObservationLabsComponent implements OnInit {
       this.selectedUpdatedResources &&
       this.selectedUpdatedResources.length > 0
     ) {
-      this.observationlabsService
+      this.observationcoreService
         .postUpdatedRecords(this.selectedUpdatedResources, this.psScope)
         .subscribe(
           (response) => {
@@ -205,15 +205,15 @@ export class ObservationLabsComponent implements OnInit {
   }
 
   checkForSelectAll() {
-    this.isAllSelected = this.labs.entry.every((entry) => entry.selected);
-    this.isAlldisabled = this.labs.entry.every(
+    this.isAllSelected = this.core.entry.every((entry) => entry.selected);
+    this.isAlldisabled = this.core.entry.every(
       (entry) => entry.selected && entry.state === "lighter"
     );
   }
 
   selectAll() {
     let toggleStatus = this.isAllSelected;
-    this.labs.entry.forEach((entry) => {
+    this.core.entry.forEach((entry) => {
       if (entry.state != "lighter") {
         entry.selected = toggleStatus;
       }
@@ -221,7 +221,7 @@ export class ObservationLabsComponent implements OnInit {
   }
 
   toggleOption = function () {
-    this.isAllSelected = this.labs.entry.every(function (entry) {
+    this.isAllSelected = this.core.entry.every(function (entry) {
       return entry.selected;
     });
   };

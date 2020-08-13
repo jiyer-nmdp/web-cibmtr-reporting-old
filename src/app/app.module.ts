@@ -25,6 +25,8 @@ import { ObservationLabsComponent } from "./observation.labs/observation.labs.co
 import { ObservationLabsService } from "./observation.labs/observation.labs.service";
 import { ObservationVitalsComponent } from "./observation.vitals/observation.vitals.component";
 import { ObservationVitalsService } from "./observation.vitals/observation.vitals.service";
+import { ObservationCoreComponent } from "./observation.corecharacteristics/observation.corecharacteristics.component";
+import { ObservationCoreService } from "./observation.corecharacteristics/observation.corecharacteristics.service";
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import { ObservationVitalsService } from "./observation.vitals/observation.vital
     DefaultComponent,
     ObservationLabsComponent,
     ObservationVitalsComponent,
+    ObservationCoreComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +61,7 @@ import { ObservationVitalsService } from "./observation.vitals/observation.vital
     ObservationAgvhdService,
     ObservationLabsService,
     ObservationVitalsService,
+    ObservationCoreService,
     AuthorizationService,
     AppInitService,
     FhirService,

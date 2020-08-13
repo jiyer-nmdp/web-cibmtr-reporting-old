@@ -24,6 +24,7 @@ export class PatientComponent implements OnInit {
   agvhd: any;
   labs: any;
   vitals: any;
+  core: any;
   cibmtrObservations: any;
   crid: string;
   logicalId: string;
@@ -144,6 +145,7 @@ export class PatientComponent implements OnInit {
         this.agvhd = results.pageData[1];
         this.vitals = results.pageData[2];
         this.labs = results.pageData[3];
+        this.core = results.pageData[4];
         this.retreiveFhirPatient(this.ehrpatient, selectedScope);
       },
       (error) => {
@@ -414,6 +416,7 @@ export class PatientComponent implements OnInit {
           agvhd: this.agvhd,
           labs: this.labs,
           vitals: this.vitals,
+          core: this.core,
           ehrpatient: this.ehrpatient,
           crid: this.crid,
           psScope: this.psScope,

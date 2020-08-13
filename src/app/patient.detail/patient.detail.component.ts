@@ -12,6 +12,7 @@ export class PatientDetailComponent implements OnInit {
   agvhd: any;
   labs: any;
   vitals: any;
+  core: any;
   psScope: string;
   crid: string;
 
@@ -20,6 +21,7 @@ export class PatientDetailComponent implements OnInit {
     this.agvhd = data.agvhd;
     this.labs = data.labs;
     this.vitals = data.vitals;
+    this.core = data.core;
     this.ehrpatient = data.ehrpatient;
     this.crid = data.crid;
     this.psScope = data.psScope;

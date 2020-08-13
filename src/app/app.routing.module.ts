@@ -8,6 +8,7 @@ import { PatientResolver } from "./patient/patient.resolver";
 import { PatientDetailComponent } from "./patient.detail/patient.detail.component";
 import { DefaultComponent } from "./default/default.component";
 import { ObservationVitalsComponent } from "./observation.vitals/observation.vitals.component";
+import { ObservationCoreComponent } from "./observation.corecharacteristics/observation.corecharacteristics.component";
 
 const routes: Routes = [
   {
@@ -43,6 +44,10 @@ const routes: Routes = [
         path: "vitals",
         component: ObservationVitalsComponent,
       },
+      {
+        path: "core",
+        component: ObservationCoreComponent,
+      },
     ],
   },
 ];
@@ -52,4 +57,4 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
-export const routingComponents = [PatientComponent, ObservationAgvhdComponent];
+export const routingComponents = [PatientComponent, PatientDetailComponent];

@@ -48,9 +48,9 @@
         </td>
       </thead>
       <tbody>
-        <tr *ngFor="let entry of vitals.entry" [style.fontWeight]="entry.state">
+        <tr *ngFor="let entry of core.entry" [style.fontWeight]="entry.state">
           <td>
-            {{ entry?.resource?.code?.text }}
+            {{ entry.resource.code?.text }}
           </td>
           <td>
             {{
