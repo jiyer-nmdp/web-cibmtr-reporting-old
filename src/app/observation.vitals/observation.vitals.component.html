@@ -53,7 +53,7 @@
             {{ entry?.resource?.code?.text }}
           </td>
           <td>
-            {{
+            <!-- {{
               (entry.resource.valueCodeableConcept?.coding)[0].code ||
                 entry.resource.valueDateTime ||
                 entry.resource.valueString ||
@@ -61,8 +61,9 @@
                   " " +
                   entry.resource.valueQuantity?.unit ||
                 entry.resource.valueTime ||
-                entry.resource.valueBoolean
-            }}
+                entry.resource.valueBoolean)
+            }}-->
+            {{ resourcevalue(entry) }}
           </td>
           <td>
             {{

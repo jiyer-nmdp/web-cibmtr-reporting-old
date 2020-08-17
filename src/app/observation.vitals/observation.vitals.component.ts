@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Patient } from "../model/patient.";
 import { Router, ActivatedRoute } from "@angular/router";
 import { ObservationVitalsService } from "./observation.vitals.service";
+import { nullSafeIsEquivalent } from "@angular/compiler/src/output/output_ast";
 
 @Component({
   selector: "app-observation.vitals",
@@ -112,6 +113,40 @@ export class ObservationVitalsComponent implements OnInit {
             );
           }
         );
+    }
+  }
+
+  resourcevalue(entry) {
+    if (
+      entry.resource.valueCodeableConcept &&
+      entry.resource.valueCodeableConcept.coding[0] &&
+      entry.resource.valueCodeableConcept.coding[0].code
+    ) {
+      return entry.resource.valueCodeableConcept.coding[0].code;
+    } else if (entry.resource.valueDateTime) {
+      return entry.resource.valueDateTime;
+    } else if (entry.resource.valueString) {
+      return entry.resource.valueString;
+    } else if (
+      entry.resource.valueQuantity &&
+      (entry.resource.valueQuantity.value || entry.resource.valueQuantity.unit)
+    ) {
+      if (
+        entry.resource.valueQuantity.value &&
+        entry.resource.valueQuantity.unit
+      ) {
+        return (
+          entry.resource.valueQuantity.value +
+          " " +
+          entry.resource.valueQuantity.unit
+        );
+      } else {
+        return;
+      }
+    } else if (entry.resource.valueTime) {
+      return entry.resource.valueTime;
+    } else if (entry.resource.valueBoolean) {
+      return entry.resource.valueBoolean;
     }
   }
 

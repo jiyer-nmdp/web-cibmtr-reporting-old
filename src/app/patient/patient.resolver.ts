@@ -21,9 +21,7 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
   constructor(
     private patientDetailService: PatientService,
     private _localStorageService: LocalStorageService,
-    private http: HttpClient,
-
-    private nmdpWidget: NmdpWidget
+    private http: HttpClient
   ) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): any {
@@ -33,8 +31,7 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
 
     //let issurl: string = this._localStorageService.get("iss");
 
-    let issurl: string =
-      "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3";
+    let issurl: string = this._localStorageService.get("iss");
 
     if (issurl.includes("DSTU2")) {
       let body = {
@@ -83,17 +80,16 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
               ]);
             } else {
               // there is no patient id hence throw the error
-              return window.alert("Invalid Patient Identifier");
+              return alert("Invalid Patient Identifier");
             }
           },
           (error) => {
+            alert(error);
             throwError(error);
           }
         );
     } else {
-      //let id = this._localStorageService.get("patient");
-      let id = "e3fr4nj0o2ClexQf3ERo3rA3";
-
+      let id = this._localStorageService.get("patient");
       return forkJoin([
         this.patientDetailService.getPatient(id),
         this.patientDetailService.getObservation(id),
