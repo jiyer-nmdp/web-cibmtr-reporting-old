@@ -50,15 +50,16 @@ export class ObservationVitalsService {
   postUpdatedRecords(selectedResources, psScope): Observable<any> {
     // Prepare the map of Id and resources
     let sMap = {};
+    let epicfullUri: string;
 
     selectedResources.forEach((selectedResource) => {
       sMap[selectedResource.resource.id] = selectedResource.resource;
+      epicfullUri = selectedResource.fullUrl;
     });
 
     //Updated the FHIR will Overwrite the Existing Attribute , Creating the Identifier and Meta tags again.
     return from(Object.keys(sMap)).pipe(
       concatMap((key) => {
-        const ehrId: any = sMap[key];
         return this.http.put(
           AppConfig.cibmtr_fhir_update_url + "Observation/" + key,
           {
@@ -75,10 +76,7 @@ export class ObservationVitalsService {
               {
                 use: "official",
                 system: AppConfig.epic_logicalId_namespace,
-                value:
-                  this._localStorageService.get("iss") +
-                  "/Observation/" +
-                  sMap[key].id,
+                value: epicfullUri,
               },
             ],
           }
