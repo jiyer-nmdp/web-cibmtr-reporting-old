@@ -140,6 +140,8 @@ export class ObservationLabsComponent implements OnInit {
           " " +
           entry.resource.valueQuantity.unit
         );
+      } else if (entry.resource.valueQuantity.value) {
+        return entry.resource.valueQuantity.value;
       } else {
         return;
       }
@@ -149,7 +151,6 @@ export class ObservationLabsComponent implements OnInit {
       return entry.resource.valueBoolean;
     }
   }
-
 
   submitToCibmtr() {
     //reset

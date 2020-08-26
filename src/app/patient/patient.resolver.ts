@@ -29,8 +29,6 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
 
     //Post call to get the STU3 patient id by retreving the patient identifier from local storage
 
-    //let issurl: string = this._localStorageService.get("iss");
-
     let issurl: string = this._localStorageService.get("iss");
 
     if (issurl.includes("DSTU2")) {

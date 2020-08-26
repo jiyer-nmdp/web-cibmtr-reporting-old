@@ -309,6 +309,47 @@ export class PatientComponent implements OnInit {
       genderLowerCase = ehrpatient.gender.toLowerCase();
     }
 
+    //Name consider if official
+
+    //Race Ethicity Mappings
+
+    let racecode;
+    let ethinicitycode;
+
+    if (ehrpatient.extension && ehrpatient.extension.length >= 1) {
+      for (let i = 0; i < ehrpatient.extension.length; i++) {
+        if (
+          ehrpatient.extension[i].extension &&
+          ehrpatient.extension[i].extension.length >= 1
+        ) {
+          for (let j = 0; j < ehrpatient.extension[i].extension.length; j++) {
+            if (ehrpatient.extension[i].extension[j].valueCoding) {
+              if (
+                AppConfig.raceOmbsystem.includes(
+                  ehrpatient.extension[i].extension[j].valueCoding.system
+                )
+              ) {
+                racecode =
+                  ehrpatient.extension[i].extension[j].valueCoding.code;
+
+                let racecodes = racecode.concat(",");
+                console.log(racecodes);
+              }
+
+              if (
+                AppConfig.ethnicityOmbsystem.includes(
+                  ehrpatient.extension[i].extension[j].valueCoding.system
+                )
+              ) {
+                ethinicitycode =
+                  ehrpatient.extension[i].extension[j].valueCoding.code;
+              }
+            }
+          }
+        }
+      }
+    }
+
     //CRID Payload
 
     let payload = {
@@ -319,11 +360,15 @@ export class PatientComponent implements OnInit {
         birthDate: ehrpatient.birthDate,
         gender: genderLowerCase === "male" ? "M" : "F",
         ssn: ehrSsn,
+        race: [racecode],
+        ethnicity: ethinicitycode,
       },
     };
 
-    if (!payload.patient.ssn) {
-      delete payload.patient.ssn;
+    //Delete payload entries if contains undefiend values
+    for (let [key, value] of Object.entries(payload.patient)) {
+      if (value === null || value === undefined || value === "")
+        delete payload.patient[key];
     }
 
     this.fhirService

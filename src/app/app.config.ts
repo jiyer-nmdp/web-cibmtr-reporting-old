@@ -6,23 +6,31 @@ export class AppConfig {
   public static getPatientIdentifier =
     "/api/epic/2015/Common/Patient/GetPatientIdentifiers/Patient/Identifiers";
 
-  //EPIC Client ID's
+  public static raceOmbsystem = [
+    "http://hl7.org/fhir/us/core/ValueSet/omb-race-category",
+    "urn:oid:2.16.840.1.113883.6.238",
+    "http://terminology.hl7.org/CodeSystem/v3-NullFlavor",
+  ];
 
-  public static client_id = "fe30e164-a265-4f71-9b14-570be8cb3f27";
-
-  //AWSEnv
-  public static epic_oauth_redirect_url =
-    "https://cibmtr-fhir-ehr-frontend-qa.aws.nmdp.org";
+  public static ethnicityOmbsystem = [
+    "http://hl7.org/fhir/us/core/ValueSet/omb-ethnicity-category",
+    "urn:oid:2.16.840.1.113883.6.238",
+  ];
 
   //CIBMTR Namespaces
-
   public static cibmtr_crid_namespace = "http://cibmtr.org/identifier/CRID";
-
   public static cibmtr_centers_namespace =
     "http://cibmtr.org/codesystem/transplant-center";
 
   //EPIC Patient Namespace Logical ID
   public static epic_logicalId_namespace = "urn:ietf:rfc:3986";
+
+  //EPIC Client ID's
+  public static client_id = "fe30e164-a265-4f71-9b14-570be8cb3f27";
+
+  //AWSEnv
+  public static epic_oauth_redirect_url =
+    "https://cibmtr-fhir-ehr-frontend-qa.aws.nmdp.org";
 
   //Middleware URLs
 

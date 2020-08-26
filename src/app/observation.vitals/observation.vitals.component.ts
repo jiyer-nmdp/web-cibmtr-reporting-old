@@ -140,6 +140,8 @@ export class ObservationVitalsComponent implements OnInit {
           " " +
           entry.resource.valueQuantity.unit
         );
+      } else if (entry.resource.valueQuantity.value) {
+        return entry.resource.valueQuantity.value;
       } else {
         return;
       }
