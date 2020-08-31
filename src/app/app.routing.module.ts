@@ -9,6 +9,8 @@ import { PatientDetailComponent } from "./patient.detail/patient.detail.componen
 import { DefaultComponent } from "./default/default.component";
 import { ObservationVitalsComponent } from "./observation.vitals/observation.vitals.component";
 import { ObservationCoreComponent } from "./observation.corecharacteristics/observation.corecharacteristics.component";
+import { InfoComponent } from "./info/info.component";
+import { ErrorComponent } from "./error/error.component";
 
 const routes: Routes = [
   {
@@ -47,6 +49,14 @@ const routes: Routes = [
       {
         path: "core",
         component: ObservationCoreComponent,
+      },
+      {
+        path: "info",
+        component: InfoComponent,
+      },
+      {
+        path: "error",
+        component: ErrorComponent,
       },
     ],
   },

@@ -11,7 +11,7 @@
     </div>
 
     <div class="col-md-12 observation-label">
-      Please select Observation-resource values you want to submit
+      Please select collection you want to submit
     </div>
 
     <div>
@@ -19,7 +19,9 @@
         <div class="col-md-12">
           <div class="resource-label">
             <a
-              [routerLink]="['labs']"
+              [routerLink]="
+                labs == null ? ['error'] : labs.total == 0 ? ['info'] : ['labs']
+              "
               [state]="{
                 data: {
                   labs: labs,
@@ -28,12 +30,23 @@
               }"
               >Labs
             </a>
-            <b class="badge pull-right">{{ labs.total }}</b>
+            <b
+              *ngIf="labs != null; else other_content"
+              class="badge pull-right"
+              >{{ labs.total }}</b
+            >
+            <ng-template #other_content>other content here...</ng-template>
           </div>
 
           <div class="resource-label">
             <a
-              [routerLink]="['vitals']"
+              [routerLink]="
+                vitals == null
+                  ? ['error']
+                  : vitals.total == 0
+                  ? ['info']
+                  : ['vitals']
+              "
               [state]="{
                 data: {
                   vitals: vitals,
@@ -47,7 +60,13 @@
 
           <div class="resource-label">
             <a
-              [routerLink]="['agvhd']"
+              [routerLink]="
+                agvhd == null
+                  ? ['error']
+                  : agvhd.total == 0
+                  ? ['info']
+                  : ['agvhd']
+              "
               [state]="{
                 data: {
                   agvhd: agvhd,
@@ -61,7 +80,9 @@
 
           <div class="resource-label">
             <a
-              [routerLink]="['core']"
+              [routerLink]="
+                core == null ? ['error'] : core.total == 0 ? ['info'] : ['core']
+              "
               [state]="{
                 data: {
                   core: core,
@@ -72,23 +93,6 @@
             </a>
             <b class="badge pull-right">{{ core.total }}</b>
           </div>
-
-          <!-- <div class="resource-label">
-            <a class="link-disabled" href="#">Condition : {{ bundle.total }}</a>
-          </div>
-          <div class="resource-label">
-            <a class="link-disabled" href="#"
-              >DiagnosticReport : {{ bundle.total }}</a
-            >
-          </div>
-          <div class="resource-label">
-            <a class="link-disabled" href="#">Procedure : {{ bundle.total }}</a>
-          </div>
-          <div class="resource-label">
-            <a class="link-disabled" href="#"
-              >MedicationStatement : {{ bundle.total }}</a
-            >
-          </div> -->
         </div>
       </div>
       <div class="col-md-1"></div>

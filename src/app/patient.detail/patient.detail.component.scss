@@ -127,10 +127,15 @@
   font-size: 12px;
   font-weight: 700;
   line-height: 1;
-  color: #ffffff;
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
-  background-color: rgb(165, 164, 164);
+  background-color: #007ac3;
   border-radius: 10px;
+}
+
+.path {
+  width: 4px;
+  height: 8px;
+  border: solid 3px #007ac3;
 }

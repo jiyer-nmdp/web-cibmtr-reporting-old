@@ -1,0 +1,27 @@
+.info-circle {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  background-color: #f8f7f7;
+}
+
+.no-results {
+  width: 392px;
+  height: 22px;
+  font-family: AvenirNext;
+  font-size: 16px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #4a4a4a;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
