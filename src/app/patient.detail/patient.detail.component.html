@@ -19,9 +19,11 @@
         <div class="col-md-12">
           <div class="resource-label">
             <a
+              id="lab"
               [routerLink]="
                 labs == null ? ['error'] : labs.total == 0 ? ['info'] : ['labs']
               "
+              [ngClass]="{ active: activeLabel == 'lab' }"
               [state]="{
                 data: {
                   labs: labs,
@@ -30,16 +32,13 @@
               }"
               >Labs
             </a>
-            <b
-              *ngIf="labs != null; else other_content"
-              class="badge pull-right"
-              >{{ labs.total }}</b
-            >
-            <ng-template #other_content>other content here...</ng-template>
+            <b class="badge pull-right">0</b>
           </div>
 
           <div class="resource-label">
             <a
+              id="vital"
+              [ngClass]="{ active: activeLabel == 'vital' }"
               [routerLink]="
                 vitals == null
                   ? ['error']
@@ -55,11 +54,13 @@
               }"
               >VitalSigns
             </a>
-            <b class="badge pull-right">{{ vitals.total }}</b>
+            <b class="badge pull-right">0</b>
           </div>
 
           <div class="resource-label">
             <a
+              id="agvhd"
+              [ngClass]="{ active: activeLabel == 'agvhd' }"
               [routerLink]="
                 agvhd == null
                   ? ['error']
@@ -91,7 +92,7 @@
               }"
               >CoreCharacteristics
             </a>
-            <b class="badge pull-right">{{ core.total }}</b>
+            <b class="badge pull-right">0</b>
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, HostListener } from "@angular/core";
 import { Patient } from "../model/patient.";
 import { Router } from "@angular/router";
 
@@ -15,6 +15,7 @@ export class PatientDetailComponent implements OnInit {
   core: any;
   psScope: string;
   crid: string;
+  activeLabel: string;
 
   constructor(private router: Router) {
     let data = this.router.getCurrentNavigation().extras.state.data;
@@ -35,5 +36,11 @@ export class PatientDetailComponent implements OnInit {
       givenName = ehrpatient.name[0].text;
     }
     return givenName;
+  }
+
+  @HostListener("click", ["$event"])
+  onClick(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    this.activeLabel = target.id;
   }
 }
