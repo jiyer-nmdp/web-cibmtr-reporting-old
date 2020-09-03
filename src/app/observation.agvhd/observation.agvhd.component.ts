@@ -321,6 +321,42 @@ export class ObservationAgvhdComponent implements OnInit {
     });
   }
 
+  resourcevalue(entry) {
+    if (
+      entry.resource.valueCodeableConcept &&
+      entry.resource.valueCodeableConcept.coding[0] &&
+      entry.resource.valueCodeableConcept.coding[0].code
+    ) {
+      return entry.resource.valueCodeableConcept.coding[0].code;
+    } else if (entry.resource.valueDateTime) {
+      return entry.resource.valueDateTime;
+    } else if (entry.resource.valueString) {
+      return entry.resource.valueString;
+    } else if (
+      entry.resource.valueQuantity &&
+      (entry.resource.valueQuantity.value || entry.resource.valueQuantity.unit)
+    ) {
+      if (
+        entry.resource.valueQuantity.value &&
+        entry.resource.valueQuantity.unit
+      ) {
+        return (
+          entry.resource.valueQuantity.value +
+          " " +
+          entry.resource.valueQuantity.unit
+        );
+      } else if (entry.resource.valueQuantity.value) {
+        return entry.resource.valueQuantity.value;
+      } else {
+        return;
+      }
+    } else if (entry.resource.valueTime) {
+      return entry.resource.valueTime;
+    } else if (entry.resource.valueBoolean) {
+      return entry.resource.valueBoolean;
+    }
+  }
+
   toggleOption = function (key) {
     this.codes[key].isAllSelected = this.codes[key].matchingEntries.every(
       function (matchingEntry) {

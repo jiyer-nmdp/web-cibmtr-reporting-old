@@ -5,12 +5,14 @@ import { Observable, from } from "rxjs";
 import { CustomHttpClient } from "../client/custom.http.client";
 import { concatMap } from "rxjs-compat/operators/concatMap";
 import { LocalStorageService } from "angular-2-local-storage";
+import { UtilityService } from "../utility.service";
 
 @Injectable()
 export class ObservationVitalsService {
   constructor(
     private http: CustomHttpClient,
-    private _localStorageService: LocalStorageService
+    private _localStorageService: LocalStorageService,
+    private utilityService: UtilityService
   ) {}
 
   // Below method submit new records to the cibmtr
@@ -35,7 +37,9 @@ export class ObservationVitalsService {
                 use: "official",
                 system: AppConfig.epic_logicalId_namespace,
                 value:
-                  this._localStorageService.get("iss") +
+                  this.utilityService.rebuild_DSTU2_STU3_Url(
+                    this._localStorageService.get("iss")
+                  ) +
                   "/Observation/" +
                   tmpResource.id,
               },

@@ -32,7 +32,16 @@
               }"
               >Labs
             </a>
-            <b class="badge pull-right">0</b>
+            <b
+              *ngIf="labs != null; else other_content"
+              class="badge pull-right"
+              >{{ labs.total }}</b
+            >
+            <ng-template #other_content
+              ><img
+                src="assets/images/exclamation-triangle.png"
+                class="exclamation pull-right"
+            /></ng-template>
           </div>
 
           <div class="resource-label">
@@ -54,7 +63,16 @@
               }"
               >VitalSigns
             </a>
-            <b class="badge pull-right">0</b>
+            <b
+              *ngIf="vitals != null; else other_content"
+              class="badge pull-right"
+              >{{ vitals.total }}</b
+            >
+            <ng-template #other_content
+              ><img
+                src="assets/images/exclamation-triangle.png"
+                class="exclamation pull-right"
+            /></ng-template>
           </div>
 
           <div class="resource-label">
@@ -76,11 +94,22 @@
               }"
               >Flowsheet-aGVHD
             </a>
-            <b class="badge pull-right">{{ agvhd.total }}</b>
+            <b
+              *ngIf="agvhd != null; else other_content"
+              class="badge pull-right"
+              >{{ agvhd.total }}</b
+            >
+            <ng-template #other_content
+              ><img
+                src="assets/images/exclamation-triangle.png"
+                class="exclamation pull-right"
+            /></ng-template>
           </div>
 
           <div class="resource-label">
             <a
+              id="core"
+              [ngClass]="{ active: activeLabel == 'core' }"
               [routerLink]="
                 core == null ? ['error'] : core.total == 0 ? ['info'] : ['core']
               "
@@ -92,7 +121,16 @@
               }"
               >CoreCharacteristics
             </a>
-            <b class="badge pull-right">0</b>
+            <b
+              *ngIf="core != null; else other_content"
+              class="badge pull-right"
+              >{{ core.total }}</b
+            >
+            <ng-template #other_content
+              ><img
+                src="assets/images/exclamation-triangle.png"
+                class="exclamation pull-right"
+            /></ng-template>
           </div>
         </div>
       </div>

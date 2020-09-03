@@ -13,6 +13,7 @@ import { CustomHttpClient } from "../client/custom.http.client";
 import { DialogComponent } from "../dialog/dialog.component";
 import { LocalStorageService } from "angular-2-local-storage";
 import { HttpErrorResponse } from "@angular/common/http";
+import { UtilityService } from "../utility.service";
 
 @Component({
   selector: "app-main",
@@ -46,7 +47,8 @@ export class PatientComponent implements OnInit {
     private nmdpWidget: NmdpWidget,
     private _localStorageService: LocalStorageService,
     private http: CustomHttpClient,
-    private router: Router
+    private router: Router,
+    private utilityService: UtilityService
   ) {}
 
   ngOnInit() {
@@ -168,7 +170,11 @@ export class PatientComponent implements OnInit {
       "".concat(
         AppConfig.epic_logicalId_namespace,
         "|",
-        this._localStorageService.get("iss") + "/Patient/" + ehrpatient.id
+        this.utilityService.rebuild_DSTU2_STU3_Url(
+          this._localStorageService.get("iss")
+        ) +
+          "/Patient/" +
+          ehrpatient.id
       )
     );
     let encodedScope = encodeURI(
@@ -331,7 +337,6 @@ export class PatientComponent implements OnInit {
               ) {
                 racecode =
                   ehrpatient.extension[i].extension[j].valueCoding.code;
-
                 let racecodes = racecode.concat(",");
                 console.log(racecodes);
               }
@@ -365,11 +370,13 @@ export class PatientComponent implements OnInit {
       },
     };
 
-    //Delete payload entries if contains undefiend values
+    //Delete payload entries if contains undefiend/null values
     for (let [key, value] of Object.entries(payload.patient)) {
       if (value === null || value === undefined || value === "")
         delete payload.patient[key];
     }
+
+    console.log("Sanitized", payload);
 
     this.fhirService
       .getCrid(payload)
