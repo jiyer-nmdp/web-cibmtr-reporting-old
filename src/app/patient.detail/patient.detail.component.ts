@@ -41,6 +41,8 @@ export class PatientDetailComponent implements OnInit {
   @HostListener("click", ["$event"])
   onClick(event: MouseEvent) {
     const target = event.target as HTMLElement;
-    this.activeLabel = target.id;
+    if (target.id != "") {
+      this.activeLabel = target.id;
+    }
   }
 }

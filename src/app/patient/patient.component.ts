@@ -404,7 +404,7 @@ export class PatientComponent implements OnInit {
           //Now that we got the CRID save the Info into FHIR
           this.fhirService
             .submitPatient(updatedEhrPatient)
-            .retry(0)
+            .retry(1)
             .subscribe(
               () => {
                 const now = new Date();
