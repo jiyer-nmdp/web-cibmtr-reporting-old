@@ -27,8 +27,10 @@ import { ObservationVitalsComponent } from "./observation.vitals/observation.vit
 import { ObservationVitalsService } from "./observation.vitals/observation.vitals.service";
 import { ObservationCoreComponent } from "./observation.corecharacteristics/observation.corecharacteristics.component";
 import { ObservationCoreService } from "./observation.corecharacteristics/observation.corecharacteristics.service";
-import { ErrorComponent } from './error/error.component';
-import { InfoComponent } from './info/info.component';
+import { ErrorComponent } from "./error/error.component";
+import { InfoComponent } from "./info/info.component";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { MaterialModule } from "./material/material.module";
 
 @NgModule({
   declarations: [
@@ -57,6 +59,8 @@ import { InfoComponent } from './info/info.component';
       prefix: "cibmtr",
       storageType: "localStorage",
     }),
+    BrowserAnimationsModule,
+    MaterialModule,
   ],
   entryComponents: [ObservationAgvhdComponent, DialogComponent],
   providers: [
