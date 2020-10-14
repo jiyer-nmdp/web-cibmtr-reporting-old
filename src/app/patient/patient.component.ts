@@ -18,6 +18,7 @@ import { UtilityService } from "../utility.service";
 @Component({
   selector: "app-main",
   templateUrl: "./patient.component.html",
+  styleUrls: ["./patient.component.scss"],
 })
 export class PatientComponent implements OnInit {
   bsModalRef: BsModalRef;
@@ -38,11 +39,11 @@ export class PatientComponent implements OnInit {
   isLoading: Boolean;
   now: Date;
   cibmtrPatientId: Observable<any>;
+  dataManager_name: string;
 
   constructor(
     private _route: ActivatedRoute,
     private modalService: BsModalService,
-    private observationagvhdService: ObservationAgvhdService,
     private fhirService: FhirService,
     private nmdpWidget: NmdpWidget,
     private _localStorageService: LocalStorageService,
@@ -84,6 +85,10 @@ export class PatientComponent implements OnInit {
     let scopes = decodedValue.authz_cibmtr_fhir_ehr_client.filter(
       (item) => item.includes("_role_rc") && item.includes("_fn3")
     );
+
+    //two-way binding in UI
+    this.dataManager_name =
+      decodedValue.first_name + " " + decodedValue.last_name;
 
     //Scope format - "l1_role_rc_10121_fn3"
     scopes.forEach((scope, index) => {
@@ -171,7 +176,7 @@ export class PatientComponent implements OnInit {
         AppConfig.epic_logicalId_namespace,
         "|",
         this.utilityService.rebuild_DSTU2_STU3_Url(
-          this._localStorageService.get("iss")
+          "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3"
         ) +
           "/Patient/" +
           ehrpatient.id
@@ -462,19 +467,27 @@ export class PatientComponent implements OnInit {
    */
   proceed() {
     // Navigate to the Patient Details Component
-    this.router.navigate(["/patientdetail"], {
-      state: {
-        data: {
-          agvhd: this.agvhd,
-          labs: this.labs,
-          vitals: this.vitals,
-          core: this.core,
-          ehrpatient: this.ehrpatient,
-          crid: this.crid,
-          psScope: this.psScope,
+    this.router
+      .navigate(["/patientdetail"], {
+        state: {
+          data: {
+            agvhd: this.agvhd,
+            labs: this.labs,
+            vitals: this.vitals,
+            core: this.core,
+            ehrpatient: this.ehrpatient,
+            crid: this.crid,
+            psScope: this.psScope,
+          },
         },
-      },
-    });
+      })
+      .then((e) => {
+        if (e) {
+          console.log("patientdetail navigation is successful!");
+        } else {
+          alert("patientdetail navigation is unsuccessful!");
+        }
+      });
   }
 
   /**

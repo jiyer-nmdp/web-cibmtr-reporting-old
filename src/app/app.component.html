@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <title>CIBMTR Reporting</title>
-    <meta name="description" content="" />
+    <meta name="description" />
     <meta name="viewport" content="width=device-width" />
   </head>
-  <body>
+  <body class="container-background">
     <div *ngIf="!getLoginWidget().isLoggedIn()" id="nmdp-login-container"></div>
     <div *ngIf="getLoginWidget().isLoggedIn()">
       <div class="header">
@@ -20,10 +20,10 @@
             />
             <div class="navbar-brand">
               <span class="CIBMTR-Reporting-label"> CIBMTR Reporting </span>
-              <span class="text-center version">version 0.3</span>
+              <span class="version">version 0.3</span>
             </div>
             <div class="navbar-brand navbar-right">
-              <button class="mybutton" (click)="logout()">CIBMTR Logout</button>
+              <button (click)="logout()">CIBMTR Logout</button>
             </div>
           </div>
         </div>

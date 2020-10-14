@@ -76,7 +76,10 @@
   font-style: normal;
   line-height: 1.25;
   letter-spacing: normal;
-  color: #d8d8d8;
+}
+
+.label-font {
+  color: #696969;
 }
 
 .date-label {
@@ -110,8 +113,8 @@
   padding-left: 23px;
 }
 
-.observations-box-shadow {
-  padding: 0px 0px 0px 0px;
+.resource-box-shadow {
+  padding: 0px 10px 0px 0px;
   overflow-y: scroll;
   overflow-x: hidden;
   height: 450px;
@@ -142,6 +145,7 @@
 
 .active {
   font-weight: bold;
+  color: #007ac3;
 }
 
 .exclamation {
@@ -149,4 +153,5 @@
   height: 18px;
   background-color: white;
   object-fit: contain;
+  color: #007ac3;
 }
