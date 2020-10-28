@@ -1,37 +1,33 @@
-<alert
-  type="success"
-  [dismissible]="true"
-  [dismissOnTimeout]="30000"
-  *ngIf="success == true && fail == false"
->
-  <strong
-    >Successfully submitted the Observation(s) of count({{
-      this.selectedNewResources?.length + this.selectedUpdatedResources?.length
-    }}).</strong
+<div class="container">
+ <nav class="navbar navbar-expand-sm fixed-top navbar-light bg-light">
+    <alert
+    type="success"
+    [dismissible]="true"
+    [dismissOnTimeout]="30000"
+    *ngIf="success == true && fail == false"
   >
-</alert>
-
-<alert
-  type="danger"
-  [dismissible]="true"
-  [dismissOnTimeout]="30000"
-  *ngIf="fail == true && success == false"
->
-  <strong>Error Occurred while Submitting the Observation(s).</strong>
-</alert>
-
-<div class="row form-group">
-  <div class="col-sm-12">
-    <div class="col-sm-6 date-label">
-      <b>Date Retrieved </b> : {{ now | date: "yyyy-MM-dd HH:mm" }}
-    </div>
+    <strong
+      >Successfully submitted the Observation(s) of count({{
+        this.selectedNewResources?.length + this.selectedUpdatedResources?.length
+      }}).</strong
+    >
+  </alert>
+  
+  <alert
+    type="danger"
+    [dismissible]="true"
+    [dismissOnTimeout]="30000"
+    *ngIf="fail == true && success == false"
+  >
+    <strong>Error Occurred while Submitting the Observation(s).</strong>
+  </alert>
+  <div class="col-md-6 date-label">
+    <b>Date Retrieved </b> : {{ now | date: "yyyy-MM-dd HH:mm" }}
   </div>
-</div>
+</nav>
 
-<div class="line"></div>
 
-<div class="panel-body">
-  <div class="table-responsive">
+  <div class="table-responsive scroll">
     <table class="table table-striped table-bordered table-hover">
       <thead>
         <td><b>Name</b></td>
@@ -52,18 +48,9 @@
           <td>
             {{ entry?.resource?.code?.text }}
           </td>
-          <td>
-            <!-- {{
-              (entry.resource.valueCodeableConcept?.coding)[0].code ||
-                entry.resource.valueDateTime ||
-                entry.resource.valueString ||
-                entry.resource.valueQuantity?.value +
-                  " " +
-                  entry.resource.valueQuantity?.unit ||
-                entry.resource.valueTime ||
-                entry.resource.valueBoolean)
-            }}-->
-            {{ resourcevalue(entry) }}
+          <td>    
+            <span>{{ getNodeValue(entry?.resource) }}</span>
+            <span>{{getComponentValue(entry?.resource?.component)}}</span> 
           </td>
           <td>
             {{
@@ -82,18 +69,18 @@
         </tr>
       </tbody>
     </table>
+   </div>
+   <div class="row top-buffer">
+    <div class="col-xs-12">
+      <button
+        type="button"
+        class="btn btn-primary pull-right"
+        (click)="submitToCibmtr()"
+        enabled
+      >
+        Submit to CIBMTR
+      </button>
+    </div>
   </div>
-</div>
-
-<div class="row top-buffer">
-  <div class="col-xs-12">
-    <button
-      type="button"
-      class="btn btn-primary pull-right"
-      (click)="submitToCibmtr()"
-      enabled
-    >
-      Submit to CIBMTR
-    </button>
   </div>
-</div>
+<!--container-->

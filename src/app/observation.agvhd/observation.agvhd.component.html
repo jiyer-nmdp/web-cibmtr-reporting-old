@@ -21,19 +21,20 @@
 </alert>
 
 <div class="row form-group">
-  <div class="col-sm-12">
-    <div class="col-sm-6 date-label">
+  <div class="col-md-12 navbar fixed-top">
+    <div class="col-md-8 date-label">
       <b>Date Retrieved </b> : {{ now | date: "yyyy-MM-dd HH:mm" }}
     </div>
-    <div class="col-sm-6 btn-group">
+
+    <div class="col-md-4 form-inline">
       <button
         type="button"
-        class="btn btn-primary pull-right"
+        class="col-md-push-1 btn btn-primary btn-sm"
         (click)="toggleAllObservations()"
       >
-        {{ toggleAll == false ? "HideAll" : "Expand All" }}
+        {{ toggleAll == false ? "HideAll" : "ExpandAll" }}
       </button>
-      <!--<input class="checkbox i-checks pull-right" type="checkbox" />-->
+      <input class="col-md-push-1 checkbox i-checks" type="checkbox" />
     </div>
   </div>
 </div>
@@ -43,11 +44,11 @@
 <div class="panel-body">
   <div *ngFor="let key of keys; let i = index" class="table-responsive">
     <div>
-      <div class="col-sm-6">{{ codes[key].text }}</div>
-      <div class="col-sm-3">
+      <div class="col-md-6">{{ codes[key].text }}</div>
+      <div class="col-md-3">
         Count : {{ codes[key].matchingEntries.length }}
       </div>
-      <div class="col-sm-2 form-group">
+      <div class="col-md-2 form-group">
         <button
           type="button"
           class="btn btn-primary pull-right"
@@ -103,8 +104,8 @@
   </div>
 </div>
 
-<div class="row top-buffer">
-  <div class="col-xs-12">
+<div class="row top-buffer navbar fixed-bottom">
+  <div class="col-md-12">
     <button
       type="button"
       class="btn btn-primary pull-right"

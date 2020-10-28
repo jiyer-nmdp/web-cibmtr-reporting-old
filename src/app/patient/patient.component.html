@@ -27,13 +27,12 @@
               class="btn btn-primary pull-right"
               (click)="register($event, ehrpatient)"
             >
-              <!-- should use bootstrap class="spinner-border" role="status" -->
               <img
                 *ngIf="isLoading"
                 style="width: 24px"
                 src="assets/spinner.gif"
               />
-              Register and Proceed
+              AssociateCrid
             </button>
           </ng-template>
         </div>
@@ -41,7 +40,12 @@
           <ul class="col-md-12 list-unstyled patient_details">
             <li>Date of birth: {{ ehrpatient.birthDate }}</li>
             <li>Gender: {{ ehrpatient.gender }}</li>
-            <li>MRN:</li>
+            <li>Identifiers:</li>
+            <ul *ngFor="let identifier of ehrpatient.identifier">
+              <div *ngIf="identifier.system !== 'urn:oid:2.16.840.1.113883.4.1'">
+              <li> {{ identifier.type?.text}}:{{ identifier.value }} </li>
+              </div>
+            </ul>
           </ul>
         </div>
       </div>
@@ -51,7 +55,7 @@
       <div *ngIf="crid">
         <button
           type="button"
-          class="btn btn-primary proceed pull-right"
+          class="btn btn-primary register_proceed pull-right"
           (click)="proceed()"
         >
           Proceed

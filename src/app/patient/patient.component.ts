@@ -98,6 +98,8 @@ export class PatientComponent implements OnInit {
     return this.fetchData(scopes);
   }
 
+  
+
   /**
    *
    * @param scopes
@@ -177,7 +179,7 @@ export class PatientComponent implements OnInit {
         "|",
         this.utilityService.rebuild_DSTU2_STU3_Url(
           this._localStorageService.get("iss")
-        ) +
+          ) +
           "/Patient/" +
           ehrpatient.id
       )
@@ -233,24 +235,6 @@ export class PatientComponent implements OnInit {
       console.error("An unknown error occurred");
       return Promise.reject("Unknown error");
     }
-  }
-
-  /**
-   *
-   * @param identifiers
-   */
-  formatIdentifier(identifiers) {
-    let identifier = "";
-    if (identifiers && identifiers.length > 0) {
-      for (let i = 0; i < identifiers.length; i++) {
-        identifier = identifier + identifiers[i].value;
-
-        if (i < identifiers.length - 1) {
-          identifier = identifier + ", ";
-        }
-      }
-    }
-    return identifier;
   }
 
   /**

@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { AppConfig } from "../app.config";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpErrorResponse } from "@angular/common/http";
 
 @Injectable()
 export class AuthorizationService {
@@ -30,8 +31,8 @@ export class AuthorizationService {
     return this.http
       .post(tokenurl, body, {
         headers: new HttpHeaders({
-          "Content-Type": "application/x-www-form-urlencoded"
-        })
+          "Content-Type": "application/x-www-form-urlencoded",
+        }),
       })
       .toPromise();
   }
@@ -55,8 +56,8 @@ export class AuthorizationService {
     return this.http
       .get(metadata, {
         headers: new HttpHeaders({
-          Accept: "application/fhir+json"
-        })
+          Accept: "application/fhir+json",
+        }),
       })
       .toPromise();
   }

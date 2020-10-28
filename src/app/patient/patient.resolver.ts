@@ -115,18 +115,14 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
         );
     } else {
       let id = this._localStorageService.get("patient");
-      this.forkApi(id);
+      return forkJoin([
+        this.patientDetailService.getPatient(id),
+        this.patientDetailService.getObservation(id),
+        this.patientDetailService.getObservationVitalSigns(id),
+        this.patientDetailService.getObservationLabs(id),
+        this.patientDetailService.getObservationCoreChar(id),
+      ]);
     }
-  }
-
-  forkApi(id) {
-    return forkJoin([
-      this.patientDetailService.getPatient(id),
-      this.patientDetailService.getObservation(id),
-      this.patientDetailService.getObservationVitalSigns(id),
-      this.patientDetailService.getObservationLabs(id),
-      this.patientDetailService.getObservationCoreChar(id),
-    ]);
   }
 
   handleError(error: HttpErrorResponse) {

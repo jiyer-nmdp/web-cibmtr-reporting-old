@@ -184,8 +184,7 @@ export class CustomHttpClient {
         headers: new HttpHeaders()
           .set("Content-Type", "application/fhir+json")
           .set("Accept", "application/fhir+json")
-          .set("Access-Control-Allow-Origin", AppConfig.backendOrigin)
-          .set("Authorization", "Bearer " + accessToken)
+          .set("Authorization", "Bearer " + accessToken),
       };
     } else {
       throw this.onCatch(
