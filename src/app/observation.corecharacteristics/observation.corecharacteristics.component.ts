@@ -116,41 +116,55 @@ export class ObservationCoreComponent implements OnInit {
     }
   }
 
-  resourcevalue(entry) {
-    if (
-      entry.resource.valueCodeableConcept &&
-      entry.resource.valueCodeableConcept.coding[0] &&
-      entry.resource.valueCodeableConcept.coding[0].code
-    ) {
-      return entry.resource.valueCodeableConcept.coding[0].code;
-    } else if (entry.resource.valueDateTime) {
-      return entry.resource.valueDateTime;
-    } else if (entry.resource.valueString) {
-      return entry.resource.valueString;
-    } else if (
-      entry.resource.valueQuantity &&
-      (entry.resource.valueQuantity.value || entry.resource.valueQuantity.unit)
-    ) {
+  getNodeValue(value) {
+    if (value) {
       if (
-        entry.resource.valueQuantity.value &&
-        entry.resource.valueQuantity.unit
+        value.valueCodeableConcept &&
+        value.valueCodeableConcept.coding[0] &&
+        value.valueCodeableConcept.coding[0].code
       ) {
-        return (
-          entry.resource.valueQuantity.value +
-          " " +
-          entry.resource.valueQuantity.unit
-        );
-      } else if (entry.resource.valueQuantity.value) {
-        return entry.resource.valueQuantity.value;
-      } else {
-        return;
+        return value.valueCodeableConcept.coding[0].code;
+      } else if (value.valueDateTime) {
+        return value.valueDateTime;
+      } else if (value.valueString) {
+        return value.valueString;
+      } else if (
+        value.valueQuantity &&
+        (value.valueQuantity.value || value.valueQuantity.unit)
+      ) {
+        if (
+          value.valueQuantity.value &&
+          value.valueQuantity.unit
+        ) {
+          return (
+            value.valueQuantity.value +
+            " " +
+            value.valueQuantity.unit
+          );
+        } else if (value.valueQuantity.value) {
+          return value.valueQuantity.value;
+        }
+      } else if (value.valueTime) {
+        return value.valueTime;
+      } else if (value.valueBoolean) {
+        return value.valueBoolean;
       }
-    } else if (entry.resource.valueTime) {
-      return entry.resource.valueTime;
-    } else if (entry.resource.valueBoolean) {
-      return entry.resource.valueBoolean;
     }
   }
+
+  //code
+  getComponentValue(component){
+    if (component) {
+      let components = []
+      for (let i = 0; i < component.length; i++) {
+        let code = component[i].code.text + ':'
+        let nodeValue = this.getNodeValue(component[i])
+        components.push(code + nodeValue);
+      }
+      components.join(',')
+      return components
+    }
+}
 
   submitToCibmtr() {
     //reset

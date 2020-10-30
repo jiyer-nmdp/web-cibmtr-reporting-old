@@ -40,6 +40,7 @@ export class PatientComponent implements OnInit {
   now: Date;
   cibmtrPatientId: Observable<any>;
   dataManager_name: string;
+  selectedCenter_name : string;
 
   constructor(
     private _route: ActivatedRoute,
@@ -62,13 +63,11 @@ export class PatientComponent implements OnInit {
         });
         this.bsModalRef.content.onClose.subscribe((result) => {
           if (result === "Continue") {
-            this.subscribeRouteData(
-              "rc_" + this.bsModalRef.content.currentItem.value
-            );
+            this.subscribeRouteData(this.bsModalRef.content.currentItem);
           }
         });
       } else if (cibmtrCenters) {
-        this.subscribeRouteData("rc_" + cibmtrCenters[0].value);
+        this.subscribeRouteData(cibmtrCenters[0]);
       }
     });
   }
@@ -89,6 +88,8 @@ export class PatientComponent implements OnInit {
     //two-way binding in UI
     this.dataManager_name =
       decodedValue.first_name + " " + decodedValue.last_name;
+    
+
 
     //Scope format - "l1_role_rc_10121_fn3"
     scopes.forEach((scope, index) => {
@@ -171,21 +172,22 @@ export class PatientComponent implements OnInit {
    */
   retreiveFhirPatient(ehrpatient, selectedScope) {
     this.cridCallComplete = false;
-    this.psScope = selectedScope;
+    this.psScope = "rc_"+ selectedScope.value;
+    this.selectedCenter_name = selectedScope.name;
 
     let logicalId = encodeURI(
       "".concat(
         AppConfig.epic_logicalId_namespace,
         "|",
         this.utilityService.rebuild_DSTU2_STU3_Url(
-          this._localStorageService.get("iss")
+          "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3"
           ) +
           "/Patient/" +
           ehrpatient.id
       )
     );
     let encodedScope = encodeURI(
-      "".concat(AppConfig.cibmtr_centers_namespace, "|", selectedScope)
+      "".concat(AppConfig.cibmtr_centers_namespace, "|", this.psScope)
     );
     this.fhirService
       .lookupPatientCrid(logicalId.concat(`&_security=${encodedScope}`))

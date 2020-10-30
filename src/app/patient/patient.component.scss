@@ -20,8 +20,7 @@
   border-radius: 30px;
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
   background-color: #ffffff;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  overflow: auto;
 }
 
 .name {
@@ -40,17 +39,27 @@
 .patient_details {
   padding: 20px 0px 20px 25px;
   font-family: AvenirNext;
-  font-size: 18px;
+  font-size: 15px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
   line-height: 1.43;
   letter-spacing: normal;
   color: gray;
+  overflow: auto;
+}
+
+.register {
+  width: 218px;
+  height: 36px;
+  position: static;
+  border-radius: 6px;
+  border: solid 1px #becd2b;
+  background-color: #becd2b;
 }
 
 .register_proceed {
-  margin-top: 20px;
+  margin: 20px;
   width: 110px;
   height: 50px;
   border-radius: 6px;

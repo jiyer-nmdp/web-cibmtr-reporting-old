@@ -21,27 +21,24 @@
 </alert>
 
 <div class="row form-group">
-  <div class="col-md-12 navbar fixed-top">
+  <div class="col-md-12">
     <div class="col-md-8 date-label">
       <b>Date Retrieved </b> : {{ now | date: "yyyy-MM-dd HH:mm" }}
     </div>
 
-    <div class="col-md-4 form-inline">
+    <div class="col-md-4 navbar-brand form-inline">
       <button
         type="button"
-        class="col-md-push-1 btn btn-primary btn-sm"
+        class="btn btn-primary btn-sm pull-right"
         (click)="toggleAllObservations()"
       >
         {{ toggleAll == false ? "HideAll" : "ExpandAll" }}
       </button>
-      <input class="col-md-push-1 checkbox i-checks" type="checkbox" />
     </div>
   </div>
 </div>
 
-<div class="line"></div>
-
-<div class="panel-body">
+<div class="panel-body table-wrapper-scroll-y my-custom-scrollbar">
   <div *ngFor="let key of keys; let i = index" class="table-responsive">
     <div>
       <div class="col-md-6">{{ codes[key].text }}</div>

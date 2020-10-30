@@ -138,4 +138,11 @@
   font: 32px Arial, sans-serif;
 }
 
-
+.my-custom-scrollbar {
+  position: relative;
+  height: 300px;
+  overflow: auto;
+}
+.table-wrapper-scroll-y {
+  display: block;
+}

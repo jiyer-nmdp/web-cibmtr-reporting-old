@@ -116,7 +116,6 @@ export class ObservationVitalsComponent implements OnInit {
     }
   }
 
-  //Refactor 
   getNodeValue(value) {
     if (value) {
       if (
@@ -158,7 +157,7 @@ export class ObservationVitalsComponent implements OnInit {
     if (component) {
       let components = []
       for (let i = 0; i < component.length; i++) {
-        let code = component[i].code.text + ':'
+        let code = component[i].code.text + ':' + " "
         let nodeValue = this.getNodeValue(component[i])
         components.push(code + nodeValue);
       }

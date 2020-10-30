@@ -138,7 +138,16 @@
   font: 32px Arial, sans-serif;
 }
 
-.scroll {
-  overflow-y: auto;
-  overflow-x: auto;
+.my-custom-scrollbar {
+  position: relative;
+  height: 300px;
+  overflow: auto;
+}
+
+.table-wrapper-scroll-y {
+  display: block;
+}
+.table thead th {
+  position: sticky;
+  top: 0;
 }
