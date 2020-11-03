@@ -138,16 +138,23 @@
   font: 32px Arial, sans-serif;
 }
 
-.my-custom-scrollbar {
-  position: relative;
+.fixed_header {
+  overflow-y: auto;
   height: 300px;
-  overflow: auto;
 }
 
-.table-wrapper-scroll-y {
-  display: block;
+.fixed_header table {
+  border-collapse: collapse;
+  width: 100%;
 }
-.table thead th {
+
+.fixed_header th,
+.fixed_header td {
+  padding: 8px 16px;
+}
+
+.fixed_header th {
   position: sticky;
   top: 0;
+  background: rgb(243, 238, 238);
 }
