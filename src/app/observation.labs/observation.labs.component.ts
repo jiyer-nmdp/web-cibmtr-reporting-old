@@ -34,6 +34,7 @@ export class ObservationLabsComponent implements OnInit {
     let data = this.router.getCurrentNavigation().extras.state.data;
     this.labs = data.labs;
     this.psScope = data.psScope;
+    console.log("Labs :"+window.history.state);
   }
 
   ngOnInit() {

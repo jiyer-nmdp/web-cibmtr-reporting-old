@@ -19,13 +19,17 @@ export class PatientDetailComponent implements OnInit {
 
   constructor(private router: Router) {
     let data = this.router.getCurrentNavigation().extras.state.data;
-    this.agvhd = data.agvhd;
-    this.labs = data.labs;
-    this.vitals = data.vitals;
-    this.core = data.core;
-    this.ehrpatient = data.ehrpatient;
+
+    this.agvhd = JSON.parse(data.agvhd);
+    this.labs = JSON.parse(data.labs);
+    this.vitals = JSON.parse(data.vitals);
+    this.core = JSON.parse(data.core);
+    this.ehrpatient = JSON.parse(data.ehrpatient);
     this.crid = data.crid;
     this.psScope = data.psScope;
+
+    console.log("PatientDetails:"+window.history.state);
+
   }
 
   ngOnInit() {}

@@ -181,7 +181,7 @@ export class PatientComponent implements OnInit {
         "|",
         this.utilityService.rebuild_DSTU2_STU3_Url(
           this._localStorageService.get("iss")
-          ) +
+          )+
           "/Patient/" +
           ehrpatient.id
       )
@@ -462,11 +462,11 @@ export class PatientComponent implements OnInit {
       .navigate(["/patientdetail"], {
         state: {
           data: {
-            agvhd: this.agvhd,
-            labs: this.labs,
-            vitals: this.vitals,
-            core: this.core,
-            ehrpatient: this.ehrpatient,
+            agvhd: JSON.stringify(this.agvhd),
+            labs: JSON.stringify(this.labs),
+            vitals: JSON.stringify(this.vitals),
+            core: JSON.stringify(this.core),
+            ehrpatient: JSON.stringify(this.ehrpatient),
             crid: this.crid,
             psScope: this.psScope,
           },
@@ -475,6 +475,10 @@ export class PatientComponent implements OnInit {
       .then((e) => {
         if (e) {
           console.log("patientdetail navigation is successful!");
+          console.log(this.agvhd);
+          console.log(this.labs);
+          console.log(this.vitals);
+          console.log(this.ehrpatient);
         } else {
           alert("patientdetail navigation is unsuccessful!");
         }
