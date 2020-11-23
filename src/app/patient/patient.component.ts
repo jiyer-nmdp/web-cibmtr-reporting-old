@@ -6,7 +6,6 @@ import * as jwt_decode from "jwt-decode";
 import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
 import { FhirService } from "./fhir.service";
 import { AppConfig } from "../app.config";
-import { ObservationAgvhdService } from "../observation.agvhd/observation.agvhd.service";
 import { take } from "rxjs/operators";
 import { NmdpWidget } from "@nmdp/nmdp-login/Angular/service/nmdp.widget";
 import { CustomHttpClient } from "../client/custom.http.client";
@@ -50,7 +49,7 @@ export class PatientComponent implements OnInit {
     private _localStorageService: LocalStorageService,
     private http: CustomHttpClient,
     private router: Router,
-    private utilityService: UtilityService
+    private utility: UtilityService
   ) {}
 
   ngOnInit() {
@@ -179,7 +178,7 @@ export class PatientComponent implements OnInit {
       "".concat(
         AppConfig.epic_logicalId_namespace,
         "|",
-        this.utilityService.rebuild_DSTU2_STU3_Url(
+        this.utility.rebuild_DSTU2_STU3_Url(
           this._localStorageService.get("iss")
           )+
           "/Patient/" +
@@ -436,7 +435,7 @@ export class PatientComponent implements OnInit {
           use: "official",
           system: AppConfig.epic_logicalId_namespace,
           value:
-            this.utilityService.rebuild_DSTU2_STU3_Url(
+            this.utility.rebuild_DSTU2_STU3_Url(
               this._localStorageService.get("iss")
             ) +
             "/Patient/" +
@@ -455,11 +454,7 @@ export class PatientComponent implements OnInit {
   /**
    *
    * @param
-   */
-  proceed() {
-    // Navigate to the Patient Details Component
-    this.router
-      .navigate(["/patientdetail"], {
+   * , {
         state: {
           data: {
             agvhd: JSON.stringify(this.agvhd),
@@ -471,18 +466,24 @@ export class PatientComponent implements OnInit {
             psScope: this.psScope,
           },
         },
-      })
-      .then((e) => {
-        if (e) {
-          console.log("patientdetail navigation is successful!");
-          console.log(this.agvhd);
-          console.log(this.labs);
-          console.log(this.vitals);
-          console.log(this.ehrpatient);
-        } else {
-          alert("patientdetail navigation is unsuccessful!");
-        }
-      });
+      }
+   */
+
+  proceed() {
+    // Navigate to the Patient Details Component
+
+    this.utility.data = {
+      agvhd: JSON.stringify(this.agvhd),
+      labs: JSON.stringify(this.labs),
+      vitals: JSON.stringify(this.vitals),
+      core: JSON.stringify(this.core),
+      ehrpatient: JSON.stringify(this.ehrpatient),
+      crid: this.crid,
+      psScope: this.psScope,
+    }
+    this.router
+      .navigate(["/patientdetail"])
+      .then(e => console.info(e+'')).catch(e=> console.error(e));
   }
 
   /**

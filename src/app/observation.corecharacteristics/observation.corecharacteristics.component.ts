@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Patient } from "../model/patient.";
 import { Router, ActivatedRoute } from "@angular/router";
 import { ObservationCoreService } from "./observation.corecharacteristics.service";
+import { UtilityService } from '../utility.service';
 
 @Component({
   selector: "app-observation.core",
@@ -31,10 +32,12 @@ export class ObservationCoreComponent implements OnInit {
   constructor(
     public observationcoreService: ObservationCoreService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private utility: UtilityService
+
   ) {
-    let data = this.router.getCurrentNavigation().extras.state.data;
-    this.core = data.core;
+    let data = utility.data;
+    this.core =  JSON.parse(data.core);
     this.psScope = data.psScope;
   }
 

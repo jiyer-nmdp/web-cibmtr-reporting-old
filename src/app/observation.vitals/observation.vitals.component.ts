@@ -1,8 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Patient } from "../model/patient.";
-import { Router, ActivatedRoute } from "@angular/router";
 import { ObservationVitalsService } from "./observation.vitals.service";
-import { nullSafeIsEquivalent } from "@angular/compiler/src/output/output_ast";
+import { UtilityService } from '../utility.service';
 
 @Component({
   selector: "app-observation.vitals",
@@ -30,11 +29,10 @@ export class ObservationVitalsComponent implements OnInit {
 
   constructor(
     public observationavitalsService: ObservationVitalsService,
-    private route: ActivatedRoute,
-    private router: Router
+    private utility: UtilityService
   ) {
-    let data = this.router.getCurrentNavigation().extras.state.data;
-    this.vitals = data.vitals;
+    let data = utility.data;
+    this.vitals = JSON.parse(data.vitals);
     this.psScope = data.psScope;
   }
 

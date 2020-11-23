@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-12">
+    <div class="col-md-12">
       <div class="welcome">
         Welcome {{ dataManager_name }} from {{selectedCenter_name}}
       </div>
@@ -8,39 +8,40 @@
   </div>
 
 
-    <div class="col-sm-12" *ngIf="ehrpatient">
+    <div class="col-md-12" *ngIf="ehrpatient">
       <div class="row patient-box-shadow">
-        <div class="col-sm-12">
-          <div class="col-sm-6 navbar-header">
+        <div class="col-md-12">
+          <div class="col-md-6 navbar-header">
                <div class="navbar-brand name">
                    {{ getGivenName(ehrpatient) }}
                    {{ ehrpatient.name[0]?.family }}
                </div>
          </div>
-         <div class="col-sm-6 navbar-brand pull-right">
+         <div class="col-md-6 navbar-brand pull-right">
           <div *ngIf="crid; else other_content">
             <div class="patient-crid">
               <span class="research-id-text">CIBMTR Research ID (CRID) : </span>
               <span>{{ crid }}</span>
             </div>
           </div>
-          <ng-template #other_content
-            ><button
+          <ng-template #other_content>
+           <button
               type="button"
-              class="btn btn-primary navbar-right register"
+              class="btn btn-primary navbar-right register"              
               (click)="register($event, ehrpatient)"
             >
-              <img
+            <img
                 *ngIf="isLoading"
                 style="width: 24px"
                 src="assets/spinner.gif"
-              />
+            />
               Associate Crid
             </button>
           </ng-template>
+
         </div>
       </div>
-      <div class="col-sm-12">
+      <div class="col-md-12">
           <ul class="list-unstyled patient_details">
             <li >Date of birth: {{ ehrpatient.birthDate }}</li>
             <li >Gender: {{ ehrpatient.gender }}</li>
@@ -55,7 +56,7 @@
       </div>
     </div>
 
-    <div class="col-sm-12" *ngIf="cridCallComplete == true && crid">
+    <div class="col-md-12" *ngIf="cridCallComplete == true && crid">
       <div *ngIf="crid">
         <button
           type="button"

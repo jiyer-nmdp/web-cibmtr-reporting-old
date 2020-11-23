@@ -4,6 +4,10 @@ import { Injectable } from "@angular/core";
   providedIn: "root",
 })
 export class UtilityService {
+
+  //IE data clone issue with router state object
+  data: any;
+
   constructor() {}
 
   //Reusable methods defined in this Components
@@ -15,4 +19,10 @@ export class UtilityService {
     }
     return url;
   }
+
+
+
+
+
+
 }

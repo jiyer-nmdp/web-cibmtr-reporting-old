@@ -1,6 +1,8 @@
 import { Component, OnInit, HostListener } from "@angular/core";
 import { Patient } from "../model/patient.";
 import { Router } from "@angular/router";
+import { UtilityService } from "../utility.service";
+
 
 @Component({
   selector: "app-patient.detail",
@@ -17,8 +19,9 @@ export class PatientDetailComponent implements OnInit {
   crid: string;
   activeLabel: string;
 
-  constructor(private router: Router) {
-    let data = this.router.getCurrentNavigation().extras.state.data;
+  constructor(private router: Router, private utility: UtilityService) {
+
+    let data = utility.data;
 
     this.agvhd = JSON.parse(data.agvhd);
     this.labs = JSON.parse(data.labs);
@@ -27,9 +30,6 @@ export class PatientDetailComponent implements OnInit {
     this.ehrpatient = JSON.parse(data.ehrpatient);
     this.crid = data.crid;
     this.psScope = data.psScope;
-
-    console.log("PatientDetails:"+window.history.state);
-
   }
 
   ngOnInit() {}

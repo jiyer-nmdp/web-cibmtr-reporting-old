@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { Patient } from "../model/patient.";import { Router } from "@angular/router";
+import { Patient } from "../model/patient.";
 import { ObservationLabsService } from "./observation.labs.service";
+import { UtilityService } from '../utility.service';
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-observation.labs",
@@ -29,12 +31,12 @@ export class ObservationLabsComponent implements OnInit {
 
   constructor(
     public observationlabsService: ObservationLabsService,
-    private router: Router
+    private router: Router,
+    private utility: UtilityService
   ) {
-    let data = this.router.getCurrentNavigation().extras.state.data;
-    this.labs = data.labs;
+    let data = utility.data;
+    this.labs = JSON.parse(data.labs);
     this.psScope = data.psScope;
-    console.log("Labs :"+window.history.state);
   }
 
   ngOnInit() {

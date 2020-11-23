@@ -4,6 +4,7 @@ import { ObservationAgvhdService } from "./observation.agvhd.service";
 import { LocalStorageService } from "angular-2-local-storage";
 import { Router, ActivatedRoute } from "@angular/router";
 import { Patient } from "../model/patient.";
+import { UtilityService } from '../utility.service';
 
 @Component({
   selector: "app-observation",
@@ -31,10 +32,12 @@ export class ObservationAgvhdComponent implements OnInit {
     public observationagvhdService: ObservationAgvhdService,
     private _localStorageService: LocalStorageService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private utility: UtilityService
+
   ) {
-    let data = this.router.getCurrentNavigation().extras.state.data;
-    this.agvhd = data.agvhd;
+    let data = utility.data;
+    this.agvhd =JSON.parse(data.agvhd);
     this.psScope = data.psScope;
   }
 
