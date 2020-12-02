@@ -18,15 +18,9 @@
               class="label-font"
               id="lab"
               [routerLink]="
-                labs == null ? ['error'] : labs.total == 0 ? ['info'] : ['labs']
+                labs === null ? ['error'] : labs.total === 0 ? ['info'] : ['labs']
               "
               [ngClass]="{ active: activeLabel == 'lab' }"
-              [state]="{
-                data: {
-                  labs: labs,
-                  psScope: psScope
-                }
-              }"
               >Labs
             </a>
             <b
@@ -47,18 +41,12 @@
               id="vital"
               [ngClass]="{ active: activeLabel == 'vital' }"
               [routerLink]="
-                vitals == null
+                vitals === null
                   ? ['error']
-                  : vitals.total == 0
+                  : vitals.total === 0
                   ? ['info']
                   : ['vitals']
               "
-              [state]="{
-                data: {
-                  vitals: vitals,
-                  psScope: psScope
-                }
-              }"
               >VitalSigns
             </a>
             <b
@@ -79,18 +67,12 @@
               id="agvhd"
               [ngClass]="{ active: activeLabel == 'agvhd' }"
               [routerLink]="
-                agvhd == null
+                agvhd === null
                   ? ['error']
-                  : agvhd.total == 0
+                  : agvhd.total === 0
                   ? ['info']
                   : ['agvhd']
               "
-              [state]="{
-                data: {
-                  agvhd: agvhd,
-                  psScope: psScope
-                }
-              }"
               >Flowsheet-aGVHD
             </a>
             <b
@@ -110,15 +92,9 @@
               class="label-font"
               id="core"
               [ngClass]="{ active: activeLabel == 'core' }"
-              [routerLink]="
-                core == null ? ['error'] : core.total == 0 ? ['info'] : ['core']
-              "
-              [state]="{
-                data: {
-                  core: core,
-                  psScope: psScope
-                }
-              }"
+              [routerLink]=
+                "core === null ? ['error'] : core.total === 0 ? ['info'] : ['core']"
+              
               >CoreCharacteristics
             </a>
             <b

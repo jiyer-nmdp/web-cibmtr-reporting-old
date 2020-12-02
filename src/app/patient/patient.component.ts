@@ -39,7 +39,7 @@ export class PatientComponent implements OnInit {
   now: Date;
   cibmtrPatientId: Observable<any>;
   dataManager_name: string;
-  selectedCenter_name : string;
+  selectedCenter_name: string;
 
   constructor(
     private _route: ActivatedRoute,
@@ -87,8 +87,6 @@ export class PatientComponent implements OnInit {
     //two-way binding in UI
     this.dataManager_name =
       decodedValue.first_name + " " + decodedValue.last_name;
-    
-
 
     //Scope format - "l1_role_rc_10121_fn3"
     scopes.forEach((scope, index) => {
@@ -97,8 +95,6 @@ export class PatientComponent implements OnInit {
     scopes = scopes.join(",");
     return this.fetchData(scopes);
   }
-
-  
 
   /**
    *
@@ -171,7 +167,7 @@ export class PatientComponent implements OnInit {
    */
   retreiveFhirPatient(ehrpatient, selectedScope) {
     this.cridCallComplete = false;
-    this.psScope = "rc_"+ selectedScope.value;
+    this.psScope = "rc_" + selectedScope.value;
     this.selectedCenter_name = selectedScope.name;
 
     let logicalId = encodeURI(
@@ -180,7 +176,7 @@ export class PatientComponent implements OnInit {
         "|",
         this.utility.rebuild_DSTU2_STU3_Url(
           this._localStorageService.get("iss")
-          )+
+        ) +
           "/Patient/" +
           ehrpatient.id
       )
@@ -480,10 +476,11 @@ export class PatientComponent implements OnInit {
       ehrpatient: JSON.stringify(this.ehrpatient),
       crid: this.crid,
       psScope: this.psScope,
-    }
+    };
     this.router
       .navigate(["/patientdetail"])
-      .then(e => console.info(e+'')).catch(e=> console.error(e));
+      .then((e) => console.info(e + ""))
+      .catch((e) => console.error(e));
   }
 
   /**
