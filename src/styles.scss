@@ -9,32 +9,6 @@
   padding: 0.2em 0;
 }
 
-body {
-  padding: 0;
-}
-
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-/* Custom page header */
-.header {
-  border-bottom: 1px solid #e5e5e5;
-  margin-bottom: 10px;
-
-  /* Make the masthead heading the same height as the navigation */
-  h3 {
-    margin-top: 0;
-    margin-bottom: 0;
-    line-height: 40px;
-    padding-bottom: 19px;
-  }
-}
-
 .fixed-panel {
   height: 450px;
   overflow-y: auto;
@@ -54,14 +28,6 @@ body {
   opacity: 0.2;
   filter: alpha(opacity = 60);
 }
-
-/* Custom page footer */
-.footer {
-  padding-top: 19px;
-  color: #777;
-  border-top: 1px solid #e5e5e5;
-}
-
 .container-narrow > hr {
   margin: 30px 0;
 }
@@ -111,13 +77,6 @@ body {
     max-width: 100%;
   }
 
-  /* Remove the padding we set earlier */
-  .header,
-  .marketing,
-  .footer {
-    padding-left: 0;
-    padding-right: 0;
-  }
   /* Space out the masthead */
   .header {
     margin-bottom: 30px;
@@ -136,6 +95,6 @@ html,
 body {
   height: 100%;
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  background-color: rgba(0, 121, 194, 0.05);
+  background-color: rgba(24, 102, 151, 0.05);
+  background-repeat: no-repeat;
 }

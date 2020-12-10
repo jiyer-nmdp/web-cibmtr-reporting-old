@@ -2,57 +2,58 @@
   <div class="row">
     <div class="col-md-12">
       <div class="welcome">
-        Welcome {{ dataManager_name }} from {{selectedCenter_name}}
+        Welcome {{ dataManager_name }} from {{ selectedCenter_name }}
       </div>
     </div>
-  </div>
-
 
     <div class="col-md-12" *ngIf="ehrpatient">
-      <div class="row patient-box-shadow">
+      <div class="patient-box-shadow">
         <div class="col-md-12">
           <div class="col-md-6 navbar-header">
-               <div class="navbar-brand name">
-                   {{ getGivenName(ehrpatient) }}
-                   {{ ehrpatient.name[0]?.family }}
-               </div>
-         </div>
-         <div class="col-md-6 navbar-brand pull-right">
-          <div *ngIf="crid; else other_content">
-            <div class="patient-crid">
-              <span class="research-id-text">CIBMTR Research ID (CRID) : </span>
-              <span>{{ crid }}</span>
+            <div class="navbar-brand name">
+              {{ getGivenName(ehrpatient) }}
+              {{ ehrpatient.name[0]?.family }}
             </div>
           </div>
-          <ng-template #other_content>
-           <button
-              type="button"
-              class="btn btn-primary navbar-right register"              
-              (click)="register($event, ehrpatient)"
-            >
-            <img
-                *ngIf="isLoading"
-                style="width: 24px"
-                src="assets/spinner.gif"
-            />
-              Associate Crid
-            </button>
-          </ng-template>
-
+          <div class="col-md-6 navbar-brand pull-right">
+            <div *ngIf="crid; else other_content">
+              <div class="patient-crid">
+                <span class="research-id-text"
+                  >CIBMTR Research ID (CRID) :
+                </span>
+                <span>{{ crid }}</span>
+              </div>
+            </div>
+            <ng-template #other_content>
+              <button
+                type="button"
+                class="btn btn-primary navbar-right register"
+                (click)="register($event, ehrpatient)"
+              >
+                <img
+                  *ngIf="isLoading"
+                  style="width: 24px"
+                  src="assets/spinner.gif"
+                />
+                Associate Crid
+              </button>
+            </ng-template>
+          </div>
         </div>
-      </div>
-      <div class="col-md-12">
+        <div class="col-md-12">
           <ul class="list-unstyled patient_details">
-            <li >Date of birth: {{ ehrpatient.birthDate }}</li>
-            <li >Gender: {{ ehrpatient.gender }}</li>
-            <li >Identifiers:</li>
+            <li>Date of birth: {{ ehrpatient.birthDate }}</li>
+            <li>Gender: {{ ehrpatient.gender }}</li>
+            <li>Identifiers:</li>
             <ul *ngFor="let identifier of ehrpatient.identifier">
-              <div *ngIf="identifier.system !== 'urn:oid:2.16.840.1.113883.4.1'">
-              <li> {{ identifier.type?.text}}:{{ identifier.value }} </li>
+              <div
+                *ngIf="identifier.system !== 'urn:oid:2.16.840.1.113883.4.1'"
+              >
+                <li>{{ identifier.type?.text }}:{{ identifier.value }}</li>
               </div>
             </ul>
           </ul>
-       </div>
+        </div>
       </div>
     </div>
 
@@ -68,3 +69,4 @@
       </div>
     </div>
   </div>
+</div>

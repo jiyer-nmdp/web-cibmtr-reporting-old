@@ -12,10 +12,7 @@ export class AppInitService {
     private _localStorageService: LocalStorageService
   ) {}
   initializeApp(): Promise<any> {
-    if (
-      !window.location.href.includes("iss") &&
-      !window.location.href.includes("launch")
-    ) {
+    if (!window.location.href.includes("?")) {
       console.log(
         "Location doesnt seems to have query paremeters..",
         window.location.href
