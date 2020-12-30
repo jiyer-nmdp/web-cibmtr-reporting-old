@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Patient } from "../model/patient.";
 import { ObservationVitalsService } from "./observation.vitals.service";
-import { UtilityService } from '../utility.service';
+import { UtilityService } from "../utility.service";
 
 @Component({
   selector: "app-observation.vitals",
@@ -130,15 +130,8 @@ export class ObservationVitalsComponent implements OnInit {
         value.valueQuantity &&
         (value.valueQuantity.value || value.valueQuantity.unit)
       ) {
-        if (
-          value.valueQuantity.value &&
-          value.valueQuantity.unit
-        ) {
-          return (
-            value.valueQuantity.value +
-            " " +
-            value.valueQuantity.unit
-          );
+        if (value.valueQuantity.value && value.valueQuantity.unit) {
+          return value.valueQuantity.value + " " + value.valueQuantity.unit;
         } else if (value.valueQuantity.value) {
           return value.valueQuantity.value;
         }
@@ -151,18 +144,18 @@ export class ObservationVitalsComponent implements OnInit {
   }
 
   //code
-  getComponentValue(component){
+  getComponentValue(component) {
     if (component) {
-      let components = []
+      let components = [];
       for (let i = 0; i < component.length; i++) {
-        let code = component[i].code.text + ':' + " "
-        let nodeValue = this.getNodeValue(component[i])
+        let code = component[i].code.text + ":" + " ";
+        let nodeValue = this.getNodeValue(component[i]);
         components.push(code + nodeValue);
       }
-      components.join(',')
-      return components
+      components.join(",");
+      return components;
     }
-}
+  }
 
   submitToCibmtr() {
     //reset

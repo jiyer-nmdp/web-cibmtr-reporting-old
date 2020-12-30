@@ -29,6 +29,7 @@
                 type="button"
                 class="btn btn-primary navbar-right register"
                 (click)="register($event, ehrpatient)"
+                [disabled]="crid || isLoading"
               >
                 <img
                   *ngIf="isLoading"
