@@ -23,7 +23,7 @@ export class ObservationAgvhdService {
         return this.http.post(
           AppConfig.cibmtr_fhir_update_url + "Observation",
           {
-            ...selectedResource,
+            ...(selectedResource as {}),
             meta: {
               security: [
                 {
