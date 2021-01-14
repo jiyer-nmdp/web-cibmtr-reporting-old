@@ -2,6 +2,7 @@ import { Injectable, NgZone } from "@angular/core";
 import { AuthorizationService } from "./authorization.service";
 import { Location } from "@angular/common";
 import { LocalStorageService } from "angular-2-local-storage";
+import { HttpErrorResponse } from "@angular/common/http";
 
 @Injectable()
 export class AppInitService {
@@ -29,14 +30,15 @@ export class AppInitService {
           this._localStorageService.get("tokenUrl"),
           authorizationToken
         )
-        .then(response => {
+        .then((response) => {
           this._localStorageService.set(
             "accessToken",
             response["access_token"]
           );
           this._localStorageService.set("patient", response["patient"]);
           this.location.go("/main");
-        });
+        })
+        .catch();
     }
 
     let iss = this.authorizationService.getIss(window.location.href),
@@ -47,7 +49,7 @@ export class AppInitService {
     if (iss && launchToken) {
       this._localStorageService.set("iss", iss);
 
-      return this.authorizationService.getMetadata(iss).then(response => {
+      return this.authorizationService.getMetadata(iss).then((response) => {
         let tokenUrl = this.authorizationService.getTokenUrl(response),
           authorizeUrl = this.authorizationService.getAuthorizeUrl(response),
           authorizationCodeUrl = this.authorizationService.constructAuthorizationUrl(
@@ -56,7 +58,22 @@ export class AppInitService {
           );
         this._localStorageService.set("tokenUrl", tokenUrl);
         window.location.href = authorizationCodeUrl;
+        console.log(
+          " IssUrl => ",
+          iss + "\n launchToken =>",
+          launchToken,
+          "\n authorizeUrl =>",
+          authorizeUrl,
+          "\n authorizationCodeUrl =>",
+          authorizationCodeUrl
+        );
       });
     }
+  }
+  handleError(error: HttpErrorResponse) {
+    let errorMessage =
+      "Unable to process request for \nURL : ${error.url}.  \nStatus: ${error.status}. \nStatusText: ${error.statusText}";
+    alert(errorMessage);
+    console.log(errorMessage);
   }
 }

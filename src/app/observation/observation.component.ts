@@ -7,7 +7,7 @@ import { LocalStorageService } from "angular-2-local-storage";
 
 @Component({
   selector: "app-observation",
-  templateUrl: "./observation.component.html"
+  templateUrl: "./observation.component.html",
 })
 export class ObservationComponent implements OnInit {
   constructor(
@@ -37,7 +37,7 @@ export class ObservationComponent implements OnInit {
     let savedEntries = this.savedBundle.entry;
     if (entries && entries.length > 0) {
       // filtering the entries to only Observations
-      let observationEntries = entries.filter(function(item) {
+      let observationEntries = entries.filter(function (item) {
         return item.resource.resourceType === "Observation";
       });
       // loop through the above mentioned codes
@@ -46,7 +46,7 @@ export class ObservationComponent implements OnInit {
 
         for (let j = 0; j < observationEntries.length; j++) {
           let matchingEntry = observationEntries[j].resource.code.coding.filter(
-            function(coding) {
+            function (coding) {
               return AppConfig.codes[i] === coding.code;
             }
           );
@@ -59,7 +59,7 @@ export class ObservationComponent implements OnInit {
               // Case II - The record has been submitted and there were no updates
               // we cannot submit these records unless there is a change in data.
               // sse stands for submitted saved entry
-              let sse = savedEntries.filter(savedEntry => {
+              let sse = savedEntries.filter((savedEntry) => {
                 return (
                   savedEntry.resource.extension &&
                   observationEntry.fullUrl ===
@@ -70,7 +70,7 @@ export class ObservationComponent implements OnInit {
               });
 
               // use - updated saved entry
-              let use = savedEntries.filter(savedEntry => {
+              let use = savedEntries.filter((savedEntry) => {
                 return (
                   savedEntry.resource.extension &&
                   observationEntry.fullUrl ===
@@ -103,7 +103,7 @@ export class ObservationComponent implements OnInit {
         if (matchingEntries && matchingEntries.length > 0) {
           this.codes[AppConfig.codes[i]] = {
             matchingEntries: matchingEntries,
-            text: matchingEntries[0].resource.code.text
+            text: matchingEntries[0].resource.code.text,
           };
         }
         this.toggle.push(false);
@@ -121,10 +121,10 @@ export class ObservationComponent implements OnInit {
     this.selectedNewResources = [];
     this.selectedUpdatedResources = [];
     // New Records
-    this.codes.filter(value => {
+    this.codes.filter((value) => {
       this.selectedNewEntries.push(
         value.matchingEntries.filter(
-          m => m.selected === true && m.state === "bold"
+          (m) => m.selected === true && m.state === "bold"
         )
       );
     });
@@ -133,19 +133,19 @@ export class ObservationComponent implements OnInit {
     );
     if (this.selectedNewResources && this.selectedNewResources.length > 0) {
       this.observationService
-        .postNewRecords(this.selectedNewResources, this.psScope,this.cibmtrPatientFullUri)
+        .postNewRecords(this.selectedNewResources, this.psScope)
         .subscribe(
-          response => {
+          (response) => {
             let id = response.extension[0].valueUri.substring(
               response.extension[0].valueUri.lastIndexOf("/") + 1
             );
             Array.prototype.concat
               .apply([], this.selectedNewEntries)
-              .filter(e => e.resource.id === id)[0].state = "lighter";
+              .filter((e) => e.resource.id === id)[0].state = "lighter";
             this.success = true;
             // This subscribe will be called for every successful post of new record
           },
-          error => {
+          (error) => {
             console.error(error);
             this.fail = true;
           },
@@ -156,10 +156,10 @@ export class ObservationComponent implements OnInit {
     }
 
     // Updated Records
-    this.codes.filter(value => {
+    this.codes.filter((value) => {
       this.selectedUpdatedEntries.push(
         value.matchingEntries.filter(
-          m => m.selected === true && m.state === "normal"
+          (m) => m.selected === true && m.state === "normal"
         )
       );
     });
@@ -173,16 +173,17 @@ export class ObservationComponent implements OnInit {
       this.selectedUpdatedResources.length > 0
     ) {
       this.observationService
-        .postUpdatedRecords(this.selectedUpdatedResources, this.psScope,this.cibmtrPatientFullUri)
+        .postUpdatedRecords(this.selectedUpdatedResources, this.psScope)
         .subscribe(
-          response => {
+          (response) => {
             Array.prototype.concat
               .apply([], this.selectedUpdatedEntries)
-              .filter(e => e.resource.id === response.id)[0].state = "lighter";
+              .filter((e) => e.resource.id === response.id)[0].state =
+              "lighter";
             this.success = true;
             // This subscribe will be called for every successful updated of the record
           },
-          error => {
+          (error) => {
             console.error(error);
             this.fail = true;
           },
@@ -196,10 +197,10 @@ export class ObservationComponent implements OnInit {
   checkForSelectAll() {
     this.keys.forEach((key, i) => {
       this.codes[key].isAllSelected = this.codes[key].matchingEntries.every(
-        matchingEntry => matchingEntry.selected
+        (matchingEntry) => matchingEntry.selected
       );
       this.codes[key].isAlldisabled = this.codes[key].matchingEntries.every(
-        matchingEntry =>
+        (matchingEntry) =>
           matchingEntry.selected && matchingEntry.state === "lighter"
       );
     });
@@ -211,7 +212,7 @@ export class ObservationComponent implements OnInit {
       [],
       selectedEntries
     );
-    flattenSelectedEntries.forEach(selectedEntry => {
+    flattenSelectedEntries.forEach((selectedEntry) => {
       let Ehrid = selectedEntry.resource.id;
       selectedEntry.resource.extension = this.buildExtensionArray(
         this._localStorageService.get("iss") + "/Observation" + "/" + Ehrid
@@ -227,8 +228,8 @@ export class ObservationComponent implements OnInit {
       {
         url:
           "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
-        valueUri: valueUri
-      }
+        valueUri: valueUri,
+      },
     ];
     return extension;
   }
@@ -239,10 +240,10 @@ export class ObservationComponent implements OnInit {
       this.keys.forEach((key, i) => {
         if (index === i) {
           this.codes[key].isAllSelected = this.codes[key].matchingEntries.every(
-            matchingEntry => matchingEntry.selected
+            (matchingEntry) => matchingEntry.selected
           );
           this.codes[key].isAlldisabled = this.codes[key].matchingEntries.every(
-            matchingEntry =>
+            (matchingEntry) =>
               matchingEntry.selected && matchingEntry.state === "lighter"
           );
         }
@@ -260,10 +261,10 @@ export class ObservationComponent implements OnInit {
     if (this.toggleAll === false) {
       this.keys.forEach((key, index) => {
         this.codes[key].isAllSelected = this.codes[key].matchingEntries.every(
-          matchingEntry => matchingEntry.selected
+          (matchingEntry) => matchingEntry.selected
         );
         this.codes[key].isAlldisabled = this.codes[key].matchingEntries.every(
-          matchingEntry =>
+          (matchingEntry) =>
             matchingEntry.selected && matchingEntry.state === "lighter"
         );
         this.toggle[index] = true;
@@ -273,16 +274,16 @@ export class ObservationComponent implements OnInit {
 
   selectAll(key) {
     let toggleStatus = !this.codes[key].isAllSelected;
-    this.codes[key].matchingEntries.forEach(matchingEntry => {
+    this.codes[key].matchingEntries.forEach((matchingEntry) => {
       if (matchingEntry.state != "lighter") {
         matchingEntry.selected = toggleStatus;
       }
     });
   }
 
-  toggleOption = function(key) {
+  toggleOption = function (key) {
     this.codes[key].isAllSelected = this.codes[key].matchingEntries.every(
-      function(matchingEntry) {
+      function (matchingEntry) {
         return matchingEntry.selected;
       }
     );

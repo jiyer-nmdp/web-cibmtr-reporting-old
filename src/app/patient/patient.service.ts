@@ -1,113 +1,99 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders, HttpErrorResponse } from "@angular/common/http";
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpErrorResponse,
+} from "@angular/common/http";
 import { Observable } from "rxjs";
 import { AppConfig } from "../app.config";
 import { IPatientContext } from "../model/patient.";
 import { LocalStorageService } from "angular-2-local-storage";
-
+import { UtilityService } from "../utility.service";
 
 @Injectable()
 export class PatientService {
-
   constructor(
     private http: HttpClient,
-    private _localStorageService: LocalStorageService
+    private _localStorageService: LocalStorageService,
+    private utilityService: UtilityService
   ) {}
 
   getPatient(identifier): Observable<IPatientContext> {
-    let url = this._localStorageService.get("iss") + "/Patient/" + identifier;
-    return this.http.get<IPatientContext>(url, {
-      headers: this.buildEhrHeaders()
-    }).catch((e: any) => Observable.throw(this.handleError(e,new Date().getTime()))); 
+    let url =
+      this.utilityService.rebuild_DSTU2_STU3_Url(
+        this._localStorageService.get("iss")
+      ) +
+      "/Patient/" +
+      identifier;
+    return this.http
+      .get<IPatientContext>(url, {
+        headers: this.buildEhrHeaders(),
+      })
+      .catch((e: any) =>
+        Observable.throw(this.handleError(e, new Date().getTime()))
+      );
   }
 
   getObservation(identifier): Observable<IPatientContext> {
-    return this.http.get<IPatientContext>(
-      this._localStorageService.get("iss") +
-        "/Observation?patient=" +
-        identifier +
-        "&" +
-        AppConfig.observation_codes,
-      {
-        headers: this.buildEhrHeaders()
-      }
-      ).catch((e: any) => Observable.throw(this.handleError(e,new Date().getTime()))); 
+    return this.http
+      .get<IPatientContext>(
+        this.utilityService.rebuild_DSTU2_STU3_Url(
+          this._localStorageService.get("iss")
+        ) +
+          "/Observation?patient=" +
+          identifier +
+          "&" +
+          AppConfig.observation_codes,
+        {
+          headers: this.buildEhrHeaders(),
+        }
+      )
+      .catch((e: any) => Observable.of(null));
   }
 
   getObservationLabs(identifier): Observable<IPatientContext> {
-    return this.http.get<IPatientContext>(
-      this._localStorageService.get("iss") +
-        "/Observation?category=laboratory&patient=" +
-        identifier,
-      {
-        headers: this.buildEhrHeaders()
-      }
-      ).catch((e: any) => Observable.throw(this.handleError(e,new Date().getTime()))); 
+    return this.http
+      .get<IPatientContext>(
+        this.utilityService.rebuild_DSTU2_STU3_Url(
+          this._localStorageService.get("iss")
+        ) +
+          "/Observation?category=laboratory&patient=" +
+          identifier,
+        {
+          headers: this.buildEhrHeaders(),
+        }
+      )
+      .catch((e: any) => Observable.of(null));
   }
 
   getObservationVitalSigns(identifier): Observable<IPatientContext> {
-    return this.http.get<IPatientContext>(
-      this._localStorageService.get("iss") +
-        "/Observation?category=vital-signs&patient=" +
-        identifier,
-      {
-        headers: this.buildEhrHeaders()
-      }
-    )
-    .catch((e: any) => Observable.throw(this.handleError(e,new Date().getTime())));
-   
+    return this.http
+      .get<IPatientContext>(
+        this.utilityService.rebuild_DSTU2_STU3_Url(
+          this._localStorageService.get("iss")
+        ) +
+          "/Observation?category=vital-signs&patient=" +
+          identifier,
+        {
+          headers: this.buildEhrHeaders(),
+        }
+      )
+      .catch((e: any) => Observable.of(null));
   }
 
-  getCondition(identifier): Observable<IPatientContext> {
-    return this.http.get<IPatientContext>(
-      this._localStorageService.get("iss") +
-        "/Condition?patient=" +
-        identifier,
-      {
-        headers: this.buildEhrHeaders()
-      }
-    )
-    .catch((e: any) => Observable.throw(this.handleError(e,new Date().getTime())));
-   
-  }
-
-  getMedicationStatement(identifier): Observable<IPatientContext> {
-    return this.http.get<IPatientContext>(
-      this._localStorageService.get("iss") +
-        "/MedicationStatements?patient=" +
-        identifier,
-      {
-        headers: this.buildEhrHeaders()
-      }
-    )
-    .catch((e: any) => Observable.throw(this.handleError(e,new Date().getTime())));
-   
-  }
-
-  getProcedure(identifier): Observable<IPatientContext> {
-    return this.http.get<IPatientContext>(
-      this._localStorageService.get("iss") +
-        "/Procedure?patient=" +
-        identifier,
-      {
-        headers: this.buildEhrHeaders()
-      }
-    )
-    .catch((e: any) => Observable.throw(this.handleError(e,new Date().getTime())));
-   
-  }
-
-  getDiagnosticReport(identifier): Observable<IPatientContext> {
-    return this.http.get<IPatientContext>(
-      this._localStorageService.get("iss") +
-        "/DiagnosticReport?patient=" +
-        identifier,
-      {
-        headers: this.buildEhrHeaders()
-      }
-    )
-    .catch((e: any) => Observable.throw(this.handleError(e,new Date().getTime())));
-   
+  getObservationCoreChar(identifier): Observable<IPatientContext> {
+    return this.http
+      .get<IPatientContext>(
+        this.utilityService.rebuild_DSTU2_STU3_Url(
+          this._localStorageService.get("iss")
+        ) +
+          "/Observation?category=core-characteristics&patient=" +
+          identifier,
+        {
+          headers: this.buildEhrHeaders(),
+        }
+      )
+      .catch((e: any) => Observable.of(null));
   }
 
   buildEhrHeaders() {
@@ -117,17 +103,14 @@ export class PatientService {
       .set(
         "Authorization",
         `Bearer ${this._localStorageService.get("accessToken")}`
-         );
+      );
 
     return ehrHeaders;
   }
 
-  handleError(error: HttpErrorResponse, timestamp : any) {
-
+  handleError(error: HttpErrorResponse, timestamp: any) {
     let errorMessage = `Unable to process request for \nURL : ${error.url}.  \nStatus: ${error.status}. \nStatusText: ${error.statusText} \nTimestamp : ${timestamp}`;
     alert(errorMessage);
     console.log(errorMessage);
-
   }
-
 }

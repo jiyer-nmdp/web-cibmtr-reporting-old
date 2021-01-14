@@ -2,17 +2,19 @@ import { Component, ChangeDetectorRef, OnInit } from "@angular/core";
 import { NmdpWidget } from "@nmdp/nmdp-login/Angular/service/nmdp.widget";
 import { PatientService } from "./patient/patient.service";
 import { CustomHttpClient } from "./client/custom.http.client";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.scss"]
+  styleUrls: ["./app.component.scss"],
 })
 export class AppComponent implements OnInit {
   constructor(
     private loginWidget: NmdpWidget,
     private ref: ChangeDetectorRef,
-    private patientService: PatientService
+    private patientService: PatientService,
+    private router: Router
   ) {
     this.loginWidget.init("assets/MyConfig.json", "#nmdp-login-container");
   }
@@ -32,6 +34,8 @@ export class AppComponent implements OnInit {
     this.loginWidget.signout((err: any) => {
       this.ref.detectChanges();
       this.ngOnInit();
+      //when User click logout of navigation , and patient conext is cleared.
+      this.router.navigateByUrl("/main");
     });
   }
 
@@ -43,7 +47,7 @@ export class AppComponent implements OnInit {
     }
     const oldSubject = this.loginWidget.subject;
     // check to see if session is active
-    this.loginWidget.getNewToken(rawtoken => {
+    this.loginWidget.getNewToken((rawtoken) => {
       // this will display a new login screen if needed
       if (oldSubject == null || this.loginWidget.subject != oldSubject) {
         // clean out any old data from previous usage
