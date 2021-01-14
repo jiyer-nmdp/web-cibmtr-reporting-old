@@ -31,6 +31,10 @@ import { ErrorComponent } from "./error/error.component";
 import { InfoComponent } from "./info/info.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MaterialModule } from "./material/material.module";
+import { environment } from "src/environments/environment.mock";
+import { HttpMockRequestInterceptor } from "./interceptors/mock.http.interceptor";
+
+export const isMock = environment.mock;
 
 @NgModule({
   declarations: [
@@ -85,6 +89,16 @@ import { MaterialModule } from "./material/material.module";
       deps: [AppInitService],
       multi: true,
     },
+
+    ...isMock
+      ? [
+          {
+            provide: HTTP_INTERCEPTORS,
+            useClass: HttpMockRequestInterceptor,
+            multi: true,
+          },
+        ]
+      : [],
   ],
   bootstrap: [AppComponent],
 })
