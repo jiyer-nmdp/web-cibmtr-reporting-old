@@ -5,26 +5,25 @@ import { Observable, from } from "rxjs";
 import { CustomHttpClient } from "../client/custom.http.client";
 import { concatMap } from "rxjs-compat/operators/concatMap";
 import { LocalStorageService } from "angular-2-local-storage";
+import { UtilityService } from "../utility.service";
 
 @Injectable()
-export class ObservationService {
+export class ObservationAgvhdService {
   constructor(
     private http: CustomHttpClient,
-    private _localStorageService: LocalStorageService
+    private _localStorageService: LocalStorageService,
+    private utilityService: UtilityService
   ) {}
 
   // Below method submit new records to the cibmtr
-  postNewRecords(
-    selectedResources,
-    psScope,
-  ): Observable<any> {
+  postNewRecords(selectedResources, psScope): Observable<any> {
     return from(selectedResources).pipe(
       concatMap((selectedResource) => {
         const tmpResource: any = selectedResource;
         return this.http.post(
           AppConfig.cibmtr_fhir_update_url + "Observation",
           {
-            ...selectedResource,
+            ...(selectedResource as {}),
             meta: {
               security: [
                 {
@@ -38,7 +37,9 @@ export class ObservationService {
                 use: "official",
                 system: AppConfig.epic_logicalId_namespace,
                 value:
-                  this._localStorageService.get("iss") +
+                  this.utilityService.rebuild_DSTU2_STU3_Url(
+                    this._localStorageService.get("iss")
+                  ) +
                   "/Observation/" +
                   tmpResource.id,
               },
@@ -48,11 +49,9 @@ export class ObservationService {
       })
     );
   }
+
   // Below method submit updated records to the cibmtr
-  postUpdatedRecords(
-    selectedResources,
-    psScope,
-  ): Observable<any> {
+  postUpdatedRecords(selectedResources, psScope): Observable<any> {
     // Prepare the map of Id and resources
     let sMap = {};
 

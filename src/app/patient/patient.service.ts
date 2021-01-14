@@ -8,19 +8,21 @@ import { Observable } from "rxjs";
 import { AppConfig } from "../app.config";
 import { IPatientContext } from "../model/patient.";
 import { LocalStorageService } from "angular-2-local-storage";
+import { UtilityService } from "../utility.service";
 
 @Injectable()
 export class PatientService {
   constructor(
     private http: HttpClient,
-    private _localStorageService: LocalStorageService
+    private _localStorageService: LocalStorageService,
+    private utilityService: UtilityService
   ) {}
-
-  //iss_possible_format - https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/DSTU2 or https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3
 
   getPatient(identifier): Observable<IPatientContext> {
     let url =
-      this.rebuild_DSTU2_STU3_Url(this._localStorageService.get("iss")) +
+      this.utilityService.rebuild_DSTU2_STU3_Url(
+        this._localStorageService.get("iss")
+      ) +
       "/Patient/" +
       identifier;
     return this.http
@@ -35,7 +37,9 @@ export class PatientService {
   getObservation(identifier): Observable<IPatientContext> {
     return this.http
       .get<IPatientContext>(
-        this.rebuild_DSTU2_STU3_Url(this._localStorageService.get("iss")) +
+        this.utilityService.rebuild_DSTU2_STU3_Url(
+          this._localStorageService.get("iss")
+        ) +
           "/Observation?patient=" +
           identifier +
           "&" +
@@ -44,9 +48,52 @@ export class PatientService {
           headers: this.buildEhrHeaders(),
         }
       )
-      .catch((e: any) =>
-        Observable.throw(this.handleError(e, new Date().getTime()))
-      );
+      .catch((e: any) => Observable.of(null));
+  }
+
+  getObservationLabs(identifier): Observable<IPatientContext> {
+    return this.http
+      .get<IPatientContext>(
+        this.utilityService.rebuild_DSTU2_STU3_Url(
+          this._localStorageService.get("iss")
+        ) +
+          "/Observation?category=laboratory&patient=" +
+          identifier,
+        {
+          headers: this.buildEhrHeaders(),
+        }
+      )
+      .catch((e: any) => Observable.of(null));
+  }
+
+  getObservationVitalSigns(identifier): Observable<IPatientContext> {
+    return this.http
+      .get<IPatientContext>(
+        this.utilityService.rebuild_DSTU2_STU3_Url(
+          this._localStorageService.get("iss")
+        ) +
+          "/Observation?category=vital-signs&patient=" +
+          identifier,
+        {
+          headers: this.buildEhrHeaders(),
+        }
+      )
+      .catch((e: any) => Observable.of(null));
+  }
+
+  getObservationCoreChar(identifier): Observable<IPatientContext> {
+    return this.http
+      .get<IPatientContext>(
+        this.utilityService.rebuild_DSTU2_STU3_Url(
+          this._localStorageService.get("iss")
+        ) +
+          "/Observation?category=core-characteristics&patient=" +
+          identifier,
+        {
+          headers: this.buildEhrHeaders(),
+        }
+      )
+      .catch((e: any) => Observable.of(null));
   }
 
   buildEhrHeaders() {
@@ -65,12 +112,5 @@ export class PatientService {
     let errorMessage = `Unable to process request for \nURL : ${error.url}.  \nStatus: ${error.status}. \nStatusText: ${error.statusText} \nTimestamp : ${timestamp}`;
     alert(errorMessage);
     console.log(errorMessage);
-  }
-
-  rebuild_DSTU2_STU3_Url(url: string) {
-    if (url.includes("DSTU2")) {
-      return url.replace("DSTU2", "STU3");
-    }
-    return url;
   }
 }

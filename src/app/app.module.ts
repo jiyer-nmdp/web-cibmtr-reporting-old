@@ -7,7 +7,7 @@ import { AppComponent } from "./app.component";
 import { CustomHttpInterceptor } from "./interceptors/http.interceptor";
 import { PatientService } from "./patient/patient.service";
 import { PatientResolver } from "./patient/patient.resolver";
-import { ObservationComponent } from "./observation/observation.component";
+import { ObservationAgvhdComponent } from "./observation.agvhd/observation.agvhd.component";
 import { ModalModule } from "ngx-bootstrap";
 import { FormsModule } from "@angular/forms";
 import { NmdpWidgetModule } from "@nmdp/nmdp-login/Angular/service/nmdp.widget.module";
@@ -16,16 +16,35 @@ import { FhirService } from "./patient/fhir.service";
 import { LocalStorageModule } from "angular-2-local-storage";
 import { CustomHttpClient } from "./client/custom.http.client";
 import { AppInitService } from "./services/app.init";
-import { ObservationService } from "./observation/observation.service";
+import { ObservationAgvhdService } from "./observation.agvhd/observation.agvhd.service";
 import { AlertModule } from "ngx-bootstrap/alert";
 import { DialogComponent } from "./dialog/dialog.component";
+import { PatientDetailComponent } from "./patient.detail/patient.detail.component";
+import { DefaultComponent } from "./default/default.component";
+import { ObservationLabsComponent } from "./observation.labs/observation.labs.component";
+import { ObservationLabsService } from "./observation.labs/observation.labs.service";
+import { ObservationVitalsComponent } from "./observation.vitals/observation.vitals.component";
+import { ObservationVitalsService } from "./observation.vitals/observation.vitals.service";
+import { ObservationCoreComponent } from "./observation.corecharacteristics/observation.corecharacteristics.component";
+import { ObservationCoreService } from "./observation.corecharacteristics/observation.corecharacteristics.service";
+import { ErrorComponent } from "./error/error.component";
+import { InfoComponent } from "./info/info.component";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { MaterialModule } from "./material/material.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
-    ObservationComponent,
-    DialogComponent
+    ObservationAgvhdComponent,
+    DialogComponent,
+    PatientDetailComponent,
+    DefaultComponent,
+    ObservationLabsComponent,
+    ObservationVitalsComponent,
+    ObservationCoreComponent,
+    ErrorComponent,
+    InfoComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,14 +57,19 @@ import { DialogComponent } from "./dialog/dialog.component";
     AlertModule.forRoot(),
     LocalStorageModule.forRoot({
       prefix: "cibmtr",
-      storageType: "localStorage"
-    })
+      storageType: "localStorage",
+    }),
+    BrowserAnimationsModule,
+    MaterialModule,
   ],
-  entryComponents: [ObservationComponent, DialogComponent],
+  entryComponents: [ObservationAgvhdComponent, DialogComponent],
   providers: [
     PatientResolver,
     PatientService,
-    ObservationService,
+    ObservationAgvhdService,
+    ObservationLabsService,
+    ObservationVitalsService,
+    ObservationCoreService,
     AuthorizationService,
     AppInitService,
     FhirService,
@@ -53,16 +77,16 @@ import { DialogComponent } from "./dialog/dialog.component";
     {
       provide: HTTP_INTERCEPTORS,
       useClass: CustomHttpInterceptor,
-      multi: true
+      multi: true,
     },
     {
       provide: APP_INITIALIZER,
       useFactory: appInitFactory,
       deps: [AppInitService],
-      multi: true
-    }
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
 
