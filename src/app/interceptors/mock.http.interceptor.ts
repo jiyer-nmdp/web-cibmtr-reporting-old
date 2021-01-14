@@ -7,12 +7,14 @@ import {
   HttpResponse,
 } from "@angular/common/http";
 import { Observable, of } from "rxjs";
-//import * as users from "./patient.json";
+//import * as patient from "./patient/patient.json";
 
 const urls = [
   {
-    url: "https://jsonplaceholder.typicode.com/users",
-    json: "users",
+    //
+    url:
+      "https://jhttps://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/ex2.tJIs78xn6uQoN0QB54A3",
+    json: "patient",
   },
 ];
 
