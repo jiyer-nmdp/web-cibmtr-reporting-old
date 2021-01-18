@@ -7,13 +7,13 @@ import {
   HttpResponse,
 } from "@angular/common/http";
 import { Observable, of } from "rxjs";
-//import * as patient from "./patient/patient.json";
+import patient from "./patient.json";
 
-const urls = [
+const patient_url = [
   {
     //
     url:
-      "https://jhttps://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/ex2.tJIs78xn6uQoN0QB54A3",
+      "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3",
     json: "patient",
   },
 ];
@@ -26,7 +26,7 @@ export class HttpMockRequestInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    for (const element of urls) {
+    for (const element of patient_url) {
       if (request.url === element.url) {
         console.log("Loaded from json : " + request.url);
         return of(
