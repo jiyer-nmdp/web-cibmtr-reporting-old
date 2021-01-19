@@ -1,0 +1,963 @@
+{
+  "resourceType": "Bundle",
+  "type": "searchset",
+  "total": 11,
+  "link": [
+    {
+      "relation": "self",
+      "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation?category=vital-signs&patient=endFZe2sorgK5yH219Tqbsw3"
+    }
+  ],
+  "entry": [
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/esYfu6.hHy5l7MPBjllGlv7N.pTvOqvMoGrMhtaoJtSI72hafIdk7YsqO6QveHbtk3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/esYfu6.hHy5l7MPBjllGlv7N.pTvOqvMoGrMhtaoJtSI72hafIdk7YsqO6QveHbtk3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "esYfu6.hHy5l7MPBjllGlv7N.pTvOqvMoGrMhtaoJtSI72hafIdk7YsqO6QveHbtk3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "5",
+              "display": "BP"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "tBdNYepLeojPG60x7nUx9kQ0",
+              "display": "BP"
+            },
+            {
+              "system": "urn:oid:1.2.246.537.6.96",
+              "code": "8462-4"
+            },
+            {
+              "system": "urn:oid:1.2.246.537.6.96",
+              "code": "8480-6"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "55284-4",
+              "display": "Blood pressure systolic and diastolic"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "85354-9",
+              "display": "Blood pressure panel with all children optional"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            }
+          ],
+          "text": "BP"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3",
+          "display": "Nephrology, Angela D"
+        },
+        "effectiveDateTime": "2013-04-22T14:17:00Z",
+        "issued": "2013-04-22T14:18:00Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/e28vW5fezpxw5avgqp8155INLVJM1xFYbCP-pEPU1hXQ3",
+            "display": "Nurse Nephrology, RN"
+          }
+        ],
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8480-6",
+                  "display": "Systolic blood pressure"
+                }
+              ],
+              "text": "Systolic blood pressure"
+            },
+            "valueQuantity": {
+              "value": 138,
+              "unit": "mm[Hg]",
+              "system": "http://unitsofmeasure.org",
+              "code": "mm[Hg]"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8462-4",
+                  "display": "Diastolic blood pressure"
+                }
+              ],
+              "text": "Diastolic blood pressure"
+            },
+            "valueQuantity": {
+              "value": 94,
+              "unit": "mm[Hg]",
+              "system": "http://unitsofmeasure.org",
+              "code": "mm[Hg]"
+            }
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/emyxPvVKuK.w-e9sEDQyuxQtX.kO26H2DxLIQakIjK-tXbHq69vm8SShS4lxIgZc53"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/emyxPvVKuK.w-e9sEDQyuxQtX.kO26H2DxLIQakIjK-tXbHq69vm8SShS4lxIgZc53",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "emyxPvVKuK.w-e9sEDQyuxQtX.kO26H2DxLIQakIjK-tXbHq69vm8SShS4lxIgZc53",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "5",
+              "display": "BP"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "tBdNYepLeojPG60x7nUx9kQ0",
+              "display": "BP"
+            },
+            {
+              "system": "urn:oid:1.2.246.537.6.96",
+              "code": "8462-4"
+            },
+            {
+              "system": "urn:oid:1.2.246.537.6.96",
+              "code": "8480-6"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "55284-4",
+              "display": "Blood pressure systolic and diastolic"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "85354-9",
+              "display": "Blood pressure panel with all children optional"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            }
+          ],
+          "text": "BP"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3",
+          "display": "Nephrology, Angela D"
+        },
+        "effectiveDateTime": "2013-04-06T20:40:00Z",
+        "issued": "2013-04-06T20:41:21Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Family Medicine, RN"
+          }
+        ],
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8480-6",
+                  "display": "Systolic blood pressure"
+                }
+              ],
+              "text": "Systolic blood pressure"
+            },
+            "valueQuantity": {
+              "value": 142,
+              "unit": "mm[Hg]",
+              "system": "http://unitsofmeasure.org",
+              "code": "mm[Hg]"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8462-4",
+                  "display": "Diastolic blood pressure"
+                }
+              ],
+              "text": "Diastolic blood pressure"
+            },
+            "valueQuantity": {
+              "value": 90,
+              "unit": "mm[Hg]",
+              "system": "http://unitsofmeasure.org",
+              "code": "mm[Hg]"
+            }
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/esYfu6.hHy5l7MPBjllGlv7BRGKbXIpdUEKOckY5dkuU3pwZuGIbTkoqNSm77Hkc63"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/esYfu6.hHy5l7MPBjllGlv7BRGKbXIpdUEKOckY5dkuU3pwZuGIbTkoqNSm77Hkc63",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "esYfu6.hHy5l7MPBjllGlv7BRGKbXIpdUEKOckY5dkuU3pwZuGIbTkoqNSm77Hkc63",
+        "extension": [
+          {
+            "valueQuantity": {
+              "value": 98.6,
+              "unit": "[degF]",
+              "system": "http://unitsofmeasure.org",
+              "code": "[degF]"
+            },
+            "url": "http://open.epic.com/FHIR/STU3/StructureDefinition/temperature-in-fahrenheit"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "6",
+              "display": "Temp"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "tvdinindxnlKvaoAecyilRA0",
+              "display": "Temp"
+            },
+            {
+              "system": "urn:oid:1.2.246.537.6.96",
+              "code": "8310-5"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5",
+              "display": "Body temperature"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            }
+          ],
+          "text": "Temp"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3",
+          "display": "Nephrology, Angela D"
+        },
+        "effectiveDateTime": "2013-04-22T14:17:00Z",
+        "issued": "2013-04-22T14:18:00Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/e28vW5fezpxw5avgqp8155INLVJM1xFYbCP-pEPU1hXQ3",
+            "display": "Nurse Nephrology, RN"
+          }
+        ],
+        "valueQuantity": {
+          "value": 37,
+          "unit": "Cel",
+          "system": "http://unitsofmeasure.org",
+          "code": "Cel"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/emyxPvVKuK.w-e9sEDQyuxbFFA.-dy2qrPpEWMQNy0Uan24v.21TOff7bUif3MAJY3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/emyxPvVKuK.w-e9sEDQyuxbFFA.-dy2qrPpEWMQNy0Uan24v.21TOff7bUif3MAJY3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "emyxPvVKuK.w-e9sEDQyuxbFFA.-dy2qrPpEWMQNy0Uan24v.21TOff7bUif3MAJY3",
+        "extension": [
+          {
+            "valueQuantity": {
+              "value": 98.6,
+              "unit": "[degF]",
+              "system": "http://unitsofmeasure.org",
+              "code": "[degF]"
+            },
+            "url": "http://open.epic.com/FHIR/STU3/StructureDefinition/temperature-in-fahrenheit"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "6",
+              "display": "Temp"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "tvdinindxnlKvaoAecyilRA0",
+              "display": "Temp"
+            },
+            {
+              "system": "urn:oid:1.2.246.537.6.96",
+              "code": "8310-5"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5",
+              "display": "Body temperature"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            }
+          ],
+          "text": "Temp"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3",
+          "display": "Nephrology, Angela D"
+        },
+        "effectiveDateTime": "2013-04-06T20:40:00Z",
+        "issued": "2013-04-06T20:41:21Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Family Medicine, RN"
+          }
+        ],
+        "valueQuantity": {
+          "value": 37,
+          "unit": "Cel",
+          "system": "http://unitsofmeasure.org",
+          "code": "Cel"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/esYfu6.hHy5l7MPBjllGlvz3s1t.NtgDNZE2HO77fHiUlu.HdrzndHVUU7qDAIQw13"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/esYfu6.hHy5l7MPBjllGlvz3s1t.NtgDNZE2HO77fHiUlu.HdrzndHVUU7qDAIQw13",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "esYfu6.hHy5l7MPBjllGlvz3s1t.NtgDNZE2HO77fHiUlu.HdrzndHVUU7qDAIQw13",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "8",
+              "display": "Pulse"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "t0nle2B9NVDaJJUDo0FtQrA0",
+              "display": "Pulse"
+            },
+            {
+              "system": "urn:oid:1.2.246.537.6.96",
+              "code": "8867-4"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ],
+          "text": "Pulse"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3",
+          "display": "Nephrology, Angela D"
+        },
+        "effectiveDateTime": "2013-04-22T14:17:00Z",
+        "issued": "2013-04-22T14:18:00Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/e28vW5fezpxw5avgqp8155INLVJM1xFYbCP-pEPU1hXQ3",
+            "display": "Nurse Nephrology, RN"
+          }
+        ],
+        "valueQuantity": {
+          "value": 88,
+          "unit": "/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/emyxPvVKuK.w-e9sEDQyuxYZe0ncw5eA47lKXvxt3Lto5aIiuGyQe5FpJJ3kXDjgm3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/emyxPvVKuK.w-e9sEDQyuxYZe0ncw5eA47lKXvxt3Lto5aIiuGyQe5FpJJ3kXDjgm3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "emyxPvVKuK.w-e9sEDQyuxYZe0ncw5eA47lKXvxt3Lto5aIiuGyQe5FpJJ3kXDjgm3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "8",
+              "display": "Pulse"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "t0nle2B9NVDaJJUDo0FtQrA0",
+              "display": "Pulse"
+            },
+            {
+              "system": "urn:oid:1.2.246.537.6.96",
+              "code": "8867-4"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ],
+          "text": "Pulse"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3",
+          "display": "Nephrology, Angela D"
+        },
+        "effectiveDateTime": "2013-04-06T20:40:00Z",
+        "issued": "2013-04-06T20:41:21Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Family Medicine, RN"
+          }
+        ],
+        "valueQuantity": {
+          "value": 88,
+          "unit": "/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/emyxPvVKuK.w-e9sEDQyuxUCrSJanSv6cvZzGcCfXD5z40Ys1pRv1q9yrB5l1appF3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/emyxPvVKuK.w-e9sEDQyuxUCrSJanSv6cvZzGcCfXD5z40Ys1pRv1q9yrB5l1appF3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "emyxPvVKuK.w-e9sEDQyuxUCrSJanSv6cvZzGcCfXD5z40Ys1pRv1q9yrB5l1appF3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "9",
+              "display": "Resp"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "t37isBRXnEf9.NUQV-lcIJQ0",
+              "display": "Resp"
+            },
+            {
+              "system": "urn:oid:1.2.246.537.6.96",
+              "code": "9279-1"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "9279-1",
+              "display": "Respiratory rate"
+            }
+          ],
+          "text": "Resp"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3",
+          "display": "Nephrology, Angela D"
+        },
+        "effectiveDateTime": "2013-04-06T20:40:00Z",
+        "issued": "2013-04-06T20:41:21Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Family Medicine, RN"
+          }
+        ],
+        "valueQuantity": {
+          "value": 15,
+          "unit": "/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/esYfu6.hHy5l7MPBjllGlv2yQzw7jD9kBQnnza5T7E5qLy.vHcd5-HkjVnoU20utJ3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/esYfu6.hHy5l7MPBjllGlv2yQzw7jD9kBQnnza5T7E5qLy.vHcd5-HkjVnoU20utJ3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "esYfu6.hHy5l7MPBjllGlv2yQzw7jD9kBQnnza5T7E5qLy.vHcd5-HkjVnoU20utJ3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "11",
+              "display": "Height"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "tkgg8UmEMvovrM.sHkZKrAQ0",
+              "display": "Height"
+            },
+            {
+              "system": "urn:oid:1.2.246.537.6.96",
+              "code": "8302-2"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8302-2",
+              "display": "Body height"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            }
+          ],
+          "text": "Height"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3",
+          "display": "Nephrology, Angela D"
+        },
+        "effectiveDateTime": "2013-04-22T14:17:00Z",
+        "issued": "2013-04-22T14:18:00Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/e28vW5fezpxw5avgqp8155INLVJM1xFYbCP-pEPU1hXQ3",
+            "display": "Nurse Nephrology, RN"
+          }
+        ],
+        "valueQuantity": {
+          "value": 167.6,
+          "unit": "cm",
+          "system": "http://unitsofmeasure.org",
+          "code": "cm"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/emyxPvVKuK.w-e9sEDQyuxQPJb2F5jeot0o3kRBx1FoQ2PyJFB9HkujjWEMfEzy2i3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/emyxPvVKuK.w-e9sEDQyuxQPJb2F5jeot0o3kRBx1FoQ2PyJFB9HkujjWEMfEzy2i3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "emyxPvVKuK.w-e9sEDQyuxQPJb2F5jeot0o3kRBx1FoQ2PyJFB9HkujjWEMfEzy2i3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "11",
+              "display": "Height"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "tkgg8UmEMvovrM.sHkZKrAQ0",
+              "display": "Height"
+            },
+            {
+              "system": "urn:oid:1.2.246.537.6.96",
+              "code": "8302-2"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8302-2",
+              "display": "Body height"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            }
+          ],
+          "text": "Height"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3",
+          "display": "Nephrology, Angela D"
+        },
+        "effectiveDateTime": "2013-04-06T20:40:00Z",
+        "issued": "2013-04-06T20:41:21Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Family Medicine, RN"
+          }
+        ],
+        "valueQuantity": {
+          "value": 167.6,
+          "unit": "cm",
+          "system": "http://unitsofmeasure.org",
+          "code": "cm"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/esYfu6.hHy5l7MPBjllGlv01ld-pt2Fnjqju9MPld4VfFLQWS7f9cnRkXlODc2vJv3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/esYfu6.hHy5l7MPBjllGlv01ld-pt2Fnjqju9MPld4VfFLQWS7f9cnRkXlODc2vJv3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "esYfu6.hHy5l7MPBjllGlv01ld-pt2Fnjqju9MPld4VfFLQWS7f9cnRkXlODc2vJv3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "14",
+              "display": "Weight"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "tX9rE8TgbEPXWpgEX7kuaoQ0",
+              "display": "Weight"
+            },
+            {
+              "system": "urn:oid:1.2.246.537.6.96",
+              "code": "29463-7"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "29463-7",
+              "display": "Body weight"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "3141-9",
+              "display": "Body weight Measured"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            }
+          ],
+          "text": "Weight"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3",
+          "display": "Nephrology, Angela D"
+        },
+        "effectiveDateTime": "2013-04-22T14:17:00Z",
+        "issued": "2013-04-22T14:18:00Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/e28vW5fezpxw5avgqp8155INLVJM1xFYbCP-pEPU1hXQ3",
+            "display": "Nurse Nephrology, RN"
+          }
+        ],
+        "valueQuantity": {
+          "value": 54,
+          "unit": "kg",
+          "system": "http://unitsofmeasure.org",
+          "code": "kg"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/emyxPvVKuK.w-e9sEDQyuxQNem0bVi7B.3Q-U6bc2yvghIXXR7Uz.0X2AyZsnBmsE3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/emyxPvVKuK.w-e9sEDQyuxQNem0bVi7B.3Q-U6bc2yvghIXXR7Uz.0X2AyZsnBmsE3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "emyxPvVKuK.w-e9sEDQyuxQNem0bVi7B.3Q-U6bc2yvghIXXR7Uz.0X2AyZsnBmsE3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "14",
+              "display": "Weight"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "tX9rE8TgbEPXWpgEX7kuaoQ0",
+              "display": "Weight"
+            },
+            {
+              "system": "urn:oid:1.2.246.537.6.96",
+              "code": "29463-7"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "29463-7",
+              "display": "Body weight"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "3141-9",
+              "display": "Body weight Measured"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            }
+          ],
+          "text": "Weight"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3",
+          "display": "Nephrology, Angela D"
+        },
+        "effectiveDateTime": "2013-04-06T20:40:00Z",
+        "issued": "2013-04-06T20:41:21Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Family Medicine, RN"
+          }
+        ],
+        "valueQuantity": {
+          "value": 58.1,
+          "unit": "kg",
+          "system": "http://unitsofmeasure.org",
+          "code": "kg"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    }
+  ]
+}
