@@ -18,7 +18,12 @@
                   (click)="selectRow(item)"
                 >
                   <td>
-                    <input name="center" type="radio" [value]="item" [(ngModel)]="currentItem"/>
+                    <input
+                      name="center"
+                      type="radio"
+                      [value]="item"
+                      [(ngModel)]="currentItem"
+                    />
                   </td>
                   <td>{{ item.value }}</td>
                   <td>{{ item.name }}</td>

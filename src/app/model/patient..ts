@@ -14,6 +14,7 @@ export class Patient {
   gender: string;
   maritalStatus: MaritalStatus;
   crid: string;
+  extension: Extension[];
 }
 
 class Identifier {
@@ -29,8 +30,11 @@ class IdentifierType {
 }
 
 class Extension {
+  extension: Extension[];
   valueString: string;
   url: string;
+  valueCodeableconcert: string;
+  valueCoding: Coding;
 }
 
 class Name {
@@ -44,5 +48,7 @@ class MaritalStatus {
 }
 
 class Coding {
+  code: string;
+  system: string;
   display: string;
 }

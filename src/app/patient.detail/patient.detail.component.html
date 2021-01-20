@@ -1,0 +1,120 @@
+<div class="container">
+  <div class="row">
+    <div class="patient-detail-box-shadow">
+      <div class="col-md-6 patient-name">
+        <p>{{ getFullName(ehrpatient) }}</p>
+      </div>
+      <div class="col-md-6 patient-crid">
+        <span class="research-id-text">CIBMTR Research ID (CRID) : </span>
+        <span>{{ crid }}</span>
+      </div>
+    </div>
+    <div class="col-md-12 observation-label">Collection</div>
+    <div>
+      <div class="col-md-3 resource-collection">
+        <div class="col-md-12">
+          <div class="resource-label">
+            <a
+              class="label-font"
+              id="lab"
+              [routerLink]="
+                labs === null ? ['error'] : labs.total === 0 ? ['info'] : ['labs']
+              "
+              [ngClass]="{ active: activeLabel == 'lab' }"
+              >Labs
+            </a>
+            <b
+              *ngIf="labs != null; else other_content"
+              class="badge pull-right"
+              >{{ labs.total }}</b
+            >
+            <ng-template #other_content
+              ><img
+                src="assets/images/exclamation-triangle.png"
+                class="exclamation pull-right"
+            /></ng-template>
+          </div>
+
+          <div class="resource-label">
+            <a
+              class="label-font"
+              id="vital"
+              [ngClass]="{ active: activeLabel == 'vital' }"
+              [routerLink]="
+                vitals === null
+                  ? ['error']
+                  : vitals.total === 0
+                  ? ['info']
+                  : ['vitals']
+              "
+              >VitalSigns
+            </a>
+            <b
+              *ngIf="vitals != null; else other_content"
+              class="badge pull-right"
+              >{{ vitals.total }}</b
+            >
+            <ng-template #other_content
+              ><img
+                src="assets/images/exclamation-triangle.png"
+                class="exclamation pull-right"
+            /></ng-template>
+          </div>
+
+          <div class="resource-label">
+            <a
+              class="label-font"
+              id="agvhd"
+              [ngClass]="{ active: activeLabel == 'agvhd' }"
+              [routerLink]="
+                agvhd === null
+                  ? ['error']
+                  : agvhd.total === 0
+                  ? ['info']
+                  : ['agvhd']
+              "
+              >Flowsheet-aGVHD
+            </a>
+            <b
+              *ngIf="agvhd != null; else other_content"
+              class="badge pull-right"
+              >{{ agvhd.total }}</b
+            >
+            <ng-template #other_content
+              ><img
+                src="assets/images/exclamation-triangle.png"
+                class="exclamation pull-right"
+            /></ng-template>
+          </div>
+
+          <div class="resource-label">
+            <a
+              class="label-font"
+              id="core"
+              [ngClass]="{ active: activeLabel == 'core' }"
+              [routerLink]=
+                "core === null ? ['error'] : core.total === 0 ? ['info'] : ['core']"
+              
+              >CoreCharacteristics
+            </a>
+            <b
+              *ngIf="core != null; else other_content"
+              class="badge pull-right"
+              >{{ core.total }}</b
+            >
+            <ng-template #other_content
+              ><img
+                src="assets/images/exclamation-triangle.png"
+                class="exclamation pull-right"
+            /></ng-template>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-9 resource-box-shadow">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>
+
