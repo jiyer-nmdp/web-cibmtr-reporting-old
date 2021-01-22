@@ -6,7 +6,7 @@ import { renderFlagCheckIfStmt } from "@angular/compiler/src/render3/view/templa
 
 export const environment = {
   production: false,
-  mock: true,
+  mock: false,
 };
 
 /*

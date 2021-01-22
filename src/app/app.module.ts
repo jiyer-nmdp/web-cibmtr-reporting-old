@@ -5,6 +5,7 @@ import { HttpModule } from "@angular/http";
 import { AppRoutingModule, routingComponents } from "./app.routing.module";
 import { AppComponent } from "./app.component";
 import { CustomHttpInterceptor } from "./interceptors/http.interceptor";
+import { HttpMockRequestInterceptor } from "./mock/mock.http.interceptor";
 import { PatientService } from "./patient/patient.service";
 import { PatientResolver } from "./patient/patient.resolver";
 import { ObservationAgvhdComponent } from "./observation.agvhd/observation.agvhd.component";
@@ -32,7 +33,6 @@ import { InfoComponent } from "./info/info.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MaterialModule } from "./material/material.module";
 import { environment } from "src/environments/environment.mock";
-import { HttpMockRequestInterceptor } from "./interceptors/mock.http.interceptor";
 
 export const isMock = environment.mock;
 
@@ -90,7 +90,7 @@ export const isMock = environment.mock;
       multi: true,
     },
 
-    ...isMock
+    ...(isMock
       ? [
           {
             provide: HTTP_INTERCEPTORS,
@@ -98,7 +98,7 @@ export const isMock = environment.mock;
             multi: true,
           },
         ]
-      : [],
+      : []),
   ],
   bootstrap: [AppComponent],
 })

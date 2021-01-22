@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import "rxjs/Rx";
 import { NmdpWidget } from "@nmdp/nmdp-login/Angular/service/nmdp.widget";
-import { AppConfig } from "../app.config";
 
 @Injectable()
 export class CustomHttpClient {
