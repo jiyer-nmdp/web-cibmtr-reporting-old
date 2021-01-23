@@ -18,12 +18,12 @@ export class ObservationCoreService {
   // Below method submit new records to the cibmtr
   postNewRecords(selectedResources, psScope): Observable<any> {
     return from(selectedResources).pipe(
-      concatMap((selectedResource) => {
-        const tmpResource: any = selectedResource;
+      concatMap((selectedResource: any) => {
+        const { id, ...remainingfields } = selectedResource;
         return this.http.post(
           AppConfig.cibmtr_fhir_update_url + "Observation",
           {
-            ...(selectedResource as {}),
+            ...remainingfields,
             meta: {
               security: [
                 {
@@ -41,7 +41,7 @@ export class ObservationCoreService {
                     this._localStorageService.get("iss")
                   ) +
                   "/Observation/" +
-                  tmpResource.id,
+                  id,
               },
             ],
           }
