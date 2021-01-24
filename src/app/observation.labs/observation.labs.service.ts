@@ -23,8 +23,8 @@ export class ObservationLabsService {
         return this.http.post(
           AppConfig.cibmtr_fhir_update_url + "Observation",
           {
-            status: status ? status : "unknown",
             ...(remainingfields as {}),
+            status: status || "unknown",
             meta: {
               security: [
                 {

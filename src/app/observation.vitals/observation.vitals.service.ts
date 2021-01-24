@@ -24,6 +24,7 @@ export class ObservationVitalsService {
           AppConfig.cibmtr_fhir_update_url + "Observation",
           {
             ...remainingfields,
+            status: status || "unknown",
             meta: {
               security: [
                 {

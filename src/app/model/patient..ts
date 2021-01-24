@@ -15,6 +15,7 @@ export class Patient {
   maritalStatus: MaritalStatus;
   crid: string;
   extension: Extension[];
+  text: Text[];
 }
 
 class Identifier {
@@ -51,4 +52,8 @@ class Coding {
   code: string;
   system: string;
   display: string;
+}
+
+class Text {
+  status: string;
 }
