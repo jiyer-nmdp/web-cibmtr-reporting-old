@@ -415,9 +415,16 @@ export class PatientComponent implements OnInit {
    * @param crid
    */
   appendCridIdentifier(ehrpatient: Patient, crid: string, logicalId: string) {
+    const {
+      id,
+      text: [status],
+      ...remainingfields
+    } = ehrpatient;
+
     let updatedEhrPatient = {
-      ...ehrpatient,
-      meta: {
+      ...remainingfields,
+      status: status || "generated",
+      met: {
         security: [
           {
             system: AppConfig.cibmtr_centers_namespace,
@@ -446,24 +453,6 @@ export class PatientComponent implements OnInit {
     };
     return updatedEhrPatient;
   }
-
-  /**
-   *
-   * @param
-   * , {
-        state: {
-          data: {
-            agvhd: JSON.stringify(this.agvhd),
-            labs: JSON.stringify(this.labs),
-            vitals: JSON.stringify(this.vitals),
-            core: JSON.stringify(this.core),
-            ehrpatient: JSON.stringify(this.ehrpatient),
-            crid: this.crid,
-            psScope: this.psScope,
-          },
-        },
-      }
-   */
 
   proceed() {
     // Navigate to the Patient Details Component
