@@ -417,14 +417,16 @@ export class PatientComponent implements OnInit {
   appendCridIdentifier(ehrpatient: Patient, crid: string, logicalId: string) {
     const {
       id,
-      text: [status],
+      text: { status } = { status: "generated" },
       ...remainingfields
     } = ehrpatient;
 
     let updatedEhrPatient = {
       ...remainingfields,
-      status: status || "generated",
-      met: {
+      text: {
+        status: status,
+      },
+      meta: {
         security: [
           {
             system: AppConfig.cibmtr_centers_namespace,
@@ -433,7 +435,7 @@ export class PatientComponent implements OnInit {
         ],
       },
       identifier: [
-        ...ehrpatient.identifier,
+        ...remainingfields.identifier,
         {
           use: "official",
           system: AppConfig.epic_logicalId_namespace,

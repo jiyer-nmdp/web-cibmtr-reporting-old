@@ -15,7 +15,7 @@ export class Patient {
   maritalStatus: MaritalStatus;
   crid: string;
   extension: Extension[];
-  text: Text[];
+  text: Text;
 }
 
 class Identifier {
