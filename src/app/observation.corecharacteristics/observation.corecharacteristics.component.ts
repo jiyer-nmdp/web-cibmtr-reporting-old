@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Patient } from "../model/patient.";
 import { Router, ActivatedRoute } from "@angular/router";
 import { ObservationCoreService } from "./observation.corecharacteristics.service";
-import { UtilityService } from '../utility.service';
+import { UtilityService } from "../utility.service";
 
 @Component({
   selector: "app-observation.core",
@@ -34,10 +34,9 @@ export class ObservationCoreComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private utility: UtilityService
-
   ) {
     let data = utility.data;
-    this.core =  JSON.parse(data.core);
+    this.core = JSON.parse(data.core);
     this.psScope = data.psScope;
   }
 
@@ -135,15 +134,8 @@ export class ObservationCoreComponent implements OnInit {
         value.valueQuantity &&
         (value.valueQuantity.value || value.valueQuantity.unit)
       ) {
-        if (
-          value.valueQuantity.value &&
-          value.valueQuantity.unit
-        ) {
-          return (
-            value.valueQuantity.value +
-            " " +
-            value.valueQuantity.unit
-          );
+        if (value.valueQuantity.value && value.valueQuantity.unit) {
+          return value.valueQuantity.value + " " + value.valueQuantity.unit;
         } else if (value.valueQuantity.value) {
           return value.valueQuantity.value;
         }
@@ -156,18 +148,18 @@ export class ObservationCoreComponent implements OnInit {
   }
 
   //code
-  getComponentValue(component){
+  getComponentValue(component) {
     if (component) {
-      let components = []
+      let components = [];
       for (let i = 0; i < component.length; i++) {
-        let code = component[i].code.text + ':'
-        let nodeValue = this.getNodeValue(component[i])
+        let code = component[i].code.text + ":";
+        let nodeValue = this.getNodeValue(component[i]);
         components.push(code + nodeValue);
       }
-      components.join(',')
-      return components
+      components.join(",");
+      return components;
     }
-}
+  }
 
   submitToCibmtr() {
     //reset
