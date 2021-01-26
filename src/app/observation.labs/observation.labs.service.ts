@@ -16,39 +16,22 @@ export class ObservationLabsService {
   ) {}
 
   // Below method submit new records to the cibmtr
-  postNewRecords(selectedResources, psScope): Observable<any> {
-    return from(selectedResources).pipe(
-      concatMap((selectedResource: any) => {
-        const { id, status, ...remainingfields } = selectedResource;
-        return this.http.post(
-          AppConfig.cibmtr_fhir_update_url + "Observation",
-          {
-            ...remainingfields,
-            status: status || "unknown",
-            meta: {
-              security: [
-                {
-                  system: AppConfig.cibmtr_centers_namespace,
-                  code: psScope,
-                },
-              ],
-            },
-            identifier: [
-              {
-                use: "official",
-                system: AppConfig.epic_logicalId_namespace,
-                value:
-                  this.utilityService.rebuild_DSTU2_STU3_Url(
-                    this._localStorageService.get("iss")
-                  ) +
-                  "/Observation/" +
-                  id,
-              },
-            ],
-          }
-        );
-      })
-    );
+  getDataFromNewRecords(selectedResources, psScope): Array<Observable<any>> {
+    let selectedChunkResources = this.utilityService.chunk(selectedResources);
+    let bundles = [];
+    let data = [];
+
+    selectedChunkResources.forEach((selectedChunkResource) => {
+      bundles.push(this.getBundleEntry(selectedChunkResource, psScope));
+    });
+
+    bundles.forEach((bundle) => {
+      data.push(
+        this.http.post(AppConfig.cibmtr_fhir_update_url + "Bundle", bundle)
+      );
+    });
+
+    return data;
   }
 
   // Below method submit updated records to the cibmtr
@@ -88,6 +71,50 @@ export class ObservationLabsService {
         );
       })
     );
+  }
+
+  getBundleEntry(selectedChunkResource, psScope) {
+    let entries = [];
+
+    selectedChunkResource.forEach((selectedChunkElement) => {
+      const { id, status, ...remainingfields } = selectedChunkElement;
+      entries.push({
+        resource: {
+          ...remainingfields,
+          status: status || "unknown",
+          meta: {
+            security: [
+              {
+                system: AppConfig.cibmtr_centers_namespace,
+                code: psScope,
+              },
+            ],
+          },
+          identifier: [
+            {
+              use: "official",
+              system: AppConfig.epic_logicalId_namespace,
+              value:
+                this.utilityService.rebuild_DSTU2_STU3_Url(
+                  this._localStorageService.get("iss")
+                ) +
+                "/Observation/" +
+                id,
+            },
+          ],
+        },
+        request: {
+          method: "POST",
+          url: "Observation",
+        },
+      });
+    });
+
+    return {
+      resourceType: "Bundle",
+      type: "transaction",
+      entry: entries,
+    };
   }
 
   getCibmtrObservationsLabs(subject, psScope): Observable<any> {

@@ -3,6 +3,7 @@ import { Patient } from "../model/patient.";
 import { ObservationLabsService } from "./observation.labs.service";
 import { UtilityService } from "../utility.service";
 import { Router } from "@angular/router";
+import { forkJoin } from "rxjs";
 
 @Component({
   selector: "app-observation.labs",
@@ -179,26 +180,43 @@ export class ObservationLabsComponent implements OnInit {
     );
 
     if (this.selectedNewResources && this.selectedNewResources.length > 0) {
-      this.observationlabsService
-        .postNewRecords(this.selectedNewResources, this.psScope)
-        .subscribe(
-          () => {
-            // This subscribe will be called for every successful post of new record
-            Array.prototype.concat
-              .apply([], this.selectedNewEntries)
-              .forEach((entry) => {
-                entry.state = "lighter";
-              });
-            this.success = true;
-          },
-          (error) => {
-            console.error(error);
-            this.fail = true;
-          },
-          () => {
-            this.checkForSelectAll();
-          }
-        );
+      let data = this.observationlabsService.getDataFromNewRecords(
+        this.selectedNewResources,
+        this.psScope
+      );
+
+      forkJoin(data).subscribe(
+        (response) => {
+          console.log(response);
+        },
+        (error) => {
+          console.error(error);
+          this.fail = true;
+        },
+        () => {
+          this.checkForSelectAll();
+        }
+      );
+
+      // Existing
+      // .subscribe(
+      //   () => {
+      //     // This subscribe will be called for every successful post of new record
+      //     Array.prototype.concat
+      //       .apply([], this.selectedNewEntries)
+      //       .forEach((entry) => {
+      //         entry.state = "lighter";
+      //       });
+      //     this.success = true;
+      //   },
+      //   (error) => {
+      //     console.error(error);
+      //     this.fail = true;
+      //   },
+      //   () => {
+      //     this.checkForSelectAll();
+      //   }
+      // );
     }
 
     // Updated Records
@@ -216,6 +234,7 @@ export class ObservationLabsComponent implements OnInit {
     ) {
       this.observationlabsService
         .postUpdatedRecords(this.selectedUpdatedResources, this.psScope)
+        .retry(1)
         .subscribe(
           (response) => {
             Array.prototype.concat
