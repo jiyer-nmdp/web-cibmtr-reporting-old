@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Patient } from "../model/patient.";
 import { ObservationLabsService } from "./observation.labs.service";
-import { UtilityService } from '../utility.service';
+import { UtilityService } from "../utility.service";
 import { Router } from "@angular/router";
 
 @Component({
@@ -133,15 +133,8 @@ export class ObservationLabsComponent implements OnInit {
         value.valueQuantity &&
         (value.valueQuantity.value || value.valueQuantity.unit)
       ) {
-        if (
-          value.valueQuantity.value &&
-          value.valueQuantity.unit
-        ) {
-          return (
-            value.valueQuantity.value +
-            " " +
-            value.valueQuantity.unit
-          );
+        if (value.valueQuantity.value && value.valueQuantity.unit) {
+          return value.valueQuantity.value + " " + value.valueQuantity.unit;
         } else if (value.valueQuantity.value) {
           return value.valueQuantity.value;
         }
@@ -154,20 +147,19 @@ export class ObservationLabsComponent implements OnInit {
   }
 
   //code
-  getComponentValue(component){
+  getComponentValue(component) {
     if (component) {
-      let components = []
+      let components = [];
       for (let i = 0; i < component.length; i++) {
-        let code = component[i].code.text + ':'
-        let nodeValue = this.getNodeValue(component[i])
+        let code = component[i].code.text + ":";
+        let nodeValue = this.getNodeValue(component[i]);
         components.push(code + nodeValue);
       }
-      components.join(',')
-      return components
+      components.join(",");
+      return components;
     }
-}
-    //valueDateTime //valuesampledData //valueAttachemnt(attachement) //ValueInteger  //ValueRange - range.low.value - high.value
-  
+  }
+  //valueDateTime //valuesampledData //valueAttachemnt(attachement) //ValueInteger  //ValueRange - range.low.value - high.value
 
   submitToCibmtr() {
     //reset
@@ -190,15 +182,14 @@ export class ObservationLabsComponent implements OnInit {
       this.observationlabsService
         .postNewRecords(this.selectedNewResources, this.psScope)
         .subscribe(
-          (response) => {
-            let id = response.identifier[0].value.substring(
-              response.identifier[0].value.lastIndexOf("/") + 1
-            );
+          () => {
+            // This subscribe will be called for every successful post of new record
             Array.prototype.concat
               .apply([], this.selectedNewEntries)
-              .filter((e) => e.resource.id === id)[0].state = "lighter";
+              .forEach((entry) => {
+                entry.state = "lighter";
+              });
             this.success = true;
-            // This subscribe will be called for every successful post of new record
           },
           (error) => {
             console.error(error);

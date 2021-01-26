@@ -4,7 +4,7 @@ import { ObservationAgvhdService } from "./observation.agvhd.service";
 import { LocalStorageService } from "angular-2-local-storage";
 import { Router, ActivatedRoute } from "@angular/router";
 import { Patient } from "../model/patient.";
-import { UtilityService } from '../utility.service';
+import { UtilityService } from "../utility.service";
 
 @Component({
   selector: "app-observation",
@@ -34,10 +34,9 @@ export class ObservationAgvhdComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private utility: UtilityService
-
   ) {
     let data = utility.data;
-    this.agvhd =JSON.parse(data.agvhd);
+    this.agvhd = JSON.parse(data.agvhd);
     this.psScope = data.psScope;
   }
 
@@ -169,15 +168,14 @@ export class ObservationAgvhdComponent implements OnInit {
       this.observationagvhdService
         .postNewRecords(this.selectedNewResources, this.psScope)
         .subscribe(
-          (response) => {
-            let id = response.extension[0].valueUri.substring(
-              response.extension[0].valueUri.lastIndexOf("/") + 1
-            );
+          () => {
+            // This subscribe will be called for every successful post of new record
             Array.prototype.concat
               .apply([], this.selectedNewEntries)
-              .filter((e) => e.resource.id === id)[0].state = "lighter";
+              .forEach((entry) => {
+                entry.state = "lighter";
+              });
             this.success = true;
-            // This subscribe will be called for every successful post of new record
           },
           (error) => {
             console.error(error);

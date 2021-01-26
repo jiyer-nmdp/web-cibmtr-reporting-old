@@ -178,15 +178,14 @@ export class ObservationVitalsComponent implements OnInit {
       this.observationavitalsService
         .postNewRecords(this.selectedNewResources, this.psScope)
         .subscribe(
-          (response) => {
-            let id = response.identifier[0].value.substring(
-              response.identifier[0].value.lastIndexOf("/") + 1
-            );
+          () => {
+            // This subscribe will be called for every successful post of new record
             Array.prototype.concat
               .apply([], this.selectedNewEntries)
-              .filter((e) => e.resource.id === id)[0].state = "lighter";
+              .forEach((entry) => {
+                entry.state = "lighter";
+              });
             this.success = true;
-            // This subscribe will be called for every successful post of new record
           },
           (error) => {
             console.error(error);
