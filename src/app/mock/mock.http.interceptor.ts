@@ -11,6 +11,7 @@ import { Observable, of } from "rxjs";
 import * as patient from "../data/patient.json";
 import * as labs from "../data/labs.json";
 import * as vitals from "../data/vitals.json";
+import * as labs_vitals from "../data/labs_vitals.json";
 
 const ehr_url = [
   {

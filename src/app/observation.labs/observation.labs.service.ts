@@ -6,6 +6,9 @@ import { CustomHttpClient } from "../client/custom.http.client";
 import { concatMap } from "rxjs-compat/operators/concatMap";
 import { LocalStorageService } from "angular-2-local-storage";
 import { UtilityService } from "../utility.service";
+import { retry } from "rxjs-compat/operator/retry";
+import { catchError } from "rxjs/operators";
+import { of } from "rxjs";
 
 @Injectable()
 export class ObservationLabsService {
@@ -19,19 +22,18 @@ export class ObservationLabsService {
   getDataFromNewRecords(selectedResources, psScope): Array<Observable<any>> {
     let selectedChunkResources = this.utilityService.chunk(selectedResources);
     let bundles = [];
-    let data = [];
 
     selectedChunkResources.forEach((selectedChunkResource) => {
       bundles.push(this.getBundleEntry(selectedChunkResource, psScope));
     });
 
-    bundles.forEach((bundle) => {
-      data.push(
-        this.http.post(AppConfig.cibmtr_fhir_update_url + "Bundle", bundle)
-      );
-    });
+    return bundles;
+  }
 
-    return data;
+  getBundleObservable(bundle) {
+    return this.http
+      .post(AppConfig.cibmtr_fhir_update_url + "Bundle", bundle)
+      .pipe(catchError((error) => of(error)));
   }
 
   // Below method submit updated records to the cibmtr

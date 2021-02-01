@@ -1,0 +1,4378 @@
+{
+  "resourceType": "Bundle",
+  "id": "695d42f9-3e6a-475b-ad5e-38ddb718a4e8",
+  "type": "searchset",
+  "total": 111,
+  "link": [
+    {
+      "relation": "self",
+      "url": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation?_count=55&_subject=https%3A%2F%2Fapporchard.epic.com%2Finterconnect-aocurprd-oauth%2Fapi%2FFHIR%2FSTU3%2FPatient%2FedQqsaKKjQ3xf.mx8wnrWvQ3&category=laboratory"
+    },
+    {
+      "relation": "next",
+      "url": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3?_getpages=695d42f9-3e6a-475b-ad5e-38ddb718a4e8&_getpagesoffset=55&_count=55&_pretty=true&_bundletype=searchset"
+    }
+  ],
+  "entry": [
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4690",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4690",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T06:14:09.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/e6Z2W2AJ26GfsTS.7EYBQ8SDcRQqjxxI0P34690TtXvT8eBbq-2yLWYdwymu1qLon3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "POCT",
+                "display": "Point of Care Testing"
+              }
+            ],
+            "text": "Point of Care Testing"
+          }
+        ],
+        "code": {
+          "text": "Hematocrit"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/esdBr-zLt8bLENmjQlBpKBA3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eat0K10dAAUvXIOzcA99Exg3"
+        },
+        "effectiveDateTime": "2007-01-15T03:55:00Z",
+        "issued": "2007-01-15T03:55:00Z",
+        "valueQuantity": {
+          "value": 36
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4691",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4691",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T06:14:09.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/e5Lt7V999UUd9SEOnGpGI.7GfxQmYKNffx3br4yXQprgCGbRTiXiTUvpD0Qij9SFc3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/esdBr-zLt8bLENmjQlBpKBA3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eA87yVLlbb9XUjR0rIuNTGQ3"
+        },
+        "effectiveDateTime": "2011-11-12T05:34:00Z",
+        "issued": "2011-11-12T05:34:00Z",
+        "valueString": "negative"
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4733",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4733",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T06:14:10.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/e5Lt7V999UUd9SEOnGpGI.7GfxQmYKNffx3br4yXQprgo5RgOWMTnYhdesM1T3zkn3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "text": "pH, Urine"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/esdBr-zLt8bLENmjQlBpKBA3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eA87yVLlbb9XUjR0rIuNTGQ3"
+        },
+        "effectiveDateTime": "2011-11-12T05:34:00Z",
+        "issued": "2011-11-12T05:34:00Z",
+        "valueQuantity": {
+          "value": 6.75
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4734",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4734",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T19:59:30.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eT524I..Sai-DoDeONk.pIKtrX-Z5YG7Lvd0ihvAoS0qnKacecWQrzTJVt2uW7cmY3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "1977-8",
+              "display": "Bilirubin.total [Presence] in Urine"
+            }
+          ],
+          "text": "Bilirubin, Urine"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eu0l7N0Dddc-I.yhqyT1Dlw3"
+        },
+        "effectiveDateTime": "2011-06-15T04:34:00Z",
+        "issued": "2011-06-15T04:34:00Z",
+        "valueString": "Negative",
+        "referenceRange": [
+          {
+            "text": "Negative"
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4694",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4694",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T19:59:30.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eT524I..Sai-DoDeONk.pIAIELIRaoyE9q-bsjupWkdj1nJHvUQxEsTPC6l20xYui3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eu0l7N0Dddc-I.yhqyT1Dlw3"
+        },
+        "effectiveDateTime": "2011-06-15T04:34:00Z",
+        "issued": "2011-06-15T04:34:00Z",
+        "valueString": "Negative",
+        "referenceRange": [
+          {
+            "text": "Negative"
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4695",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4695",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T19:59:31.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eT524I..Sai-DoDeONk.pIKtrX-Z5YG7Lvd0ihvAoS0pIYNTc6H2RppR8POg1-L3z3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "20405-7",
+              "display": "Urobilinogen [Mass/volume] in Urine by Test strip"
+            }
+          ],
+          "text": "Urobilinogen, UA"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eu0l7N0Dddc-I.yhqyT1Dlw3"
+        },
+        "effectiveDateTime": "2011-06-15T04:34:00Z",
+        "issued": "2011-06-15T04:34:00Z",
+        "valueString": "Normal",
+        "referenceRange": [
+          {
+            "text": "Normal"
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4735",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4735",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T19:59:32.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eT524I..Sai-DoDeONk.pIKtrX-Z5YG7Lvd0ihvAoS0rg2JJl9Z25WlZ6VnWVcz6L3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "5804-0",
+              "display": "Protein [Mass/volume] in Urine by Test strip"
+            }
+          ],
+          "text": "Protein, Urine"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eu0l7N0Dddc-I.yhqyT1Dlw3"
+        },
+        "effectiveDateTime": "2011-06-15T04:34:00Z",
+        "issued": "2011-06-15T04:34:00Z",
+        "valueString": "Negative",
+        "referenceRange": [
+          {
+            "text": "Negative"
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4736",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4736",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T19:59:33.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eT524I..Sai-DoDeONk.pIKtrX-Z5YG7Lvd0ihvAoS0r.DrGK51ZprdSmlTHkrSXr3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "5799-2",
+              "display": "Leukocyte esterase [Presence] in Urine by Test strip"
+            }
+          ],
+          "text": "Leukocytes, Urine"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eu0l7N0Dddc-I.yhqyT1Dlw3"
+        },
+        "effectiveDateTime": "2011-06-15T04:34:00Z",
+        "issued": "2011-06-15T04:34:00Z",
+        "valueString": "Negative",
+        "referenceRange": [
+          {
+            "text": "Negative"
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4737",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4737",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T19:59:34.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eT524I..Sai-DoDeONk.pIKtrX-Z5YG7Lvd0ihvAoS0qXOhyiJ8wNfk6vkO2hvVkX3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "32167-9",
+              "display": "Clarity of Urine"
+            }
+          ],
+          "text": "Clarity, Urine"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eu0l7N0Dddc-I.yhqyT1Dlw3"
+        },
+        "effectiveDateTime": "2011-06-15T04:34:00Z",
+        "issued": "2011-06-15T04:34:00Z",
+        "valueString": "Clear",
+        "referenceRange": [
+          {
+            "text": "Clear"
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4696",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4696",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T19:59:32.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eT524I..Sai-DoDeONk.pIKtrX-Z5YG7Lvd0ihvAoS0ph0CcNExbe9L36vD72.eLQ3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "32710-6",
+              "display": "Nitrite [Presence] in Urine"
+            }
+          ],
+          "text": "Nitrite, Urine"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eu0l7N0Dddc-I.yhqyT1Dlw3"
+        },
+        "effectiveDateTime": "2011-06-15T04:34:00Z",
+        "issued": "2011-06-15T04:34:00Z",
+        "valueString": "Negative",
+        "referenceRange": [
+          {
+            "text": "Negative"
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4697",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4697",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T19:59:33.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eT524I..Sai-DoDeONk.pIKtrX-Z5YG7Lvd0ihvAoS0r-7s8O7xWSmFR08R97XdTZ3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "text": "Specific Gravity, UA"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eu0l7N0Dddc-I.yhqyT1Dlw3"
+        },
+        "effectiveDateTime": "2011-06-15T04:34:00Z",
+        "issued": "2011-06-15T04:34:00Z",
+        "valueQuantity": {
+          "value": 1.019
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 1.005
+            },
+            "high": {
+              "value": 1.03
+            },
+            "text": "1.005 - 1.030"
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4698",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4698",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T19:59:35.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eT524I..Sai-DoDeONk.pIKtrX-Z5YG7Lvd0ihvAoS0r93kAi7k2TmmNGD2HfKATA3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "5778-6",
+              "display": "Color of Urine"
+            }
+          ],
+          "text": "Color, Urine"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eu0l7N0Dddc-I.yhqyT1Dlw3"
+        },
+        "effectiveDateTime": "2011-06-15T04:34:00Z",
+        "issued": "2011-06-15T04:34:00Z",
+        "valueString": "Light Yellow",
+        "referenceRange": [
+          {
+            "text": "Light Yellow, Yellow"
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4699",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4699",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T19:59:36.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eMm2GL9YYHu5KF00iN-3UP6wJ2RBRo48zsYw1iTMFoixLFDL.nZ2dYgZCdo5BPI153"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "POCT",
+                "display": "Point of Care Testing"
+              }
+            ],
+            "text": "Point of Care Testing"
+          }
+        ],
+        "code": {
+          "text": "Color, UA"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/epxU8LDy-EwnodjAm6LUPTg3"
+        },
+        "effectiveDateTime": "2009-06-15T04:18:00Z",
+        "issued": "2009-06-15T04:18:00Z",
+        "valueString": "straw"
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4738",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4738",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T19:59:36.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eT524I..Sai-DoDeONk.pIKtrX-Z5YG7Lvd0ihvAoS0pW5v-0412dtWnizbnTbEgc3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "13945-1",
+              "display": "Erythrocytes [#/area] in Urine sediment by Microscopy high power field"
+            }
+          ],
+          "text": "RBC, Urine"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eu0l7N0Dddc-I.yhqyT1Dlw3"
+        },
+        "effectiveDateTime": "2011-06-15T04:34:00Z",
+        "issued": "2011-06-15T04:34:00Z",
+        "valueString": "None Seen",
+        "referenceRange": [
+          {
+            "text": "None Seen, Occasional"
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4739",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4739",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T19:59:37.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eMm2GL9YYHu5KF00iN-3UP6wJ2RBRo48zsYw1iTMFoixYpflXab7G2nyxjqcDHN4x3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "POCT",
+                "display": "Point of Care Testing"
+              }
+            ],
+            "text": "Point of Care Testing"
+          }
+        ],
+        "code": {
+          "text": "Clarity, UA"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/epxU8LDy-EwnodjAm6LUPTg3"
+        },
+        "effectiveDateTime": "2009-06-15T04:18:00Z",
+        "issued": "2009-06-15T04:18:00Z",
+        "valueString": "clear"
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4740",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4740",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T19:59:38.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eMm2GL9YYHu5KF00iN-3UP6wJ2RBRo48zsYw1iTMFoizv-hskQya0HK1blE.8FVAc3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "POCT",
+                "display": "Point of Care Testing"
+              }
+            ],
+            "text": "Point of Care Testing"
+          }
+        ],
+        "code": {
+          "text": "Bilirubin, UA"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/epxU8LDy-EwnodjAm6LUPTg3"
+        },
+        "effectiveDateTime": "2009-06-15T04:18:00Z",
+        "issued": "2009-06-15T04:18:00Z",
+        "valueString": "negative"
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4741",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4741",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T19:59:39.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eMm2GL9YYHu5KF00iN-3UP6wJ2RBRo48zsYw1iTMFoixX9Es-ks.gIsDBSA26.Mpi3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "POCT",
+                "display": "Point of Care Testing"
+              }
+            ],
+            "text": "Point of Care Testing"
+          }
+        ],
+        "code": {
+          "text": "Spec Grav, UA"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/epxU8LDy-EwnodjAm6LUPTg3"
+        },
+        "effectiveDateTime": "2009-06-15T04:18:00Z",
+        "issued": "2009-06-15T04:18:00Z",
+        "valueQuantity": {
+          "value": 1.02
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4700",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4700",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T19:59:37.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eMm2GL9YYHu5KF00iN-3UP6wJ2RBRo48zsYw1iTMFoiw1ZNZ2lRGBYQgOFWR1UjV.3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "POCT",
+                "display": "Point of Care Testing"
+              }
+            ],
+            "text": "Point of Care Testing"
+          }
+        ],
+        "code": {
+          "text": "Glucose, UA"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/epxU8LDy-EwnodjAm6LUPTg3"
+        },
+        "effectiveDateTime": "2009-06-15T04:18:00Z",
+        "issued": "2009-06-15T04:18:00Z",
+        "valueString": "negative"
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4701",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4701",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T19:59:39.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eMm2GL9YYHu5KF00iN-3UP6wJ2RBRo48zsYw1iTMFoix956U3jhhc1HAWAiEuYG1P3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "POCT",
+                "display": "Point of Care Testing"
+              }
+            ],
+            "text": "Point of Care Testing"
+          }
+        ],
+        "code": {
+          "text": "Ketones, UA"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/epxU8LDy-EwnodjAm6LUPTg3"
+        },
+        "effectiveDateTime": "2009-06-15T04:18:00Z",
+        "issued": "2009-06-15T04:18:00Z",
+        "valueString": "negatives"
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4752",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4752",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T19:59:40.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eMm2GL9YYHu5KF00iN-3UP6wJ2RBRo48zsYw1iTMFoiyyzZiYicnXmueNlloOickE3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "POCT",
+                "display": "Point of Care Testing"
+              }
+            ],
+            "text": "Point of Care Testing"
+          }
+        ],
+        "code": {
+          "text": "pH, UA"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/epxU8LDy-EwnodjAm6LUPTg3"
+        },
+        "effectiveDateTime": "2009-06-15T04:18:00Z",
+        "issued": "2009-06-15T04:18:00Z",
+        "valueQuantity": {
+          "value": 7.45
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4742",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4742",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T19:59:41.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eMm2GL9YYHu5KF00iN-3UP6wJ2RBRo48zsYw1iTMFoixfaiK6PZ7z0zb3BOPtMMI83"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "POCT",
+                "display": "Point of Care Testing"
+              }
+            ],
+            "text": "Point of Care Testing"
+          }
+        ],
+        "code": {
+          "text": "Protein, UA"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/epxU8LDy-EwnodjAm6LUPTg3"
+        },
+        "effectiveDateTime": "2009-06-15T04:18:00Z",
+        "issued": "2009-06-15T04:18:00Z",
+        "valueString": "negative"
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4743",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4743",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T19:59:42.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eMm2GL9YYHu5KF00iN-3UP6wJ2RBRo48zsYw1iTMFoiz4THZg32QORGrx.aSl.J1s3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "POCT",
+                "display": "Point of Care Testing"
+              }
+            ],
+            "text": "Point of Care Testing"
+          }
+        ],
+        "code": {
+          "text": "Nitrite, UA"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/epxU8LDy-EwnodjAm6LUPTg3"
+        },
+        "effectiveDateTime": "2009-06-15T04:18:00Z",
+        "issued": "2009-06-15T04:18:00Z",
+        "valueString": "positive"
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4744",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4744",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T19:59:43.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/edS4BtLOGHuqvw5zg8PfeUwy12pqejV9cfyrNPUx5jPPc4NkOq8znzTiN13bCWY293"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "POCT",
+                "display": "Point of Care Testing"
+              }
+            ],
+            "text": "Point of Care Testing"
+          }
+        ],
+        "code": {
+          "text": "Hemoglobin"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eAcKUxgFv.VaRBAB2-XK69Q3"
+        },
+        "effectiveDateTime": "2006-08-18T02:55:00Z",
+        "issued": "2006-08-18T02:55:00Z",
+        "valueQuantity": {
+          "value": 12.5
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4753",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4753",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T19:59:41.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eMm2GL9YYHu5KF00iN-3UP6wJ2RBRo48zsYw1iTMFoiwIZRkQ9T0NB2RlvPbVtE1j3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "POCT",
+                "display": "Point of Care Testing"
+              }
+            ],
+            "text": "Point of Care Testing"
+          }
+        ],
+        "code": {
+          "text": "Urobilinogen, UA"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/epxU8LDy-EwnodjAm6LUPTg3"
+        },
+        "effectiveDateTime": "2009-06-15T04:18:00Z",
+        "issued": "2009-06-15T04:18:00Z",
+        "valueString": "normal"
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4754",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4754",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T19:59:43.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eMm2GL9YYHu5KF00iN-3UP6wJ2RBRo48zsYw1iTMFoizrjP4HaIrk3IdYJFlJb8uc3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "POCT",
+                "display": "Point of Care Testing"
+              }
+            ],
+            "text": "Point of Care Testing"
+          }
+        ],
+        "code": {
+          "text": "Leukocytes, UA"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/epxU8LDy-EwnodjAm6LUPTg3"
+        },
+        "effectiveDateTime": "2009-06-15T04:18:00Z",
+        "issued": "2009-06-15T04:18:00Z",
+        "valueString": "positive"
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4755",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4755",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T19:59:44.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eiJftqd.Tz9kITLMg-9KJNieIITtdQVeAReq5pAhWtLc.lDI-5YvNCayjmV5N7IIf3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "POCT",
+                "display": "Point of Care Testing"
+              }
+            ],
+            "text": "Point of Care Testing"
+          }
+        ],
+        "code": {
+          "text": "Hematocrit"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eAcKUxgFv.VaRBAB2-XK69Q3"
+        },
+        "effectiveDateTime": "2006-08-18T02:55:00Z",
+        "issued": "2006-08-18T02:55:00Z",
+        "valueQuantity": {
+          "value": 36
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4745",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4745",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T19:59:44.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eT524I..Sai-DoDeONk.pIIdREKAHYGQ1pv3pxrgRx-bmoPEGAgn5OtY3sWX3L7Aq3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eu0l7N0Dddc-I.yhqyT1Dlw3"
+        },
+        "effectiveDateTime": "2011-06-15T04:34:00Z",
+        "issued": "2011-06-15T04:34:00Z",
+        "valueString": "negative"
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4747",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4747",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T20:02:19.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/evZrsTEaLH.y-Nrl.BkGT9NEn9wFowBCfeH41EOH-7J0INyiQG6iAsXLB2iyoIEjS3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "6768-6",
+              "display": "Alkaline phosphatase [Enzymatic activity/volume] in Serum or Plasma"
+            }
+          ],
+          "text": "Alkaline Phosphatase"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/em9DeDGiB.bsQE.j75slQPQ3"
+        },
+        "effectiveDateTime": "2013-11-12T21:48:00Z",
+        "issued": "2013-11-12T21:48:00Z",
+        "valueQuantity": {
+          "value": 105,
+          "unit": "U/L",
+          "system": "http://unitsofmeasure.org",
+          "code": "U/L"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 25,
+              "unit": "U/L",
+              "system": "http://unitsofmeasure.org",
+              "code": "U/L"
+            },
+            "high": {
+              "value": 125,
+              "unit": "U/L",
+              "system": "http://unitsofmeasure.org",
+              "code": "U/L"
+            },
+            "text": "25 - 125 U/L"
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4756",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4756",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T19:59:45.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eT524I..Sai-DoDeONk.pIIdREKAHYGQ1pv3pxrgRx-YSgZW7cepjxK9Ie-wH45rq3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "text": "pH, Urine"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eu0l7N0Dddc-I.yhqyT1Dlw3"
+        },
+        "effectiveDateTime": "2011-06-15T04:34:00Z",
+        "issued": "2011-06-15T04:34:00Z",
+        "valueQuantity": {
+          "value": 6.75
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4757",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4757",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T20:02:20.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/ecFJci9hWbEAZhRqDWr4XhZh0UILFFCfdpzr-6tI-zeNQXEcWTzFbnIaxXZjPinX33"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "6768-6",
+              "display": "Alkaline phosphatase [Enzymatic activity/volume] in Serum or Plasma"
+            }
+          ],
+          "text": "Alkaline Phosphatase"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/et1rjbobXbUA33CKRLgqHUw3"
+        },
+        "effectiveDateTime": "2013-10-13T20:25:00Z",
+        "issued": "2013-10-13T20:25:00Z",
+        "valueQuantity": {
+          "value": 105,
+          "unit": "U/L",
+          "system": "http://unitsofmeasure.org",
+          "code": "U/L"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 25,
+              "unit": "U/L",
+              "system": "http://unitsofmeasure.org",
+              "code": "U/L"
+            },
+            "high": {
+              "value": 125,
+              "unit": "U/L",
+              "system": "http://unitsofmeasure.org",
+              "code": "U/L"
+            },
+            "text": "25 - 125 U/L"
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4758",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4758",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T20:02:22.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eXzu4Cu4BIN9W.tm5M68akWR91kqW1YgRziZLe.eTpzGtmzZzE0IFZ7tNeQyoiccR3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "6768-6",
+              "display": "Alkaline phosphatase [Enzymatic activity/volume] in Serum or Plasma"
+            }
+          ],
+          "text": "Alkaline Phosphatase"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eJieaeiA26NEQ879lMYSuXQ3"
+        },
+        "effectiveDateTime": "2013-09-05T22:06:00Z",
+        "issued": "2013-09-05T22:06:00Z",
+        "valueQuantity": {
+          "value": 127,
+          "unit": "U/L",
+          "system": "http://unitsofmeasure.org",
+          "code": "U/L"
+        },
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/ValueSet/observation-interpretation",
+              "code": "A",
+              "display": "Abnormal"
+            }
+          ],
+          "text": "Abnormal"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 25,
+              "unit": "U/L",
+              "system": "http://unitsofmeasure.org",
+              "code": "U/L"
+            },
+            "high": {
+              "value": 125,
+              "unit": "U/L",
+              "system": "http://unitsofmeasure.org",
+              "code": "U/L"
+            },
+            "text": "25 - 125 U/L"
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4748",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4748",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T20:02:21.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eIqa4wBWjq-I7QwuuTjNL4RE64TcxlDIKx-TIg.bujLaEXQVQASjyUL4Vdv2wgLPC3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "6768-6",
+              "display": "Alkaline phosphatase [Enzymatic activity/volume] in Serum or Plasma"
+            }
+          ],
+          "text": "Alkaline Phosphatase"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eYZNY3uyBpUFA0pujof4eVg3"
+        },
+        "effectiveDateTime": "2013-09-13T19:37:00Z",
+        "issued": "2013-09-13T19:37:00Z",
+        "valueQuantity": {
+          "value": 129,
+          "unit": "U/L",
+          "system": "http://unitsofmeasure.org",
+          "code": "U/L"
+        },
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/ValueSet/observation-interpretation",
+              "code": "A",
+              "display": "Abnormal"
+            }
+          ],
+          "text": "Abnormal"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 25,
+              "unit": "U/L",
+              "system": "http://unitsofmeasure.org",
+              "code": "U/L"
+            },
+            "high": {
+              "value": 125,
+              "unit": "U/L",
+              "system": "http://unitsofmeasure.org",
+              "code": "U/L"
+            },
+            "text": "25 - 125 U/L"
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4749",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4749",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T20:02:22.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/evZrsTEaLH.y-Nrl.BkGT9NEn9wFowBCfeH41EOH-7J0q4ORtDM-4EEDhlN8-8cas3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "1742-6",
+              "display": "Alanine aminotransferase [Enzymatic activity/volume] in Serum or Plasma"
+            }
+          ],
+          "text": "ALT (SGPT)"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/em9DeDGiB.bsQE.j75slQPQ3"
+        },
+        "effectiveDateTime": "2013-11-12T21:48:00Z",
+        "issued": "2013-11-12T21:48:00Z",
+        "valueQuantity": {
+          "value": 61,
+          "unit": "U/L",
+          "system": "http://unitsofmeasure.org",
+          "code": "U/L"
+        },
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/ValueSet/observation-interpretation",
+              "code": "A",
+              "display": "Abnormal"
+            }
+          ],
+          "text": "Abnormal"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 10,
+              "unit": "U/L",
+              "system": "http://unitsofmeasure.org",
+              "code": "U/L"
+            },
+            "high": {
+              "value": 40,
+              "unit": "U/L",
+              "system": "http://unitsofmeasure.org",
+              "code": "U/L"
+            },
+            "text": "10 - 40 U/L"
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4750",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4750",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T20:02:24.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eIqa4wBWjq-I7QwuuTjNL4RE64TcxlDIKx-TIg.bujLaJJRABZKhSpXLEjZDqbklw3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "1742-6",
+              "display": "Alanine aminotransferase [Enzymatic activity/volume] in Serum or Plasma"
+            }
+          ],
+          "text": "ALT (SGPT)"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eYZNY3uyBpUFA0pujof4eVg3"
+        },
+        "effectiveDateTime": "2013-09-13T19:37:00Z",
+        "issued": "2013-09-13T19:37:00Z",
+        "valueQuantity": {
+          "value": 157,
+          "unit": "U/L",
+          "system": "http://unitsofmeasure.org",
+          "code": "U/L"
+        },
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/ValueSet/observation-interpretation",
+              "code": "A",
+              "display": "Abnormal"
+            }
+          ],
+          "text": "Abnormal"
+        },
+        "comment": "> 100",
+        "referenceRange": [
+          {
+            "low": {
+              "value": 10,
+              "unit": "U/L",
+              "system": "http://unitsofmeasure.org",
+              "code": "U/L"
+            },
+            "high": {
+              "value": 40,
+              "unit": "U/L",
+              "system": "http://unitsofmeasure.org",
+              "code": "U/L"
+            },
+            "text": "10 - 40 U/L"
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4759",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4759",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T20:02:23.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/ecFJci9hWbEAZhRqDWr4XhZh0UILFFCfdpzr-6tI-zeN9wwwt2j5izQLnbSPQhhvd3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "1742-6",
+              "display": "Alanine aminotransferase [Enzymatic activity/volume] in Serum or Plasma"
+            }
+          ],
+          "text": "ALT (SGPT)"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/et1rjbobXbUA33CKRLgqHUw3"
+        },
+        "effectiveDateTime": "2013-10-13T20:25:00Z",
+        "issued": "2013-10-13T20:25:00Z",
+        "valueQuantity": {
+          "value": 98,
+          "unit": "U/L",
+          "system": "http://unitsofmeasure.org",
+          "code": "U/L"
+        },
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/ValueSet/observation-interpretation",
+              "code": "A",
+              "display": "Abnormal"
+            }
+          ],
+          "text": "Abnormal"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 10,
+              "unit": "U/L",
+              "system": "http://unitsofmeasure.org",
+              "code": "U/L"
+            },
+            "high": {
+              "value": 40,
+              "unit": "U/L",
+              "system": "http://unitsofmeasure.org",
+              "code": "U/L"
+            },
+            "text": "10 - 40 U/L"
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4760",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4760",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T20:02:24.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eXzu4Cu4BIN9W.tm5M68akWR91kqW1YgRziZLe.eTpzFA95lev1UvbMz7r1mHxc3i3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "1742-6",
+              "display": "Alanine aminotransferase [Enzymatic activity/volume] in Serum or Plasma"
+            }
+          ],
+          "text": "ALT (SGPT)"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eJieaeiA26NEQ879lMYSuXQ3"
+        },
+        "effectiveDateTime": "2013-09-05T22:06:00Z",
+        "issued": "2013-09-05T22:06:00Z",
+        "valueQuantity": {
+          "value": 156,
+          "unit": "U/L",
+          "system": "http://unitsofmeasure.org",
+          "code": "U/L"
+        },
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/ValueSet/observation-interpretation",
+              "code": "A",
+              "display": "Abnormal"
+            }
+          ],
+          "text": "Abnormal"
+        },
+        "comment": "> 100",
+        "referenceRange": [
+          {
+            "low": {
+              "value": 10,
+              "unit": "U/L",
+              "system": "http://unitsofmeasure.org",
+              "code": "U/L"
+            },
+            "high": {
+              "value": 40,
+              "unit": "U/L",
+              "system": "http://unitsofmeasure.org",
+              "code": "U/L"
+            },
+            "text": "10 - 40 U/L"
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4761",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4761",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T20:02:26.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/evZrsTEaLH.y-Nrl.BkGT9NEn9wFowBCfeH41EOH-7J3WZV5ZwCkci-RtBnzyDLrD3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "1920-8",
+              "display": "Aspartate aminotransferase [Enzymatic activity/volume] in Serum or Plasma"
+            }
+          ],
+          "text": "AST"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/em9DeDGiB.bsQE.j75slQPQ3"
+        },
+        "effectiveDateTime": "2013-11-12T21:48:00Z",
+        "issued": "2013-11-12T21:48:00Z",
+        "valueQuantity": {
+          "value": 58,
+          "unit": "U/L",
+          "system": "http://unitsofmeasure.org",
+          "code": "U/L"
+        },
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/ValueSet/observation-interpretation",
+              "code": "A",
+              "display": "Abnormal"
+            }
+          ],
+          "text": "Abnormal"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 14,
+              "unit": "U/L",
+              "system": "http://unitsofmeasure.org",
+              "code": "U/L"
+            },
+            "high": {
+              "value": 40,
+              "unit": "U/L",
+              "system": "http://unitsofmeasure.org",
+              "code": "U/L"
+            },
+            "text": "14 - 40 U/L"
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4751",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4751",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T20:02:25.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/epW5GVcT0Ccni3fN.SG4NwIgbFgfvAgp18zX4mvtUJtvIaMXvY7y6x-WpkNroJbhQ3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "1742-6",
+              "display": "Alanine aminotransferase [Enzymatic activity/volume] in Serum or Plasma"
+            }
+          ],
+          "text": "ALT (SGPT)"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/e-b3xmmuzCe4I6hFdJLCbng3"
+        },
+        "effectiveDateTime": "2013-08-29T20:48:00Z",
+        "issued": "2013-08-29T20:48:00Z",
+        "valueQuantity": {
+          "value": 154,
+          "unit": "U/L",
+          "system": "http://unitsofmeasure.org",
+          "code": "U/L"
+        },
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/ValueSet/observation-interpretation",
+              "code": "A",
+              "display": "Abnormal"
+            }
+          ],
+          "text": "Abnormal"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 10,
+              "unit": "U/L",
+              "system": "http://unitsofmeasure.org",
+              "code": "U/L"
+            },
+            "high": {
+              "value": 40,
+              "unit": "U/L",
+              "system": "http://unitsofmeasure.org",
+              "code": "U/L"
+            },
+            "text": "10 - 40 U/L"
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4802",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4802",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T20:02:26.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/ecFJci9hWbEAZhRqDWr4XhZh0UILFFCfdpzr-6tI-zePMIZAog6FSdiVLXDzxYAQe3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "1920-8",
+              "display": "Aspartate aminotransferase [Enzymatic activity/volume] in Serum or Plasma"
+            }
+          ],
+          "text": "AST"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/et1rjbobXbUA33CKRLgqHUw3"
+        },
+        "effectiveDateTime": "2013-10-13T20:25:00Z",
+        "issued": "2013-10-13T20:25:00Z",
+        "valueQuantity": {
+          "value": 96,
+          "unit": "U/L",
+          "system": "http://unitsofmeasure.org",
+          "code": "U/L"
+        },
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/ValueSet/observation-interpretation",
+              "code": "A",
+              "display": "Abnormal"
+            }
+          ],
+          "text": "Abnormal"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 14,
+              "unit": "U/L",
+              "system": "http://unitsofmeasure.org",
+              "code": "U/L"
+            },
+            "high": {
+              "value": 40,
+              "unit": "U/L",
+              "system": "http://unitsofmeasure.org",
+              "code": "U/L"
+            },
+            "text": "14 - 40 U/L"
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4803",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4803",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T20:08:47.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eI3vMdHvhNTY2Ag2T44BtH4GoJQ6vBHt.dauauHSqhxRQEwFDRrtDL8owNM5ezYsI3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "16128-1",
+              "display": "Hepatitis C virus Ab [Presence] in Serum"
+            }
+          ],
+          "text": "Hepatitis C Ab"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eYZNY3uyBpUFA0pujof4eVg3"
+        },
+        "effectiveDateTime": "2013-09-13T19:43:00Z",
+        "issued": "2013-09-13T19:43:00Z",
+        "valueString": "Positive"
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4762",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4762",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T20:02:27.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eIqa4wBWjq-I7QwuuTjNL4RE64TcxlDIKx-TIg.bujLahj2RlVSg0Xz3O3OKRDovW3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "1920-8",
+              "display": "Aspartate aminotransferase [Enzymatic activity/volume] in Serum or Plasma"
+            }
+          ],
+          "text": "AST"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eYZNY3uyBpUFA0pujof4eVg3"
+        },
+        "effectiveDateTime": "2013-09-13T19:37:00Z",
+        "issued": "2013-09-13T19:37:00Z",
+        "valueQuantity": {
+          "value": 112,
+          "unit": "U/L",
+          "system": "http://unitsofmeasure.org",
+          "code": "U/L"
+        },
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/ValueSet/observation-interpretation",
+              "code": "A",
+              "display": "Abnormal"
+            }
+          ],
+          "text": "Abnormal"
+        },
+        "comment": "> 100",
+        "referenceRange": [
+          {
+            "low": {
+              "value": 14,
+              "unit": "U/L",
+              "system": "http://unitsofmeasure.org",
+              "code": "U/L"
+            },
+            "high": {
+              "value": 40,
+              "unit": "U/L",
+              "system": "http://unitsofmeasure.org",
+              "code": "U/L"
+            },
+            "text": "14 - 40 U/L"
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4763",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4763",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T20:08:46.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eXzu4Cu4BIN9W.tm5M68akWR91kqW1YgRziZLe.eTpzEAZT6xfdhLtX1qRtn2gEtS3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "1920-8",
+              "display": "Aspartate aminotransferase [Enzymatic activity/volume] in Serum or Plasma"
+            }
+          ],
+          "text": "AST"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eJieaeiA26NEQ879lMYSuXQ3"
+        },
+        "effectiveDateTime": "2013-09-05T22:06:00Z",
+        "issued": "2013-09-05T22:06:00Z",
+        "valueQuantity": {
+          "value": 115,
+          "unit": "U/L",
+          "system": "http://unitsofmeasure.org",
+          "code": "U/L"
+        },
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/ValueSet/observation-interpretation",
+              "code": "A",
+              "display": "Abnormal"
+            }
+          ],
+          "text": "Abnormal"
+        },
+        "comment": "> 100",
+        "referenceRange": [
+          {
+            "low": {
+              "value": 14,
+              "unit": "U/L",
+              "system": "http://unitsofmeasure.org",
+              "code": "U/L"
+            },
+            "high": {
+              "value": 40,
+              "unit": "U/L",
+              "system": "http://unitsofmeasure.org",
+              "code": "U/L"
+            },
+            "text": "14 - 40 U/L"
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4764",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4764",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T20:08:48.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eWRhywbSm9c9HaO4bPyYrwEZdHy4W8lhtI6rGIlksf6HnDRBFWQb0O-pPTbirL3yJ3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "16128-1",
+              "display": "Hepatitis C virus Ab [Presence] in Serum"
+            }
+          ],
+          "text": "Hepatitis C Ab"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eJieaeiA26NEQ879lMYSuXQ3"
+        },
+        "effectiveDateTime": "2013-09-05T22:05:00Z",
+        "issued": "2013-09-05T22:05:00Z",
+        "valueString": "Positive"
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4804",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4804",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T20:08:48.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/edr-YMyezH3yc43ulFUau4007qfIrwbNSbHr99RMQpeHSBT6oN2vxt5.CAB6u-JSW3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "6301-6",
+              "display": "INR in Platelet poor plasma by Coagulation assay"
+            }
+          ],
+          "text": "INR"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/et1rjbobXbUA33CKRLgqHUw3"
+        },
+        "effectiveDateTime": "2013-10-13T20:33:00Z",
+        "issued": "2013-10-13T20:33:00Z",
+        "valueQuantity": {
+          "value": 2.1
+        },
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/ValueSet/observation-interpretation",
+              "code": "A",
+              "display": "Abnormal"
+            }
+          ],
+          "text": "Abnormal"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 0.9
+            },
+            "high": {
+              "value": 1.1
+            },
+            "text": "0.9 - 1.1"
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4805",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4805",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T20:08:50.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/evZrsTEaLH.y-Nrl.BkGT9HeIQAFbyo8ThoafdrqfU55mxf95sWwV6yO3Y7.RwfFM3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "1975-2",
+              "display": "Bilirubin.total [Mass/volume] in Serum or Plasma"
+            }
+          ],
+          "text": "Total Bilirubin"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/em9DeDGiB.bsQE.j75slQPQ3"
+        },
+        "effectiveDateTime": "2013-11-12T21:48:00Z",
+        "issued": "2013-11-12T21:48:00Z",
+        "valueQuantity": {
+          "value": 1.4,
+          "unit": "mg/dL",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dL"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 0.1,
+              "unit": "mg/dL",
+              "system": "http://unitsofmeasure.org",
+              "code": "mg/dL"
+            },
+            "high": {
+              "value": 1.4,
+              "unit": "mg/dL",
+              "system": "http://unitsofmeasure.org",
+              "code": "mg/dL"
+            },
+            "text": "0.1 - 1.4 mg/dL"
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4806",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4806",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T20:08:51.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eMuEn.LgH5fd0z7OXbsLkHRLIlbhEwZp4qO3RHW.lknxazQ39CbUFfg1tu7ZqzvZ13"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "718-7",
+              "display": "Hemoglobin [Mass/volume] in Blood"
+            }
+          ],
+          "text": "Hemoglobin"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/et1rjbobXbUA33CKRLgqHUw3"
+        },
+        "effectiveDateTime": "2013-10-13T20:31:00Z",
+        "issued": "2013-10-13T20:31:00Z",
+        "valueQuantity": {
+          "value": 15.2,
+          "unit": "g/dL",
+          "system": "http://unitsofmeasure.org",
+          "code": "g/dL"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 13.5,
+              "unit": "g/dL",
+              "system": "http://unitsofmeasure.org",
+              "code": "g/dL"
+            },
+            "high": {
+              "value": 17.5,
+              "unit": "g/dL",
+              "system": "http://unitsofmeasure.org",
+              "code": "g/dL"
+            },
+            "text": "13.5 - 17.5 g/dL"
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4765",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4765",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T20:08:49.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/e.XQ2MdNjBd8mI9mYv9VkwqEr6eQRvEydyg8HVZr.0gvDfmeLCR.iyfuZzbBEDmQ33"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "6301-6",
+              "display": "INR in Platelet poor plasma by Coagulation assay"
+            }
+          ],
+          "text": "INR"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eYZNY3uyBpUFA0pujof4eVg3"
+        },
+        "effectiveDateTime": "2013-09-13T19:45:00Z",
+        "issued": "2013-09-13T19:45:00Z",
+        "valueQuantity": {
+          "value": 2.6
+        },
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/ValueSet/observation-interpretation",
+              "code": "A",
+              "display": "Abnormal"
+            }
+          ],
+          "text": "Abnormal"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 0.9
+            },
+            "high": {
+              "value": 1.1
+            },
+            "text": "0.9 - 1.1"
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4766",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4766",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T20:08:50.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/e3Yz7RRAt4H-1nV7z4HoT-XCuTSFeRPoimR361AfjYdz-3YsdLlL-6.5jH1eigMrD3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "718-7",
+              "display": "Hemoglobin [Mass/volume] in Blood"
+            }
+          ],
+          "text": "Hemoglobin"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/em9DeDGiB.bsQE.j75slQPQ3"
+        },
+        "effectiveDateTime": "2013-11-12T21:50:00Z",
+        "issued": "2013-11-12T21:50:00Z",
+        "valueQuantity": {
+          "value": 15,
+          "unit": "g/dL",
+          "system": "http://unitsofmeasure.org",
+          "code": "g/dL"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 13.5,
+              "unit": "g/dL",
+              "system": "http://unitsofmeasure.org",
+              "code": "g/dL"
+            },
+            "high": {
+              "value": 17.5,
+              "unit": "g/dL",
+              "system": "http://unitsofmeasure.org",
+              "code": "g/dL"
+            },
+            "text": "13.5 - 17.5 g/dL"
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4767",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4767",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T20:08:52.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/e7nuSEakKoloiqUGuPWsMIH8DNddVJf8Z1gJ8TSaoqV7QSoHTnTsaiZqDWWdGCMmf3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "718-7",
+              "display": "Hemoglobin [Mass/volume] in Blood"
+            }
+          ],
+          "text": "Hemoglobin"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eYZNY3uyBpUFA0pujof4eVg3"
+        },
+        "effectiveDateTime": "2013-09-13T19:17:00Z",
+        "issued": "2013-09-13T19:17:00Z",
+        "valueQuantity": {
+          "value": 14.9,
+          "unit": "g/dL",
+          "system": "http://unitsofmeasure.org",
+          "code": "g/dL"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 13.5,
+              "unit": "g/dL",
+              "system": "http://unitsofmeasure.org",
+              "code": "g/dL"
+            },
+            "high": {
+              "value": 17.5,
+              "unit": "g/dL",
+              "system": "http://unitsofmeasure.org",
+              "code": "g/dL"
+            },
+            "text": "13.5 - 17.5 g/dL"
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4768",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4768",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T20:08:53.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/e3Yz7RRAt4H-1nV7z4HoT-XCuTSFeRPoimR361AfjYdzxRCibs8WVgrSI9v65puOy3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "4544-3",
+              "display": "Hematocrit [Volume Fraction] of Blood by Automated count"
+            }
+          ],
+          "text": "Hematocrit"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/em9DeDGiB.bsQE.j75slQPQ3"
+        },
+        "effectiveDateTime": "2013-11-12T21:50:00Z",
+        "issued": "2013-11-12T21:50:00Z",
+        "valueQuantity": {
+          "value": 45,
+          "unit": "%",
+          "system": "http://unitsofmeasure.org",
+          "code": "%"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 41,
+              "unit": "%",
+              "system": "http://unitsofmeasure.org",
+              "code": "%"
+            },
+            "high": {
+              "value": 53,
+              "unit": "%",
+              "system": "http://unitsofmeasure.org",
+              "code": "%"
+            },
+            "text": "41 - 53 %"
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4807",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4807",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T20:08:53.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/enjBiRfUhZFRsPcztMVg6mkk01jOd55MhH8jAXC0eKgX2CLJBmZbUPhh6W1nUEZ423"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "718-7",
+              "display": "Hemoglobin [Mass/volume] in Blood"
+            }
+          ],
+          "text": "Hemoglobin"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eJieaeiA26NEQ879lMYSuXQ3"
+        },
+        "effectiveDateTime": "2013-09-05T21:58:00Z",
+        "issued": "2013-09-05T21:58:00Z",
+        "valueQuantity": {
+          "value": 15.6,
+          "unit": "g/dL",
+          "system": "http://unitsofmeasure.org",
+          "code": "g/dL"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 13.5,
+              "unit": "g/dL",
+              "system": "http://unitsofmeasure.org",
+              "code": "g/dL"
+            },
+            "high": {
+              "value": 17.5,
+              "unit": "g/dL",
+              "system": "http://unitsofmeasure.org",
+              "code": "g/dL"
+            },
+            "text": "13.5 - 17.5 g/dL"
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4808",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4808",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T20:08:54.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eMuEn.LgH5fd0z7OXbsLkHRLIlbhEwZp4qO3RHW.lknxIkjhfQQpGiqcENzlFA8Qf3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "4544-3",
+              "display": "Hematocrit [Volume Fraction] of Blood by Automated count"
+            }
+          ],
+          "text": "Hematocrit"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/et1rjbobXbUA33CKRLgqHUw3"
+        },
+        "effectiveDateTime": "2013-10-13T20:31:00Z",
+        "issued": "2013-10-13T20:31:00Z",
+        "valueQuantity": {
+          "value": 42,
+          "unit": "%",
+          "system": "http://unitsofmeasure.org",
+          "code": "%"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 41,
+              "unit": "%",
+              "system": "http://unitsofmeasure.org",
+              "code": "%"
+            },
+            "high": {
+              "value": 53,
+              "unit": "%",
+              "system": "http://unitsofmeasure.org",
+              "code": "%"
+            },
+            "text": "41 - 53 %"
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4809",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4809",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T20:08:55.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/enjBiRfUhZFRsPcztMVg6mkk01jOd55MhH8jAXC0eKgWXO1gqCNvYVSVw.U2qY.383"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "4544-3",
+              "display": "Hematocrit [Volume Fraction] of Blood by Automated count"
+            }
+          ],
+          "text": "Hematocrit"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eJieaeiA26NEQ879lMYSuXQ3"
+        },
+        "effectiveDateTime": "2013-09-05T21:58:00Z",
+        "issued": "2013-09-05T21:58:00Z",
+        "valueQuantity": {
+          "value": 47,
+          "unit": "%",
+          "system": "http://unitsofmeasure.org",
+          "code": "%"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 41,
+              "unit": "%",
+              "system": "http://unitsofmeasure.org",
+              "code": "%"
+            },
+            "high": {
+              "value": 53,
+              "unit": "%",
+              "system": "http://unitsofmeasure.org",
+              "code": "%"
+            },
+            "text": "41 - 53 %"
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4769",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4769",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T20:08:54.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/e7nuSEakKoloiqUGuPWsMIH8DNddVJf8Z1gJ8TSaoqV6JYrzMpgpiW5sRdEUD9eE43"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "4544-3",
+              "display": "Hematocrit [Volume Fraction] of Blood by Automated count"
+            }
+          ],
+          "text": "Hematocrit"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eYZNY3uyBpUFA0pujof4eVg3"
+        },
+        "effectiveDateTime": "2013-09-13T19:17:00Z",
+        "issued": "2013-09-13T19:17:00Z",
+        "valueQuantity": {
+          "value": 44,
+          "unit": "%",
+          "system": "http://unitsofmeasure.org",
+          "code": "%"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 41,
+              "unit": "%",
+              "system": "http://unitsofmeasure.org",
+              "code": "%"
+            },
+            "high": {
+              "value": 53,
+              "unit": "%",
+              "system": "http://unitsofmeasure.org",
+              "code": "%"
+            },
+            "text": "41 - 53 %"
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation/4770",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4770",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-08-11T20:08:56.000+00:00",
+          "security": [
+            {
+              "system": "http://cibmtr.org/codesystem/transplant-center",
+              "code": "rc_10124"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eNlvF8CLc.lL-4K463smy9eoZ87KCLAxoG-eZq5Vq7r1VXzUk7sGjWAMiKTBvUGTZ3"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "text": "ANA"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eJieaeiA26NEQ879lMYSuXQ3"
+        },
+        "effectiveDateTime": "2013-09-05T22:00:00Z",
+        "issued": "2013-09-05T22:00:00Z",
+        "valueString": "Negative",
+        "referenceRange": [
+          {
+            "text": "Negative"
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    }
+  ]
+}

@@ -28,11 +28,11 @@ export class PatientComponent implements OnInit {
   core: any;
   cibmtrObservations: any;
   crid: string;
+  crid$: Observable<string>;
   logicalId: string;
   fhirApp: string = "FHIR";
   cridApp: string = "CRID";
   lookupPatientCrid$: Observable<any>;
-  crid$: Observable<any>;
   cridCallComplete: Boolean = false;
   psScope: string;
   isLoading: Boolean;
@@ -184,12 +184,14 @@ export class PatientComponent implements OnInit {
     let encodedScope = encodeURI(
       "".concat(AppConfig.cibmtr_centers_namespace, "|", this.psScope)
     );
-    this.fhirService
+
+    this.crid$ = this.fhirService
       .lookupPatientCrid(logicalId.concat(`&_security=${encodedScope}`))
-      .pipe(take(1))
-      .toPromise()
-      .then((resp) => {
-        let total = resp.total;
+      .pipe(take(1));
+
+    this.crid$.subscribe(
+      (resp: any) => {
+        const total = resp.total;
         if (total && total > 0) {
           if (resp.entry) {
             resp.entry.filter((entry) => {
@@ -198,23 +200,23 @@ export class PatientComponent implements OnInit {
                   entry.resource.identifier &&
                   entry.resource.identifier.length > 0
                 ) {
-                  let filteredCrid = entry.resource.identifier.filter(
+                  const filteredCrid = entry.resource.identifier.filter(
                     (i) => i.system === AppConfig.cibmtr_crid_namespace
                   );
                   if (filteredCrid && filteredCrid.length > 0) {
                     this.crid = filteredCrid[0].value;
                   }
                 }
-                if (entry.resource.fullUri) {
-                  let fullUri = entry.resource.fullUri;
-                }
               }
             });
           }
         }
-      })
-      .finally(() => (this.cridCallComplete = true))
-      .catch(this.handleErrorv2);
+        this.cridCallComplete = true;
+      },
+      () => {
+        this.handleErrorv2;
+      }
+    );
   }
 
   /**
@@ -393,7 +395,6 @@ export class PatientComponent implements OnInit {
             .retry(1)
             .subscribe(
               () => {
-                const now = new Date();
                 console.log("Submitted patient");
               },
               (error) => {
