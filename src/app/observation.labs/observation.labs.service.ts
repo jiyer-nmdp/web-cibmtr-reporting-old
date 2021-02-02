@@ -1,12 +1,10 @@
 import { Injectable } from "@angular/core";
 import { AppConfig } from "../app.config";
 import { Observable, from } from "rxjs";
-
 import { CustomHttpClient } from "../client/custom.http.client";
 import { concatMap } from "rxjs-compat/operators/concatMap";
 import { LocalStorageService } from "angular-2-local-storage";
 import { UtilityService } from "../utility.service";
-import { retry } from "rxjs-compat/operator/retry";
 import { catchError } from "rxjs/operators";
 import { of } from "rxjs";
 
@@ -26,7 +24,6 @@ export class ObservationLabsService {
     selectedChunkResources.forEach((selectedChunkResource) => {
       bundles.push(this.getBundleEntry(selectedChunkResource, psScope));
     });
-
     return bundles;
   }
 
@@ -36,49 +33,10 @@ export class ObservationLabsService {
       .pipe(catchError((error) => of(error)));
   }
 
-  // Below method submit updated records to the cibmtr
-  postUpdatedRecords(selectedResources, psScope): Observable<any> {
-    // Prepare the map of Id and resources
-    let sMap = {};
-    let epicfullUri: string;
-
-    selectedResources.forEach((selectedResource) => {
-      sMap[selectedResource.resource.id] = selectedResource.resource;
-      epicfullUri = selectedResource.fullUrl;
-    });
-
-    //Updated the FHIR will Overwrite the Existing Attribute , Creating the Identifier and Meta tags again.
-    return from(Object.keys(sMap)).pipe(
-      concatMap((key) => {
-        return this.http.put(
-          AppConfig.cibmtr_fhir_update_url + "Observation/" + key,
-          {
-            ...sMap[key],
-            meta: {
-              security: [
-                {
-                  system: AppConfig.cibmtr_centers_namespace,
-                  code: psScope,
-                },
-              ],
-            },
-            identifier: [
-              {
-                use: "official",
-                system: AppConfig.epic_logicalId_namespace,
-                value: epicfullUri,
-              },
-            ],
-          }
-        );
-      })
-    );
-  }
-
-  getBundleEntry(selectedChunkResource, psScope) {
+  getBundleEntry(selectedNewChunkResource, psScope) {
     let entries = [];
 
-    selectedChunkResource.forEach((selectedChunkElement) => {
+    selectedNewChunkResource.forEach((selectedChunkElement) => {
       const { id, status, ...remainingfields } = selectedChunkElement;
       entries.push({
         resource: {
@@ -112,11 +70,53 @@ export class ObservationLabsService {
       });
     });
 
+    if (selectedNewChunkResource.state === "normal") {
+      this.getUpdatedEntry(selectedNewChunkResource, psScope);
+    }
+
     return {
       resourceType: "Bundle",
       type: "transaction",
       entry: entries,
     };
+  }
+
+  // Below method submit updated records to the cibmtr
+  getUpdatedEntry(selectedupdatedResources, psScope) {
+    let entries = [];
+
+    selectedupdatedResources.forEach((selectedChunkElement) => {
+      const { fullUrl, resource } = selectedChunkElement;
+      entries.push({
+        resource: {
+          ...resource,
+          meta: {
+            security: [
+              {
+                system: AppConfig.cibmtr_centers_namespace,
+                code: psScope,
+              },
+            ],
+          },
+          identifier: [
+            {
+              use: "official",
+              system: AppConfig.epic_logicalId_namespace,
+              value:
+                this.utilityService.rebuild_DSTU2_STU3_Url(
+                  this._localStorageService.get("iss")
+                ) +
+                "/Observation/" +
+                fullUrl,
+            },
+          ],
+        },
+        request: {
+          method: "PUT",
+          url: `Observation/${resource.id}`,
+        },
+      });
+    });
   }
 
   getCibmtrObservationsLabs(subject, psScope): Observable<any> {
