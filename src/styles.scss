@@ -2,11 +2,13 @@
 @import "../node_modules/@nmdp/nmdp-login/css/okta-theme.css";
 @import "../node_modules/@nmdp/nmdp-login/css/nmdp-login.css";
 
-.browsehappy {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background-color: rgba(24, 102, 151, 0.05);
+  background-repeat: no-repeat;
+  border: 1px solid rgba(24, 102, 151, 0.05);
 }
 
 .fixed-panel {
@@ -89,12 +91,4 @@
   .app-modal-window .modal-dialog {
     width: 900px;
   }
-}
-
-html,
-body {
-  height: 100%;
-  margin: 0;
-  background-color: rgba(24, 102, 151, 0.05);
-  background-repeat: no-repeat;
 }
