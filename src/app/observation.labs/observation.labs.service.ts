@@ -2,10 +2,10 @@ import { Injectable } from "@angular/core";
 import { AppConfig } from "../app.config";
 import { Observable, from } from "rxjs";
 import { CustomHttpClient } from "../client/custom.http.client";
-import { concatMap } from "rxjs-compat/operators/concatMap";
 import { LocalStorageService } from "angular-2-local-storage";
 import { UtilityService } from "../utility.service";
-import { catchError } from "rxjs/operators";
+import { catchError, map } from "rxjs/operators";
+import { throwError } from "rxjs";
 import { of } from "rxjs";
 
 @Injectable()
@@ -17,8 +17,11 @@ export class ObservationLabsService {
   ) {}
 
   // Below method submit new records to the cibmtr
-  getDataFromNewRecords(selectedResources, psScope): Array<Observable<any>> {
-    let selectedChunkResources = this.utilityService.chunk(selectedResources);
+  getBundles(selectedResources, psScope): Array<Observable<any>> {
+    let selectedChunkResources = this.utilityService.chunk(
+      selectedResources,
+      this.utilityService.chunkSize
+    );
     let bundles = [];
 
     selectedChunkResources.forEach((selectedChunkResource) => {
@@ -30,93 +33,81 @@ export class ObservationLabsService {
   getBundleObservable(bundle) {
     return this.http
       .post(AppConfig.cibmtr_fhir_update_url + "Bundle", bundle)
-      .pipe(catchError((error) => of(error)));
+      .pipe(
+        map(() => bundle),
+        catchError((err) => {
+          console.log("caught mapping error and rethrowing", err);
+          return throwError(bundle);
+        })
+      )
+      .retry(1);
   }
 
+  // Below method submit updated records to the cibmtr
   getBundleEntry(selectedNewChunkResource, psScope) {
     let entries = [];
-
     selectedNewChunkResource.forEach((selectedChunkElement) => {
-      const { id, status, ...remainingfields } = selectedChunkElement;
-      entries.push({
-        resource: {
-          ...remainingfields,
-          status: status || "unknown",
-          meta: {
-            security: [
+      if (selectedChunkElement.state === "normal") {
+        const { fullUrl, resource } = selectedChunkElement;
+        entries.push({
+          resource: {
+            ...resource,
+            meta: {
+              security: [
+                {
+                  system: AppConfig.cibmtr_centers_namespace,
+                  code: psScope,
+                },
+              ],
+            },
+            identifier: [
               {
-                system: AppConfig.cibmtr_centers_namespace,
-                code: psScope,
+                use: "official",
+                system: AppConfig.epic_logicalId_namespace,
+                value: fullUrl,
               },
             ],
           },
-          identifier: [
-            {
-              use: "official",
-              system: AppConfig.epic_logicalId_namespace,
-              value:
-                this.utilityService.rebuild_DSTU2_STU3_Url(
-                  this._localStorageService.get("iss")
-                ) +
-                "/Observation/" +
-                id,
+          request: {
+            method: "PUT",
+            url: `Observation/${resource.id}`,
+          },
+        });
+      } else {
+        const { fullUrl, resource } = selectedChunkElement;
+        delete resource.id;
+        entries.push({
+          resource: {
+            ...resource,
+            status: "unknown",
+            meta: {
+              security: [
+                {
+                  system: AppConfig.cibmtr_centers_namespace,
+                  code: psScope,
+                },
+              ],
             },
-          ],
-        },
-        request: {
-          method: "POST",
-          url: "Observation",
-        },
-      });
+            identifier: [
+              {
+                use: "official",
+                system: AppConfig.epic_logicalId_namespace,
+                value: fullUrl,
+              },
+            ],
+          },
+          request: {
+            method: "POST",
+            url: "Observation",
+          },
+        });
+      }
     });
-
-    if (selectedNewChunkResource.state === "normal") {
-      this.getUpdatedEntry(selectedNewChunkResource, psScope);
-    }
-
     return {
       resourceType: "Bundle",
       type: "transaction",
       entry: entries,
     };
-  }
-
-  // Below method submit updated records to the cibmtr
-  getUpdatedEntry(selectedupdatedResources, psScope) {
-    let entries = [];
-
-    selectedupdatedResources.forEach((selectedChunkElement) => {
-      const { fullUrl, resource } = selectedChunkElement;
-      entries.push({
-        resource: {
-          ...resource,
-          meta: {
-            security: [
-              {
-                system: AppConfig.cibmtr_centers_namespace,
-                code: psScope,
-              },
-            ],
-          },
-          identifier: [
-            {
-              use: "official",
-              system: AppConfig.epic_logicalId_namespace,
-              value:
-                this.utilityService.rebuild_DSTU2_STU3_Url(
-                  this._localStorageService.get("iss")
-                ) +
-                "/Observation/" +
-                fullUrl,
-            },
-          ],
-        },
-        request: {
-          method: "PUT",
-          url: `Observation/${resource.id}`,
-        },
-      });
-    });
   }
 
   getCibmtrObservationsLabs(subject, psScope): Observable<any> {
@@ -126,7 +117,7 @@ export class ObservationLabsService {
       subject +
       "&_security=" +
       psScope +
-      "&_total=accurate&_count=1000&category=laboratory";
+      "&_total=accurate&_count=500&category=laboratory";
     return this.http.get(url);
   }
 }

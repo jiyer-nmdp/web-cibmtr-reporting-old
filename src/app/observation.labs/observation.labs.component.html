@@ -1,88 +1,85 @@
 <div class="container">
   <nav class="navbar navbar-expand-sm fixed-top navbar-light bg-light">
-     <alert
-     type="success"
-     [dismissible]="true"
-     [dismissOnTimeout]="30000"
-     *ngIf="success == true && fail == false"
-   >
-     <strong
-       >Successfully submitted the Observation(s) of count({{
-         this.selectedNewResources?.length + this.selectedUpdatedResources?.length
-       }}).</strong
-     >
-   </alert>
-   
-   <alert
-     type="danger"
-     [dismissible]="true"
-     [dismissOnTimeout]="30000"
-     *ngIf="fail == true && success == false"
-   >
-     <strong>Error Occurred while Submitting the Observation(s).</strong>
-   </alert>
-   <div class="col-md-6 date-label">
-     <b>Date Retrieved </b> : {{ now | date: "yyyy-MM-dd HH:mm" }}
-   </div>
- </nav>
- 
-  <div class="fixed_header">
-   <table class="table table-responsive table-bordered table-striped">
-     <thead>
-       <tr>
-       <th >Name</th>
-       <th >Value</th>
-       <th >Effective Time</th>
-       <th >
-         <input
-           class="checkbox i-checks"
-           type="checkbox"
-           [(ngModel)]="isAllSelected"
-           (ngModelChange)="selectAll()"
-           [disabled]="isAlldisabled"
-         />
-       </th>
-     </tr>
-     </thead>
-     <tbody>
-       <tr *ngFor="let entry of labs.entry" [style.fontWeight]="entry.state">
-         <td >
-           {{ entry?.resource?.code?.text }}
-         </td>
-         <td >    
-           <span>{{ getNodeValue(entry?.resource) }}</span>
-           <span>{{getComponentValue(entry?.resource?.component)}}</span> 
-         </td>
-         <td >
-           {{
-             entry.resource.effectiveDateTime | date: "yyyy-MM-dd HH:mm:ssZ"
-           }}
-         </td>
-         <td >
-           <input
-             class="checkbox i-checks"
-             type="checkbox"
-             [(ngModel)]="entry.selected"
-             (ngModelChange)="toggleOption()"
-             [disabled]="entry.state == 'lighter'"
-           />
-         </td>
-       </tr>
-     </tbody>
-   </table>
-  </div>
- 
-    <div class="row top-buffer">
-     <div class="col-xs-12">
-       <button
-         type="button"
-         class="btn btn-primary pull-right"
-         (click)="submitToCibmtr()"
-         enabled
-       >
-         Submit to CIBMTR
-       </button>
-     </div>
+    <alert
+      type="success"
+      [dismissible]="true"
+      [dismissOnTimeout]="30000"
+      *ngIf="totalSuccessCount > 0"
+    >
+      <strong
+        >{{ totalSuccessCount }} Observation(s) submitted Successfully</strong
+      >
+    </alert>
+    <alert
+      type="danger"
+      [dismissible]="true"
+      [dismissOnTimeout]="30000"
+      *ngIf="totalFailCount > 0"
+    >
+      <strong>{{ totalFailCount }} Observation(s) failed to Submit</strong>
+    </alert>
+
+    <div class="col-md-6 date-label">
+      <b>Date Retrieved </b> : {{ now | date: "yyyy-MM-dd HH:mm" }}
     </div>
- </div>
- 
+  </nav>
+
+  <div class="fixed_header">
+    <table class="table table-responsive table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Value</th>
+          <th>Effective Time</th>
+          <th>
+            <input
+              class="checkbox i-checks"
+              type="checkbox"
+              [(ngModel)]="isAllSelected"
+              (ngModelChange)="selectAll()"
+              [disabled]="isAlldisabled"
+            />
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let entry of labs.entry" [style.fontWeight]="entry.state">
+          <td>
+            {{ entry?.resource?.code?.text }}
+          </td>
+          <td>
+            <span>{{ getNodeValue(entry?.resource) }}</span>
+            <span>{{ getComponentValue(entry?.resource?.component) }}</span>
+          </td>
+          <td>
+            {{
+              entry.resource.effectiveDateTime | date: "yyyy-MM-dd HH:mm:ssZ"
+            }}
+          </td>
+          <td>
+            <input
+              class="checkbox i-checks"
+              type="checkbox"
+              [(ngModel)]="entry.selected"
+              (ngModelChange)="toggleOption()"
+              [disabled]="entry.state == 'lighter'"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="row top-buffer">
+    <div class="col-xs-12">
+      <button
+        type="button"
+        class="btn btn-primary pull-right"
+        (click)="submitToCibmtr()"
+        enabled
+      >
+        Submit to CIBMTR
+      </button>
+    </div>
+  </div>
+</div>

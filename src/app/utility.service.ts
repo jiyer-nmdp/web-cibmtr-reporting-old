@@ -6,6 +6,7 @@ import { Injectable } from "@angular/core";
 export class UtilityService {
   //IE data clone issue with router state object
   data: any;
+  chunkSize: number = 30;
 
   constructor() {}
 
@@ -18,7 +19,7 @@ export class UtilityService {
   }
 
   //
-  chunk(array, size = 30) {
+  chunk(array, size) {
     const chunked_arr = [];
     let index = 0;
     while (index < array.length) {
