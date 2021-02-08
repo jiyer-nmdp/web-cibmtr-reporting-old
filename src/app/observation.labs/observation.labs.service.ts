@@ -1,12 +1,11 @@
 import { Injectable } from "@angular/core";
 import { AppConfig } from "../app.config";
-import { Observable, from } from "rxjs";
+import { Observable } from "rxjs";
 import { CustomHttpClient } from "../client/custom.http.client";
 import { LocalStorageService } from "angular-2-local-storage";
 import { UtilityService } from "../utility.service";
 import { catchError, map } from "rxjs/operators";
 import { throwError } from "rxjs";
-import { of } from "rxjs";
 
 @Injectable()
 export class ObservationLabsService {
@@ -117,7 +116,7 @@ export class ObservationLabsService {
       subject +
       "&_security=" +
       psScope +
-      "&_total=accurate&_count=500&category=laboratory";
+      "&_total=accurate&_count=20&category=laboratory";
     return this.http.get(url);
   }
 }

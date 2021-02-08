@@ -3,7 +3,9 @@ import { Patient } from "../model/patient.";
 import { ObservationLabsService } from "./observation.labs.service";
 import { UtilityService } from "../utility.service";
 import { mergeMap } from "rxjs/operators";
-import { from } from "rxjs";
+import { EMPTY, from } from "rxjs";
+import { AppConfig } from "../app.config";
+import { CustomHttpClient } from "../client/custom.http.client";
 
 @Component({
   selector: "app-observation.labs",
@@ -31,6 +33,7 @@ export class ObservationLabsComponent implements OnInit {
   totalFailCount: number;
 
   constructor(
+    private http: CustomHttpClient,
     public observationlabsService: ObservationLabsService,
     private utility: UtilityService
   ) {
@@ -53,11 +56,22 @@ export class ObservationLabsComponent implements OnInit {
     ) {
       this.observationlabsService
         .getCibmtrObservationsLabs(subj, psScope)
+        .expand((response) => {
+          let next =
+            response.link && response.link.find((l) => l.relation === "next");
+          if (next) {
+            let modifiedUrl =
+              AppConfig.cibmtr_fhir_update_url + "?" + next.url.split("?")[1];
+            return this.http.get(modifiedUrl);
+          } else {
+            return EMPTY;
+          }
+        })
+        .map((response) => response.entry.flatMap((array) => array))
+        .reduce((acc, x) => acc.concat(x), [])
         .subscribe(
-          (response) => {
-            this.savedBundle = response;
+          (savedEntries) => {
             let entries = this.labs.entry;
-            let savedEntries = this.savedBundle.entry;
             if (entries && entries.length > 0) {
               // filtering the entries to only Observations
               let observationEntries = entries.filter(function (item) {
@@ -151,7 +165,7 @@ export class ObservationLabsComponent implements OnInit {
     if (component) {
       let components = [];
       for (let i = 0; i < component.length; i++) {
-        let code = component[i].code.text + ":";
+        let code = component[i].code.text + ":" + " ";
         let nodeValue = this.getNodeValue(component[i]);
         components.push(code + nodeValue);
       }

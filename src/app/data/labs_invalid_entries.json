@@ -2,11 +2,11 @@
   "resourceType": "Bundle",
   "id": "695d42f9-3e6a-475b-ad5e-38ddb718a4e8",
   "type": "searchset",
-  "total": 111,
+  "total": 55,
   "link": [
     {
       "relation": "self",
-      "url": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation?_count=55&_subject=https%3A%2F%2Fapporchard.epic.com%2Finterconnect-aocurprd-oauth%2Fapi%2FFHIR%2FSTU3%2FPatient%2FedQqsaKKjQ3xf.mx8wnrWvQ3&category=laboratory"
+      "url": "https://qa-internal-api.nmdp.org/cibmtr-fhir-server/v1/r3/Observation?_count=55&_subject=https%3A%2F%2Fapporchard.epic.com%2Finterconnect-aocurprd-oauth%2Fapi%2FFHIR%2FSTU3%2FPatient%2FendFZe2sorgK5yH219Tqbsw3&category=laboratory"
     },
     {
       "relation": "next",
@@ -63,7 +63,7 @@
           "text": "Hematocrit"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/esdBr-zLt8bLENmjQlBpKBA3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eat0K10dAAUvXIOzcA99Exg3"
@@ -123,8 +123,11 @@
             "text": "Lab"
           }
         ],
+        "code": {
+          "text": "Hematocrit"
+        },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/esdBr-zLt8bLENmjQlBpKBA3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eA87yVLlbb9XUjR0rIuNTGQ3"
@@ -186,7 +189,7 @@
           "text": "pH, Urine"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/esdBr-zLt8bLENmjQlBpKBA3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eA87yVLlbb9XUjR0rIuNTGQ3"
@@ -257,7 +260,7 @@
           "text": "Bilirubin, Urine"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eu0l7N0Dddc-I.yhqyT1Dlw3"
@@ -320,8 +323,11 @@
             "text": "Lab"
           }
         ],
+        "code": {
+          "text": "Hematocrit"
+        },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eu0l7N0Dddc-I.yhqyT1Dlw3"
@@ -395,7 +401,7 @@
           "text": "Urobilinogen, UA"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eu0l7N0Dddc-I.yhqyT1Dlw3"
@@ -469,7 +475,7 @@
           "text": "Protein, Urine"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eu0l7N0Dddc-I.yhqyT1Dlw3"
@@ -543,7 +549,7 @@
           "text": "Leukocytes, Urine"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eu0l7N0Dddc-I.yhqyT1Dlw3"
@@ -617,7 +623,7 @@
           "text": "Clarity, Urine"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eu0l7N0Dddc-I.yhqyT1Dlw3"
@@ -691,7 +697,7 @@
           "text": "Nitrite, Urine"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eu0l7N0Dddc-I.yhqyT1Dlw3"
@@ -758,7 +764,7 @@
           "text": "Specific Gravity, UA"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eu0l7N0Dddc-I.yhqyT1Dlw3"
@@ -840,7 +846,7 @@
           "text": "Color, Urine"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eu0l7N0Dddc-I.yhqyT1Dlw3"
@@ -907,7 +913,7 @@
           "text": "Color, UA"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/epxU8LDy-EwnodjAm6LUPTg3"
@@ -976,7 +982,7 @@
           "text": "RBC, Urine"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eu0l7N0Dddc-I.yhqyT1Dlw3"
@@ -1043,7 +1049,7 @@
           "text": "Clarity, UA"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/epxU8LDy-EwnodjAm6LUPTg3"
@@ -1105,7 +1111,7 @@
           "text": "Bilirubin, UA"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/epxU8LDy-EwnodjAm6LUPTg3"
@@ -1167,7 +1173,7 @@
           "text": "Spec Grav, UA"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/epxU8LDy-EwnodjAm6LUPTg3"
@@ -1231,7 +1237,7 @@
           "text": "Glucose, UA"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/epxU8LDy-EwnodjAm6LUPTg3"
@@ -1293,7 +1299,7 @@
           "text": "Ketones, UA"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/epxU8LDy-EwnodjAm6LUPTg3"
@@ -1355,7 +1361,7 @@
           "text": "pH, UA"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/epxU8LDy-EwnodjAm6LUPTg3"
@@ -1419,7 +1425,7 @@
           "text": "Protein, UA"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/epxU8LDy-EwnodjAm6LUPTg3"
@@ -1481,7 +1487,7 @@
           "text": "Nitrite, UA"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/epxU8LDy-EwnodjAm6LUPTg3"
@@ -1543,7 +1549,7 @@
           "text": "Hemoglobin"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eAcKUxgFv.VaRBAB2-XK69Q3"
@@ -1607,7 +1613,7 @@
           "text": "Urobilinogen, UA"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/epxU8LDy-EwnodjAm6LUPTg3"
@@ -1669,7 +1675,7 @@
           "text": "Leukocytes, UA"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/epxU8LDy-EwnodjAm6LUPTg3"
@@ -1731,7 +1737,7 @@
           "text": "Hematocrit"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eAcKUxgFv.VaRBAB2-XK69Q3"
@@ -1791,8 +1797,11 @@
             "text": "Lab"
           }
         ],
+        "code": {
+          "text": "Hematocrit"
+        },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eu0l7N0Dddc-I.yhqyT1Dlw3"
@@ -1861,7 +1870,7 @@
           "text": "Alkaline Phosphatase"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/em9DeDGiB.bsQE.j75slQPQ3"
@@ -1945,7 +1954,7 @@
           "text": "pH, Urine"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/edQqsaKKjQ3xf.mx8wnrWvQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eu0l7N0Dddc-I.yhqyT1Dlw3"
@@ -2016,7 +2025,7 @@
           "text": "Alkaline Phosphatase"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/et1rjbobXbUA33CKRLgqHUw3"
@@ -2107,7 +2116,7 @@
           "text": "Alkaline Phosphatase"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eJieaeiA26NEQ879lMYSuXQ3"
@@ -2208,7 +2217,7 @@
           "text": "Alkaline Phosphatase"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eYZNY3uyBpUFA0pujof4eVg3"
@@ -2309,7 +2318,7 @@
           "text": "ALT (SGPT)"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/em9DeDGiB.bsQE.j75slQPQ3"
@@ -2410,7 +2419,7 @@
           "text": "ALT (SGPT)"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eYZNY3uyBpUFA0pujof4eVg3"
@@ -2512,7 +2521,7 @@
           "text": "ALT (SGPT)"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/et1rjbobXbUA33CKRLgqHUw3"
@@ -2613,7 +2622,7 @@
           "text": "ALT (SGPT)"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eJieaeiA26NEQ879lMYSuXQ3"
@@ -2715,7 +2724,7 @@
           "text": "AST"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/em9DeDGiB.bsQE.j75slQPQ3"
@@ -2816,7 +2825,7 @@
           "text": "ALT (SGPT)"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/e-b3xmmuzCe4I6hFdJLCbng3"
@@ -2917,7 +2926,7 @@
           "text": "AST"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/et1rjbobXbUA33CKRLgqHUw3"
@@ -3018,7 +3027,7 @@
           "text": "Hepatitis C Ab"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eYZNY3uyBpUFA0pujof4eVg3"
@@ -3087,7 +3096,7 @@
           "text": "AST"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eYZNY3uyBpUFA0pujof4eVg3"
@@ -3189,7 +3198,7 @@
           "text": "AST"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eJieaeiA26NEQ879lMYSuXQ3"
@@ -3291,7 +3300,7 @@
           "text": "Hepatitis C Ab"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eJieaeiA26NEQ879lMYSuXQ3"
@@ -3360,7 +3369,7 @@
           "text": "INR"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/et1rjbobXbUA33CKRLgqHUw3"
@@ -3452,7 +3461,7 @@
           "text": "Total Bilirubin"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/em9DeDGiB.bsQE.j75slQPQ3"
@@ -3543,7 +3552,7 @@
           "text": "Hemoglobin"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/et1rjbobXbUA33CKRLgqHUw3"
@@ -3634,7 +3643,7 @@
           "text": "INR"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eYZNY3uyBpUFA0pujof4eVg3"
@@ -3726,7 +3735,7 @@
           "text": "Hemoglobin"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/em9DeDGiB.bsQE.j75slQPQ3"
@@ -3817,7 +3826,7 @@
           "text": "Hemoglobin"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eYZNY3uyBpUFA0pujof4eVg3"
@@ -3908,7 +3917,7 @@
           "text": "Hematocrit"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/em9DeDGiB.bsQE.j75slQPQ3"
@@ -3999,7 +4008,7 @@
           "text": "Hemoglobin"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eJieaeiA26NEQ879lMYSuXQ3"
@@ -4090,7 +4099,7 @@
           "text": "Hematocrit"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/et1rjbobXbUA33CKRLgqHUw3"
@@ -4181,7 +4190,7 @@
           "text": "Hematocrit"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eJieaeiA26NEQ879lMYSuXQ3"
@@ -4272,7 +4281,7 @@
           "text": "Hematocrit"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eYZNY3uyBpUFA0pujof4eVg3"
@@ -4356,7 +4365,7 @@
           "text": "ANA"
         },
         "subject": {
-          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eHoZ-Y5whd8tIItEaEmiPDQ3"
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3"
         },
         "context": {
           "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eJieaeiA26NEQ879lMYSuXQ3"

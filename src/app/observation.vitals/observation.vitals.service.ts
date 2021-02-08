@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
 import { AppConfig } from "../app.config";
-import { Observable, from } from "rxjs";
-
+import { Observable } from "rxjs";
 import { CustomHttpClient } from "../client/custom.http.client";
-import { concatMap } from "rxjs-compat/operators/concatMap";
 import { LocalStorageService } from "angular-2-local-storage";
 import { UtilityService } from "../utility.service";
+import { catchError, map } from "rxjs/operators";
+import { throwError } from "rxjs";
 
 @Injectable()
 export class ObservationVitalsService {
@@ -16,59 +16,41 @@ export class ObservationVitalsService {
   ) {}
 
   // Below method submit new records to the cibmtr
-  postNewRecords(selectedResources, psScope): Observable<any> {
-    return from(selectedResources).pipe(
-      concatMap((selectedResource: any) => {
-        const { id, ...remainingfields } = selectedResource;
-        return this.http.post(
-          AppConfig.cibmtr_fhir_update_url + "Observation",
-          {
-            ...remainingfields,
-            status: status || "unknown",
-            meta: {
-              security: [
-                {
-                  system: AppConfig.cibmtr_centers_namespace,
-                  code: psScope,
-                },
-              ],
-            },
-            identifier: [
-              {
-                use: "official",
-                system: AppConfig.epic_logicalId_namespace,
-                value:
-                  this.utilityService.rebuild_DSTU2_STU3_Url(
-                    this._localStorageService.get("iss")
-                  ) +
-                  "/Observation/" +
-                  id,
-              },
-            ],
-          }
-        );
-      })
+  getBundles(selectedResources, psScope): Array<Observable<any>> {
+    let selectedChunkResources = this.utilityService.chunk(
+      selectedResources,
+      this.utilityService.chunkSize
     );
+    let bundles = [];
+
+    selectedChunkResources.forEach((selectedChunkResource) => {
+      bundles.push(this.getBundleEntry(selectedChunkResource, psScope));
+    });
+    return bundles;
+  }
+
+  getBundleObservable(bundle) {
+    return this.http
+      .post(AppConfig.cibmtr_fhir_update_url + "Bundle", bundle)
+      .pipe(
+        map(() => bundle),
+        catchError((err) => {
+          console.log("caught mapping error and rethrowing", err);
+          return throwError(bundle);
+        })
+      )
+      .retry(1);
   }
 
   // Below method submit updated records to the cibmtr
-  postUpdatedRecords(selectedResources, psScope): Observable<any> {
-    // Prepare the map of Id and resources
-    let sMap = {};
-    let epicfullUri: string;
-
-    selectedResources.forEach((selectedResource) => {
-      sMap[selectedResource.resource.id] = selectedResource.resource;
-      epicfullUri = selectedResource.fullUrl;
-    });
-
-    //Updated the FHIR will Overwrite the Existing Attribute , Creating the Identifier and Meta tags again.
-    return from(Object.keys(sMap)).pipe(
-      concatMap((key) => {
-        return this.http.put(
-          AppConfig.cibmtr_fhir_update_url + "Observation/" + key,
-          {
-            ...sMap[key],
+  getBundleEntry(selectedNewChunkResource, psScope) {
+    let entries = [];
+    selectedNewChunkResource.forEach((selectedChunkElement) => {
+      if (selectedChunkElement.state === "normal") {
+        const { fullUrl, resource } = selectedChunkElement;
+        entries.push({
+          resource: {
+            ...resource,
             meta: {
               security: [
                 {
@@ -81,13 +63,50 @@ export class ObservationVitalsService {
               {
                 use: "official",
                 system: AppConfig.epic_logicalId_namespace,
-                value: epicfullUri,
+                value: fullUrl,
               },
             ],
-          }
-        );
-      })
-    );
+          },
+          request: {
+            method: "PUT",
+            url: `Observation/${resource.id}`,
+          },
+        });
+      } else {
+        const { fullUrl, resource } = selectedChunkElement;
+        delete resource.id;
+        entries.push({
+          resource: {
+            ...resource,
+            status: "unknown",
+            meta: {
+              security: [
+                {
+                  system: AppConfig.cibmtr_centers_namespace,
+                  code: psScope,
+                },
+              ],
+            },
+            identifier: [
+              {
+                use: "official",
+                system: AppConfig.epic_logicalId_namespace,
+                value: fullUrl,
+              },
+            ],
+          },
+          request: {
+            method: "POST",
+            url: "Observation",
+          },
+        });
+      }
+    });
+    return {
+      resourceType: "Bundle",
+      type: "transaction",
+      entry: entries,
+    };
   }
 
   getCibmtrObservationsVitals(subject, psScope): Observable<any> {

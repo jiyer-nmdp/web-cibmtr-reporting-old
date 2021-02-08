@@ -21,7 +21,7 @@ export class ObservationCoreService {
       concatMap((selectedResource: any) => {
         const { id, ...remainingfields } = selectedResource;
         return this.http.post(
-          AppConfig.cibmtr_fhir_update_url + "Observation",
+          AppConfig.cibmtr_fhir_update_url + "/Observation",
           {
             ...remainingfields,
             status: status || "unknown",
@@ -66,7 +66,7 @@ export class ObservationCoreService {
     return from(Object.keys(sMap)).pipe(
       concatMap((key) => {
         return this.http.put(
-          AppConfig.cibmtr_fhir_update_url + "Observation/" + key,
+          AppConfig.cibmtr_fhir_update_url + "/Observation/" + key,
           {
             ...sMap[key],
             meta: {
@@ -93,11 +93,11 @@ export class ObservationCoreService {
   getCibmtrObservationsCoreChar(subject, psScope): Observable<any> {
     const url =
       AppConfig.cibmtr_fhir_update_url +
-      "Observation?subject=" +
+      "/Observation?subject=" +
       subject +
       "&_security=" +
       psScope +
-      "&_total=accurate&_count=1000&category=core-characteristics";
+      "&_total=accurate&_count=500&category=core-characteristics";
     return this.http.get(url);
   }
 }

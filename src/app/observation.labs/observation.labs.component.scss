@@ -1,11 +1,12 @@
 .fixed_header {
-  overflow-y: auto;
+  overflow: scroll;
   height: 300px;
 }
 
 .fixed_header table {
   border-collapse: collapse;
   width: 100%;
+  overflow: scroll;
 }
 
 .fixed_header th,

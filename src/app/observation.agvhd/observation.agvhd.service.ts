@@ -96,7 +96,7 @@ export class ObservationAgvhdService {
       subject +
       "&_security=" +
       psScope +
-      "&_total=accurate&_count=1000";
+      "&_total=accurate&_count=500";
     return this.http.get(url);
   }
 }
