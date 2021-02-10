@@ -35,7 +35,7 @@ export class ObservationVitalsComponent implements OnInit {
   constructor(
     private http: CustomHttpClient,
     public observationavitalsService: ObservationVitalsService,
-    private utility: UtilityService
+    utility: UtilityService
   ) {
     let data = utility.data;
     this.vitals = JSON.parse(data.vitals);
@@ -67,14 +67,21 @@ export class ObservationVitalsComponent implements OnInit {
             return EMPTY;
           }
         })
-        .map((response) => response.entry.flatMap((array) => array))
-        .reduce((acc, x) => acc.concat(x), [])
+        .map((response) => {
+          if (response.entry) {
+            return response.entry.flatMap((array) => array);
+          }
+          return [];
+        })
+        .reduce((acc, x) => {
+          return acc.concat(x), [];
+        })
         .subscribe(
           (savedEntries) => {
-            let entries = this.vitals.entry;
-            if (entries && entries.length > 0) {
+            let ehr_entries = this.vitals.entry;
+            if (ehr_entries && ehr_entries.length > 0) {
               // filtering the entries to only Observations
-              let observationEntries = entries.filter(function (item) {
+              let observationEntries = ehr_entries.filter(function (item) {
                 return item.resource.resourceType === "Observation";
               });
 
@@ -82,12 +89,13 @@ export class ObservationVitalsComponent implements OnInit {
                 let observationEntry = observationEntries[j];
                 // Case I - The record has not been submitted
                 observationEntry.state = "bold";
-                if (savedEntries && savedEntries.length > 0) {
+                if (savedEntries && savedEntries.length > 1) {
                   // Case II - The record has been submitted and there were no updates
                   // we cannot submit these records unless there is a change in data.
                   // sse stands for submitted saved entry
                   let sse = savedEntries.filter((savedEntry) => {
                     return (
+                      savedEntry.resource &&
                       savedEntry.resource.identifier &&
                       observationEntry.fullUrl ===
                         savedEntry.resource.identifier[0].value &&
@@ -99,6 +107,7 @@ export class ObservationVitalsComponent implements OnInit {
                   // use - updated saved entry
                   let use = savedEntries.filter((savedEntry) => {
                     return (
+                      savedEntry.resource &&
                       savedEntry.resource.identifier &&
                       observationEntry.fullUrl ===
                         savedEntry.resource.identifier[0].value &&

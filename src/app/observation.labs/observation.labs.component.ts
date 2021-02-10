@@ -31,11 +31,13 @@ export class ObservationLabsComponent implements OnInit {
   isAlldisabled: boolean;
   totalSuccessCount: number;
   totalFailCount: number;
+  success: boolean = false;
+  error: boolean = false;
 
   constructor(
     private http: CustomHttpClient,
     public observationlabsService: ObservationLabsService,
-    private utility: UtilityService
+    utility: UtilityService
   ) {
     let data = utility.data;
     this.labs = JSON.parse(data.labs);
@@ -67,10 +69,17 @@ export class ObservationLabsComponent implements OnInit {
             return EMPTY;
           }
         })
-        .map((response) => response.entry.flatMap((array) => array))
+        //{return response.entry ? flatMap((array) => array)) : response}
+        .map((response) => {
+          if (response.entry) {
+            return response.entry.flatMap((array) => array);
+          }
+          return [];
+        })
         .reduce((acc, x) => acc.concat(x), [])
         .subscribe(
           (savedEntries) => {
+            //need to refactor savedEntries
             let entries = this.labs.entry;
             if (entries && entries.length > 0) {
               // filtering the entries to only Observations

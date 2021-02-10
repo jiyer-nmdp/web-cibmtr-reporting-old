@@ -6,6 +6,7 @@
 .fixed_header table {
   border-collapse: collapse;
   width: 100%;
+  overflow: scroll;
 }
 
 .fixed_header th,

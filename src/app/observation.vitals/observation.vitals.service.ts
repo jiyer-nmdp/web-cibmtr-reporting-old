@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { AppConfig } from "../app.config";
 import { Observable } from "rxjs";
 import { CustomHttpClient } from "../client/custom.http.client";
-import { LocalStorageService } from "angular-2-local-storage";
 import { UtilityService } from "../utility.service";
 import { catchError, map } from "rxjs/operators";
 import { throwError } from "rxjs";
@@ -11,7 +10,6 @@ import { throwError } from "rxjs";
 export class ObservationVitalsService {
   constructor(
     private http: CustomHttpClient,
-    private _localStorageService: LocalStorageService,
     private utilityService: UtilityService
   ) {}
 
@@ -116,7 +114,7 @@ export class ObservationVitalsService {
       subject +
       "&_security=" +
       psScope +
-      "&_total=accurate&_count=1000&category=vital-signs";
+      "&_total=accurate&_count=20&category=vital-signs";
     return this.http.get(url);
   }
 }
