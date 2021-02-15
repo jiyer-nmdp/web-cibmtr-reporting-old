@@ -1,32 +1,18 @@
 <div class="container">
   <nav class="navbar navbar-expand-sm fixed-top navbar-light bg-light">
     <alert
-      type="success"
+      type="info"
       [dismissible]="true"
       [dismissOnTimeout]="30000"
-      *ngIf="totalSuccessCount > 0"
+      *ngIf="totalSuccessCount > 0 || totalFailCount > 0"
     >
-      <strong
-        >{{ totalSuccessCount }} Observation(s) submitted Successfully</strong
-      >
+      <strong type="success" *ngIf="totalSuccessCount > 0"
+        >{{ totalSuccessCount }} Observation(s) submitted Successfully.
+      </strong>
+      <strong *ngIf="totalFailCount > 0"
+        >{{ totalFailCount }} Observation(s) failed to Submit
+      </strong>
     </alert>
-    <!-- <alert
-      type="danger"
-      [dismissible]="true"
-      [dismissOnTimeout]="30000"
-      *ngIf="errorBundle"
-    >
-      <strong>Error occurred while fetching saved observations</strong>
-    </alert> -->
-    <alert
-      type="danger"
-      [dismissible]="true"
-      [dismissOnTimeout]="30000"
-      *ngIf="totalFailCount > 0"
-    >
-      <strong>{{ totalFailCount }} Observation(s) failed to Submit</strong>
-    </alert>
-
     <div class="col-md-6 date-label">
       <b>Date Retrieved </b> : {{ now | date: "yyyy-MM-dd HH:mm" }}
     </div>

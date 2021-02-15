@@ -188,7 +188,6 @@ export class PatientComponent implements OnInit {
     this.crid$ = this.fhirService
       .lookupPatientCrid(logicalId.concat(`&_security=${encodedScope}`))
       .pipe(take(1));
-
     this.crid$.subscribe(
       (resp: any) => {
         const total = resp.total;

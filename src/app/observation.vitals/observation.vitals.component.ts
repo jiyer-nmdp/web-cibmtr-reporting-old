@@ -67,15 +67,14 @@ export class ObservationVitalsComponent implements OnInit {
             return EMPTY;
           }
         })
+        //{return response.entry ? flatMap((array) => array)) : response}
         .map((response) => {
           if (response.entry) {
             return response.entry.flatMap((array) => array);
           }
           return [];
         })
-        .reduce((acc, x) => {
-          return acc.concat(x), [];
-        })
+        .reduce((acc, x) => acc.concat(x), [])
         .subscribe(
           (savedEntries) => {
             let ehr_entries = this.vitals.entry;
@@ -89,13 +88,12 @@ export class ObservationVitalsComponent implements OnInit {
                 let observationEntry = observationEntries[j];
                 // Case I - The record has not been submitted
                 observationEntry.state = "bold";
-                if (savedEntries && savedEntries.length > 1) {
+                if (savedEntries && savedEntries.length > 0) {
                   // Case II - The record has been submitted and there were no updates
                   // we cannot submit these records unless there is a change in data.
                   // sse stands for submitted saved entry
                   let sse = savedEntries.filter((savedEntry) => {
                     return (
-                      savedEntry.resource &&
                       savedEntry.resource.identifier &&
                       observationEntry.fullUrl ===
                         savedEntry.resource.identifier[0].value &&
@@ -107,7 +105,6 @@ export class ObservationVitalsComponent implements OnInit {
                   // use - updated saved entry
                   let use = savedEntries.filter((savedEntry) => {
                     return (
-                      savedEntry.resource &&
                       savedEntry.resource.identifier &&
                       observationEntry.fullUrl ===
                         savedEntry.resource.identifier[0].value &&
@@ -298,7 +295,7 @@ export class ObservationVitalsComponent implements OnInit {
   };
 
   toggleAllOption = function () {
-    this.isAlldisabled = this.labs.entry.every(function (entry) {
+    this.isAlldisabled = this.vitals.entry.every(function (entry) {
       return entry.disabled;
     });
   };
