@@ -108,6 +108,7 @@ export class AuthorizationService {
     return null;
   }
 
+  //TODO : possibility of getting invalid ISS should be handled.
   getIss(absUrl) {
     let urlSegments = absUrl.split("?"),
       params = urlSegments[1].split("&");
@@ -118,7 +119,6 @@ export class AuthorizationService {
         return decodeURIComponent(pv[1]);
       }
     }
-
     return null;
   }
 
