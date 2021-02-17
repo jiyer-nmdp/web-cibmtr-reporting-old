@@ -54,7 +54,8 @@ export class AppInitService {
           authorizeUrl = this.authorizationService.getAuthorizeUrl(response),
           authorizationCodeUrl = this.authorizationService.constructAuthorizationUrl(
             authorizeUrl,
-            launchToken
+            launchToken,
+            iss
           );
         this._localStorageService.set("tokenUrl", tokenUrl);
         window.location.href = authorizationCodeUrl;
