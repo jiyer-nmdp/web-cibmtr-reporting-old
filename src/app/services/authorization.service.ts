@@ -37,7 +37,7 @@ export class AuthorizationService {
       .toPromise();
   }
 
-  constructAuthorizationUrl(baseUrl, launchToken) {
+  constructAuthorizationUrl(baseUrl, launchToken, aud) {
     return (
       baseUrl +
       "?scope=launch&response_type=code" +
@@ -47,6 +47,8 @@ export class AuthorizationService {
       AppConfig.client_id +
       "&launch=" +
       launchToken +
+      "&aud=" +
+      encodeURIComponent(aud) +
       "&state=search"
     );
   }
