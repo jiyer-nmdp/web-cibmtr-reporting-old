@@ -206,6 +206,7 @@ export class ObservationAgvhdComponent implements OnInit {
     ) {
       this.observationagvhdService
         .postUpdatedRecords(this.selectedUpdatedResources, this.psScope)
+        .retry(1)
         .subscribe(
           (response) => {
             Array.prototype.concat

@@ -16,17 +16,17 @@ const ehr_url = [
   {
     //
     url:
-      "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/endFZe2sorgK5yH219Tqbsw3",
+      "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eQYVH16R88hl-NPxd4lL17A3",
     json: patient,
   },
   {
     url:
-      "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation?category=laboratory&patient=endFZe2sorgK5yH219Tqbsw3",
+      "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation?category=laboratory&patient=eQYVH16R88hl-NPxd4lL17A3",
     json: labs,
   },
   {
     url:
-      "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation?category=vital-signs&patient=endFZe2sorgK5yH219Tqbsw3",
+      "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation?category=vital-signs&patient=eQYVH16R88hl-NPxd4lL17A3",
     json: vitals,
   },
 ];
