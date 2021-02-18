@@ -37,7 +37,7 @@ export class AuthorizationService {
       .toPromise();
   }
 
-  constructAuthorizationUrl(baseUrl, launchToken) {
+  constructAuthorizationUrl(baseUrl, launchToken, aud) {
     return (
       baseUrl +
       "?scope=launch&response_type=code" +
@@ -47,6 +47,8 @@ export class AuthorizationService {
       AppConfig.client_id +
       "&launch=" +
       launchToken +
+      "&aud=" +
+      encodeURIComponent(aud) +
       "&state=search"
     );
   }
@@ -108,6 +110,7 @@ export class AuthorizationService {
     return null;
   }
 
+  //TODO : possibility of getting invalid ISS should be handled.
   getIss(absUrl) {
     let urlSegments = absUrl.split("?"),
       params = urlSegments[1].split("&");
@@ -118,7 +121,6 @@ export class AuthorizationService {
         return decodeURIComponent(pv[1]);
       }
     }
-
     return null;
   }
 

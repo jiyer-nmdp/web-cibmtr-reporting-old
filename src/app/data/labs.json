@@ -1,0 +1,2345 @@
+{
+  "resourceType": "Bundle",
+  "type": "searchset",
+  "total": 38,
+  "link": [
+    {
+      "relation": "self",
+      "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation?category=laboratory&patient=e.ubaAUtjerjT7fDRGg-Mxw3"
+    }
+  ],
+  "entry": [
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eHuQ1NT50bnavo6jYhwhh.22Z5.lanVcSeeW8E25uSlJK6QvKSY7pyemsWSqxuCeK3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eHuQ1NT50bnavo6jYhwhh.22Z5.lanVcSeeW8E25uSlJK6QvKSY7pyemsWSqxuCeK3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eHuQ1NT50bnavo6jYhwhh.22Z5.lanVcSeeW8E25uSlJK6QvKSY7pyemsWSqxuCeK3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "2093-3",
+              "display": "Cholesterol [Mass/volume] in Serum or Plasma"
+            }
+          ],
+          "text": "Cholesterol, Total"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/enUzUbclL5CmKODptMHj-Iw3",
+          "display": "Zzambmaster, Uma"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eo8fdNfn.od7vSh6x8jGiYA3"
+        },
+        "effectiveDateTime": "2021-04-26T05:00:00Z",
+        "issued": "2021-04-26T23:38:33Z",
+        "valueQuantity": { "value": 170 }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/e94Y2RA3Y8zM1BUnFpVVrhGihuc3fnKDrzUsKm-3Km2TL2cyeLmy9-RPNeGYVFHKq3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/e94Y2RA3Y8zM1BUnFpVVrhGihuc3fnKDrzUsKm-3Km2TL2cyeLmy9-RPNeGYVFHKq3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "e94Y2RA3Y8zM1BUnFpVVrhGihuc3fnKDrzUsKm-3Km2TL2cyeLmy9-RPNeGYVFHKq3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "POCT",
+                "display": "Point of Care Testing"
+              }
+            ],
+            "text": "Point of Care Testing"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "18481-2",
+              "display": "Streptococcus pyogenes Ag [Presence] in Throat"
+            }
+          ],
+          "text": "Rapid Strep A Screen"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/enUzUbclL5CmKODptMHj-Iw3",
+          "display": "Zzambmaster, Uma"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/edAkRdAdoVR34ZE-nz-JhzA3"
+        },
+        "effectiveDateTime": "2023-10-19T19:58:00Z",
+        "issued": "2023-10-19T20:08:53Z",
+        "valueString": "Positive",
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/ValueSet/observation-interpretation",
+              "code": "A",
+              "display": "Abnormal"
+            }
+          ],
+          "text": "Abnormal"
+        },
+        "referenceRange": [{ "text": "Negative, None detected" }]
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/ekb8kCajLJoO1NU7rH2UxzCSQamK6J7uEvPddhgHjuiZ7pjYF0-7zukTBWcPahXrp3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/ekb8kCajLJoO1NU7rH2UxzCSQamK6J7uEvPddhgHjuiZ7pjYF0-7zukTBWcPahXrp3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "ekb8kCajLJoO1NU7rH2UxzCSQamK6J7uEvPddhgHjuiZ7pjYF0-7zukTBWcPahXrp3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "718-7",
+              "display": "Hemoglobin [Mass/volume] in Blood"
+            }
+          ],
+          "text": "Hemoglobin"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/enUzUbclL5CmKODptMHj-Iw3",
+          "display": "Zzambmaster, Uma"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eebe6FWJx86xSA5cFG3umiA3"
+        },
+        "effectiveDateTime": "2022-11-02T05:00:00Z",
+        "issued": "2022-11-03T00:18:53Z",
+        "valueQuantity": {
+          "value": 14.5,
+          "unit": "g/dL",
+          "system": "http://unitsofmeasure.org",
+          "code": "g/dL"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 12,
+              "unit": "g/dL",
+              "system": "http://unitsofmeasure.org",
+              "code": "g/dL"
+            },
+            "high": {
+              "value": 16,
+              "unit": "g/dL",
+              "system": "http://unitsofmeasure.org",
+              "code": "g/dL"
+            },
+            "text": "12.0 - 16.0 g/dL"
+          }
+        ]
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eNnl5Bx2Br4ZNGjxbcycFxbb5Z7RgQIUdbTqQOtVrVT1XJRRbeDfER0mgMzglSQ3J3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eNnl5Bx2Br4ZNGjxbcycFxbb5Z7RgQIUdbTqQOtVrVT1XJRRbeDfER0mgMzglSQ3J3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eNnl5Bx2Br4ZNGjxbcycFxbb5Z7RgQIUdbTqQOtVrVT1XJRRbeDfER0mgMzglSQ3J3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "718-7",
+              "display": "Hemoglobin [Mass/volume] in Blood"
+            }
+          ],
+          "text": "Hemoglobin"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/enUzUbclL5CmKODptMHj-Iw3",
+          "display": "Zzambmaster, Uma"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eo8fdNfn.od7vSh6x8jGiYA3"
+        },
+        "effectiveDateTime": "2021-04-26T05:00:00Z",
+        "issued": "2021-04-26T23:37:18Z",
+        "valueQuantity": {
+          "value": 13.0,
+          "unit": "g/dL",
+          "system": "http://unitsofmeasure.org",
+          "code": "g/dL"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 12,
+              "unit": "g/dL",
+              "system": "http://unitsofmeasure.org",
+              "code": "g/dL"
+            },
+            "high": {
+              "value": 16,
+              "unit": "g/dL",
+              "system": "http://unitsofmeasure.org",
+              "code": "g/dL"
+            },
+            "text": "12.0 - 16.0 g/dL"
+          }
+        ]
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/ekb8kCajLJoO1NU7rH2UxzCSQamK6J7uEvPddhgHjuibiv9-87Hc898YRUrm9UFoF3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/ekb8kCajLJoO1NU7rH2UxzCSQamK6J7uEvPddhgHjuibiv9-87Hc898YRUrm9UFoF3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "ekb8kCajLJoO1NU7rH2UxzCSQamK6J7uEvPddhgHjuibiv9-87Hc898YRUrm9UFoF3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "4544-3",
+              "display": "Hematocrit [Volume Fraction] of Blood by Automated count"
+            }
+          ],
+          "text": "Hematocrit"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/enUzUbclL5CmKODptMHj-Iw3",
+          "display": "Zzambmaster, Uma"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eebe6FWJx86xSA5cFG3umiA3"
+        },
+        "effectiveDateTime": "2022-11-02T05:00:00Z",
+        "issued": "2022-11-03T00:18:53Z",
+        "valueQuantity": {
+          "value": 43,
+          "unit": "%",
+          "system": "http://unitsofmeasure.org",
+          "code": "%"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 36,
+              "unit": "%",
+              "system": "http://unitsofmeasure.org",
+              "code": "%"
+            },
+            "high": {
+              "value": 46,
+              "unit": "%",
+              "system": "http://unitsofmeasure.org",
+              "code": "%"
+            },
+            "text": "36 - 46 %"
+          }
+        ]
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eNnl5Bx2Br4ZNGjxbcycFxbb5Z7RgQIUdbTqQOtVrVT32BIF4DYyoKs0L4q7BeNBc3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eNnl5Bx2Br4ZNGjxbcycFxbb5Z7RgQIUdbTqQOtVrVT32BIF4DYyoKs0L4q7BeNBc3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eNnl5Bx2Br4ZNGjxbcycFxbb5Z7RgQIUdbTqQOtVrVT32BIF4DYyoKs0L4q7BeNBc3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "4544-3",
+              "display": "Hematocrit [Volume Fraction] of Blood by Automated count"
+            }
+          ],
+          "text": "Hematocrit"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/enUzUbclL5CmKODptMHj-Iw3",
+          "display": "Zzambmaster, Uma"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eo8fdNfn.od7vSh6x8jGiYA3"
+        },
+        "effectiveDateTime": "2021-04-26T05:00:00Z",
+        "issued": "2021-04-26T23:37:18Z",
+        "valueQuantity": {
+          "value": 44,
+          "unit": "%",
+          "system": "http://unitsofmeasure.org",
+          "code": "%"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 36,
+              "unit": "%",
+              "system": "http://unitsofmeasure.org",
+              "code": "%"
+            },
+            "high": {
+              "value": 46,
+              "unit": "%",
+              "system": "http://unitsofmeasure.org",
+              "code": "%"
+            },
+            "text": "36 - 46 %"
+          }
+        ]
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eNnl5Bx2Br4ZNGjxbcycFxbb5Z7RgQIUdbTqQOtVrVT2Rl8svVIuuFa2QtQnqYdq13"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eNnl5Bx2Br4ZNGjxbcycFxbb5Z7RgQIUdbTqQOtVrVT2Rl8svVIuuFa2QtQnqYdq13",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eNnl5Bx2Br4ZNGjxbcycFxbb5Z7RgQIUdbTqQOtVrVT2Rl8svVIuuFa2QtQnqYdq13",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "731-0",
+              "display": "Lymphocytes [#/volume] in Blood by Automated count"
+            }
+          ],
+          "text": "Lymphocytes Absolute"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/enUzUbclL5CmKODptMHj-Iw3",
+          "display": "Zzambmaster, Uma"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eo8fdNfn.od7vSh6x8jGiYA3"
+        },
+        "effectiveDateTime": "2021-04-26T05:00:00Z",
+        "issued": "2021-04-26T23:37:18Z",
+        "valueQuantity": {
+          "value": 2.0,
+          "unit": "10*3/uL",
+          "system": "http://unitsofmeasure.org",
+          "code": "10*3/uL"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 1.4,
+              "unit": "10*3/uL",
+              "system": "http://unitsofmeasure.org",
+              "code": "10*3/uL"
+            },
+            "high": {
+              "value": 2.9,
+              "unit": "10*3/uL",
+              "system": "http://unitsofmeasure.org",
+              "code": "10*3/uL"
+            },
+            "text": "1.40 - 2.90 10*3/uL"
+          }
+        ]
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eL1Y6JpHplNDL5UdiyPU7Ysfzftp.CICGNHNThPAummo3L4f0-KwyMQkRPV2XABQ33"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eL1Y6JpHplNDL5UdiyPU7Ysfzftp.CICGNHNThPAummo3L4f0-KwyMQkRPV2XABQ33",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eL1Y6JpHplNDL5UdiyPU7Ysfzftp.CICGNHNThPAummo3L4f0-KwyMQkRPV2XABQ33",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "POCT",
+                "display": "Point of Care Testing"
+              }
+            ],
+            "text": "Point of Care Testing"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "9335-1",
+              "display": "Appearance of Body fluid"
+            }
+          ],
+          "text": "Appearance, Fluid"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/enUzUbclL5CmKODptMHj-Iw3",
+          "display": "Zzambmaster, Uma"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eebe6FWJx86xSA5cFG3umiA3"
+        },
+        "effectiveDateTime": "2022-11-03T00:15:00Z",
+        "issued": "2022-11-03T00:20:45Z",
+        "valueString": "Clear",
+        "referenceRange": [{ "text": "Clear, Slightly Cloudy" }]
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/ekDY3Wk9EOeEN--GPzlnTs.pFdzDwHh6.uLOLdhypW9gp94KQdhiOqCo3xkZYEgBX3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/ekDY3Wk9EOeEN--GPzlnTs.pFdzDwHh6.uLOLdhypW9gp94KQdhiOqCo3xkZYEgBX3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "ekDY3Wk9EOeEN--GPzlnTs.pFdzDwHh6.uLOLdhypW9gp94KQdhiOqCo3xkZYEgBX3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": { "text": "HIV-1/HIV-2 Ab" },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/enUzUbclL5CmKODptMHj-Iw3",
+          "display": "Zzambmaster, Uma"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eebe6FWJx86xSA5cFG3umiA3"
+        },
+        "effectiveDateTime": "2022-11-02T05:00:00Z",
+        "issued": "2022-11-03T00:14:40Z",
+        "valueString": "Negative"
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/ekb8kCajLJoO1NU7rH2UxzE-3tSpbgWXScREoMWFCDaE9ahTpKPOv0qfzhNT3-vt13"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/ekb8kCajLJoO1NU7rH2UxzE-3tSpbgWXScREoMWFCDaE9ahTpKPOv0qfzhNT3-vt13",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "ekb8kCajLJoO1NU7rH2UxzE-3tSpbgWXScREoMWFCDaE9ahTpKPOv0qfzhNT3-vt13",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "5821-4",
+              "display": "Leukocytes [#/area] in Urine sediment by Microscopy high power field"
+            }
+          ],
+          "text": "WBC, Urine"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/enUzUbclL5CmKODptMHj-Iw3",
+          "display": "Zzambmaster, Uma"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eebe6FWJx86xSA5cFG3umiA3"
+        },
+        "effectiveDateTime": "2022-11-02T05:00:00Z",
+        "issued": "2022-11-03T00:18:53Z",
+        "valueString": "5-10",
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/ValueSet/observation-interpretation",
+              "code": "A",
+              "display": "Abnormal"
+            }
+          ],
+          "text": "Abnormal"
+        },
+        "referenceRange": [{ "text": "None Seen, Occasional" }]
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eL1Y6JpHplNDL5UdiyPU7Ysfzftp.CICGNHNThPAummoaL39cJkNPxeKkzWHMRY4w3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eL1Y6JpHplNDL5UdiyPU7Ysfzftp.CICGNHNThPAummoaL39cJkNPxeKkzWHMRY4w3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eL1Y6JpHplNDL5UdiyPU7Ysfzftp.CICGNHNThPAummoaL39cJkNPxeKkzWHMRY4w3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "POCT",
+                "display": "Point of Care Testing"
+              }
+            ],
+            "text": "Point of Care Testing"
+          }
+        ],
+        "code": { "text": "Color, UA" },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/enUzUbclL5CmKODptMHj-Iw3",
+          "display": "Zzambmaster, Uma"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eebe6FWJx86xSA5cFG3umiA3"
+        },
+        "effectiveDateTime": "2022-11-03T00:15:00Z",
+        "issued": "2022-11-03T00:20:45Z",
+        "valueString": "Amber"
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eL1Y6JpHplNDL5UdiyPU7Ysfzftp.CICGNHNThPAummql0t-QeZBl--kD00TcJMD33"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eL1Y6JpHplNDL5UdiyPU7Ysfzftp.CICGNHNThPAummql0t-QeZBl--kD00TcJMD33",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eL1Y6JpHplNDL5UdiyPU7Ysfzftp.CICGNHNThPAummql0t-QeZBl--kD00TcJMD33",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "POCT",
+                "display": "Point of Care Testing"
+              }
+            ],
+            "text": "Point of Care Testing"
+          }
+        ],
+        "code": { "text": "Clarity, UA" },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/enUzUbclL5CmKODptMHj-Iw3",
+          "display": "Zzambmaster, Uma"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eebe6FWJx86xSA5cFG3umiA3"
+        },
+        "effectiveDateTime": "2022-11-03T00:15:00Z",
+        "issued": "2022-11-03T00:20:45Z",
+        "valueString": "Clear"
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eL1Y6JpHplNDL5UdiyPU7Ysfzftp.CICGNHNThPAummplCVYAPHPvunkkDNyIXr7d3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eL1Y6JpHplNDL5UdiyPU7Ysfzftp.CICGNHNThPAummplCVYAPHPvunkkDNyIXr7d3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eL1Y6JpHplNDL5UdiyPU7Ysfzftp.CICGNHNThPAummplCVYAPHPvunkkDNyIXr7d3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "POCT",
+                "display": "Point of Care Testing"
+              }
+            ],
+            "text": "Point of Care Testing"
+          }
+        ],
+        "code": { "text": "Glucose, UA" },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/enUzUbclL5CmKODptMHj-Iw3",
+          "display": "Zzambmaster, Uma"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eebe6FWJx86xSA5cFG3umiA3"
+        },
+        "effectiveDateTime": "2022-11-03T00:15:00Z",
+        "issued": "2022-11-03T00:20:45Z",
+        "valueString": "Negative"
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eL1Y6JpHplNDL5UdiyPU7Ysfzftp.CICGNHNThPAummqenjNl8fTuiArt93tDRoWI3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eL1Y6JpHplNDL5UdiyPU7Ysfzftp.CICGNHNThPAummqenjNl8fTuiArt93tDRoWI3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eL1Y6JpHplNDL5UdiyPU7Ysfzftp.CICGNHNThPAummqenjNl8fTuiArt93tDRoWI3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "POCT",
+                "display": "Point of Care Testing"
+              }
+            ],
+            "text": "Point of Care Testing"
+          }
+        ],
+        "code": { "text": "Bilirubin, UA" },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/enUzUbclL5CmKODptMHj-Iw3",
+          "display": "Zzambmaster, Uma"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eebe6FWJx86xSA5cFG3umiA3"
+        },
+        "effectiveDateTime": "2022-11-03T00:15:00Z",
+        "issued": "2022-11-03T00:20:45Z",
+        "valueString": "Negative"
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eL1Y6JpHplNDL5UdiyPU7Ysfzftp.CICGNHNThPAummqka6PZsg4Ws3SKotQDDI5-3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eL1Y6JpHplNDL5UdiyPU7Ysfzftp.CICGNHNThPAummqka6PZsg4Ws3SKotQDDI5-3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eL1Y6JpHplNDL5UdiyPU7Ysfzftp.CICGNHNThPAummqka6PZsg4Ws3SKotQDDI5-3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "POCT",
+                "display": "Point of Care Testing"
+              }
+            ],
+            "text": "Point of Care Testing"
+          }
+        ],
+        "code": { "text": "Ketones, UA" },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/enUzUbclL5CmKODptMHj-Iw3",
+          "display": "Zzambmaster, Uma"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eebe6FWJx86xSA5cFG3umiA3"
+        },
+        "effectiveDateTime": "2022-11-03T00:15:00Z",
+        "issued": "2022-11-03T00:20:45Z",
+        "valueString": "Positive"
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eL1Y6JpHplNDL5UdiyPU7Ysfzftp.CICGNHNThPAummr1zhsVLPsFaU1NukKL9HFQ3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eL1Y6JpHplNDL5UdiyPU7Ysfzftp.CICGNHNThPAummr1zhsVLPsFaU1NukKL9HFQ3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eL1Y6JpHplNDL5UdiyPU7Ysfzftp.CICGNHNThPAummr1zhsVLPsFaU1NukKL9HFQ3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "POCT",
+                "display": "Point of Care Testing"
+              }
+            ],
+            "text": "Point of Care Testing"
+          }
+        ],
+        "code": { "text": "Spec Grav, UA" },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/enUzUbclL5CmKODptMHj-Iw3",
+          "display": "Zzambmaster, Uma"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eebe6FWJx86xSA5cFG3umiA3"
+        },
+        "effectiveDateTime": "2022-11-03T00:15:00Z",
+        "issued": "2022-11-03T00:20:45Z",
+        "valueQuantity": { "value": 1.031 }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eL1Y6JpHplNDL5UdiyPU7Ysfzftp.CICGNHNThPAummq0deSp8wEHyYXddw98CIdV3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eL1Y6JpHplNDL5UdiyPU7Ysfzftp.CICGNHNThPAummq0deSp8wEHyYXddw98CIdV3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eL1Y6JpHplNDL5UdiyPU7Ysfzftp.CICGNHNThPAummq0deSp8wEHyYXddw98CIdV3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "POCT",
+                "display": "Point of Care Testing"
+              }
+            ],
+            "text": "Point of Care Testing"
+          }
+        ],
+        "code": { "text": "pH, UA" },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/enUzUbclL5CmKODptMHj-Iw3",
+          "display": "Zzambmaster, Uma"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eebe6FWJx86xSA5cFG3umiA3"
+        },
+        "effectiveDateTime": "2022-11-03T00:15:00Z",
+        "issued": "2022-11-03T00:20:45Z",
+        "valueQuantity": { "value": 7.5 }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eL1Y6JpHplNDL5UdiyPU7Ysfzftp.CICGNHNThPAummoBpBcCeM-b8ogFONkOK5xS3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eL1Y6JpHplNDL5UdiyPU7Ysfzftp.CICGNHNThPAummoBpBcCeM-b8ogFONkOK5xS3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eL1Y6JpHplNDL5UdiyPU7Ysfzftp.CICGNHNThPAummoBpBcCeM-b8ogFONkOK5xS3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "POCT",
+                "display": "Point of Care Testing"
+              }
+            ],
+            "text": "Point of Care Testing"
+          }
+        ],
+        "code": { "text": "Protein, UA" },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/enUzUbclL5CmKODptMHj-Iw3",
+          "display": "Zzambmaster, Uma"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eebe6FWJx86xSA5cFG3umiA3"
+        },
+        "effectiveDateTime": "2022-11-03T00:15:00Z",
+        "issued": "2022-11-03T00:20:45Z",
+        "valueString": "Negative"
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eL1Y6JpHplNDL5UdiyPU7Ysfzftp.CICGNHNThPAummrZDOFrF-sXRmwrzA8o86pK3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eL1Y6JpHplNDL5UdiyPU7Ysfzftp.CICGNHNThPAummrZDOFrF-sXRmwrzA8o86pK3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eL1Y6JpHplNDL5UdiyPU7Ysfzftp.CICGNHNThPAummrZDOFrF-sXRmwrzA8o86pK3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "POCT",
+                "display": "Point of Care Testing"
+              }
+            ],
+            "text": "Point of Care Testing"
+          }
+        ],
+        "code": { "text": "Urobilinogen, UA" },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/enUzUbclL5CmKODptMHj-Iw3",
+          "display": "Zzambmaster, Uma"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eebe6FWJx86xSA5cFG3umiA3"
+        },
+        "effectiveDateTime": "2022-11-03T00:15:00Z",
+        "issued": "2022-11-03T00:20:45Z",
+        "valueString": "2.0"
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eL1Y6JpHplNDL5UdiyPU7Ysfzftp.CICGNHNThPAummrWPVwD8Z1.lJNwmQviLWbk3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eL1Y6JpHplNDL5UdiyPU7Ysfzftp.CICGNHNThPAummrWPVwD8Z1.lJNwmQviLWbk3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eL1Y6JpHplNDL5UdiyPU7Ysfzftp.CICGNHNThPAummrWPVwD8Z1.lJNwmQviLWbk3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "POCT",
+                "display": "Point of Care Testing"
+              }
+            ],
+            "text": "Point of Care Testing"
+          }
+        ],
+        "code": { "text": "Nitrite, UA" },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/enUzUbclL5CmKODptMHj-Iw3",
+          "display": "Zzambmaster, Uma"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eebe6FWJx86xSA5cFG3umiA3"
+        },
+        "effectiveDateTime": "2022-11-03T00:15:00Z",
+        "issued": "2022-11-03T00:20:45Z",
+        "valueString": "Negative"
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eL1Y6JpHplNDL5UdiyPU7Ysfzftp.CICGNHNThPAummrGJzAhAmJbHO3GB5bOs95E3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eL1Y6JpHplNDL5UdiyPU7Ysfzftp.CICGNHNThPAummrGJzAhAmJbHO3GB5bOs95E3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eL1Y6JpHplNDL5UdiyPU7Ysfzftp.CICGNHNThPAummrGJzAhAmJbHO3GB5bOs95E3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "POCT",
+                "display": "Point of Care Testing"
+              }
+            ],
+            "text": "Point of Care Testing"
+          }
+        ],
+        "code": { "text": "Leukocytes, UA" },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/enUzUbclL5CmKODptMHj-Iw3",
+          "display": "Zzambmaster, Uma"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eebe6FWJx86xSA5cFG3umiA3"
+        },
+        "effectiveDateTime": "2022-11-03T00:15:00Z",
+        "issued": "2022-11-03T00:20:45Z",
+        "valueString": "Negative"
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eL1Y6JpHplNDL5UdiyPU7Ysfzftp.CICGNHNThPAummrMGWP6UgQ.VAc1ENiobcok3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eL1Y6JpHplNDL5UdiyPU7Ysfzftp.CICGNHNThPAummrMGWP6UgQ.VAc1ENiobcok3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eL1Y6JpHplNDL5UdiyPU7Ysfzftp.CICGNHNThPAummrMGWP6UgQ.VAc1ENiobcok3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "POCT",
+                "display": "Point of Care Testing"
+              }
+            ],
+            "text": "Point of Care Testing"
+          }
+        ],
+        "code": { "text": "Blood, UA" },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/enUzUbclL5CmKODptMHj-Iw3",
+          "display": "Zzambmaster, Uma"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eebe6FWJx86xSA5cFG3umiA3"
+        },
+        "effectiveDateTime": "2022-11-03T00:15:00Z",
+        "issued": "2022-11-03T00:20:45Z",
+        "valueString": "Negative"
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eHuQ1NT50bnavo6jYhwhh.3hZYf54szTF4o1pJ17UOQ4Ufs4ZejnD2xqMg8K9KB1C3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eHuQ1NT50bnavo6jYhwhh.3hZYf54szTF4o1pJ17UOQ4Ufs4ZejnD2xqMg8K9KB1C3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eHuQ1NT50bnavo6jYhwhh.3hZYf54szTF4o1pJ17UOQ4Ufs4ZejnD2xqMg8K9KB1C3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "2571-8",
+              "display": "Triglyceride [Mass/volume] in Serum or Plasma"
+            }
+          ],
+          "text": "Triglycerides"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/enUzUbclL5CmKODptMHj-Iw3",
+          "display": "Zzambmaster, Uma"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eo8fdNfn.od7vSh6x8jGiYA3"
+        },
+        "effectiveDateTime": "2021-04-26T05:00:00Z",
+        "issued": "2021-04-26T23:38:33Z",
+        "valueQuantity": {
+          "value": 150,
+          "unit": "mg/dL",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dL"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 40,
+              "unit": "mg/dL",
+              "system": "http://unitsofmeasure.org",
+              "code": "mg/dL"
+            },
+            "high": {
+              "value": 160,
+              "unit": "mg/dL",
+              "system": "http://unitsofmeasure.org",
+              "code": "mg/dL"
+            },
+            "text": "40 - 160 mg/dL"
+          }
+        ]
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eOJ3Mzaagywrj399hoRLIMh1a8OJshC14v-AsojnSRi61JbH5kpp1AMpfHGD1EIXg3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eOJ3Mzaagywrj399hoRLIMh1a8OJshC14v-AsojnSRi61JbH5kpp1AMpfHGD1EIXg3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eOJ3Mzaagywrj399hoRLIMh1a8OJshC14v-AsojnSRi61JbH5kpp1AMpfHGD1EIXg3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": { "text": "Syphilis RPR, Cord" },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/enUzUbclL5CmKODptMHj-Iw3",
+          "display": "Zzambmaster, Uma"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eebe6FWJx86xSA5cFG3umiA3"
+        },
+        "effectiveDateTime": "2022-11-02T05:00:00Z",
+        "issued": "2022-11-03T00:14:19Z",
+        "valueString": "Nonreactive"
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/ePNB7d8HMvm-5Q.iINDFbIlqvngQgiaPf5Wq-KPASHXyhr-KdEaPupSoyoZ-yiZru3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/ePNB7d8HMvm-5Q.iINDFbIlqvngQgiaPf5Wq-KPASHXyhr-KdEaPupSoyoZ-yiZru3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "ePNB7d8HMvm-5Q.iINDFbIlqvngQgiaPf5Wq-KPASHXyhr-KdEaPupSoyoZ-yiZru3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Path,Cyt",
+                "display": "Pathology and Cytology"
+              }
+            ],
+            "text": "Pathology and Cytology"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "33717-0",
+              "display": "Cytology Cervical or vaginal smear or scraping study"
+            }
+          ],
+          "text": "Pap"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/enUzUbclL5CmKODptMHj-Iw3",
+          "display": "Zzambmaster, Uma"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eebe6FWJx86xSA5cFG3umiA3"
+        },
+        "effectiveDateTime": "2022-11-02T05:00:00Z",
+        "issued": "2022-11-03T00:12:47Z",
+        "valueString": "Epithelial cell abnormality",
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/ValueSet/observation-interpretation",
+              "code": "A",
+              "display": "Abnormal"
+            }
+          ],
+          "text": "Abnormal"
+        },
+        "referenceRange": [
+          {
+            "text": "Negative for intraephithelial lesion or malignancy, Other"
+          }
+        ]
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eg5k9rTxxxvUSy39t1.Q7VDIVQpxk9sjIKXzxbck6R-WfSA7AyHFfRsNzuzsToM0R3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eg5k9rTxxxvUSy39t1.Q7VDIVQpxk9sjIKXzxbck6R-WfSA7AyHFfRsNzuzsToM0R3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eg5k9rTxxxvUSy39t1.Q7VDIVQpxk9sjIKXzxbck6R-WfSA7AyHFfRsNzuzsToM0R3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Path,Cyt",
+                "display": "Pathology and Cytology"
+              }
+            ],
+            "text": "Pathology and Cytology"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "33717-0",
+              "display": "Cytology Cervical or vaginal smear or scraping study"
+            }
+          ],
+          "text": "Pap"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/enUzUbclL5CmKODptMHj-Iw3",
+          "display": "Zzambmaster, Uma"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/er.xNzDajRVXHVvyRrIWYMw3"
+        },
+        "effectiveDateTime": "2022-04-29T05:00:00Z",
+        "issued": "2022-04-29T23:57:56Z",
+        "valueString": "Epithelial cell abnormality",
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/ValueSet/observation-interpretation",
+              "code": "A",
+              "display": "Abnormal"
+            }
+          ],
+          "text": "Abnormal"
+        },
+        "referenceRange": [
+          {
+            "text": "Negative for intraephithelial lesion or malignancy, Other"
+          }
+        ]
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/e0UfO72UTjVgHu2iZJ2gReZRu5DCu61BsL6h-SrmNQ5BvMqy84wWy2E3VLvITow283"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/e0UfO72UTjVgHu2iZJ2gReZRu5DCu61BsL6h-SrmNQ5BvMqy84wWy2E3VLvITow283",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "e0UfO72UTjVgHu2iZJ2gReZRu5DCu61BsL6h-SrmNQ5BvMqy84wWy2E3VLvITow283",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Path,Cyt",
+                "display": "Pathology and Cytology"
+              }
+            ],
+            "text": "Pathology and Cytology"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "33717-0",
+              "display": "Cytology Cervical or vaginal smear or scraping study"
+            }
+          ],
+          "text": "Pap"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/enUzUbclL5CmKODptMHj-Iw3",
+          "display": "Zzambmaster, Uma"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eo8fdNfn.od7vSh6x8jGiYA3"
+        },
+        "effectiveDateTime": "2021-04-26T05:00:00Z",
+        "issued": "2021-04-26T23:38:49Z",
+        "valueString": "Negative for intraephithelial lesion or malignancy",
+        "referenceRange": [
+          {
+            "text": "Negative for intraephithelial lesion or malignancy, Other"
+          }
+        ]
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eNnl5Bx2Br4ZNGjxbcycFxU3Y1vzPjx8nsQXDHo7KoZ7YUtEPG7vJqTkBLyHTnxgF3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eNnl5Bx2Br4ZNGjxbcycFxU3Y1vzPjx8nsQXDHo7KoZ7YUtEPG7vJqTkBLyHTnxgF3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eNnl5Bx2Br4ZNGjxbcycFxU3Y1vzPjx8nsQXDHo7KoZ7YUtEPG7vJqTkBLyHTnxgF3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "787-2",
+              "display": "Erythrocyte mean corpuscular volume [Entitic volume] by Automated count"
+            }
+          ],
+          "text": "MCV"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/enUzUbclL5CmKODptMHj-Iw3",
+          "display": "Zzambmaster, Uma"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eo8fdNfn.od7vSh6x8jGiYA3"
+        },
+        "effectiveDateTime": "2021-04-26T05:00:00Z",
+        "issued": "2021-04-26T23:37:18Z",
+        "valueQuantity": {
+          "value": 91.2,
+          "unit": "fL",
+          "system": "http://unitsofmeasure.org",
+          "code": "fL"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 82,
+              "unit": "fL",
+              "system": "http://unitsofmeasure.org",
+              "code": "fL"
+            },
+            "high": {
+              "value": 108,
+              "unit": "fL",
+              "system": "http://unitsofmeasure.org",
+              "code": "fL"
+            },
+            "text": "82.0 - 108.0 fL"
+          }
+        ]
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eNnl5Bx2Br4ZNGjxbcycFxU3Y1vzPjx8nsQXDHo7KoZ7xWgskn8BTjtvFwODj4z3v3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eNnl5Bx2Br4ZNGjxbcycFxU3Y1vzPjx8nsQXDHo7KoZ7xWgskn8BTjtvFwODj4z3v3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eNnl5Bx2Br4ZNGjxbcycFxU3Y1vzPjx8nsQXDHo7KoZ7xWgskn8BTjtvFwODj4z3v3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "32623-1",
+              "display": "Platelet mean volume [Entitic volume] in Blood by Automated count"
+            }
+          ],
+          "text": "MPV"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/enUzUbclL5CmKODptMHj-Iw3",
+          "display": "Zzambmaster, Uma"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eo8fdNfn.od7vSh6x8jGiYA3"
+        },
+        "effectiveDateTime": "2021-04-26T05:00:00Z",
+        "issued": "2021-04-26T23:37:18Z",
+        "valueQuantity": {
+          "value": 9.9,
+          "unit": "fL",
+          "system": "http://unitsofmeasure.org",
+          "code": "fL"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 7.5,
+              "unit": "fL",
+              "system": "http://unitsofmeasure.org",
+              "code": "fL"
+            },
+            "high": {
+              "value": 11.5,
+              "unit": "fL",
+              "system": "http://unitsofmeasure.org",
+              "code": "fL"
+            },
+            "text": "7.5 - 11.5 fL"
+          }
+        ]
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/ekb8kCajLJoO1NU7rH2UxzIVIKDXtt0rLbzm0kYDmQpakM0.wfcDen-hZcxEsV-nk3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/ekb8kCajLJoO1NU7rH2UxzIVIKDXtt0rLbzm0kYDmQpakM0.wfcDen-hZcxEsV-nk3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "ekb8kCajLJoO1NU7rH2UxzIVIKDXtt0rLbzm0kYDmQpakM0.wfcDen-hZcxEsV-nk3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "777-3",
+              "display": "Platelets [#/volume] in Blood by Automated count"
+            }
+          ],
+          "text": "Platelets"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/enUzUbclL5CmKODptMHj-Iw3",
+          "display": "Zzambmaster, Uma"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eebe6FWJx86xSA5cFG3umiA3"
+        },
+        "effectiveDateTime": "2022-11-02T05:00:00Z",
+        "issued": "2022-11-03T00:18:53Z",
+        "valueQuantity": {
+          "value": 356,
+          "unit": "10*3/uL",
+          "system": "http://unitsofmeasure.org",
+          "code": "10*3/uL"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 150,
+              "unit": "10*3/uL",
+              "system": "http://unitsofmeasure.org",
+              "code": "10*3/uL"
+            },
+            "high": {
+              "value": 399,
+              "unit": "10*3/uL",
+              "system": "http://unitsofmeasure.org",
+              "code": "10*3/uL"
+            },
+            "text": "150 - 399 10*3/uL"
+          }
+        ]
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eNnl5Bx2Br4ZNGjxbcycFxU3Y1vzPjx8nsQXDHo7KoZ4YWWa2l-27qmC-8mGNC9i23"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eNnl5Bx2Br4ZNGjxbcycFxU3Y1vzPjx8nsQXDHo7KoZ4YWWa2l-27qmC-8mGNC9i23",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eNnl5Bx2Br4ZNGjxbcycFxU3Y1vzPjx8nsQXDHo7KoZ4YWWa2l-27qmC-8mGNC9i23",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "777-3",
+              "display": "Platelets [#/volume] in Blood by Automated count"
+            }
+          ],
+          "text": "Platelets"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/enUzUbclL5CmKODptMHj-Iw3",
+          "display": "Zzambmaster, Uma"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eo8fdNfn.od7vSh6x8jGiYA3"
+        },
+        "effectiveDateTime": "2021-04-26T05:00:00Z",
+        "issued": "2021-04-26T23:37:18Z",
+        "valueQuantity": {
+          "value": 389,
+          "unit": "10*3/uL",
+          "system": "http://unitsofmeasure.org",
+          "code": "10*3/uL"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 150,
+              "unit": "10*3/uL",
+              "system": "http://unitsofmeasure.org",
+              "code": "10*3/uL"
+            },
+            "high": {
+              "value": 399,
+              "unit": "10*3/uL",
+              "system": "http://unitsofmeasure.org",
+              "code": "10*3/uL"
+            },
+            "text": "150 - 399 10*3/uL"
+          }
+        ]
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/ekb8kCajLJoO1NU7rH2UxzIVIKDXtt0rLbzm0kYDmQpamao0KdPzbrLTPogHPTIT-3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/ekb8kCajLJoO1NU7rH2UxzIVIKDXtt0rLbzm0kYDmQpamao0KdPzbrLTPogHPTIT-3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "ekb8kCajLJoO1NU7rH2UxzIVIKDXtt0rLbzm0kYDmQpamao0KdPzbrLTPogHPTIT-3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "789-8",
+              "display": "Erythrocytes [#/volume] in Blood by Automated count"
+            }
+          ],
+          "text": "RBC"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/enUzUbclL5CmKODptMHj-Iw3",
+          "display": "Zzambmaster, Uma"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eebe6FWJx86xSA5cFG3umiA3"
+        },
+        "effectiveDateTime": "2022-11-02T05:00:00Z",
+        "issued": "2022-11-03T00:18:53Z",
+        "valueQuantity": { "value": 5.0, "unit": "10*6/µL" },
+        "referenceRange": [
+          {
+            "low": { "value": 4, "unit": "10*6/µL" },
+            "high": { "value": 5.2, "unit": "10*6/µL" },
+            "text": "4.00 - 5.20 10*6/µL"
+          }
+        ]
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eNnl5Bx2Br4ZNGjxbcycFxU3Y1vzPjx8nsQXDHo7KoZ7kWW3-PjIP69x28modwAe.3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eNnl5Bx2Br4ZNGjxbcycFxU3Y1vzPjx8nsQXDHo7KoZ7kWW3-PjIP69x28modwAe.3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eNnl5Bx2Br4ZNGjxbcycFxU3Y1vzPjx8nsQXDHo7KoZ7kWW3-PjIP69x28modwAe.3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "789-8",
+              "display": "Erythrocytes [#/volume] in Blood by Automated count"
+            }
+          ],
+          "text": "RBC"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/enUzUbclL5CmKODptMHj-Iw3",
+          "display": "Zzambmaster, Uma"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eo8fdNfn.od7vSh6x8jGiYA3"
+        },
+        "effectiveDateTime": "2021-04-26T05:00:00Z",
+        "issued": "2021-04-26T23:37:18Z",
+        "valueQuantity": { "value": 4.89, "unit": "10*6/µL" },
+        "referenceRange": [
+          {
+            "low": { "value": 4, "unit": "10*6/µL" },
+            "high": { "value": 5.2, "unit": "10*6/µL" },
+            "text": "4.00 - 5.20 10*6/µL"
+          }
+        ]
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eNN2iNYbq45EJMPgiTnkn0TbBZ42J6ec8Z7jRvVPv4tm8bRYwsSyIQlmf3RcUsTtg3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eNN2iNYbq45EJMPgiTnkn0TbBZ42J6ec8Z7jRvVPv4tm8bRYwsSyIQlmf3RcUsTtg3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eNN2iNYbq45EJMPgiTnkn0TbBZ42J6ec8Z7jRvVPv4tm8bRYwsSyIQlmf3RcUsTtg3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": { "text": "Hep B S Ag Interp" },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/enUzUbclL5CmKODptMHj-Iw3",
+          "display": "Zzambmaster, Uma"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eebe6FWJx86xSA5cFG3umiA3"
+        },
+        "effectiveDateTime": "2022-11-02T05:00:00Z",
+        "issued": "2022-11-03T00:15:43Z",
+        "valueString": "Nonreactive"
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eHuQ1NT50bnavo6jYhwhh..yLcotZWDIQ7yF4mH70wkLvw13RBIO9DkcHwd948qvB3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eHuQ1NT50bnavo6jYhwhh..yLcotZWDIQ7yF4mH70wkLvw13RBIO9DkcHwd948qvB3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eHuQ1NT50bnavo6jYhwhh..yLcotZWDIQ7yF4mH70wkLvw13RBIO9DkcHwd948qvB3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "2085-9",
+              "display": "Cholesterol in HDL [Mass/volume] in Serum or Plasma"
+            }
+          ],
+          "text": "HDL"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/enUzUbclL5CmKODptMHj-Iw3",
+          "display": "Zzambmaster, Uma"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eo8fdNfn.od7vSh6x8jGiYA3"
+        },
+        "effectiveDateTime": "2021-04-26T05:00:00Z",
+        "issued": "2021-04-26T23:38:33Z",
+        "valueQuantity": {
+          "value": 40,
+          "unit": "mg/dL",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dL"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 35,
+              "unit": "mg/dL",
+              "system": "http://unitsofmeasure.org",
+              "code": "mg/dL"
+            },
+            "high": {
+              "value": 70,
+              "unit": "mg/dL",
+              "system": "http://unitsofmeasure.org",
+              "code": "mg/dL"
+            },
+            "text": "35 - 70 mg/dL"
+          }
+        ]
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eZHWKjAx1Nfmd.d5P3ddF9a4cuMUy4BVM4gT1.V8NeTZPiUW9VpvUAXfmFB.Y85x13"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eZHWKjAx1Nfmd.d5P3ddF9a4cuMUy4BVM4gT1.V8NeTZPiUW9VpvUAXfmFB.Y85x13",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eZHWKjAx1Nfmd.d5P3ddF9a4cuMUy4BVM4gT1.V8NeTZPiUW9VpvUAXfmFB.Y85x13",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Microbiology",
+                "display": "Microbiology"
+              }
+            ],
+            "text": "Microbiology"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "21189-6",
+              "display": "Chlamydia trachomatis DNA [Presence] in Cervical mucus by Probe and target amplification method"
+            }
+          ],
+          "text": "Chlamydia DNA Probe w/Rflx"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/enUzUbclL5CmKODptMHj-Iw3",
+          "display": "Zzambmaster, Uma"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eebe6FWJx86xSA5cFG3umiA3"
+        },
+        "effectiveDateTime": "2022-11-02T05:00:00Z",
+        "issued": "2022-11-03T00:13:14Z",
+        "valueString": "neg"
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eHuQ1NT50bnavo6jYhwhh.7nkEDIw8Sb4cqQru8rHixKutwt6LhsBQ0rGOxzn2urn3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eHuQ1NT50bnavo6jYhwhh.7nkEDIw8Sb4cqQru8rHixKutwt6LhsBQ0rGOxzn2urn3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eHuQ1NT50bnavo6jYhwhh.7nkEDIw8Sb4cqQru8rHixKutwt6LhsBQ0rGOxzn2urn3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": { "text": "LDL Cholesterol" },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/enUzUbclL5CmKODptMHj-Iw3",
+          "display": "Zzambmaster, Uma"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eo8fdNfn.od7vSh6x8jGiYA3"
+        },
+        "effectiveDateTime": "2021-04-26T05:00:00Z",
+        "issued": "2021-04-26T23:38:33Z",
+        "valueQuantity": {
+          "value": 100,
+          "unit": "mg/dL",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dL"
+        }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eNnl5Bx2Br4ZNGjxbcycFxWv7ERsh5bqG-rgbxVNB.GHfpbIQczBpxeJ1FrCNSvV83"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eNnl5Bx2Br4ZNGjxbcycFxWv7ERsh5bqG-rgbxVNB.GHfpbIQczBpxeJ1FrCNSvV83",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eNnl5Bx2Br4ZNGjxbcycFxWv7ERsh5bqG-rgbxVNB.GHfpbIQczBpxeJ1FrCNSvV83",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ],
+            "text": "Laboratory"
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30",
+                "code": "Lab",
+                "display": "Lab"
+              }
+            ],
+            "text": "Lab"
+          }
+        ],
+        "code": { "text": "Eosinophils Manual" },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/enUzUbclL5CmKODptMHj-Iw3",
+          "display": "Zzambmaster, Uma"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eo8fdNfn.od7vSh6x8jGiYA3"
+        },
+        "effectiveDateTime": "2021-04-26T05:00:00Z",
+        "issued": "2021-04-26T23:37:18Z",
+        "valueQuantity": { "value": 0 }
+      },
+      "search": { "mode": "match" }
+    }
+  ]
+}

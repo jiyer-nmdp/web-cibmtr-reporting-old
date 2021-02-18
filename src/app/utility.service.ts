@@ -4,13 +4,11 @@ import { Injectable } from "@angular/core";
   providedIn: "root",
 })
 export class UtilityService {
-
   //IE data clone issue with router state object
   data: any;
+  chunkSize: number = 30;
 
   constructor() {}
-
-  //Reusable methods defined in this Components
 
   //rewrite if iss url contains "DSTU2" string
   rebuild_DSTU2_STU3_Url(url: string) {
@@ -20,9 +18,14 @@ export class UtilityService {
     return url;
   }
 
-
-
-
-
-
+  //
+  chunk(array, size) {
+    const chunked_arr = [];
+    let index = 0;
+    while (index < array.length) {
+      chunked_arr.push(array.slice(index, size + index));
+      index += size;
+    }
+    return chunked_arr;
+  }
 }

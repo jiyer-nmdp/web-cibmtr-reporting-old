@@ -7,12 +7,27 @@ import {
   HttpResponse,
 } from "@angular/common/http";
 import { Observable, of } from "rxjs";
-//import * as users from "./patient.json";
 
-const urls = [
+import * as patient from "../data/patient.json";
+import * as labs from "../data/labs.json";
+import * as vitals from "../data/vitals.json";
+
+const ehr_url = [
   {
-    url: "https://jsonplaceholder.typicode.com/users",
-    json: "users",
+    //
+    url:
+      "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eQYVH16R88hl-NPxd4lL17A3",
+    json: patient,
+  },
+  {
+    url:
+      "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation?category=laboratory&patient=eQYVH16R88hl-NPxd4lL17A3",
+    json: labs,
+  },
+  {
+    url:
+      "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation?category=vital-signs&patient=eQYVH16R88hl-NPxd4lL17A3",
+    json: vitals,
   },
 ];
 
@@ -24,7 +39,7 @@ export class HttpMockRequestInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    for (const element of urls) {
+    for (const element of ehr_url) {
       if (request.url === element.url) {
         console.log("Loaded from json : " + request.url);
         return of(

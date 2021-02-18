@@ -18,12 +18,13 @@ export class ObservationAgvhdService {
   // Below method submit new records to the cibmtr
   postNewRecords(selectedResources, psScope): Observable<any> {
     return from(selectedResources).pipe(
-      concatMap((selectedResource) => {
-        const tmpResource: any = selectedResource;
+      concatMap((selectedResource: any) => {
+        const { id, ...remainingfields } = selectedResource;
         return this.http.post(
           AppConfig.cibmtr_fhir_update_url + "Observation",
           {
-            ...(selectedResource as {}),
+            ...remainingfields,
+            status: status || "unknown",
             meta: {
               security: [
                 {
@@ -41,7 +42,7 @@ export class ObservationAgvhdService {
                     this._localStorageService.get("iss")
                   ) +
                   "/Observation/" +
-                  tmpResource.id,
+                  id,
               },
             ],
           }
@@ -95,7 +96,7 @@ export class ObservationAgvhdService {
       subject +
       "&_security=" +
       psScope +
-      "&_total=accurate&_count=1000";
+      "&_total=accurate&_count=500";
     return this.http.get(url);
   }
 }
