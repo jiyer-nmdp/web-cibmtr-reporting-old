@@ -6,9 +6,34 @@ import { mergeMap } from "rxjs/operators";
 import { EMPTY, from } from "rxjs";
 import { AppConfig } from "../app.config";
 import { CustomHttpClient } from "../client/custom.http.client";
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+} from "@angular/animations";
 
 @Component({
   selector: "app-observation.labs",
+  animations: [
+    trigger("alertState", [
+      state(
+        "show",
+        style({
+          opacity: 1,
+        })
+      ),
+      state(
+        "hide",
+        style({
+          opacity: 0,
+        })
+      ),
+      transition("show => hide", animate("600ms ease-out")),
+      transition("hide => show", animate("1000ms ease-in")),
+    ]),
+  ],
   templateUrl: "./observation.labs.component.html",
   styleUrls: ["./observation.labs.component.scss"],
 })
@@ -79,7 +104,6 @@ export class ObservationLabsComponent implements OnInit {
         .reduce((acc, x) => acc.concat(x), [])
         .subscribe(
           (savedEntries) => {
-            //need to refactor savedEntries
             let entries = this.labs.entry;
             if (entries && entries.length > 0) {
               // filtering the entries to only Observations
@@ -223,7 +247,6 @@ export class ObservationLabsComponent implements OnInit {
       );
 
       let _successCount = 0;
-      let _failCount = 0;
 
       from(bundles)
         .pipe(
@@ -233,29 +256,26 @@ export class ObservationLabsComponent implements OnInit {
         )
         .finally(() => {
           this.totalSuccessCount = _successCount;
-          this.totalFailCount = _failCount;
+          this.totalFailCount = totalEntries.length - _successCount;
           this.checkForSelectAll();
         })
         .subscribe(
           (response) => {
-            // loop through all entries
-            // for each entry find the corresponding matching entry from total entries
-            // for matched entry set the state to lighter
-            response.entry.forEach((entry) => {
-              let idValue = entry.resource.identifier[0].value;
-              const matchedEntry = totalEntries.find((e) => {
-                return idValue === e.fullUrl;
+            response.entry &&
+              response.entry.forEach((entry) => {
+                let idValue = entry.resource.identifier[0].value;
+                const matchedEntry = totalEntries.find((e) => {
+                  return idValue === e.fullUrl;
+                });
+                matchedEntry.state = "lighter";
+                _successCount++;
               });
-              matchedEntry.state = "lighter";
-              _successCount++;
-            });
           },
           (errorBundle) => {
             console.log(
               "error occurred while fetching saved observations",
               errorBundle
             );
-            _failCount = _failCount + errorBundle.entry.length;
           }
         );
     }
@@ -300,4 +320,10 @@ export class ObservationLabsComponent implements OnInit {
       return entry.disabled;
     });
   };
+
+  get toggleAlert() {
+    return this.totalSuccessCount > 0 || this.totalFailCount > 0
+      ? "show"
+      : "hide";
+  }
 }
