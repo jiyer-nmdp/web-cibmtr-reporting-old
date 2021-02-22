@@ -1,6 +1,14 @@
 <div class="container">
   <nav class="navbar navbar-expand-sm fixed-top navbar-light bg-light">
-    <div class="alert alert-info alert-dismissible" [@alertState]="toggleAlert">
+    <alert type="info" *ngIf="totalSuccessCount > 0 || totalFailCount > 0">
+      <strong *ngIf="totalSuccessCount > 0"
+        >{{ totalSuccessCount }} Observation(s) submitted Successfully.
+      </strong>
+      <strong *ngIf="totalFailCount > 0"
+        >{{ totalFailCount }} Observation(s) failed to Submit
+      </strong>
+    </alert>
+    <!-- <div class="alert alert-info alert-dismissible" [@alertState]="toggleAlert">
       <span class="close" data-dismiss="alert" aria-label="close">&times;</span>
       <strong [hidden]="!totalSuccessCount > 0"
         >{{ totalSuccessCount }} Observation(s) submitted Successfully.
@@ -8,7 +16,7 @@
       <strong [hidden]="!totalFailCount > 0"
         >{{ totalFailCount }} Observation(s) failed to Submit.
       </strong>
-    </div>
+    </div> -->
 
     <div class="col-md-6 date-label">
       <b>Date Retrieved </b> : {{ now | date: "yyyy-MM-dd HH:mm" }}

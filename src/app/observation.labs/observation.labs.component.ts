@@ -6,34 +6,35 @@ import { mergeMap } from "rxjs/operators";
 import { EMPTY, from } from "rxjs";
 import { AppConfig } from "../app.config";
 import { CustomHttpClient } from "../client/custom.http.client";
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition,
-} from "@angular/animations";
+// import {
+//   trigger,
+//   state,
+//   style,
+//   animate,
+//   transition,
+// } from "@angular/animations";
 
 @Component({
   selector: "app-observation.labs",
-  animations: [
-    trigger("alertState", [
-      state(
-        "show",
-        style({
-          opacity: 1,
-        })
-      ),
-      state(
-        "hide",
-        style({
-          opacity: 0,
-        })
-      ),
-      transition("show => hide", animate("600ms ease-out")),
-      transition("hide => show", animate("1000ms ease-in")),
-    ]),
-  ],
+  //TODO : Commented below as Animation may not work in IE11 
+  // animations: [
+  //   trigger("alertState", [
+  //     state(
+  //       "show",
+  //       style({
+  //         opacity: 1,
+  //       })
+  //     ),
+  //     state(
+  //       "hide",
+  //       style({
+  //         opacity: 0,
+  //       })
+  //     ),
+  //     transition("show => hide", animate("600ms ease-out")),
+  //     transition("hide => show", animate("1000ms ease-in")),
+  //   ]),
+  // ],
   templateUrl: "./observation.labs.component.html",
   styleUrls: ["./observation.labs.component.scss"],
 })

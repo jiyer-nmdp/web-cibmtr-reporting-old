@@ -34,7 +34,7 @@ export class ObservationVitalsComponent implements OnInit {
 
   constructor(
     private http: CustomHttpClient,
-    public observationavitalsService: ObservationVitalsService,
+    public observationvitalsService: ObservationVitalsService,
     utility: UtilityService
   ) {
     let data = utility.data;
@@ -54,7 +54,7 @@ export class ObservationVitalsComponent implements OnInit {
       this.vitals.entry.length > 0 &&
       this.vitals.entry[0].resource.subject
     ) {
-      this.observationavitalsService
+      this.observationvitalsService
         .getCibmtrObservationsVitals(subj, psScope)
         .expand((response) => {
           let next =
@@ -77,6 +77,7 @@ export class ObservationVitalsComponent implements OnInit {
         .reduce((acc, x) => acc.concat(x), [])
         .subscribe(
           (savedEntries) => {
+            //need to refactor savedEntries
             let ehr_entries = this.vitals.entry;
             if (ehr_entries && ehr_entries.length > 0) {
               // filtering the entries to only Observations
@@ -216,45 +217,41 @@ export class ObservationVitalsComponent implements OnInit {
     ];
 
     if (totalEntries && totalEntries.length > 0) {
-      let bundles = this.observationavitalsService.getBundles(
+      let bundles = this.observationvitalsService.getBundles(
         totalEntries,
         this.psScope
       );
 
       let _successCount = 0;
-      let _failCount = 0;
 
       from(bundles)
         .pipe(
           mergeMap((bundle) =>
-            this.observationavitalsService.getBundleObservable(bundle)
+            this.observationvitalsService.getBundleObservable(bundle)
           )
         )
         .finally(() => {
           this.totalSuccessCount = _successCount;
-          this.totalFailCount = _failCount;
+          this.totalFailCount = totalEntries.length - _successCount;
           this.checkForSelectAll();
         })
         .subscribe(
           (response) => {
-            // loop through all entries
-            // for each entry find the corresponding matching entry from total entries
-            // for matched entry set the state to lighter
-            response.entry.forEach((entry) => {
-              let idValue = entry.resource.identifier[0].value;
-              const matchedEntry = totalEntries.find((e) => {
-                return idValue === e.fullUrl;
+            response.entry &&
+              response.entry.forEach((entry) => {
+                let idValue = entry.resource.identifier[0].value;
+                const matchedEntry = totalEntries.find((e) => {
+                  return idValue === e.fullUrl;
+                });
+                matchedEntry.state = "lighter";
+                _successCount++;
               });
-              matchedEntry.state = "lighter";
-              _successCount++;
-            });
           },
           (errorBundle) => {
             console.log(
               "error occurred while fetching saved observations",
               errorBundle
             );
-            _failCount = _failCount + errorBundle.entry.length;
           }
         );
     }

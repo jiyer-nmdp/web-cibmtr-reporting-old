@@ -79,7 +79,6 @@ export class ObservationCoreComponent implements OnInit {
         .reduce((acc, x) => acc.concat(x), [])
         .subscribe(
           (savedEntries) => {
-            //need to refactor savedEntries
             let entries = this.core.entry;
             if (entries && entries.length > 0) {
               // filtering the entries to only Observations
@@ -223,7 +222,6 @@ export class ObservationCoreComponent implements OnInit {
       );
 
       let _successCount = 0;
-      let _failCount = 0;
 
       from(bundles)
         .pipe(
@@ -233,29 +231,26 @@ export class ObservationCoreComponent implements OnInit {
         )
         .finally(() => {
           this.totalSuccessCount = _successCount;
-          this.totalFailCount = _failCount;
+          this.totalFailCount = totalEntries.length - _successCount;
           this.checkForSelectAll();
         })
         .subscribe(
           (response) => {
-            // loop through all entries
-            // for each entry find the corresponding matching entry from total entries
-            // for matched entry set the state to lighter
-            response.entry.forEach((entry) => {
-              let idValue = entry.resource.identifier[0].value;
-              const matchedEntry = totalEntries.find((e) => {
-                return idValue === e.fullUrl;
+            response.entry &&
+              response.entry.forEach((entry) => {
+                let idValue = entry.resource.identifier[0].value;
+                const matchedEntry = totalEntries.find((e) => {
+                  return idValue === e.fullUrl;
+                });
+                matchedEntry.state = "lighter";
+                _successCount++;
               });
-              matchedEntry.state = "lighter";
-              _successCount++;
-            });
           },
           (errorBundle) => {
             console.log(
               "error occurred while fetching saved observations",
               errorBundle
             );
-            _failCount = _failCount + errorBundle.entry.length;
           }
         );
     }
