@@ -20,10 +20,10 @@
           </div>
           <ng-template #other_content>
             <button
-              type="button"
               class="btn btn-primary register"
+              type="button"
               (click)="register($event, ehrpatient)"
-              [disabled]="crid || isLoading"
+              [disabled]="isLoading"
             >
               <img
                 *ngIf="isLoading"

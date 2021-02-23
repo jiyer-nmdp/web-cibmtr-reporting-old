@@ -19,3 +19,41 @@
   top: 0;
   background: rgb(243, 238, 238);
 }
+
+.date-label {
+  padding: 28px 0px 0px 14px;
+  height: 22px;
+  font-family: AvenirNext;
+  font-size: 16px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #696969;
+}
+
+// .alert-dismissible {
+//   -moz-animation: fadeOut 0s ease-in 10s forwards;
+//   -webkit-animation: fadeOut 0s ease-in 10s forwards;
+//   -o-animation: fadeOut 0s ease-in 10s forwards;
+//   animation: fadeOut 0s ease-in 10s forwards;
+//   -webkit-animation-fill-mode: forwards;
+//   animation-fill-mode: forwards;
+// }
+// @keyframes fadeOut {
+//   0% {
+//     overflow: hidden;
+//   }
+//   100% {
+//     visibility: hidden;
+//   }
+// }
+// @-webkit-keyframes fadeOut {
+//   0% {
+//     overflow: hidden;
+//   }
+//   100% {
+//     visibility: hidden;
+//   }
+//}
