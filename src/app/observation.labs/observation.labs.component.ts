@@ -6,35 +6,11 @@ import { mergeMap } from "rxjs/operators";
 import { EMPTY, from } from "rxjs";
 import { AppConfig } from "../app.config";
 import { CustomHttpClient } from "../client/custom.http.client";
-// import {
-//   trigger,
-//   state,
-//   style,
-//   animate,
-//   transition,
-// } from "@angular/animations";
+import { SpinnerService } from "../spinner/spinner.service";
 
 @Component({
   selector: "app-observation.labs",
-  //TODO : Commented below as Animation may not work in IE11 
-  // animations: [
-  //   trigger("alertState", [
-  //     state(
-  //       "show",
-  //       style({
-  //         opacity: 1,
-  //       })
-  //     ),
-  //     state(
-  //       "hide",
-  //       style({
-  //         opacity: 0,
-  //       })
-  //     ),
-  //     transition("show => hide", animate("600ms ease-out")),
-  //     transition("hide => show", animate("1000ms ease-in")),
-  //   ]),
-  // ],
+
   templateUrl: "./observation.labs.component.html",
   styleUrls: ["./observation.labs.component.scss"],
 })
@@ -57,13 +33,12 @@ export class ObservationLabsComponent implements OnInit {
   isAlldisabled: boolean;
   totalSuccessCount: number;
   totalFailCount: number;
-  success: boolean = false;
-  error: boolean = false;
 
   constructor(
     private http: CustomHttpClient,
     public observationlabsService: ObservationLabsService,
-    utility: UtilityService
+    utility: UtilityService,
+    private spinner: SpinnerService
   ) {
     let data = utility.data;
     this.labs = JSON.parse(data.labs);
@@ -82,6 +57,7 @@ export class ObservationLabsComponent implements OnInit {
       this.labs.entry.length > 0 &&
       this.labs.entry[0].resource.subject
     ) {
+      this.spinner.start();
       this.observationlabsService
         .getCibmtrObservationsLabs(subj, psScope)
         .expand((response) => {
@@ -95,7 +71,6 @@ export class ObservationLabsComponent implements OnInit {
             return EMPTY;
           }
         })
-        //{return response.entry ? flatMap((array) => array)) : response}
         .map((response) => {
           if (response.entry) {
             return response.entry.flatMap((array) => array);
@@ -105,6 +80,7 @@ export class ObservationLabsComponent implements OnInit {
         .reduce((acc, x) => acc.concat(x), [])
         .subscribe(
           (savedEntries) => {
+            this.spinner.end();
             let entries = this.labs.entry;
             if (entries && entries.length > 0) {
               // filtering the entries to only Observations
@@ -156,6 +132,7 @@ export class ObservationLabsComponent implements OnInit {
             }
           },
           (error) => {
+            this.spinner.reset();
             console.log(
               "error occurred while fetching saved observations",
               error
@@ -249,6 +226,7 @@ export class ObservationLabsComponent implements OnInit {
 
       let _successCount = 0;
 
+      this.spinner.start();
       from(bundles)
         .pipe(
           mergeMap((bundle) =>
@@ -256,6 +234,7 @@ export class ObservationLabsComponent implements OnInit {
           )
         )
         .finally(() => {
+          this.spinner.end();
           this.totalSuccessCount = _successCount;
           this.totalFailCount = totalEntries.length - _successCount;
           this.checkForSelectAll();
@@ -273,6 +252,7 @@ export class ObservationLabsComponent implements OnInit {
               });
           },
           (errorBundle) => {
+            this.spinner.reset();
             console.log(
               "error occurred while fetching saved observations",
               errorBundle
@@ -281,18 +261,6 @@ export class ObservationLabsComponent implements OnInit {
         );
     }
   }
-
-  // buildSelectedResources(selectedEntries) {
-  //   let selectedResources = [];
-  //   const flattenSelectedEntries = Array.prototype.concat.apply(
-  //     [],
-  //     selectedEntries
-  //   );
-  //   flattenSelectedEntries.forEach((selectedEntry) => {
-  //     selectedResources.push(selectedEntry.resource);
-  //   });
-  //   return selectedResources;
-  // }
 
   checkForSelectAll() {
     this.isAllSelected = this.labs.entry.every((entry) => entry.selected);

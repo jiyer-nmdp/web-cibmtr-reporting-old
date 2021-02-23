@@ -6,6 +6,7 @@ import { mergeMap } from "rxjs/operators";
 import { EMPTY, from } from "rxjs";
 import { AppConfig } from "../app.config";
 import { CustomHttpClient } from "../client/custom.http.client";
+import { SpinnerService } from "../spinner/spinner.service";
 
 @Component({
   selector: "app-observation.vitals",
@@ -35,7 +36,8 @@ export class ObservationVitalsComponent implements OnInit {
   constructor(
     private http: CustomHttpClient,
     public observationvitalsService: ObservationVitalsService,
-    utility: UtilityService
+    utility: UtilityService,
+    private spinner: SpinnerService
   ) {
     let data = utility.data;
     this.vitals = JSON.parse(data.vitals);
@@ -54,6 +56,7 @@ export class ObservationVitalsComponent implements OnInit {
       this.vitals.entry.length > 0 &&
       this.vitals.entry[0].resource.subject
     ) {
+      this.spinner.start();
       this.observationvitalsService
         .getCibmtrObservationsVitals(subj, psScope)
         .expand((response) => {
@@ -77,6 +80,7 @@ export class ObservationVitalsComponent implements OnInit {
         .reduce((acc, x) => acc.concat(x), [])
         .subscribe(
           (savedEntries) => {
+            this.spinner.end();
             //need to refactor savedEntries
             let ehr_entries = this.vitals.entry;
             if (ehr_entries && ehr_entries.length > 0) {
@@ -129,6 +133,7 @@ export class ObservationVitalsComponent implements OnInit {
             }
           },
           (error) => {
+            this.spinner.reset();
             console.log(
               "error occurred while fetching saved observations",
               error
@@ -224,6 +229,7 @@ export class ObservationVitalsComponent implements OnInit {
 
       let _successCount = 0;
 
+      this.spinner.start();
       from(bundles)
         .pipe(
           mergeMap((bundle) =>
@@ -231,6 +237,7 @@ export class ObservationVitalsComponent implements OnInit {
           )
         )
         .finally(() => {
+          this.spinner.end();
           this.totalSuccessCount = _successCount;
           this.totalFailCount = totalEntries.length - _successCount;
           this.checkForSelectAll();
@@ -248,6 +255,7 @@ export class ObservationVitalsComponent implements OnInit {
               });
           },
           (errorBundle) => {
+            this.spinner.reset();
             console.log(
               "error occurred while fetching saved observations",
               errorBundle
