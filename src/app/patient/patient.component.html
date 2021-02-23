@@ -25,11 +25,7 @@
               (click)="register($event, ehrpatient)"
               [disabled]="isLoading"
             >
-              <img
-                *ngIf="isLoading"
-                style="width: 24px"
-                src="assets/spinner.gif"
-              />
+              <img id="spinner" *ngIf="isLoading" src="assets/spinner.gif" />
               Associate Crid
             </button>
           </ng-template>
