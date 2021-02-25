@@ -17,11 +17,24 @@
 .fixed_header th {
   position: sticky;
   top: 0;
-  background: rgb(243, 238, 238);
+  background: rgb(220, 220, 220);
+}
+
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting:before,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_asc:before,
+table.dataTable thead .sorting_asc_disabled:after,
+table.dataTable thead .sorting_asc_disabled:before,
+table.dataTable thead .sorting_desc:after,
+table.dataTable thead .sorting_desc:before,
+table.dataTable thead .sorting_desc_disabled:after,
+table.dataTable thead .sorting_desc_disabled:before {
+  bottom: 0.5em;
 }
 
 .date-label {
-  padding: 28px 0px 0px 14px;
+  margin-top: 10px;
   height: 22px;
   font-family: AvenirNext;
   font-size: 16px;
