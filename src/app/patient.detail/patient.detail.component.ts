@@ -18,14 +18,16 @@ export class PatientDetailComponent implements OnInit {
   psScope: string;
   crid: string;
   activeLabel: string;
+  priority: any;
 
   constructor(private router: Router, private utility: UtilityService) {
 
     let data = utility.data;
 
     this.agvhd = JSON.parse(data.agvhd);
-    this.labs = JSON.parse(data.labs);
-    this.vitals = JSON.parse(data.vitals);
+    this.labs = this.utility.bundleObservations(data.labs);
+    this.vitals = this.utility.bundleObservations(data.vitals);
+    this.priority = this.utility.bundleObservations(data.priority);
     this.core = JSON.parse(data.core);
     this.ehrpatient = JSON.parse(data.ehrpatient);
     this.crid = data.crid;
@@ -36,8 +38,8 @@ export class PatientDetailComponent implements OnInit {
 
   getFullName(ehrpatient) {
     let givenName;
-    if (ehrpatient.name[0].text.length > 0) {
-      givenName = ehrpatient.name[0].text;
+    if (ehrpatient.name[0].given.length > 0) {
+      givenName = ehrpatient.name[0].given[0];
     }
     return givenName;
   }

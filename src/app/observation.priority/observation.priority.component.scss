@@ -1,0 +1,21 @@
+.fixed_header {
+  overflow: scroll;
+  height: 300px;
+}
+
+.fixed_header table {
+  border-collapse: collapse;
+  width: 100%;
+  overflow: scroll;
+}
+
+.fixed_header th,
+.fixed_header td {
+  padding: 8px 16px;
+}
+
+.fixed_header th {
+  position: sticky;
+  top: 0;
+  background: rgb(243, 238, 238);
+}

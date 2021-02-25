@@ -28,6 +28,8 @@ import { ObservationVitalsComponent } from "./observation.vitals/observation.vit
 import { ObservationVitalsService } from "./observation.vitals/observation.vitals.service";
 import { ObservationCoreComponent } from "./observation.corecharacteristics/observation.corecharacteristics.component";
 import { ObservationCoreService } from "./observation.corecharacteristics/observation.corecharacteristics.service";
+import {ObservationPriorityService} from "./observation.priority/observation.priority.service";
+import {ObservationPriorityComponent} from "./observation.priority/observation.priority.component";
 import { ErrorComponent } from "./error/error.component";
 import { InfoComponent } from "./info/info.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -47,6 +49,7 @@ export const isMock = environment.mock;
     ObservationLabsComponent,
     ObservationVitalsComponent,
     ObservationCoreComponent,
+    ObservationPriorityComponent,
     ErrorComponent,
     InfoComponent,
   ],
@@ -74,6 +77,7 @@ export const isMock = environment.mock;
     ObservationLabsService,
     ObservationVitalsService,
     ObservationCoreService,
+    ObservationPriorityService,
     AuthorizationService,
     AppInitService,
     FhirService,

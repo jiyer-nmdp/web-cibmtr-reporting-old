@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Patient } from "../model/patient.";
-import { ObservationVitalsService } from "./observation.vitals.service";
+import { ObservationPriorityService } from "./observation.priority.service";
 import { UtilityService } from "../utility.service";
 import { mergeMap } from "rxjs/operators";
 import { EMPTY, from } from "rxjs";
@@ -8,12 +8,12 @@ import { AppConfig } from "../app.config";
 import { CustomHttpClient } from "../client/custom.http.client";
 
 @Component({
-  selector: "app-observation.vitals",
-  templateUrl: "./observation.vitals.component.html",
-  styleUrls: ["./observation.vitals.component.scss"],
+  selector: "app-observation.priority",
+  templateUrl: "./observation.priority.component.html",
+  styleUrls: ["./observation.priority.component.scss"],
 })
-export class ObservationVitalsComponent implements OnInit {
-  vitals: any;
+export class ObservationPriorityComponent implements OnInit {
+  priority: any;
   savedBundle: any;
   toggle: any = [];
   codes: any = [];
@@ -31,31 +31,33 @@ export class ObservationVitalsComponent implements OnInit {
   isAlldisabled: boolean;
   totalSuccessCount: number;
   totalFailCount: number;
+  success: boolean = false;
+  error: boolean = false;
 
   constructor(
     private http: CustomHttpClient,
-    public observationavitalsService: ObservationVitalsService,
+    public observationpriorityService: ObservationPriorityService,
     utility: UtilityService
   ) {
     let data = utility.data;
-    this.vitals = utility.bundleObservations(data.vitals);
+    this.priority = utility.bundleObservations(data.priority);
     this.psScope = data.psScope;
   }
 
   ngOnInit() {
-    const subj = this.vitals.entry[0].resource.subject.reference;
+    const subj = this.priority.entry[0].resource.subject.reference;
     const psScope = this.psScope;
 
     this.now = new Date();
 
     if (
-      this.vitals &&
-      this.vitals.entry &&
-      this.vitals.entry.length > 0 &&
-      this.vitals.entry[0].resource.subject
+      this.priority &&
+      this.priority.entry &&
+      this.priority.entry.length > 0 &&
+      this.priority.entry[0].resource.subject
     ) {
-      this.observationavitalsService
-        .getCibmtrObservationsVitals(subj, psScope)
+      this.observationpriorityService
+        .getCibmtrObservationPriorityLabs(subj, psScope)
         .expand((response) => {
           let next =
             response.link && response.link.find((l) => l.relation === "next");
@@ -77,10 +79,11 @@ export class ObservationVitalsComponent implements OnInit {
         .reduce((acc, x) => acc.concat(x), [])
         .subscribe(
           (savedEntries) => {
-            let ehr_entries = this.vitals.entry;
-            if (ehr_entries && ehr_entries.length > 0) {
+            //need to refactor savedEntries
+            let entries = this.priority.entry;
+            if (entries && entries.length > 0) {
               // filtering the entries to only Observations
-              let observationEntries = ehr_entries.filter(function (item) {
+              let observationEntries = entries.filter(function (item) {
                 return item.resource.resourceType === "Observation";
               });
 
@@ -96,9 +99,9 @@ export class ObservationVitalsComponent implements OnInit {
                     return (
                       savedEntry.resource.identifier &&
                       observationEntry.fullUrl ===
-                        savedEntry.resource.identifier[0].value &&
+                      savedEntry.resource.identifier[0].value &&
                       observationEntry.resource.issued ===
-                        savedEntry.resource.issued
+                      savedEntry.resource.issued
                     );
                   });
 
@@ -107,9 +110,9 @@ export class ObservationVitalsComponent implements OnInit {
                     return (
                       savedEntry.resource.identifier &&
                       observationEntry.fullUrl ===
-                        savedEntry.resource.identifier[0].value &&
+                      savedEntry.resource.identifier[0].value &&
                       observationEntry.resource.issued !=
-                        savedEntry.resource.issued
+                      savedEntry.resource.issued
                     );
                   });
 
@@ -190,7 +193,7 @@ export class ObservationVitalsComponent implements OnInit {
 
     // New Records
     this.selectedNewEntries.push(
-      this.vitals.entry.filter((m) => m.selected === true && m.state === "bold")
+      this.priority.entry.filter((m) => m.selected === true && m.state === "bold")
     );
 
     this.selectedNewResources = Array.prototype.concat.apply(
@@ -200,9 +203,7 @@ export class ObservationVitalsComponent implements OnInit {
 
     // Updated Records
     this.selectedUpdatedEntries.push(
-      this.vitals.entry.filter(
-        (m) => m.selected === true && m.state === "normal"
-      )
+      this.priority.entry.filter((m) => m.selected === true && m.state === "normal")
     );
 
     this.selectedUpdatedResources = Array.prototype.concat.apply(
@@ -216,7 +217,7 @@ export class ObservationVitalsComponent implements OnInit {
     ];
 
     if (totalEntries && totalEntries.length > 0) {
-      let bundles = this.observationavitalsService.getBundles(
+      let bundles = this.observationpriorityService.getBundles(
         totalEntries,
         this.psScope
       );
@@ -227,7 +228,7 @@ export class ObservationVitalsComponent implements OnInit {
       from(bundles)
         .pipe(
           mergeMap((bundle) =>
-            this.observationavitalsService.getBundleObservable(bundle)
+            this.observationpriorityService.getBundleObservable(bundle)
           )
         )
         .finally(() => {
@@ -260,28 +261,16 @@ export class ObservationVitalsComponent implements OnInit {
     }
   }
 
-  // buildSelectedResources(selectedEntries) {
-  //   let selectedResources = [];
-  //   const flattenSelectedEntries = Array.prototype.concat.apply(
-  //     [],
-  //     selectedEntries
-  //   );
-  //   flattenSelectedEntries.forEach((selectedEntry) => {
-  //     selectedResources.push(selectedEntry.resource);
-  //   });
-  //   return selectedResources;
-  // }
-
   checkForSelectAll() {
-    this.isAllSelected = this.vitals.entry.every((entry) => entry.selected);
-    this.isAlldisabled = this.vitals.entry.every(
+    this.isAllSelected = this.priority.entry.every((entry) => entry.selected);
+    this.isAlldisabled = this.priority.entry.every(
       (entry) => entry.selected && entry.state === "lighter"
     );
   }
 
   selectAll() {
     let toggleStatus = this.isAllSelected;
-    this.vitals.entry.forEach((entry) => {
+    this.priority.entry.forEach((entry) => {
       if (entry.state != "lighter") {
         entry.selected = toggleStatus;
       }
@@ -289,13 +278,13 @@ export class ObservationVitalsComponent implements OnInit {
   }
 
   toggleOption = function () {
-    this.isAllSelected = this.vitals.entry.every(function (entry) {
+    this.isAllSelected = this.priority.entry.every(function (entry) {
       return entry.selected;
     });
   };
 
   toggleAllOption = function () {
-    this.isAlldisabled = this.vitals.entry.every(function (entry) {
+    this.isAlldisabled = this.priority.entry.every(function (entry) {
       return entry.disabled;
     });
   };

@@ -261,18 +261,6 @@ export class ObservationCoreComponent implements OnInit {
     }
   }
 
-  // buildSelectedResources(selectedEntries) {
-  //   let selectedResources = [];
-  //   const flattenSelectedEntries = Array.prototype.concat.apply(
-  //     [],
-  //     selectedEntries
-  //   );
-  //   flattenSelectedEntries.forEach((selectedEntry) => {
-  //     selectedResources.push(selectedEntry.resource);
-  //   });
-  //   return selectedResources;
-  // }
-
   checkForSelectAll() {
     this.isAllSelected = this.core.entry.every((entry) => entry.selected);
     this.isAlldisabled = this.core.entry.every(

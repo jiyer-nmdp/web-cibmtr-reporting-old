@@ -8,7 +8,7 @@ import { catchError, map } from "rxjs/operators";
 import { throwError } from "rxjs";
 
 @Injectable()
-export class ObservationVitalsService {
+export class ObservationPriorityService {
   constructor(
     private http: CustomHttpClient,
     private _localStorageService: LocalStorageService,
@@ -109,14 +109,15 @@ export class ObservationVitalsService {
     };
   }
 
-  getCibmtrObservationsVitals(subject, psScope): Observable<any> {
+  getCibmtrObservationPriorityLabs(subject, psScope): Observable<any> {
     const url =
       AppConfig.cibmtr_fhir_update_url +
       "Observation?subject=" +
+      this._localStorageService.get("iss") + "/" +
       subject +
       "&_security=" +
       psScope +
-      "&_total=accurate&_count=20&category=vital-signs";
+      "&_total=accurate&_count=20&code=http://loinc.org%7c&code=" + AppConfig.loinc_codes.join(",");
     return this.http.get(url);
   }
 }
