@@ -73,7 +73,7 @@
 }
 
 .date-label {
-  padding: 28px 0px 0px 14px;
+  margin-top: 10px;
   height: 22px;
   font-family: AvenirNext;
   font-size: 16px;
@@ -126,17 +126,6 @@
   text-align: center;
   color: #ffffff;
 }
-.numberCircle {
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  padding: 8px;
-  background: #fff;
-  border: 2px solid #666;
-  color: #666;
-  text-align: center;
-  font: 32px Arial, sans-serif;
-}
 
 .my-custom-scrollbar {
   position: relative;
@@ -145,4 +134,8 @@
 }
 .table-wrapper-scroll-y {
   display: block;
+}
+
+.btn {
+  margin-top: 10px;
 }
