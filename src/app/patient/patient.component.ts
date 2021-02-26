@@ -26,6 +26,7 @@ export class PatientComponent implements OnInit {
   labs: any;
   vitals: any;
   core: any;
+  priorityLabs: any;
   cibmtrObservations: any;
   crid: string;
   crid$: Observable<string>;
@@ -151,6 +152,7 @@ export class PatientComponent implements OnInit {
         this.vitals = results.pageData[2];
         this.labs = results.pageData[3];
         this.core = results.pageData[4];
+        this.priorityLabs = results.pageData[5];
         this.retreiveFhirPatient(this.ehrpatient, selectedScope);
       },
       (error) => {
@@ -464,6 +466,7 @@ export class PatientComponent implements OnInit {
       labs: JSON.stringify(this.labs),
       vitals: JSON.stringify(this.vitals),
       core: JSON.stringify(this.core),
+      priorityLabs: JSON.stringify(this.priorityLabs),
       ehrpatient: JSON.stringify(this.ehrpatient),
       crid: this.crid,
       psScope: this.psScope,
