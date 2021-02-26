@@ -8,7 +8,6 @@
         >{{ totalFailCount }} Observation(s) failed to Submit
       </strong>
     </alert>
-
     <div class="col-md-6 date-label">
       <b>Date Retrieved </b> : {{ now | date: "yyyy-MM-dd HH:mm" }}
     </div>
@@ -23,7 +22,6 @@
           <th>Effective Time</th>
           <th>
             <input
-              class="checkbox i-checks"
               type="checkbox"
               [(ngModel)]="isAllSelected"
               (ngModelChange)="selectAll()"
@@ -48,7 +46,6 @@
           </td>
           <td>
             <input
-              class="checkbox i-checks"
               type="checkbox"
               [(ngModel)]="entry.selected"
               (ngModelChange)="toggleOption()"
@@ -61,15 +58,13 @@
   </div>
 
   <div class="row top-buffer">
-    <div class="col-xs-12">
-      <button
-        type="button"
-        class="btn btn-primary pull-right"
-        (click)="submitToCibmtr()"
-        enabled
-      >
-        Submit to CIBMTR
-      </button>
-    </div>
+    <button
+      type="button"
+      class="btn btn-primary pull-right"
+      (click)="submitToCibmtr()"
+      enabled
+    >
+      Submit to CIBMTR
+    </button>
   </div>
 </div>

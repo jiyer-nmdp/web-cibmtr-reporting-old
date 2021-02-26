@@ -108,7 +108,7 @@ export class ObservationLabsService {
       subject +
       "&_security=" +
       psScope +
-      "&_total=accurate&_count=20&category=laboratory";
+      "&_total=accurate&_count=500&category=laboratory";
     return this.http.get(url);
   }
 }

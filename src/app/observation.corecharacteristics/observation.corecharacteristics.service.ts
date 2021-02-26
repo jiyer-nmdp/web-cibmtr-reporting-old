@@ -109,7 +109,7 @@ export class ObservationCoreService {
       subject +
       "&_security=" +
       psScope +
-      "&_total=accurate&_count=20&&category=core-characteristics";
+      "&_total=accurate&_count=500&category=core-characteristics";
     return this.http.get(url);
   }
 }

@@ -17,7 +17,7 @@
 .fixed_header th {
   position: sticky;
   top: 0;
-  background: rgb(243, 238, 238);
+  background: rgb(220, 220, 220);
 }
 .date-label {
   margin-top: 10px;
@@ -27,4 +27,8 @@
   font-weight: 500;
   line-height: normal;
   color: #696969;
+}
+
+.top-buffer {
+  margin-top: 20px;
 }
