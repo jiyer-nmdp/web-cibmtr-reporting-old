@@ -40,7 +40,7 @@ export class ObservationCoreComponent implements OnInit {
     utility: UtilityService
   ) {
     let data = utility.data;
-    this.core = JSON.parse(data.core);
+    this.core = utility.bundleObservations(data.core);
     this.psScope = data.psScope;
   }
 
@@ -260,18 +260,6 @@ export class ObservationCoreComponent implements OnInit {
         );
     }
   }
-
-  // buildSelectedResources(selectedEntries) {
-  //   let selectedResources = [];
-  //   const flattenSelectedEntries = Array.prototype.concat.apply(
-  //     [],
-  //     selectedEntries
-  //   );
-  //   flattenSelectedEntries.forEach((selectedEntry) => {
-  //     selectedResources.push(selectedEntry.resource);
-  //   });
-  //   return selectedResources;
-  // }
 
   checkForSelectAll() {
     this.isAllSelected = this.core.entry.every((entry) => entry.selected);

@@ -36,7 +36,7 @@ export class ObservationAgvhdComponent implements OnInit {
     private utility: UtilityService
   ) {
     let data = utility.data;
-    this.agvhd = JSON.parse(data.agvhd);
+    this.agvhd = utility.bundleObservations(data.agvhd);
     this.psScope = data.psScope;
   }
 

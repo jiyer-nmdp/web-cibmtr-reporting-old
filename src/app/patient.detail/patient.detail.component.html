@@ -16,6 +16,32 @@
           <div class="resource-label">
             <a
               class="label-font"
+              id="priority"
+              [routerLink]="
+                priority === null
+                  ? ['error']
+                  : priority.total === 0
+                  ? ['info']
+                  : ['priority']
+              "
+              [ngClass]="{ active: activeLabel == 'lab' }"
+            >Priority Variables
+            </a>
+            <b
+              *ngIf="priority != null; else other_content"
+              class="badge pull-right"
+            >{{ priority.total }}</b
+            >
+            <ng-template #other_content
+            ><img
+              src="assets/images/exclamation-triangle.png"
+              class="exclamation pull-right"
+            /></ng-template>
+          </div>
+
+          <div class="resource-label">
+            <a
+              class="label-font"
               id="lab"
               [routerLink]="
                 labs === null

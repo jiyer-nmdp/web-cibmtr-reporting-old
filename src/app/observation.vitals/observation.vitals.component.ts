@@ -38,7 +38,7 @@ export class ObservationVitalsComponent implements OnInit {
     utility: UtilityService
   ) {
     let data = utility.data;
-    this.vitals = JSON.parse(data.vitals);
+    this.vitals = utility.bundleObservations(data.vitals);
     this.psScope = data.psScope;
   }
 

@@ -1,4 +1,8 @@
 import { Injectable } from "@angular/core";
+import {EMPTY} from "rxjs";
+import {
+  HttpClient
+} from "@angular/common/http";
 
 @Injectable({
   providedIn: "root",
@@ -8,7 +12,34 @@ export class UtilityService {
   data: any;
   chunkSize: number = 30;
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
+
+  //Reusable methods defined in this Components
+
+  /**
+   * Recursively fetch next url page
+   * @param url
+   * @param theHeaders
+   */
+  getPage(url, theHeaders)
+  {
+    return this.http.get(url, {headers: theHeaders,})
+      .expand((response: any) => {
+        let next = response.link && response.link.find((l) => l.relation === "next");
+        if (next) {
+          return this.http.get(next.url,   {headers: theHeaders,});
+        } else {
+          return EMPTY;
+        }
+      })
+      .map((response: any) => {
+        if (response.entry) {
+          return response.entry.flatMap((array) => array);
+        }
+        return [];
+      })
+      .reduce((acc: any[], x: any) => acc.concat(x), [])
+  }
 
   //rewrite if iss url contains "DSTU2" string
   rebuild_DSTU2_STU3_Url(url: string) {
@@ -27,5 +58,23 @@ export class UtilityService {
       index += size;
     }
     return chunked_arr;
+  }
+
+  /**
+   * Create a Fhir bundle of the returned observations
+   * @param observations
+   */
+  bundleObservations(observations)
+  {
+    let temp = JSON.parse(observations);
+    if (temp.hasOwnProperty("resourceType"))
+    {
+      return JSON.parse(observations);
+    }
+    let total = temp.length;
+    let jsonData = { "entry" : temp,
+      "total" : total,
+      "resourceType" : "Bundle"};
+    return jsonData;
   }
 }
