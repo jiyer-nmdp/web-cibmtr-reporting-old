@@ -40,7 +40,7 @@ export class ObservationLabsComponent implements OnInit {
     utility: UtilityService
   ) {
     let data = utility.data;
-    this.labs = JSON.parse(data.labs);
+    this.labs = utility.bundleObservations(data.labs);
     this.psScope = data.psScope;
   }
 
