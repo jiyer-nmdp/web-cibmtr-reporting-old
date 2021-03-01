@@ -3,8 +3,8 @@ import { AppConfig } from "../app.config";
 import { Observable } from "rxjs";
 import { CustomHttpClient } from "../client/custom.http.client";
 import { UtilityService } from "../utility.service";
-import { catchError, map } from "rxjs/operators";
-import { throwError } from "rxjs";
+import { map } from "rxjs/operators";
+import { EMPTY } from "rxjs";
 
 @Injectable()
 export class ObservationVitalsService {
@@ -30,16 +30,10 @@ export class ObservationVitalsService {
   getBundleObservable(bundle) {
     return this.http
       .post(AppConfig.cibmtr_fhir_update_url + "Bundle", bundle)
-      .pipe(
-        map(() => bundle),
-        catchError((err) => {
-          console.log("caught mapping error and rethrowing", err);
-          return throwError(bundle);
-        })
-      )
-      .retry(1);
+      .pipe(map(() => bundle))
+      .retry(1)
+      .catch(() => EMPTY);
   }
-
   // Below method submit updated records to the cibmtr
   getBundleEntry(selectedNewChunkResource, psScope) {
     let entries = [];
@@ -114,7 +108,7 @@ export class ObservationVitalsService {
       subject +
       "&_security=" +
       psScope +
-      "&_total=accurate&_count=20&category=vital-signs";
+      "&_total=accurate&_count=500&category=vital-signs";
     return this.http.get(url);
   }
 }

@@ -6,6 +6,7 @@ import { mergeMap } from "rxjs/operators";
 import { EMPTY, from } from "rxjs";
 import { AppConfig } from "../app.config";
 import { CustomHttpClient } from "../client/custom.http.client";
+import { SpinnerService } from "../spinner/spinner.service";
 
 @Component({
   selector: "app-observation.vitals",
@@ -34,8 +35,9 @@ export class ObservationVitalsComponent implements OnInit {
 
   constructor(
     private http: CustomHttpClient,
-    public observationavitalsService: ObservationVitalsService,
-    utility: UtilityService
+    public observationvitalsService: ObservationVitalsService,
+    utility: UtilityService,
+    private spinner: SpinnerService
   ) {
     let data = utility.data;
     this.vitals = utility.bundleObservations(data.vitals);
@@ -54,7 +56,8 @@ export class ObservationVitalsComponent implements OnInit {
       this.vitals.entry.length > 0 &&
       this.vitals.entry[0].resource.subject
     ) {
-      this.observationavitalsService
+      this.spinner.start();
+      this.observationvitalsService
         .getCibmtrObservationsVitals(subj, psScope)
         .expand((response) => {
           let next =
@@ -77,6 +80,8 @@ export class ObservationVitalsComponent implements OnInit {
         .reduce((acc, x) => acc.concat(x), [])
         .subscribe(
           (savedEntries) => {
+            this.spinner.end();
+            //need to refactor savedEntries
             let ehr_entries = this.vitals.entry;
             if (ehr_entries && ehr_entries.length > 0) {
               // filtering the entries to only Observations
@@ -128,6 +133,7 @@ export class ObservationVitalsComponent implements OnInit {
             }
           },
           (error) => {
+            this.spinner.reset();
             console.log(
               "error occurred while fetching saved observations",
               error
@@ -216,45 +222,44 @@ export class ObservationVitalsComponent implements OnInit {
     ];
 
     if (totalEntries && totalEntries.length > 0) {
-      let bundles = this.observationavitalsService.getBundles(
+      let bundles = this.observationvitalsService.getBundles(
         totalEntries,
         this.psScope
       );
 
       let _successCount = 0;
-      let _failCount = 0;
 
+      this.spinner.start();
       from(bundles)
         .pipe(
           mergeMap((bundle) =>
-            this.observationavitalsService.getBundleObservable(bundle)
+            this.observationvitalsService.getBundleObservable(bundle)
           )
         )
         .finally(() => {
+          this.spinner.end();
           this.totalSuccessCount = _successCount;
-          this.totalFailCount = _failCount;
+          this.totalFailCount = totalEntries.length - _successCount;
           this.checkForSelectAll();
         })
         .subscribe(
           (response) => {
-            // loop through all entries
-            // for each entry find the corresponding matching entry from total entries
-            // for matched entry set the state to lighter
-            response.entry.forEach((entry) => {
-              let idValue = entry.resource.identifier[0].value;
-              const matchedEntry = totalEntries.find((e) => {
-                return idValue === e.fullUrl;
+            response.entry &&
+              response.entry.forEach((entry) => {
+                let idValue = entry.resource.identifier[0].value;
+                const matchedEntry = totalEntries.find((e) => {
+                  return idValue === e.fullUrl;
+                });
+                matchedEntry.state = "lighter";
+                _successCount++;
               });
-              matchedEntry.state = "lighter";
-              _successCount++;
-            });
           },
           (errorBundle) => {
+            this.spinner.reset();
             console.log(
               "error occurred while fetching saved observations",
               errorBundle
             );
-            _failCount = _failCount + errorBundle.entry.length;
           }
         );
     }
