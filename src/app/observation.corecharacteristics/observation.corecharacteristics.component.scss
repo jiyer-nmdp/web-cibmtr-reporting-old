@@ -17,5 +17,22 @@
 .fixed_header th {
   position: sticky;
   top: 0;
-  background: rgb(243, 238, 238);
+  background: rgb(220, 220, 220);
+}
+
+.date-label {
+  padding: 28px 0px 0px 14px;
+  height: 22px;
+  font-family: AvenirNext;
+  font-size: 16px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #696969;
+}
+
+.top-buffer {
+  margin-top: 20px;
 }

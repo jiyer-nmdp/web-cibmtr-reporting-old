@@ -114,7 +114,7 @@ export class ObservationVitalsService {
       subject +
       "&_security=" +
       psScope +
-      "&_total=accurate&_count=20&category=vital-signs";
+      "&_total=accurate&_count=500&category=vital-signs";
     return this.http.get(url);
   }
 }

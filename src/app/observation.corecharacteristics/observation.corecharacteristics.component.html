@@ -27,49 +27,47 @@
  </nav>
  
   <div class="fixed_header">
-   <table class="table table-responsive table-bordered table-striped">
-     <thead>
-       <tr>
-       <th >Name</th>
-       <th >Value</th>
-       <th >Effective Time</th>
-       <th >
-         <input
-           class="checkbox i-checks"
-           type="checkbox"
-           [(ngModel)]="isAllSelected"
-           (ngModelChange)="selectAll()"
-           [disabled]="isAlldisabled"
-         />
-       </th>
-     </tr>
-     </thead>
-     <tbody>
-       <tr *ngFor="let entry of core.entry" [style.fontWeight]="entry.state">
-         <td >
-           {{ entry?.resource?.code?.text }}
-         </td>
-         <td >    
-           <span>{{ getNodeValue(entry?.resource) }}</span>
-           <span>{{getComponentValue(entry?.resource?.component)}}</span> 
-         </td>
-         <td >
-           {{
-             entry.resource.effectiveDateTime | date: "yyyy-MM-dd HH:mm:ssZ"
-           }}
-         </td>
-         <td >
-           <input
-             class="checkbox i-checks"
-             type="checkbox"
-             [(ngModel)]="entry.selected"
-             (ngModelChange)="toggleOption()"
-             [disabled]="entry.state == 'lighter'"
-           />
-         </td>
-       </tr>
-     </tbody>
-   </table>
+    <table class="table table-responsive table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Value</th>
+          <th>Effective Time</th>
+          <th>
+            <input
+              type="checkbox"
+              [(ngModel)]="isAllSelected"
+              (ngModelChange)="selectAll()"
+              [disabled]="isAlldisabled"
+            />
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let entry of core.entry" [style.fontWeight]="entry.state">
+          <td>
+            {{ entry?.resource?.code?.text }}
+          </td>
+          <td>
+            <span>{{ getNodeValue(entry?.resource) }}</span>
+            <span>{{ getComponentValue(entry?.resource?.component) }}</span>
+          </td>
+          <td>
+            {{
+              entry.resource.effectiveDateTime | date: "yyyy-MM-dd HH:mm:ssZ"
+            }}
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              [(ngModel)]="entry.selected"
+              (ngModelChange)="toggleOption()"
+              [disabled]="entry.state == 'lighter'"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
  
     <div class="row top-buffer">
