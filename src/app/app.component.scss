@@ -2,17 +2,15 @@
   font-family: Cambria;
   font-size: 25px;
   font-weight: 500;
-  font-stretch: normal;
-  font-style: normal;
   line-height: normal;
   letter-spacing: normal;
   color: #9f9f9f;
+  height: auto;
 }
 
 .version {
   width: 61px;
   height: 16px;
-
   font-family: AvenirNext;
   font-size: 12px;
   font-weight: 500;
@@ -27,8 +25,8 @@
 .btm-logo {
   width: 20%;
   height: auto;
+  margin: 20px 30px 25px 0px;
 }
-
-.navbar-default {
-  background-color: white;
+.navbar-brand {
+  margin-top: 20px;
 }
