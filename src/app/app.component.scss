@@ -1,13 +1,4 @@
-.Rectangle-Copy {
-  width: 1440px;
-  height: 130px;
-  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
-  background-color: #ffffff;
-}
-
 .CIBMTR-Reporting-label {
-  width: 256px;
-  height: 41px;
   font-family: Cambria;
   font-size: 25px;
   font-weight: 500;
@@ -21,6 +12,7 @@
 .version {
   width: 61px;
   height: 16px;
+
   font-family: AvenirNext;
   font-size: 12px;
   font-weight: 500;
@@ -33,6 +25,10 @@
 }
 
 .btm-logo {
-  width: 150px;
-  height: 80px;
+  width: 20%;
+  height: auto;
+}
+
+.navbar-default {
+  background-color: white;
 }
