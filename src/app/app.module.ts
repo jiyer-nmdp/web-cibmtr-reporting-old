@@ -33,8 +33,6 @@ import { InfoComponent } from "./info/info.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MaterialModule } from "./material/material.module";
 import { environment } from "src/environments/environment.mock";
-import { SpinnerComponent } from "./spinner/spinner.component";
-import { SpinnerService } from "./spinner/spinner.service";
 
 export const isMock = environment.mock;
 
@@ -51,7 +49,6 @@ export const isMock = environment.mock;
     ObservationCoreComponent,
     ErrorComponent,
     InfoComponent,
-    SpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,7 +77,6 @@ export const isMock = environment.mock;
     AuthorizationService,
     AppInitService,
     FhirService,
-    SpinnerService,
     CustomHttpClient,
     {
       provide: HTTP_INTERCEPTORS,

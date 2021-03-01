@@ -6,7 +6,6 @@ import { mergeMap } from "rxjs/operators";
 import { EMPTY, from } from "rxjs";
 import { AppConfig } from "../app.config";
 import { CustomHttpClient } from "../client/custom.http.client";
-import { SpinnerService } from "../spinner/spinner.service";
 
 @Component({
   selector: "app-observation.core",
@@ -38,8 +37,7 @@ export class ObservationCoreComponent implements OnInit {
   constructor(
     private http: CustomHttpClient,
     public observationcoreService: ObservationCoreService,
-    utility: UtilityService,
-    private spinner: SpinnerService
+    utility: UtilityService
   ) {
     let data = utility.data;
     this.core = JSON.parse(data.core);
@@ -58,7 +56,6 @@ export class ObservationCoreComponent implements OnInit {
       this.core.entry.length > 0 &&
       this.core.entry[0].resource.subject
     ) {
-      this.spinner.start();
       this.observationcoreService
         .getCibmtrObservationsCoreChar(subj, psScope)
         .expand((response) => {
@@ -82,7 +79,7 @@ export class ObservationCoreComponent implements OnInit {
         .reduce((acc, x) => acc.concat(x), [])
         .subscribe(
           (savedEntries) => {
-            this.spinner.end();
+            //need to refactor savedEntries
             let entries = this.core.entry;
             if (entries && entries.length > 0) {
               // filtering the entries to only Observations
@@ -134,7 +131,6 @@ export class ObservationCoreComponent implements OnInit {
             }
           },
           (error) => {
-            this.spinner.reset();
             console.log(
               "error occurred while fetching saved observations",
               error
@@ -227,8 +223,8 @@ export class ObservationCoreComponent implements OnInit {
       );
 
       let _successCount = 0;
+      let _failCount = 0;
 
-      this.spinner.start();
       from(bundles)
         .pipe(
           mergeMap((bundle) =>
@@ -236,29 +232,30 @@ export class ObservationCoreComponent implements OnInit {
           )
         )
         .finally(() => {
-          this.spinner.end();
           this.totalSuccessCount = _successCount;
-          this.totalFailCount = totalEntries.length - _successCount;
+          this.totalFailCount = _failCount;
           this.checkForSelectAll();
         })
         .subscribe(
           (response) => {
-            response.entry &&
-              response.entry.forEach((entry) => {
-                let idValue = entry.resource.identifier[0].value;
-                const matchedEntry = totalEntries.find((e) => {
-                  return idValue === e.fullUrl;
-                });
-                matchedEntry.state = "lighter";
-                _successCount++;
+            // loop through all entries
+            // for each entry find the corresponding matching entry from total entries
+            // for matched entry set the state to lighter
+            response.entry.forEach((entry) => {
+              let idValue = entry.resource.identifier[0].value;
+              const matchedEntry = totalEntries.find((e) => {
+                return idValue === e.fullUrl;
               });
+              matchedEntry.state = "lighter";
+              _successCount++;
+            });
           },
           (errorBundle) => {
-            this.spinner.reset();
             console.log(
               "error occurred while fetching saved observations",
               errorBundle
             );
+            _failCount = _failCount + errorBundle.entry.length;
           }
         );
     }

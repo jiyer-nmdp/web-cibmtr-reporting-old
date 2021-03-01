@@ -1,9 +1,10 @@
 import { Injectable } from "@angular/core";
 import { AppConfig } from "../app.config";
-import { EMPTY, Observable } from "rxjs";
+import { Observable } from "rxjs";
 import { CustomHttpClient } from "../client/custom.http.client";
 import { UtilityService } from "../utility.service";
-import { map } from "rxjs/operators";
+import { catchError, map } from "rxjs/operators";
+import { throwError } from "rxjs";
 
 @Injectable()
 export class ObservationLabsService {
@@ -29,9 +30,14 @@ export class ObservationLabsService {
   getBundleObservable(bundle) {
     return this.http
       .post(AppConfig.cibmtr_fhir_update_url + "Bundle", bundle)
-      .pipe(map(() => bundle))
-      .retry(1)
-      .catch(() => EMPTY);
+      .pipe(
+        map(() => bundle),
+        catchError((err) => {
+          console.log("caught mapping error and rethrowing", err);
+          return throwError(bundle);
+        })
+      )
+      .retry(1);
   }
 
   // Below method submit updated records to the cibmtr
