@@ -16,6 +16,7 @@ import { SpinnerService } from "../spinner/spinner.service";
 })
 export class ObservationLabsComponent implements OnInit {
   labs: any;
+  priority: any;
   savedBundle: any;
   toggle: any = [];
   codes: any = [];
@@ -42,6 +43,7 @@ export class ObservationLabsComponent implements OnInit {
   ) {
     let data = utility.data;
     this.labs = utility.bundleObservations(data.labs);
+    this.priority = utility.bundleObservations(data.priority);
     this.psScope = data.psScope;
   }
 
