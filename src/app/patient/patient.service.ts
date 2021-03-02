@@ -20,50 +20,82 @@ export class PatientService {
 
   getPatient(identifier): Observable<IPatientContext> {
     let url =
-      this.utilityService.rebuild_DSTU2_STU3_Url(this._localStorageService.get("iss")) +
-          "/Patient/" + identifier;
+      this.utilityService.rebuild_DSTU2_STU3_Url(
+        this._localStorageService.get("iss")
+      ) +
+      "/Patient/" +
+      identifier;
     return this.http
-        .get<IPatientContext>(url, {
-          headers: this.buildEhrHeaders(),
-          })
-        .catch((e: any) =>
-          Observable.throw(this.handleError(e, new Date().getTime()))
-        );
+      .get<IPatientContext>(url, {
+        headers: this.buildEhrHeaders(),
+      })
+      .catch((e: any) =>
+        Observable.throw(this.handleError(e, new Date().getTime()))
+      );
   }
 
   getObservation(identifier): Observable<IPatientContext> {
     let url =
-      this.utilityService.rebuild_DSTU2_STU3_Url(this._localStorageService.get("iss")) +
-          "/Observation?patient=" + identifier + "&" + AppConfig.observation_codes;
-      return this.utilityService.getPage(url, this.buildEhrHeaders());
-   }
+      this.utilityService.rebuild_DSTU2_STU3_Url(
+        this._localStorageService.get("iss")
+      ) +
+      "/Observation?patient=" +
+      identifier +
+      "&_count=20&" +
+      AppConfig.observation_codes;
+    return this.utilityService
+      .getPage(url, this.buildEhrHeaders())
+      .catch((e: any) => Observable.of(null));
+  }
 
   getObservationPriorityLabs(identifier): Observable<IPatientContext> {
     let url =
-      this.utilityService.rebuild_DSTU2_STU3_Url(this._localStorageService.get("iss")) +
-          "/Observation?patient=" + identifier + "&_count=1000&code=http://loinc.org%7c&code=" + AppConfig.loinc_codes.join(",");
-    return  this.utilityService.getPage(url, this.buildEhrHeaders());
+      this.utilityService.rebuild_DSTU2_STU3_Url(
+        this._localStorageService.get("iss")
+      ) +
+      "/Observation?patient=" +
+      identifier +
+      "&_count=20&code=" +
+      AppConfig.loinc_codes.join(",");
+    return this.utilityService
+      .getPage(url, this.buildEhrHeaders())
+      .catch((e: any) => Observable.of(null));
   }
 
   getObservationLabs(identifier): Observable<IPatientContext> {
     let url =
-      this.utilityService.rebuild_DSTU2_STU3_Url(this._localStorageService.get("iss")) +
-      "/Observation?category=laboratory&_count=1000&patient=" + identifier;
-    return this.utilityService.getPage(url, this.buildEhrHeaders()) ;
+      this.utilityService.rebuild_DSTU2_STU3_Url(
+        this._localStorageService.get("iss")
+      ) +
+      "/Observation?category=laboratory&_count=20&patient=" +
+      identifier;
+    return this.utilityService
+      .getPage(url, this.buildEhrHeaders())
+      .catch((e: any) => Observable.of(null));
   }
 
   getObservationVitalSigns(identifier): Observable<IPatientContext> {
     let url =
-      this.utilityService.rebuild_DSTU2_STU3_Url(this._localStorageService.get("iss")) +
-      "/Observation?category=vital-signs&_count=1000&patient=" + identifier ;
-    return this.utilityService.getPage(url, this.buildEhrHeaders());
+      this.utilityService.rebuild_DSTU2_STU3_Url(
+        this._localStorageService.get("iss")
+      ) +
+      "/Observation?category=vital-signs&_count=20&patient=" +
+      identifier;
+    return this.utilityService
+      .getPage(url, this.buildEhrHeaders())
+      .catch((e: any) => Observable.of(null));
   }
 
   getObservationCoreChar(identifier): Observable<IPatientContext> {
     let url =
-        this.utilityService.rebuild_DSTU2_STU3_Url(this._localStorageService.get("iss")) +
-          "/Observation?category=core-characteristics&patient=" + identifier;
-    return this.utilityService.getPage(url, this.buildEhrHeaders());
+      this.utilityService.rebuild_DSTU2_STU3_Url(
+        this._localStorageService.get("iss")
+      ) +
+      "/Observation?category=core-characteristics&_count=20&patient=" +
+      identifier;
+    return this.utilityService
+      .getPage(url, this.buildEhrHeaders())
+      .catch((e: any) => Observable.of(null));
   }
 
   buildEhrHeaders() {
