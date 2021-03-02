@@ -16,6 +16,7 @@ import { HttpClient } from "@angular/common/http";
 import { HttpErrorResponse } from "@angular/common/http";
 import { map, mergeMap, catchError } from "rxjs/operators";
 import { UtilityService } from "../utility.service";
+import { SpinnerService } from "../spinner/spinner.service";
 
 @Injectable()
 export class PatientResolver implements Resolve<IPatientContext[]> {
@@ -24,6 +25,7 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
     private patientDetailService: PatientService,
     private _localStorageService: LocalStorageService,
     private http: HttpClient,
+    private spinner: SpinnerService,
     private utilityService: UtilityService
   ) {}
 
@@ -43,41 +45,6 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
           `Bearer ${this._localStorageService.get("accessToken")}`
         );
 
-      // let epic_identifier_url = epicidentifier.replace(
-      //   /\/api\/.*/,
-      //   AppConfig.getPatientIdentifier
-      // );
-
-      // return this.http
-      //   .post(decodeURIComponent(epic_identifier_url.toString()), body, {
-      //     headers: ehrHeaders,
-      //   })
-      //   .subscribe(
-      //     (response: IIdentifiers) => {
-      //       let filteredIdentifiers = response.Identifiers.filter(
-      //         (identifier) => identifier.IDType === "FHIR STU3"
-      //       );
-
-      //       // If there is one
-      //       if (filteredIdentifiers) {
-      //         let id = filteredIdentifiers[0].ID;
-      //         return forkJoin([
-      //           this.patientDetailService.getPatient(id),
-      //           this.patientDetailService.getObservation(id),
-      //           this.patientDetailService.getObservationVitalSigns(id),
-      //           this.patientDetailService.getObservationLabs(id),
-      //           this.patientDetailService.getObservationCoreChar(id),
-      //         ]);
-      //       } else {
-      //         // there is no patient id hence throw the error
-      //         return alert("Invalid Patient Identifier");
-      //       }
-      //     },
-      //     (error) => {
-      //       alert(error);
-      //       throwError(error);
-      //     }
-      //   );
       return this.http
         .get(
           this.utilityService.rebuild_DSTU2_STU3_Url(
@@ -116,6 +83,7 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
         );
     } else {
       let id = this._localStorageService.get("patient");
+      this.spinner.start();
       return forkJoin([
         this.patientDetailService.getPatient(id),
         this.patientDetailService.getObservation(id),
