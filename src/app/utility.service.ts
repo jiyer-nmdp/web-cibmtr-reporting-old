@@ -63,7 +63,13 @@ export class UtilityService {
    * Create a Fhir bundle of the returned observations
    * @param observations
    */
-  bundleObservations(observations) {
+
+  bundleObservations(observations)
+  {
+    if (observations === undefined || observations === null)
+    {
+      observations = "[]";
+    }
     let temp = JSON.parse(observations);
     if (temp.hasOwnProperty("resourceType")) {
       return JSON.parse(observations);
