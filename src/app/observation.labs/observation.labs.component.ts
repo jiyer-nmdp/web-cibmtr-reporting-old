@@ -46,7 +46,6 @@ export class ObservationLabsComponent implements OnInit {
     let data = utility.data;
     this.labs = JSON.parse(data.labs);
     this.priority = JSON.parse(data.priorityLabs);
-    this.psScope = data.psScope;
   }
 
   ngOnInit() {

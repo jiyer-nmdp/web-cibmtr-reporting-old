@@ -24,8 +24,8 @@
                   ? ['info']
                   : ['priority']
               "
-              [ngClass]="{ active: activeLabel == 'lab' }"
-              >Priority Variables
+              [ngClass]="{ active: activeLabel == 'priority' }"
+              >Priority Labs
             </a>
             <b
               *ngIf="priority != null; else other_content"
@@ -38,7 +38,7 @@
                 class="exclamation pull-right"
             /></ng-template>
           </div>
-
+          <br />
           <div class="resource-label">
             <a
               class="label-font"
