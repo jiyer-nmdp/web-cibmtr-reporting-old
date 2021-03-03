@@ -66,6 +66,10 @@ export class UtilityService {
    */
   bundleObservations(observations)
   {
+    if (observations === undefined || observations === null)
+    {
+      observations = "[]";
+    }
     let temp = JSON.parse(observations);
     if (temp.hasOwnProperty("resourceType"))
     {
