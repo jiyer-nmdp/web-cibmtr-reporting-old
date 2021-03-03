@@ -1,8 +1,6 @@
 import { Injectable } from "@angular/core";
-import {EMPTY} from "rxjs";
-import {
-  HttpClient
-} from "@angular/common/http";
+import { EMPTY } from "rxjs";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({
   providedIn: "root",
@@ -21,13 +19,14 @@ export class UtilityService {
    * @param url
    * @param theHeaders
    */
-  getPage(url, theHeaders)
-  {
-    return this.http.get(url, {headers: theHeaders,})
+  getPage(url, theHeaders) {
+    return this.http
+      .get(url, { headers: theHeaders })
       .expand((response: any) => {
-        let next = response.link && response.link.find((l) => l.relation === "next");
+        let next =
+          response.link && response.link.find((l) => l.relation === "next");
         if (next) {
-          return this.http.get(next.url,   {headers: theHeaders,});
+          return this.http.get(next.url, { headers: theHeaders });
         } else {
           return EMPTY;
         }
@@ -38,7 +37,7 @@ export class UtilityService {
         }
         return [];
       })
-      .reduce((acc: any[], x: any) => acc.concat(x), [])
+      .reduce((acc: any[], x: any) => acc.concat(x), []);
   }
 
   //rewrite if iss url contains "DSTU2" string
@@ -64,6 +63,7 @@ export class UtilityService {
    * Create a Fhir bundle of the returned observations
    * @param observations
    */
+
   bundleObservations(observations)
   {
     if (observations === undefined || observations === null)
@@ -71,14 +71,11 @@ export class UtilityService {
       observations = "[]";
     }
     let temp = JSON.parse(observations);
-    if (temp.hasOwnProperty("resourceType"))
-    {
+    if (temp.hasOwnProperty("resourceType")) {
       return JSON.parse(observations);
     }
     let total = temp.length;
-    let jsonData = { "entry" : temp,
-      "total" : total,
-      "resourceType" : "Bundle"};
+    let jsonData = { entry: temp, total: total, resourceType: "Bundle" };
     return jsonData;
   }
 }
