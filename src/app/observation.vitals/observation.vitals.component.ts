@@ -40,7 +40,7 @@ export class ObservationVitalsComponent implements OnInit {
     private spinner: SpinnerService
   ) {
     let data = utility.data;
-    this.vitals = utility.bundleObservations(data.vitals);
+    this.vitals = JSON.parse(data.vitals);
     this.psScope = data.psScope;
   }
 
