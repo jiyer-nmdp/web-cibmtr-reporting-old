@@ -1,4 +1,4 @@
-import { Component, OnInit, ErrorHandler } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Patient } from "../model/patient.";
 import { ActivatedRoute, Router } from "@angular/router";
 import { throwError, Observable } from "rxjs";
@@ -13,6 +13,7 @@ import { DialogComponent } from "../dialog/dialog.component";
 import { LocalStorageService } from "angular-2-local-storage";
 import { HttpErrorResponse } from "@angular/common/http";
 import { UtilityService } from "../utility.service";
+import { SpinnerService } from "../spinner/spinner.service";
 
 @Component({
   selector: "app-main",
@@ -50,6 +51,7 @@ export class PatientComponent implements OnInit {
     private _localStorageService: LocalStorageService,
     private http: CustomHttpClient,
     private router: Router,
+    private spinner: SpinnerService,
     private utility: UtilityService
   ) {}
 
@@ -145,6 +147,7 @@ export class PatientComponent implements OnInit {
   }
 
   subscribeRouteData = (selectedScope) => {
+    this.spinner.end();
     this._route.data.subscribe(
       (results) => {
         this.ehrpatient = results.pageData[0];
@@ -156,6 +159,7 @@ export class PatientComponent implements OnInit {
         this.retreiveFhirPatient(this.ehrpatient, selectedScope);
       },
       (error) => {
+        this.spinner.reset();
         return throwError(error);
       }
     );

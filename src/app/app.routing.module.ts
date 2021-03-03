@@ -43,6 +43,10 @@ const routes: Routes = [
         component: ObservationLabsComponent,
       },
       {
+        path: "priority",
+        component: ObservationLabsComponent,
+      },
+      {
         path: "vitals",
         component: ObservationVitalsComponent,
       },

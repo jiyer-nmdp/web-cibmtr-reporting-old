@@ -1,12 +1,11 @@
 .fixed_header {
-  overflow: scroll;
-  height: 300px;
+  overflow: auto;
+  height: 500px;
 }
 
 .fixed_header table {
   border-collapse: collapse;
   width: 100%;
-  overflow: scroll;
 }
 
 .fixed_header th,
@@ -19,7 +18,6 @@
   top: 0;
   background: rgb(220, 220, 220);
 }
-
 
 .date-label {
   margin-top: 10px;
