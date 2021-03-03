@@ -7,15 +7,16 @@ import { EMPTY, from } from "rxjs";
 import { AppConfig } from "../app.config";
 import { CustomHttpClient } from "../client/custom.http.client";
 import { SpinnerService } from "../spinner/spinner.service";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-observation.labs",
-
   templateUrl: "./observation.labs.component.html",
   styleUrls: ["./observation.labs.component.scss"],
 })
 export class ObservationLabsComponent implements OnInit {
   labs: any;
+  priority: any;
   savedBundle: any;
   toggle: any = [];
   codes: any = [];
@@ -37,25 +38,28 @@ export class ObservationLabsComponent implements OnInit {
   constructor(
     private http: CustomHttpClient,
     public observationlabsService: ObservationLabsService,
-    utility: UtilityService,
-    private spinner: SpinnerService
+    private utility: UtilityService,
+    private spinner: SpinnerService,
+    private route: ActivatedRoute
   ) {
+    console.log(route);
     let data = utility.data;
-    this.labs = utility.bundleObservations(data.labs);
+    this.labs = JSON.parse(data.labs);
+    this.priority = JSON.parse(data.priorityLabs);
     this.psScope = data.psScope;
   }
 
   ngOnInit() {
-    const subj = this.labs.entry[0].resource.subject.reference;
+    const subj = this.getCategoryData().entry[0].resource.subject.reference;
     const psScope = this.psScope;
 
     this.now = new Date();
 
     if (
-      this.labs &&
-      this.labs.entry &&
-      this.labs.entry.length > 0 &&
-      this.labs.entry[0].resource.subject
+      this.getCategoryData() &&
+      this.getCategoryData().entry &&
+      this.getCategoryData().entry.length > 0 &&
+      this.getCategoryData().entry[0].resource.subject
     ) {
       this.spinner.start();
       this.observationlabsService
@@ -81,7 +85,7 @@ export class ObservationLabsComponent implements OnInit {
         .subscribe(
           (savedEntries) => {
             this.spinner.end();
-            let entries = this.labs.entry;
+            let entries = this.getCategoryData().entry;
             if (entries && entries.length > 0) {
               // filtering the entries to only Observations
               let observationEntries = entries.filter(function (item) {
@@ -195,7 +199,9 @@ export class ObservationLabsComponent implements OnInit {
 
     // New Records
     this.selectedNewEntries.push(
-      this.labs.entry.filter((m) => m.selected === true && m.state === "bold")
+      this.getCategoryData().entry.filter(
+        (m) => m.selected === true && m.state === "bold"
+      )
     );
 
     this.selectedNewResources = Array.prototype.concat.apply(
@@ -205,7 +211,9 @@ export class ObservationLabsComponent implements OnInit {
 
     // Updated Records
     this.selectedUpdatedEntries.push(
-      this.labs.entry.filter((m) => m.selected === true && m.state === "normal")
+      this.getCategoryData().entry.filter(
+        (m) => m.selected === true && m.state === "normal"
+      )
     );
 
     this.selectedUpdatedResources = Array.prototype.concat.apply(
@@ -263,15 +271,17 @@ export class ObservationLabsComponent implements OnInit {
   }
 
   checkForSelectAll() {
-    this.isAllSelected = this.labs.entry.every((entry) => entry.selected);
-    this.isAlldisabled = this.labs.entry.every(
+    this.isAllSelected = this.getCategoryData().entry.every(
+      (entry) => entry.selected
+    );
+    this.isAlldisabled = this.getCategoryData().entry.every(
       (entry) => entry.selected && entry.state === "lighter"
     );
   }
 
   selectAll() {
     let toggleStatus = this.isAllSelected;
-    this.labs.entry.forEach((entry) => {
+    this.getCategoryData().entry.forEach((entry) => {
       if (entry.state != "lighter") {
         entry.selected = toggleStatus;
       }
@@ -279,13 +289,13 @@ export class ObservationLabsComponent implements OnInit {
   }
 
   toggleOption = function () {
-    this.isAllSelected = this.labs.entry.every(function (entry) {
+    this.isAllSelected = this.getcategorydata().entry.every(function (entry) {
       return entry.selected;
     });
   };
 
   toggleAllOption = function () {
-    this.isAlldisabled = this.labs.entry.every(function (entry) {
+    this.isAlldisabled = this.getcategorydata().entry.every(function (entry) {
       return entry.disabled;
     });
   };
@@ -294,5 +304,12 @@ export class ObservationLabsComponent implements OnInit {
     return this.totalSuccessCount > 0 || this.totalFailCount > 0
       ? "show"
       : "hide";
+  }
+
+  getCategoryData() {
+    if (this.route.snapshot.routeConfig.path === "priority") {
+      return this.priority;
+    }
+    return this.labs;
   }
 }

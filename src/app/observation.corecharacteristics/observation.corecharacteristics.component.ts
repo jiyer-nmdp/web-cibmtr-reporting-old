@@ -42,7 +42,7 @@ export class ObservationCoreComponent implements OnInit {
     private spinner: SpinnerService
   ) {
     let data = utility.data;
-    this.core = utility.bundleObservations(data.core);
+    this.core = JSON.parse(data.core);
     this.psScope = data.psScope;
   }
 

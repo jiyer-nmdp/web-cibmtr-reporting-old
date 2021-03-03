@@ -39,7 +39,7 @@ export class ObservationAgvhdComponent implements OnInit {
     private spinner: SpinnerService
   ) {
     let data = utility.data;
-    this.agvhd = utility.bundleObservations(data.agvhd);
+    this.agvhd = JSON.parse(data.agvhd);
     this.psScope = data.psScope;
   }
 
