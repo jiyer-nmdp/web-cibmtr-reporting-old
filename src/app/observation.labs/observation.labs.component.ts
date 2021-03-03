@@ -6,9 +6,11 @@ import { mergeMap } from "rxjs/operators";
 import { EMPTY, from } from "rxjs";
 import { AppConfig } from "../app.config";
 import { CustomHttpClient } from "../client/custom.http.client";
+import { SpinnerService } from "../spinner/spinner.service";
 
 @Component({
   selector: "app-observation.labs",
+
   templateUrl: "./observation.labs.component.html",
   styleUrls: ["./observation.labs.component.scss"],
 })
@@ -31,13 +33,12 @@ export class ObservationLabsComponent implements OnInit {
   isAlldisabled: boolean;
   totalSuccessCount: number;
   totalFailCount: number;
-  success: boolean = false;
-  error: boolean = false;
 
   constructor(
     private http: CustomHttpClient,
     public observationlabsService: ObservationLabsService,
-    utility: UtilityService
+    utility: UtilityService,
+    private spinner: SpinnerService
   ) {
     let data = utility.data;
     this.labs = utility.bundleObservations(data.labs);
@@ -56,6 +57,7 @@ export class ObservationLabsComponent implements OnInit {
       this.labs.entry.length > 0 &&
       this.labs.entry[0].resource.subject
     ) {
+      this.spinner.start();
       this.observationlabsService
         .getCibmtrObservationsLabs(subj, psScope)
         .expand((response) => {
@@ -69,7 +71,6 @@ export class ObservationLabsComponent implements OnInit {
             return EMPTY;
           }
         })
-        //{return response.entry ? flatMap((array) => array)) : response}
         .map((response) => {
           if (response.entry) {
             return response.entry.flatMap((array) => array);
@@ -79,7 +80,7 @@ export class ObservationLabsComponent implements OnInit {
         .reduce((acc, x) => acc.concat(x), [])
         .subscribe(
           (savedEntries) => {
-            //need to refactor savedEntries
+            this.spinner.end();
             let entries = this.labs.entry;
             if (entries && entries.length > 0) {
               // filtering the entries to only Observations
@@ -131,6 +132,7 @@ export class ObservationLabsComponent implements OnInit {
             }
           },
           (error) => {
+            this.spinner.reset();
             console.log(
               "error occurred while fetching saved observations",
               error
@@ -223,8 +225,8 @@ export class ObservationLabsComponent implements OnInit {
       );
 
       let _successCount = 0;
-      let _failCount = 0;
 
+      this.spinner.start();
       from(bundles)
         .pipe(
           mergeMap((bundle) =>
@@ -232,46 +234,33 @@ export class ObservationLabsComponent implements OnInit {
           )
         )
         .finally(() => {
+          this.spinner.end();
           this.totalSuccessCount = _successCount;
-          this.totalFailCount = _failCount;
+          this.totalFailCount = totalEntries.length - _successCount;
           this.checkForSelectAll();
         })
         .subscribe(
           (response) => {
-            // loop through all entries
-            // for each entry find the corresponding matching entry from total entries
-            // for matched entry set the state to lighter
-            response.entry.forEach((entry) => {
-              let idValue = entry.resource.identifier[0].value;
-              const matchedEntry = totalEntries.find((e) => {
-                return idValue === e.fullUrl;
+            response.entry &&
+              response.entry.forEach((entry) => {
+                let idValue = entry.resource.identifier[0].value;
+                const matchedEntry = totalEntries.find((e) => {
+                  return idValue === e.fullUrl;
+                });
+                matchedEntry.state = "lighter";
+                _successCount++;
               });
-              matchedEntry.state = "lighter";
-              _successCount++;
-            });
           },
           (errorBundle) => {
+            this.spinner.reset();
             console.log(
               "error occurred while fetching saved observations",
               errorBundle
             );
-            _failCount = _failCount + errorBundle.entry.length;
           }
         );
     }
   }
-
-  // buildSelectedResources(selectedEntries) {
-  //   let selectedResources = [];
-  //   const flattenSelectedEntries = Array.prototype.concat.apply(
-  //     [],
-  //     selectedEntries
-  //   );
-  //   flattenSelectedEntries.forEach((selectedEntry) => {
-  //     selectedResources.push(selectedEntry.resource);
-  //   });
-  //   return selectedResources;
-  // }
 
   checkForSelectAll() {
     this.isAllSelected = this.labs.entry.every((entry) => entry.selected);
@@ -300,4 +289,10 @@ export class ObservationLabsComponent implements OnInit {
       return entry.disabled;
     });
   };
+
+  get toggleAlert() {
+    return this.totalSuccessCount > 0 || this.totalFailCount > 0
+      ? "show"
+      : "hide";
+  }
 }

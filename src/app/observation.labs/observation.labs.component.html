@@ -1,12 +1,7 @@
 <div class="container">
   <nav class="navbar navbar-expand-sm fixed-top navbar-light bg-light">
-    <alert
-      type="info"
-      [dismissible]="true"
-      [dismissOnTimeout]="30000"
-      *ngIf="totalSuccessCount > 0 || totalFailCount > 0"
-    >
-      <strong type="success" *ngIf="totalSuccessCount > 0"
+    <alert type="info" *ngIf="totalSuccessCount > 0 || totalFailCount > 0">
+      <strong *ngIf="totalSuccessCount > 0"
         >{{ totalSuccessCount }} Observation(s) submitted Successfully.
       </strong>
       <strong *ngIf="totalFailCount > 0"
@@ -26,7 +21,6 @@
           <th>Effective Time</th>
           <th>
             <input
-              class="checkbox i-checks"
               type="checkbox"
               [(ngModel)]="isAllSelected"
               (ngModelChange)="selectAll()"
@@ -51,7 +45,6 @@
           </td>
           <td>
             <input
-              class="checkbox i-checks"
               type="checkbox"
               [(ngModel)]="entry.selected"
               (ngModelChange)="toggleOption()"
