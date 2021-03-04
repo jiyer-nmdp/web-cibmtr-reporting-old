@@ -64,18 +64,15 @@ export class UtilityService {
    * @param observations
    */
 
-  bundleObservations(observations)
-  {
-    if (observations === undefined || observations === null)
-    {
-      observations = "[]";
+  bundleObservations(observations) {
+    if (observations) {
+      let temp = JSON.parse(observations);
+      if (temp) {
+        return temp.hasOwnProperty("resourceType")
+          ? JSON.parse(observations)
+          : { entry: temp, total: temp.length - 1, resourceType: "Bundle" };
+      }
+      return;
     }
-    let temp = JSON.parse(observations);
-    if (temp.hasOwnProperty("resourceType")) {
-      return JSON.parse(observations);
-    }
-    let total = temp.length;
-    let jsonData = { entry: temp, total: total, resourceType: "Bundle" };
-    return jsonData;
   }
 }
