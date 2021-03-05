@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { Patient } from "../model/patient.";
 import { ObservationAgvhdService } from "./observation.agvhd.service";
 import { UtilityService } from "../utility.service";
 import { mergeMap } from "rxjs/operators";
@@ -44,17 +43,12 @@ export class ObservationAgvhdComponent implements OnInit {
   }
 
   ngOnInit() {
-    const subj = this.agvhd.entry[0].resource.subject.reference;
+    const subj = this.agvhd[0].resource.subject.reference;
     const psScope = this.psScope;
 
     this.now = new Date();
 
-    if (
-      this.agvhd &&
-      this.agvhd.entry &&
-      this.agvhd.entry.length > 0 &&
-      this.agvhd.entry[0].resource.subject
-    ) {
+    if (this.agvhd.length > 0 && this.agvhd[0].resource.subject) {
       this.spinner.start();
       this.observationagvhdService
         .getCibmtrObservations(subj, psScope)
@@ -80,7 +74,7 @@ export class ObservationAgvhdComponent implements OnInit {
         .subscribe(
           (savedEntries) => {
             this.spinner.end();
-            let ehr_entries = this.agvhd.entry;
+            let ehr_entries = this.agvhd;
             if (ehr_entries && ehr_entries.length > 0) {
               // filtering the entries to only Observations
               let observationEntries = ehr_entries.filter(function (item) {
@@ -168,7 +162,7 @@ export class ObservationAgvhdComponent implements OnInit {
 
     // New Records
     this.selectedNewEntries.push(
-      this.agvhd.entry.filter((m) => m.selected === true && m.state === "bold")
+      this.agvhd.filter((m) => m.selected === true && m.state === "bold")
     );
 
     this.selectedNewResources = Array.prototype.concat.apply(
@@ -178,9 +172,7 @@ export class ObservationAgvhdComponent implements OnInit {
 
     // Updated Records
     this.selectedUpdatedEntries.push(
-      this.agvhd.entry.filter(
-        (m) => m.selected === true && m.state === "normal"
-      )
+      this.agvhd.filter((m) => m.selected === true && m.state === "normal")
     );
 
     this.selectedUpdatedResources = Array.prototype.concat.apply(
@@ -285,12 +277,6 @@ export class ObservationAgvhdComponent implements OnInit {
       });
     }
   }
-  // checkForSelectAll() {
-  //   this.isAllSelected = this.agvhd.entry.every((entry) => entry.selected);
-  //   this.isAlldisabled = this.agvhd.entry.every(
-  //     (entry) => entry.selected && entry.state === "lighter"
-  //   );
-  // }
 
   selectAll(key) {
     let toggleStatus = !this.codes[key].isAllSelected;
