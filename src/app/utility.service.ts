@@ -66,13 +66,13 @@ export class UtilityService {
 
   bundleObservations(observations) {
     if (observations) {
+      //observations are array of objects starts from 0
       let temp = JSON.parse(observations);
       if (temp) {
         return temp.hasOwnProperty("resourceType")
           ? JSON.parse(observations)
-          : { entry: temp, total: temp.length - 1, resourceType: "Bundle" };
+          : { entry: temp, total: temp.length, resourceType: "Bundle" };
       }
-      return;
     }
   }
 }
