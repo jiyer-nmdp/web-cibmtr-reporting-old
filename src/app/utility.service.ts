@@ -70,9 +70,8 @@ export class UtilityService {
       if (temp) {
         return temp.hasOwnProperty("resourceType")
           ? JSON.parse(observations)
-          : { entry: temp, total: temp.length - 1, resourceType: "Bundle" };
+          : { entry: temp, total: temp.length, resourceType: "Bundle" };
       }
-      return;
     }
   }
 }
