@@ -66,7 +66,6 @@ export class UtilityService {
 
   bundleObservations(observations) {
     if (observations) {
-      //observations are array of objects starts from 0
       let temp = JSON.parse(observations);
       if (temp) {
         return temp.hasOwnProperty("resourceType")
