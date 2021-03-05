@@ -1,11 +1,12 @@
 .fixed_header {
-  overflow: auto;
-  height: 500px;
+  overflow: scroll;
+  height: 300px;
 }
 
 .fixed_header table {
   border-collapse: collapse;
   width: 100%;
+  overflow: scroll;
 }
 
 .fixed_header th,
@@ -18,7 +19,6 @@
   top: 0;
   background: rgb(220, 220, 220);
 }
-
 .date-label {
   margin-top: 10px;
   height: 22px;
@@ -32,28 +32,3 @@
 .top-buffer {
   margin-top: 20px;
 }
-
-// .alert-dismissible {
-//   -moz-animation: fadeOut 0s ease-in 10s forwards;
-//   -webkit-animation: fadeOut 0s ease-in 10s forwards;
-//   -o-animation: fadeOut 0s ease-in 10s forwards;
-//   animation: fadeOut 0s ease-in 10s forwards;
-//   -webkit-animation-fill-mode: forwards;
-//   animation-fill-mode: forwards;
-// }
-// @keyframes fadeOut {
-//   0% {
-//     overflow: hidden;
-//   }
-//   100% {
-//     visibility: hidden;
-//   }
-// }
-// @-webkit-keyframes fadeOut {
-//   0% {
-//     overflow: hidden;
-//   }
-//   100% {
-//     visibility: hidden;
-//   }
-//}
