@@ -2,6 +2,11 @@ import { Component, OnInit } from "@angular/core";
 import { Patient } from "../model/patient.";
 import { ObservationVitalsService } from "./observation.vitals.service";
 import { UtilityService } from "../utility.service";
+import { mergeMap } from "rxjs/operators";
+import { EMPTY, from } from "rxjs";
+import { AppConfig } from "../app.config";
+import { CustomHttpClient } from "../client/custom.http.client";
+import { SpinnerService } from "../spinner/spinner.service";
 
 @Component({
   selector: "app-observation.vitals",
@@ -21,15 +26,18 @@ export class ObservationVitalsComponent implements OnInit {
   selectedNewResources = [];
   selectedUpdatedResources = [];
   psScope: string;
-  success: boolean;
-  fail: boolean;
+  cibmtrPatientFullUri: string;
   ehrpatient: Patient;
   isAllSelected: boolean;
   isAlldisabled: boolean;
+  totalSuccessCount: number;
+  totalFailCount: number;
 
   constructor(
-    public observationavitalsService: ObservationVitalsService,
-    private utility: UtilityService
+    private http: CustomHttpClient,
+    public observationvitalsService: ObservationVitalsService,
+    utility: UtilityService,
+    private spinner: SpinnerService
   ) {
     let data = utility.data;
     this.vitals = JSON.parse(data.vitals);
@@ -37,27 +45,42 @@ export class ObservationVitalsComponent implements OnInit {
   }
 
   ngOnInit() {
-    const subj = this.vitals.entry[0].resource.subject.reference;
+    const subj = this.vitals[0].resource.subject.reference;
     const psScope = this.psScope;
 
     this.now = new Date();
 
-    if (
-      this.vitals &&
-      this.vitals.entry &&
-      this.vitals.entry.length > 0 &&
-      this.vitals.entry[0].resource.subject
-    ) {
-      this.observationavitalsService
+    if (this.vitals.length > 0 && this.vitals[0].resource.subject) {
+      this.spinner.start();
+      this.observationvitalsService
         .getCibmtrObservationsVitals(subj, psScope)
+        .expand((response) => {
+          let next =
+            response.link && response.link.find((l) => l.relation === "next");
+          if (next) {
+            let modifiedUrl =
+              AppConfig.cibmtr_fhir_update_url + "?" + next.url.split("?")[1];
+            return this.http.get(modifiedUrl);
+          } else {
+            return EMPTY;
+          }
+        })
+        //{return response.entry ? flatMap((array) => array)) : response}
+        .map((response) => {
+          if (response.entry) {
+            return response.entry.flatMap((array) => array);
+          }
+          return [];
+        })
+        .reduce((acc, x) => acc.concat(x), [])
         .subscribe(
-          (response) => {
-            this.savedBundle = response;
-            let entries = this.vitals.entry;
-            let savedEntries = this.savedBundle.entry;
-            if (entries && entries.length > 0) {
+          (savedEntries) => {
+            this.spinner.end();
+            //need to refactor savedEntries
+            let ehr_entries = this.vitals;
+            if (ehr_entries && ehr_entries.length > 0) {
               // filtering the entries to only Observations
-              let observationEntries = entries.filter(function (item) {
+              let observationEntries = ehr_entries.filter(function (item) {
                 return item.resource.resourceType === "Observation";
               });
 
@@ -105,6 +128,7 @@ export class ObservationVitalsComponent implements OnInit {
             }
           },
           (error) => {
+            this.spinner.reset();
             console.log(
               "error occurred while fetching saved observations",
               error
@@ -156,107 +180,106 @@ export class ObservationVitalsComponent implements OnInit {
       return components;
     }
   }
+  //valueDateTime //valuesampledData //valueAttachemnt(attachement) //ValueInteger  //ValueRange - range.low.value - high.value
 
   submitToCibmtr() {
     //reset
-    this.success = false;
-    this.fail = false;
     this.selectedNewEntries = [];
     this.selectedUpdatedEntries = [];
     this.selectedNewResources = [];
     this.selectedUpdatedResources = [];
+
     // New Records
     this.selectedNewEntries.push(
-      this.vitals.entry.filter((m) => m.selected === true && m.state === "bold")
+      this.vitals.filter((m) => m.selected === true && m.state === "bold")
     );
 
-    this.selectedNewResources = this.buildSelectedResources(
+    this.selectedNewResources = Array.prototype.concat.apply(
+      [],
       this.selectedNewEntries
     );
 
-    if (this.selectedNewResources && this.selectedNewResources.length > 0) {
-      this.observationavitalsService
-        .postNewRecords(this.selectedNewResources, this.psScope)
-        .subscribe(
-          (response) => {
-            let id = response.identifier[0].value.substring(
-              response.identifier[0].value.lastIndexOf("/") + 1
-            );
-            Array.prototype.concat
-              .apply([], this.selectedNewEntries)
-              .filter((e) => e.resource.id === id)[0].state = "lighter";
-            this.success = true;
-            // This subscribe will be called for every successful post of new record
-          },
-          (error) => {
-            console.error(error);
-            this.fail = true;
-          },
-          () => {
-            this.checkForSelectAll();
-          }
-        );
-    }
-
     // Updated Records
     this.selectedUpdatedEntries.push(
-      this.vitals.entry.filter(
-        (m) => m.selected === true && m.state === "normal"
-      )
+      this.vitals.filter((m) => m.selected === true && m.state === "normal")
     );
 
     this.selectedUpdatedResources = Array.prototype.concat.apply(
       [],
       this.selectedUpdatedEntries
     );
-    if (
-      this.selectedUpdatedResources &&
-      this.selectedUpdatedResources.length > 0
-    ) {
-      this.observationavitalsService
-        .postUpdatedRecords(this.selectedUpdatedResources, this.psScope)
+
+    let totalEntries = [
+      ...this.selectedNewResources,
+      ...this.selectedUpdatedResources,
+    ];
+
+    if (totalEntries && totalEntries.length > 0) {
+      let bundles = this.observationvitalsService.getBundles(
+        totalEntries,
+        this.psScope
+      );
+
+      let _successCount = 0;
+
+      this.spinner.start();
+      from(bundles)
+        .pipe(
+          mergeMap((bundle) =>
+            this.observationvitalsService.getBundleObservable(bundle)
+          )
+        )
+        .finally(() => {
+          this.spinner.end();
+          this.totalSuccessCount = _successCount;
+          this.totalFailCount = totalEntries.length - _successCount;
+          this.checkForSelectAll();
+        })
         .subscribe(
           (response) => {
-            Array.prototype.concat
-              .apply([], this.selectedUpdatedEntries)
-              .filter((e) => e.resource.id === response.id)[0].state =
-              "lighter";
-            this.success = true;
-            // This subscribe will be called for every successful updated of the record
+            response.entry &&
+              response.entry.forEach((entry) => {
+                let idValue = entry.resource.identifier[0].value;
+                const matchedEntry = totalEntries.find((e) => {
+                  return idValue === e.fullUrl;
+                });
+                matchedEntry.state = "lighter";
+                _successCount++;
+              });
           },
-          (error) => {
-            console.error(error);
-            this.fail = true;
-          },
-          () => {
-            this.checkForSelectAll();
+          (errorBundle) => {
+            this.spinner.reset();
+            console.log(
+              "error occurred while fetching saved observations",
+              errorBundle
+            );
           }
         );
     }
   }
 
-  buildSelectedResources(selectedEntries) {
-    let selectedResources = [];
-    const flattenSelectedEntries = Array.prototype.concat.apply(
-      [],
-      selectedEntries
-    );
-    flattenSelectedEntries.forEach((selectedEntry) => {
-      selectedResources.push(selectedEntry.resource);
-    });
-    return selectedResources;
-  }
+  // buildSelectedResources(selectedEntries) {
+  //   let selectedResources = [];
+  //   const flattenSelectedEntries = Array.prototype.concat.apply(
+  //     [],
+  //     selectedEntries
+  //   );
+  //   flattenSelectedEntries.forEach((selectedEntry) => {
+  //     selectedResources.push(selectedEntry.resource);
+  //   });
+  //   return selectedResources;
+  // }
 
   checkForSelectAll() {
-    this.isAllSelected = this.vitals.entry.every((entry) => entry.selected);
-    this.isAlldisabled = this.vitals.entry.every(
+    this.isAllSelected = this.vitals.every((entry) => entry.selected);
+    this.isAlldisabled = this.vitals.every(
       (entry) => entry.selected && entry.state === "lighter"
     );
   }
 
   selectAll() {
     let toggleStatus = this.isAllSelected;
-    this.vitals.entry.forEach((entry) => {
+    this.vitals.forEach((entry) => {
       if (entry.state != "lighter") {
         entry.selected = toggleStatus;
       }
@@ -264,8 +287,14 @@ export class ObservationVitalsComponent implements OnInit {
   }
 
   toggleOption = function () {
-    this.isAllSelected = this.vitals.entry.every(function (entry) {
+    this.isAllSelected = this.vitals.every(function (entry) {
       return entry.selected;
+    });
+  };
+
+  toggleAllOption = function () {
+    this.isAlldisabled = this.vitals.every(function (entry) {
+      return entry.disabled;
     });
   };
 }

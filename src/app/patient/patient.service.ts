@@ -35,65 +35,36 @@ export class PatientService {
   }
 
   getObservation(identifier): Observable<IPatientContext> {
-    return this.http
-      .get<IPatientContext>(
-        this.utilityService.rebuild_DSTU2_STU3_Url(
-          this._localStorageService.get("iss")
-        ) +
-          "/Observation?patient=" +
-          identifier +
-          "&" +
-          AppConfig.observation_codes,
-        {
-          headers: this.buildEhrHeaders(),
-        }
-      )
-      .catch((e: any) => Observable.of(null));
+    let url = this.utilityService.rebuild_DSTU2_STU3_Url(this._localStorageService.get("iss")) +
+          "/Observation?patient=" + identifier + "&" + AppConfig.observation_codes;
+      return this.utilityService.getPage(url, this.buildEhrHeaders()).catch((e: any) => Observable.of(null));
+   }
+
+  getObservationPriorityLabs(identifier): Observable<IPatientContext> {
+    let url =
+      this.utilityService.rebuild_DSTU2_STU3_Url(this._localStorageService.get("iss")) +
+          "/Observation?patient=" + identifier + "&_count=1000&code=" + AppConfig.loinc_system + AppConfig.pipe_escape + "&code="
+          + AppConfig.loinc_codes.join(",");
+    return  this.utilityService.getPage(url, this.buildEhrHeaders()).catch((e: any) => Observable.of(null));
   }
 
   getObservationLabs(identifier): Observable<IPatientContext> {
-    return this.http
-      .get<IPatientContext>(
-        this.utilityService.rebuild_DSTU2_STU3_Url(
-          this._localStorageService.get("iss")
-        ) +
-          "/Observation?category=laboratory&patient=" +
-          identifier,
-        {
-          headers: this.buildEhrHeaders(),
-        }
-      )
-      .catch((e: any) => Observable.of(null));
+    let url =
+      this.utilityService.rebuild_DSTU2_STU3_Url(this._localStorageService.get("iss")) +
+      "/Observation?category=laboratory&_count=1000&patient=" + identifier;
+    return this.utilityService.getPage(url, this.buildEhrHeaders()).catch((e: any) => Observable.of(null)) ;
   }
 
   getObservationVitalSigns(identifier): Observable<IPatientContext> {
-    return this.http
-      .get<IPatientContext>(
-        this.utilityService.rebuild_DSTU2_STU3_Url(
-          this._localStorageService.get("iss")
-        ) +
-          "/Observation?category=vital-signs&patient=" +
-          identifier,
-        {
-          headers: this.buildEhrHeaders(),
-        }
-      )
-      .catch((e: any) => Observable.of(null));
+    let url =  this.utilityService.rebuild_DSTU2_STU3_Url(this._localStorageService.get("iss")) +
+      "/Observation?category=vital-signs&_count=1000&patient=" + identifier ;
+    return this.utilityService.getPage(url, this.buildEhrHeaders()).catch((e: any) => Observable.of(null));
   }
 
   getObservationCoreChar(identifier): Observable<IPatientContext> {
-    return this.http
-      .get<IPatientContext>(
-        this.utilityService.rebuild_DSTU2_STU3_Url(
-          this._localStorageService.get("iss")
-        ) +
-          "/Observation?category=core-characteristics&patient=" +
-          identifier,
-        {
-          headers: this.buildEhrHeaders(),
-        }
-      )
-      .catch((e: any) => Observable.of(null));
+    let url = this.utilityService.rebuild_DSTU2_STU3_Url(this._localStorageService.get("iss")) +
+          "/Observation?category=core-characteristics&patient=" + identifier;
+    return this.utilityService.getPage(url, this.buildEhrHeaders()).catch((e: any) => Observable.of(null));
   }
 
   buildEhrHeaders() {

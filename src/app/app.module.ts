@@ -5,6 +5,7 @@ import { HttpModule } from "@angular/http";
 import { AppRoutingModule, routingComponents } from "./app.routing.module";
 import { AppComponent } from "./app.component";
 import { CustomHttpInterceptor } from "./interceptors/http.interceptor";
+import { HttpMockRequestInterceptor } from "./mock/mock.http.interceptor";
 import { PatientService } from "./patient/patient.service";
 import { PatientResolver } from "./patient/patient.resolver";
 import { ObservationAgvhdComponent } from "./observation.agvhd/observation.agvhd.component";
@@ -31,6 +32,11 @@ import { ErrorComponent } from "./error/error.component";
 import { InfoComponent } from "./info/info.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MaterialModule } from "./material/material.module";
+import { environment } from "src/environments/environment.mock";
+import { SpinnerComponent } from "./spinner/spinner.component";
+import { SpinnerService } from "./spinner/spinner.service";
+
+export const isMock = environment.mock;
 
 @NgModule({
   declarations: [
@@ -45,6 +51,7 @@ import { MaterialModule } from "./material/material.module";
     ObservationCoreComponent,
     ErrorComponent,
     InfoComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,6 +80,7 @@ import { MaterialModule } from "./material/material.module";
     AuthorizationService,
     AppInitService,
     FhirService,
+    SpinnerService,
     CustomHttpClient,
     {
       provide: HTTP_INTERCEPTORS,
@@ -85,6 +93,16 @@ import { MaterialModule } from "./material/material.module";
       deps: [AppInitService],
       multi: true,
     },
+
+    ...(isMock
+      ? [
+          {
+            provide: HTTP_INTERCEPTORS,
+            useClass: HttpMockRequestInterceptor,
+            multi: true,
+          },
+        ]
+      : []),
   ],
   bootstrap: [AppComponent],
 })

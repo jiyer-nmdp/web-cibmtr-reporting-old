@@ -1,0 +1,3983 @@
+{
+  "resourceType": "Bundle",
+  "type": "searchset",
+  "total": 48,
+  "link": [
+    {
+      "relation": "self",
+      "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation?category=vital-signs&patient=eL4cjWxKfUjn8-KE3GA4nJw3"
+    }
+  ],
+  "entry": [
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/essTHxJTMxEmzSOk-ugcUt3h7.gz.MjP.em7GsmJ30IyCGsTQeYmfRuCdVQ5WDDE63"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/essTHxJTMxEmzSOk-ugcUt3h7.gz.MjP.em7GsmJ30IyCGsTQeYmfRuCdVQ5WDDE63",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "essTHxJTMxEmzSOk-ugcUt3h7.gz.MjP.em7GsmJ30IyCGsTQeYmfRuCdVQ5WDDE63",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "5",
+              "display": "Blood Pressure"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "tBdNYepLeojPG60x7nUx9kQ0",
+              "display": "Blood Pressure"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "8462-4" },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "8480-6" },
+            {
+              "system": "http://loinc.org",
+              "code": "55284-4",
+              "display": "Blood pressure systolic and diastolic"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "85354-9",
+              "display": "Blood pressure panel with all children optional"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            }
+          ],
+          "text": "Blood Pressure"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "effectiveDateTime": "2014-05-25T20:17:00Z",
+        "issued": "2014-05-25T20:17:48Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/ePsY4S-71dMUXDyJ6Hsrr9A3",
+            "display": "Nurse Coordinator P"
+          }
+        ],
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8480-6",
+                  "display": "Systolic blood pressure"
+                }
+              ],
+              "text": "Systolic blood pressure"
+            },
+            "valueQuantity": {
+              "value": 130,
+              "unit": "mm[Hg]",
+              "system": "http://unitsofmeasure.org",
+              "code": "mm[Hg]"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8462-4",
+                  "display": "Diastolic blood pressure"
+                }
+              ],
+              "text": "Diastolic blood pressure"
+            },
+            "valueQuantity": {
+              "value": 98,
+              "unit": "mm[Hg]",
+              "system": "http://unitsofmeasure.org",
+              "code": "mm[Hg]"
+            }
+          }
+        ]
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/e-b1M1lPNxxFpjxHbqSFBiWlX0iT00IZEyiz6kK.peQbU70uEXi8BWN8szspr-h9y3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/e-b1M1lPNxxFpjxHbqSFBiWlX0iT00IZEyiz6kK.peQbU70uEXi8BWN8szspr-h9y3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "e-b1M1lPNxxFpjxHbqSFBiWlX0iT00IZEyiz6kK.peQbU70uEXi8BWN8szspr-h9y3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "5",
+              "display": "Blood Pressure"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "tBdNYepLeojPG60x7nUx9kQ0",
+              "display": "Blood Pressure"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "8462-4" },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "8480-6" },
+            {
+              "system": "http://loinc.org",
+              "code": "55284-4",
+              "display": "Blood pressure systolic and diastolic"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "85354-9",
+              "display": "Blood pressure panel with all children optional"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            }
+          ],
+          "text": "Blood Pressure"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "effectiveDateTime": "2014-05-25T20:17:00Z",
+        "issued": "2014-05-25T20:17:48Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/ePsY4S-71dMUXDyJ6Hsrr9A3",
+            "display": "Nurse Coordinator P"
+          }
+        ],
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8480-6",
+                  "display": "Systolic blood pressure"
+                }
+              ],
+              "text": "Systolic blood pressure"
+            },
+            "valueQuantity": {
+              "value": 130,
+              "unit": "mm[Hg]",
+              "system": "http://unitsofmeasure.org",
+              "code": "mm[Hg]"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8462-4",
+                  "display": "Diastolic blood pressure"
+                }
+              ],
+              "text": "Diastolic blood pressure"
+            },
+            "valueQuantity": {
+              "value": 98,
+              "unit": "mm[Hg]",
+              "system": "http://unitsofmeasure.org",
+              "code": "mm[Hg]"
+            }
+          }
+        ]
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/essTHxJTMxEmzSOk-ugcUtxLMYicgxaei4AAjLUgHuGHgrR16n4aVGO0g.PNi-JHx3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/essTHxJTMxEmzSOk-ugcUtxLMYicgxaei4AAjLUgHuGHgrR16n4aVGO0g.PNi-JHx3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "essTHxJTMxEmzSOk-ugcUtxLMYicgxaei4AAjLUgHuGHgrR16n4aVGO0g.PNi-JHx3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "5",
+              "display": "Blood Pressure"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "tBdNYepLeojPG60x7nUx9kQ0",
+              "display": "Blood Pressure"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "8462-4" },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "8480-6" },
+            {
+              "system": "http://loinc.org",
+              "code": "55284-4",
+              "display": "Blood pressure systolic and diastolic"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "85354-9",
+              "display": "Blood pressure panel with all children optional"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            }
+          ],
+          "text": "Blood Pressure"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/e3EuWI.353X.r2MecLrxrXw3"
+        },
+        "effectiveDateTime": "2013-11-06T20:27:00Z",
+        "issued": "2013-11-06T20:28:03Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Nurse F"
+          }
+        ],
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8480-6",
+                  "display": "Systolic blood pressure"
+                }
+              ],
+              "text": "Systolic blood pressure"
+            },
+            "valueQuantity": {
+              "value": 130,
+              "unit": "mm[Hg]",
+              "system": "http://unitsofmeasure.org",
+              "code": "mm[Hg]"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8462-4",
+                  "display": "Diastolic blood pressure"
+                }
+              ],
+              "text": "Diastolic blood pressure"
+            },
+            "valueQuantity": {
+              "value": 98,
+              "unit": "mm[Hg]",
+              "system": "http://unitsofmeasure.org",
+              "code": "mm[Hg]"
+            }
+          }
+        ]
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eOg18ZxFhHXZ8mMWbwwk5NhHYxTjE3tfZfu46jdFooRxZ0I4ylCDpmzr5Et-ZD4523"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eOg18ZxFhHXZ8mMWbwwk5NhHYxTjE3tfZfu46jdFooRxZ0I4ylCDpmzr5Et-ZD4523",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eOg18ZxFhHXZ8mMWbwwk5NhHYxTjE3tfZfu46jdFooRxZ0I4ylCDpmzr5Et-ZD4523",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "5",
+              "display": "Blood Pressure"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "tBdNYepLeojPG60x7nUx9kQ0",
+              "display": "Blood Pressure"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "8462-4" },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "8480-6" },
+            {
+              "system": "http://loinc.org",
+              "code": "55284-4",
+              "display": "Blood pressure systolic and diastolic"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "85354-9",
+              "display": "Blood pressure panel with all children optional"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            }
+          ],
+          "text": "Blood Pressure"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/erBNDXcezxeB7FgoBJD8U9A3"
+        },
+        "effectiveDateTime": "2013-11-06T20:27:00Z",
+        "issued": "2013-11-06T20:28:03Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Nurse F"
+          }
+        ],
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8480-6",
+                  "display": "Systolic blood pressure"
+                }
+              ],
+              "text": "Systolic blood pressure"
+            },
+            "valueQuantity": {
+              "value": 130,
+              "unit": "mm[Hg]",
+              "system": "http://unitsofmeasure.org",
+              "code": "mm[Hg]"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8462-4",
+                  "display": "Diastolic blood pressure"
+                }
+              ],
+              "text": "Diastolic blood pressure"
+            },
+            "valueQuantity": {
+              "value": 98,
+              "unit": "mm[Hg]",
+              "system": "http://unitsofmeasure.org",
+              "code": "mm[Hg]"
+            }
+          }
+        ]
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eWLgNtJS01vSudqD9FhO5mXNZ3DGKd85YTQ9lJc2VeKJ6dPzQP0nG7GxNdxbkrChb3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eWLgNtJS01vSudqD9FhO5mXNZ3DGKd85YTQ9lJc2VeKJ6dPzQP0nG7GxNdxbkrChb3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eWLgNtJS01vSudqD9FhO5mXNZ3DGKd85YTQ9lJc2VeKJ6dPzQP0nG7GxNdxbkrChb3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "5",
+              "display": "Blood Pressure"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "tBdNYepLeojPG60x7nUx9kQ0",
+              "display": "Blood Pressure"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "8462-4" },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "8480-6" },
+            {
+              "system": "http://loinc.org",
+              "code": "55284-4",
+              "display": "Blood pressure systolic and diastolic"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "85354-9",
+              "display": "Blood pressure panel with all children optional"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            }
+          ],
+          "text": "Blood Pressure"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eBZ5MuIRWQUn1Y0B7d1MccQ3"
+        },
+        "effectiveDateTime": "2013-09-04T19:09:00Z",
+        "issued": "2013-09-04T19:09:45Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Nurse F"
+          }
+        ],
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8480-6",
+                  "display": "Systolic blood pressure"
+                }
+              ],
+              "text": "Systolic blood pressure"
+            },
+            "valueQuantity": {
+              "value": 135,
+              "unit": "mm[Hg]",
+              "system": "http://unitsofmeasure.org",
+              "code": "mm[Hg]"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8462-4",
+                  "display": "Diastolic blood pressure"
+                }
+              ],
+              "text": "Diastolic blood pressure"
+            },
+            "valueQuantity": {
+              "value": 96,
+              "unit": "mm[Hg]",
+              "system": "http://unitsofmeasure.org",
+              "code": "mm[Hg]"
+            }
+          }
+        ]
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eOg18ZxFhHXZ8mMWbwwk5Ntyc5AXVITtgtl7y8dzYzzSOeTfP2FVVUHvW9omQM5Jv3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eOg18ZxFhHXZ8mMWbwwk5Ntyc5AXVITtgtl7y8dzYzzSOeTfP2FVVUHvW9omQM5Jv3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eOg18ZxFhHXZ8mMWbwwk5Ntyc5AXVITtgtl7y8dzYzzSOeTfP2FVVUHvW9omQM5Jv3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "5",
+              "display": "Blood Pressure"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "tBdNYepLeojPG60x7nUx9kQ0",
+              "display": "Blood Pressure"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "8462-4" },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "8480-6" },
+            {
+              "system": "http://loinc.org",
+              "code": "55284-4",
+              "display": "Blood pressure systolic and diastolic"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "85354-9",
+              "display": "Blood pressure panel with all children optional"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            }
+          ],
+          "text": "Blood Pressure"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eKxtx9Au7dvAG2aIhcl6BdQ3"
+        },
+        "effectiveDateTime": "2013-09-04T19:09:00Z",
+        "issued": "2013-09-04T19:09:45Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Nurse F"
+          }
+        ],
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8480-6",
+                  "display": "Systolic blood pressure"
+                }
+              ],
+              "text": "Systolic blood pressure"
+            },
+            "valueQuantity": {
+              "value": 135,
+              "unit": "mm[Hg]",
+              "system": "http://unitsofmeasure.org",
+              "code": "mm[Hg]"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8462-4",
+                  "display": "Diastolic blood pressure"
+                }
+              ],
+              "text": "Diastolic blood pressure"
+            },
+            "valueQuantity": {
+              "value": 96,
+              "unit": "mm[Hg]",
+              "system": "http://unitsofmeasure.org",
+              "code": "mm[Hg]"
+            }
+          }
+        ]
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eWLgNtJS01vSudqD9FhO5mTnJzwc-DTPs9yBhHvAX7vM6x1dCTVak9b4hWWAeonbO3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eWLgNtJS01vSudqD9FhO5mTnJzwc-DTPs9yBhHvAX7vM6x1dCTVak9b4hWWAeonbO3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eWLgNtJS01vSudqD9FhO5mTnJzwc-DTPs9yBhHvAX7vM6x1dCTVak9b4hWWAeonbO3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "5",
+              "display": "Blood Pressure"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "tBdNYepLeojPG60x7nUx9kQ0",
+              "display": "Blood Pressure"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "8462-4" },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "8480-6" },
+            {
+              "system": "http://loinc.org",
+              "code": "55284-4",
+              "display": "Blood pressure systolic and diastolic"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "85354-9",
+              "display": "Blood pressure panel with all children optional"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            }
+          ],
+          "text": "Blood Pressure"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eS.7d9jpxYyWd..DflGx7uw3"
+        },
+        "effectiveDateTime": "2013-03-06T15:47:00Z",
+        "issued": "2013-03-06T15:47:54Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Nurse F"
+          }
+        ],
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8480-6",
+                  "display": "Systolic blood pressure"
+                }
+              ],
+              "text": "Systolic blood pressure"
+            },
+            "valueQuantity": {
+              "value": 135,
+              "unit": "mm[Hg]",
+              "system": "http://unitsofmeasure.org",
+              "code": "mm[Hg]"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8462-4",
+                  "display": "Diastolic blood pressure"
+                }
+              ],
+              "text": "Diastolic blood pressure"
+            },
+            "valueQuantity": {
+              "value": 95,
+              "unit": "mm[Hg]",
+              "system": "http://unitsofmeasure.org",
+              "code": "mm[Hg]"
+            }
+          }
+        ]
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eOg18ZxFhHXZ8mMWbwwk5NomIgvU9bjPmpTMZAQ8pNMAc2BukOqcc2YvBhavT70rA3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eOg18ZxFhHXZ8mMWbwwk5NomIgvU9bjPmpTMZAQ8pNMAc2BukOqcc2YvBhavT70rA3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eOg18ZxFhHXZ8mMWbwwk5NomIgvU9bjPmpTMZAQ8pNMAc2BukOqcc2YvBhavT70rA3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "5",
+              "display": "Blood Pressure"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "tBdNYepLeojPG60x7nUx9kQ0",
+              "display": "Blood Pressure"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "8462-4" },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "8480-6" },
+            {
+              "system": "http://loinc.org",
+              "code": "55284-4",
+              "display": "Blood pressure systolic and diastolic"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "85354-9",
+              "display": "Blood pressure panel with all children optional"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            }
+          ],
+          "text": "Blood Pressure"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eFCspW4QJUk9GOI1nwIiRxg3"
+        },
+        "effectiveDateTime": "2013-03-06T15:47:00Z",
+        "issued": "2013-03-06T15:47:54Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Nurse F"
+          }
+        ],
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8480-6",
+                  "display": "Systolic blood pressure"
+                }
+              ],
+              "text": "Systolic blood pressure"
+            },
+            "valueQuantity": {
+              "value": 135,
+              "unit": "mm[Hg]",
+              "system": "http://unitsofmeasure.org",
+              "code": "mm[Hg]"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8462-4",
+                  "display": "Diastolic blood pressure"
+                }
+              ],
+              "text": "Diastolic blood pressure"
+            },
+            "valueQuantity": {
+              "value": 95,
+              "unit": "mm[Hg]",
+              "system": "http://unitsofmeasure.org",
+              "code": "mm[Hg]"
+            }
+          }
+        ]
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/essTHxJTMxEmzSOk-ugcUt3e5n7fIc-VAh1FS-9JVbHhUFwubT-kUl6RxyIo5E9As3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/essTHxJTMxEmzSOk-ugcUt3e5n7fIc-VAh1FS-9JVbHhUFwubT-kUl6RxyIo5E9As3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "essTHxJTMxEmzSOk-ugcUt3e5n7fIc-VAh1FS-9JVbHhUFwubT-kUl6RxyIo5E9As3",
+        "extension": [
+          {
+            "valueQuantity": {
+              "value": 99,
+              "unit": "[degF]",
+              "system": "http://unitsofmeasure.org",
+              "code": "[degF]"
+            },
+            "url": "http://open.epic.com/FHIR/STU3/StructureDefinition/temperature-in-fahrenheit"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "6",
+              "display": "Temperature"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "tvdinindxnlKvaoAecyilRA0",
+              "display": "Temperature"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "8310-5" },
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5",
+              "display": "Body temperature"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            }
+          ],
+          "text": "Temperature"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "effectiveDateTime": "2014-05-25T20:17:00Z",
+        "issued": "2014-05-25T20:17:48Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/ePsY4S-71dMUXDyJ6Hsrr9A3",
+            "display": "Nurse Coordinator P"
+          }
+        ],
+        "valueQuantity": {
+          "value": 37.2,
+          "unit": "Cel",
+          "system": "http://unitsofmeasure.org",
+          "code": "Cel"
+        }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/e-b1M1lPNxxFpjxHbqSFBiT6-4xucWad-vIZ9VZZfOgYRKuVJHqMlNclgTega1oHG3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/e-b1M1lPNxxFpjxHbqSFBiT6-4xucWad-vIZ9VZZfOgYRKuVJHqMlNclgTega1oHG3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "e-b1M1lPNxxFpjxHbqSFBiT6-4xucWad-vIZ9VZZfOgYRKuVJHqMlNclgTega1oHG3",
+        "extension": [
+          {
+            "valueQuantity": {
+              "value": 99,
+              "unit": "[degF]",
+              "system": "http://unitsofmeasure.org",
+              "code": "[degF]"
+            },
+            "url": "http://open.epic.com/FHIR/STU3/StructureDefinition/temperature-in-fahrenheit"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "6",
+              "display": "Temperature"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "tvdinindxnlKvaoAecyilRA0",
+              "display": "Temperature"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "8310-5" },
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5",
+              "display": "Body temperature"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            }
+          ],
+          "text": "Temperature"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "effectiveDateTime": "2014-05-25T20:17:00Z",
+        "issued": "2014-05-25T20:17:48Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/ePsY4S-71dMUXDyJ6Hsrr9A3",
+            "display": "Nurse Coordinator P"
+          }
+        ],
+        "valueQuantity": {
+          "value": 37.2,
+          "unit": "Cel",
+          "system": "http://unitsofmeasure.org",
+          "code": "Cel"
+        }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/essTHxJTMxEmzSOk-ugcUtywyDe7HFdqVeQ9JmqGpzzZ4PGOYQei5QkIpjVQYz3jS3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/essTHxJTMxEmzSOk-ugcUtywyDe7HFdqVeQ9JmqGpzzZ4PGOYQei5QkIpjVQYz3jS3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "essTHxJTMxEmzSOk-ugcUtywyDe7HFdqVeQ9JmqGpzzZ4PGOYQei5QkIpjVQYz3jS3",
+        "extension": [
+          {
+            "valueQuantity": {
+              "value": 98.6,
+              "unit": "[degF]",
+              "system": "http://unitsofmeasure.org",
+              "code": "[degF]"
+            },
+            "url": "http://open.epic.com/FHIR/STU3/StructureDefinition/temperature-in-fahrenheit"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "6",
+              "display": "Temperature"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "tvdinindxnlKvaoAecyilRA0",
+              "display": "Temperature"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "8310-5" },
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5",
+              "display": "Body temperature"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            }
+          ],
+          "text": "Temperature"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/e3EuWI.353X.r2MecLrxrXw3"
+        },
+        "effectiveDateTime": "2013-11-06T20:27:00Z",
+        "issued": "2013-11-06T20:28:03Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Nurse F"
+          }
+        ],
+        "valueQuantity": {
+          "value": 37,
+          "unit": "Cel",
+          "system": "http://unitsofmeasure.org",
+          "code": "Cel"
+        }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eOg18ZxFhHXZ8mMWbwwk5Njrs6C-nzu9xGwcVd1t-AFkAtJYfQPZn94jz9QWyfusy3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eOg18ZxFhHXZ8mMWbwwk5Njrs6C-nzu9xGwcVd1t-AFkAtJYfQPZn94jz9QWyfusy3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eOg18ZxFhHXZ8mMWbwwk5Njrs6C-nzu9xGwcVd1t-AFkAtJYfQPZn94jz9QWyfusy3",
+        "extension": [
+          {
+            "valueQuantity": {
+              "value": 98.6,
+              "unit": "[degF]",
+              "system": "http://unitsofmeasure.org",
+              "code": "[degF]"
+            },
+            "url": "http://open.epic.com/FHIR/STU3/StructureDefinition/temperature-in-fahrenheit"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "6",
+              "display": "Temperature"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "tvdinindxnlKvaoAecyilRA0",
+              "display": "Temperature"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "8310-5" },
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5",
+              "display": "Body temperature"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            }
+          ],
+          "text": "Temperature"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/erBNDXcezxeB7FgoBJD8U9A3"
+        },
+        "effectiveDateTime": "2013-11-06T20:27:00Z",
+        "issued": "2013-11-06T20:28:03Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Nurse F"
+          }
+        ],
+        "valueQuantity": {
+          "value": 37,
+          "unit": "Cel",
+          "system": "http://unitsofmeasure.org",
+          "code": "Cel"
+        }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eWLgNtJS01vSudqD9FhO5mYHXReiRsQvgCUroDxiuWDY8JTVFg37IrL5ZqXfIXcdS3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eWLgNtJS01vSudqD9FhO5mYHXReiRsQvgCUroDxiuWDY8JTVFg37IrL5ZqXfIXcdS3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eWLgNtJS01vSudqD9FhO5mYHXReiRsQvgCUroDxiuWDY8JTVFg37IrL5ZqXfIXcdS3",
+        "extension": [
+          {
+            "valueQuantity": {
+              "value": 98.6,
+              "unit": "[degF]",
+              "system": "http://unitsofmeasure.org",
+              "code": "[degF]"
+            },
+            "url": "http://open.epic.com/FHIR/STU3/StructureDefinition/temperature-in-fahrenheit"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "6",
+              "display": "Temperature"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "tvdinindxnlKvaoAecyilRA0",
+              "display": "Temperature"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "8310-5" },
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5",
+              "display": "Body temperature"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            }
+          ],
+          "text": "Temperature"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eBZ5MuIRWQUn1Y0B7d1MccQ3"
+        },
+        "effectiveDateTime": "2013-09-04T19:09:00Z",
+        "issued": "2013-09-04T19:09:45Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Nurse F"
+          }
+        ],
+        "valueQuantity": {
+          "value": 37,
+          "unit": "Cel",
+          "system": "http://unitsofmeasure.org",
+          "code": "Cel"
+        }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eOg18ZxFhHXZ8mMWbwwk5NvpAn6x8pNXn4eikejHPcE7LgtC9HDwkylMoHmsPaF3T3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eOg18ZxFhHXZ8mMWbwwk5NvpAn6x8pNXn4eikejHPcE7LgtC9HDwkylMoHmsPaF3T3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eOg18ZxFhHXZ8mMWbwwk5NvpAn6x8pNXn4eikejHPcE7LgtC9HDwkylMoHmsPaF3T3",
+        "extension": [
+          {
+            "valueQuantity": {
+              "value": 98.6,
+              "unit": "[degF]",
+              "system": "http://unitsofmeasure.org",
+              "code": "[degF]"
+            },
+            "url": "http://open.epic.com/FHIR/STU3/StructureDefinition/temperature-in-fahrenheit"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "6",
+              "display": "Temperature"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "tvdinindxnlKvaoAecyilRA0",
+              "display": "Temperature"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "8310-5" },
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5",
+              "display": "Body temperature"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            }
+          ],
+          "text": "Temperature"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eKxtx9Au7dvAG2aIhcl6BdQ3"
+        },
+        "effectiveDateTime": "2013-09-04T19:09:00Z",
+        "issued": "2013-09-04T19:09:45Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Nurse F"
+          }
+        ],
+        "valueQuantity": {
+          "value": 37,
+          "unit": "Cel",
+          "system": "http://unitsofmeasure.org",
+          "code": "Cel"
+        }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eWLgNtJS01vSudqD9FhO5mVXmJLi1jo4ym-65X5a-BY1PK-O2tmBjTf7g-AuY.5DU3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eWLgNtJS01vSudqD9FhO5mVXmJLi1jo4ym-65X5a-BY1PK-O2tmBjTf7g-AuY.5DU3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eWLgNtJS01vSudqD9FhO5mVXmJLi1jo4ym-65X5a-BY1PK-O2tmBjTf7g-AuY.5DU3",
+        "extension": [
+          {
+            "valueQuantity": {
+              "value": 98.5,
+              "unit": "[degF]",
+              "system": "http://unitsofmeasure.org",
+              "code": "[degF]"
+            },
+            "url": "http://open.epic.com/FHIR/STU3/StructureDefinition/temperature-in-fahrenheit"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "6",
+              "display": "Temperature"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "tvdinindxnlKvaoAecyilRA0",
+              "display": "Temperature"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "8310-5" },
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5",
+              "display": "Body temperature"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            }
+          ],
+          "text": "Temperature"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eS.7d9jpxYyWd..DflGx7uw3"
+        },
+        "effectiveDateTime": "2013-03-06T15:47:00Z",
+        "issued": "2013-03-06T15:47:54Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Nurse F"
+          }
+        ],
+        "valueQuantity": {
+          "value": 36.9,
+          "unit": "Cel",
+          "system": "http://unitsofmeasure.org",
+          "code": "Cel"
+        }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eOg18ZxFhHXZ8mMWbwwk5NjWA1.ekOT9ol-OHEkPgKIqQ5gl0D8eyr.4v0KTp3CXp3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eOg18ZxFhHXZ8mMWbwwk5NjWA1.ekOT9ol-OHEkPgKIqQ5gl0D8eyr.4v0KTp3CXp3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eOg18ZxFhHXZ8mMWbwwk5NjWA1.ekOT9ol-OHEkPgKIqQ5gl0D8eyr.4v0KTp3CXp3",
+        "extension": [
+          {
+            "valueQuantity": {
+              "value": 98.5,
+              "unit": "[degF]",
+              "system": "http://unitsofmeasure.org",
+              "code": "[degF]"
+            },
+            "url": "http://open.epic.com/FHIR/STU3/StructureDefinition/temperature-in-fahrenheit"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "6",
+              "display": "Temperature"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "tvdinindxnlKvaoAecyilRA0",
+              "display": "Temperature"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "8310-5" },
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5",
+              "display": "Body temperature"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            }
+          ],
+          "text": "Temperature"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eFCspW4QJUk9GOI1nwIiRxg3"
+        },
+        "effectiveDateTime": "2013-03-06T15:47:00Z",
+        "issued": "2013-03-06T15:47:54Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Nurse F"
+          }
+        ],
+        "valueQuantity": {
+          "value": 36.9,
+          "unit": "Cel",
+          "system": "http://unitsofmeasure.org",
+          "code": "Cel"
+        }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/essTHxJTMxEmzSOk-ugcUtxMbcw5TlmiEH7evQXOMS-ajg0oEC-1-NnXMr4gZn8qc3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/essTHxJTMxEmzSOk-ugcUtxMbcw5TlmiEH7evQXOMS-ajg0oEC-1-NnXMr4gZn8qc3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "essTHxJTMxEmzSOk-ugcUtxMbcw5TlmiEH7evQXOMS-ajg0oEC-1-NnXMr4gZn8qc3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "8",
+              "display": "Pulse"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "t0nle2B9NVDaJJUDo0FtQrA0",
+              "display": "Pulse"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "8867-4" },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ],
+          "text": "Pulse"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "effectiveDateTime": "2014-05-25T20:17:00Z",
+        "issued": "2014-05-25T20:17:48Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/ePsY4S-71dMUXDyJ6Hsrr9A3",
+            "display": "Nurse Coordinator P"
+          }
+        ],
+        "valueQuantity": {
+          "value": 76,
+          "unit": "/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/e-b1M1lPNxxFpjxHbqSFBiYjA.f63jV9cnr5SSpdEC8JKyPguymMp0lyDDdy-CPzV3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/e-b1M1lPNxxFpjxHbqSFBiYjA.f63jV9cnr5SSpdEC8JKyPguymMp0lyDDdy-CPzV3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "e-b1M1lPNxxFpjxHbqSFBiYjA.f63jV9cnr5SSpdEC8JKyPguymMp0lyDDdy-CPzV3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "8",
+              "display": "Pulse"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "t0nle2B9NVDaJJUDo0FtQrA0",
+              "display": "Pulse"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "8867-4" },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ],
+          "text": "Pulse"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "effectiveDateTime": "2014-05-25T20:17:00Z",
+        "issued": "2014-05-25T20:17:48Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/ePsY4S-71dMUXDyJ6Hsrr9A3",
+            "display": "Nurse Coordinator P"
+          }
+        ],
+        "valueQuantity": {
+          "value": 76,
+          "unit": "/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/essTHxJTMxEmzSOk-ugcUt8x5YX5fP2cd-NOzLDFNRikWn.6pfWv3Uy.GgOSPlxnW3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/essTHxJTMxEmzSOk-ugcUt8x5YX5fP2cd-NOzLDFNRikWn.6pfWv3Uy.GgOSPlxnW3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "essTHxJTMxEmzSOk-ugcUt8x5YX5fP2cd-NOzLDFNRikWn.6pfWv3Uy.GgOSPlxnW3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "8",
+              "display": "Pulse"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "t0nle2B9NVDaJJUDo0FtQrA0",
+              "display": "Pulse"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "8867-4" },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ],
+          "text": "Pulse"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/e3EuWI.353X.r2MecLrxrXw3"
+        },
+        "effectiveDateTime": "2013-11-06T20:27:00Z",
+        "issued": "2013-11-06T20:28:03Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Nurse F"
+          }
+        ],
+        "valueQuantity": {
+          "value": 76,
+          "unit": "/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eOg18ZxFhHXZ8mMWbwwk5NrMydPCriPePnX0LuivanWbX7R7l4IuU-7QBQD6SU8YM3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eOg18ZxFhHXZ8mMWbwwk5NrMydPCriPePnX0LuivanWbX7R7l4IuU-7QBQD6SU8YM3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eOg18ZxFhHXZ8mMWbwwk5NrMydPCriPePnX0LuivanWbX7R7l4IuU-7QBQD6SU8YM3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "8",
+              "display": "Pulse"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "t0nle2B9NVDaJJUDo0FtQrA0",
+              "display": "Pulse"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "8867-4" },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ],
+          "text": "Pulse"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/erBNDXcezxeB7FgoBJD8U9A3"
+        },
+        "effectiveDateTime": "2013-11-06T20:27:00Z",
+        "issued": "2013-11-06T20:28:03Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Nurse F"
+          }
+        ],
+        "valueQuantity": {
+          "value": 76,
+          "unit": "/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eWLgNtJS01vSudqD9FhO5mSCrQ1oksI60jFylc0NCEoc3oDsfkFYAFDlwC8kCxqYH3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eWLgNtJS01vSudqD9FhO5mSCrQ1oksI60jFylc0NCEoc3oDsfkFYAFDlwC8kCxqYH3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eWLgNtJS01vSudqD9FhO5mSCrQ1oksI60jFylc0NCEoc3oDsfkFYAFDlwC8kCxqYH3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "8",
+              "display": "Pulse"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "t0nle2B9NVDaJJUDo0FtQrA0",
+              "display": "Pulse"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "8867-4" },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ],
+          "text": "Pulse"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eBZ5MuIRWQUn1Y0B7d1MccQ3"
+        },
+        "effectiveDateTime": "2013-09-04T19:09:00Z",
+        "issued": "2013-09-04T19:09:45Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Nurse F"
+          }
+        ],
+        "valueQuantity": {
+          "value": 88,
+          "unit": "/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eOg18ZxFhHXZ8mMWbwwk5NpM-Z34b58p8R5GHTXv2x1ybOV0S6Sp4M034FVwWCmtG3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eOg18ZxFhHXZ8mMWbwwk5NpM-Z34b58p8R5GHTXv2x1ybOV0S6Sp4M034FVwWCmtG3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eOg18ZxFhHXZ8mMWbwwk5NpM-Z34b58p8R5GHTXv2x1ybOV0S6Sp4M034FVwWCmtG3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "8",
+              "display": "Pulse"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "t0nle2B9NVDaJJUDo0FtQrA0",
+              "display": "Pulse"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "8867-4" },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ],
+          "text": "Pulse"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eKxtx9Au7dvAG2aIhcl6BdQ3"
+        },
+        "effectiveDateTime": "2013-09-04T19:09:00Z",
+        "issued": "2013-09-04T19:09:45Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Nurse F"
+          }
+        ],
+        "valueQuantity": {
+          "value": 88,
+          "unit": "/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eWLgNtJS01vSudqD9FhO5mSa9bPn7RZaP7ql9JfN9KOqJS-BDw3tBlldkvmTWddsY3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eWLgNtJS01vSudqD9FhO5mSa9bPn7RZaP7ql9JfN9KOqJS-BDw3tBlldkvmTWddsY3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eWLgNtJS01vSudqD9FhO5mSa9bPn7RZaP7ql9JfN9KOqJS-BDw3tBlldkvmTWddsY3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "8",
+              "display": "Pulse"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "t0nle2B9NVDaJJUDo0FtQrA0",
+              "display": "Pulse"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "8867-4" },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ],
+          "text": "Pulse"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eS.7d9jpxYyWd..DflGx7uw3"
+        },
+        "effectiveDateTime": "2013-03-06T15:47:00Z",
+        "issued": "2013-03-06T15:47:54Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Nurse F"
+          }
+        ],
+        "valueQuantity": {
+          "value": 85,
+          "unit": "/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eOg18ZxFhHXZ8mMWbwwk5NoEj-LUbphhWd7Y3Zb1a3M.Th950koDfyW2r423iC6dq3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eOg18ZxFhHXZ8mMWbwwk5NoEj-LUbphhWd7Y3Zb1a3M.Th950koDfyW2r423iC6dq3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eOg18ZxFhHXZ8mMWbwwk5NoEj-LUbphhWd7Y3Zb1a3M.Th950koDfyW2r423iC6dq3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "8",
+              "display": "Pulse"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "t0nle2B9NVDaJJUDo0FtQrA0",
+              "display": "Pulse"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "8867-4" },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ],
+          "text": "Pulse"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eFCspW4QJUk9GOI1nwIiRxg3"
+        },
+        "effectiveDateTime": "2013-03-06T15:47:00Z",
+        "issued": "2013-03-06T15:47:54Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Nurse F"
+          }
+        ],
+        "valueQuantity": {
+          "value": 85,
+          "unit": "/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/essTHxJTMxEmzSOk-ugcUt-O0-Yjl-bWAoobXitUi.WNYAs5gw8s54jPfrI7Uf.fl3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/essTHxJTMxEmzSOk-ugcUt-O0-Yjl-bWAoobXitUi.WNYAs5gw8s54jPfrI7Uf.fl3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "essTHxJTMxEmzSOk-ugcUt-O0-Yjl-bWAoobXitUi.WNYAs5gw8s54jPfrI7Uf.fl3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "9",
+              "display": "Respirations"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "t37isBRXnEf9.NUQV-lcIJQ0",
+              "display": "Respirations"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "9279-1" },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "9279-1",
+              "display": "Respiratory rate"
+            }
+          ],
+          "text": "Respirations"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "effectiveDateTime": "2014-05-25T20:17:00Z",
+        "issued": "2014-05-25T20:17:48Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/ePsY4S-71dMUXDyJ6Hsrr9A3",
+            "display": "Nurse Coordinator P"
+          }
+        ],
+        "valueQuantity": {
+          "value": 18,
+          "unit": "/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/e-b1M1lPNxxFpjxHbqSFBiapnJc5oxOAbU9pyRythgtCA2FCIOhQYzm1.R24paj0N3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/e-b1M1lPNxxFpjxHbqSFBiapnJc5oxOAbU9pyRythgtCA2FCIOhQYzm1.R24paj0N3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "e-b1M1lPNxxFpjxHbqSFBiapnJc5oxOAbU9pyRythgtCA2FCIOhQYzm1.R24paj0N3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "9",
+              "display": "Respirations"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "t37isBRXnEf9.NUQV-lcIJQ0",
+              "display": "Respirations"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "9279-1" },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "9279-1",
+              "display": "Respiratory rate"
+            }
+          ],
+          "text": "Respirations"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "effectiveDateTime": "2014-05-25T20:17:00Z",
+        "issued": "2014-05-25T20:17:48Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/ePsY4S-71dMUXDyJ6Hsrr9A3",
+            "display": "Nurse Coordinator P"
+          }
+        ],
+        "valueQuantity": {
+          "value": 18,
+          "unit": "/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/essTHxJTMxEmzSOk-ugcUtyC6dYoz30XfHtTvJjJcFB-3q0RksErSKp-n97sPeZz83"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/essTHxJTMxEmzSOk-ugcUtyC6dYoz30XfHtTvJjJcFB-3q0RksErSKp-n97sPeZz83",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "essTHxJTMxEmzSOk-ugcUtyC6dYoz30XfHtTvJjJcFB-3q0RksErSKp-n97sPeZz83",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "9",
+              "display": "Respirations"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "t37isBRXnEf9.NUQV-lcIJQ0",
+              "display": "Respirations"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "9279-1" },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "9279-1",
+              "display": "Respiratory rate"
+            }
+          ],
+          "text": "Respirations"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/e3EuWI.353X.r2MecLrxrXw3"
+        },
+        "effectiveDateTime": "2013-11-06T20:27:00Z",
+        "issued": "2013-11-06T20:28:03Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Nurse F"
+          }
+        ],
+        "valueQuantity": {
+          "value": 22,
+          "unit": "/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eOg18ZxFhHXZ8mMWbwwk5Nj-WiU5aQyjDVjy75KvP0IVpPdMIwNHL1vmIOSgnEn-J3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eOg18ZxFhHXZ8mMWbwwk5Nj-WiU5aQyjDVjy75KvP0IVpPdMIwNHL1vmIOSgnEn-J3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eOg18ZxFhHXZ8mMWbwwk5Nj-WiU5aQyjDVjy75KvP0IVpPdMIwNHL1vmIOSgnEn-J3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "9",
+              "display": "Respirations"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "t37isBRXnEf9.NUQV-lcIJQ0",
+              "display": "Respirations"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "9279-1" },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "9279-1",
+              "display": "Respiratory rate"
+            }
+          ],
+          "text": "Respirations"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/erBNDXcezxeB7FgoBJD8U9A3"
+        },
+        "effectiveDateTime": "2013-11-06T20:27:00Z",
+        "issued": "2013-11-06T20:28:03Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Nurse F"
+          }
+        ],
+        "valueQuantity": {
+          "value": 22,
+          "unit": "/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eWLgNtJS01vSudqD9FhO5mTY2tIaG.hvMWYH2AWY3u8CeACNCmyNAZ5UqdUQ4YdW73"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eWLgNtJS01vSudqD9FhO5mTY2tIaG.hvMWYH2AWY3u8CeACNCmyNAZ5UqdUQ4YdW73",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eWLgNtJS01vSudqD9FhO5mTY2tIaG.hvMWYH2AWY3u8CeACNCmyNAZ5UqdUQ4YdW73",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "9",
+              "display": "Respirations"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "t37isBRXnEf9.NUQV-lcIJQ0",
+              "display": "Respirations"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "9279-1" },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "9279-1",
+              "display": "Respiratory rate"
+            }
+          ],
+          "text": "Respirations"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eBZ5MuIRWQUn1Y0B7d1MccQ3"
+        },
+        "effectiveDateTime": "2013-09-04T19:09:00Z",
+        "issued": "2013-09-04T19:09:45Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Nurse F"
+          }
+        ],
+        "valueQuantity": {
+          "value": 20,
+          "unit": "/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eOg18ZxFhHXZ8mMWbwwk5Nl8CUu0uBnxD5Ez8vLH9E1oSaTqBqLo-MLrbTagrXx1z3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eOg18ZxFhHXZ8mMWbwwk5Nl8CUu0uBnxD5Ez8vLH9E1oSaTqBqLo-MLrbTagrXx1z3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eOg18ZxFhHXZ8mMWbwwk5Nl8CUu0uBnxD5Ez8vLH9E1oSaTqBqLo-MLrbTagrXx1z3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "9",
+              "display": "Respirations"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "t37isBRXnEf9.NUQV-lcIJQ0",
+              "display": "Respirations"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "9279-1" },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "9279-1",
+              "display": "Respiratory rate"
+            }
+          ],
+          "text": "Respirations"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eKxtx9Au7dvAG2aIhcl6BdQ3"
+        },
+        "effectiveDateTime": "2013-09-04T19:09:00Z",
+        "issued": "2013-09-04T19:09:45Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Nurse F"
+          }
+        ],
+        "valueQuantity": {
+          "value": 20,
+          "unit": "/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eWLgNtJS01vSudqD9FhO5mXLjxSWARVTI4J8Z3tTiaj2qUtaS8XcIjz6xluIqikqe3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eWLgNtJS01vSudqD9FhO5mXLjxSWARVTI4J8Z3tTiaj2qUtaS8XcIjz6xluIqikqe3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eWLgNtJS01vSudqD9FhO5mXLjxSWARVTI4J8Z3tTiaj2qUtaS8XcIjz6xluIqikqe3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "9",
+              "display": "Respirations"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "t37isBRXnEf9.NUQV-lcIJQ0",
+              "display": "Respirations"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "9279-1" },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "9279-1",
+              "display": "Respiratory rate"
+            }
+          ],
+          "text": "Respirations"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eS.7d9jpxYyWd..DflGx7uw3"
+        },
+        "effectiveDateTime": "2013-03-06T15:47:00Z",
+        "issued": "2013-03-06T15:47:54Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Nurse F"
+          }
+        ],
+        "valueQuantity": {
+          "value": 20,
+          "unit": "/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eOg18ZxFhHXZ8mMWbwwk5NqcvoUqaBHDfpjJozacIfl2AUG4dPpDSVTkuTHhoXMxv3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eOg18ZxFhHXZ8mMWbwwk5NqcvoUqaBHDfpjJozacIfl2AUG4dPpDSVTkuTHhoXMxv3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eOg18ZxFhHXZ8mMWbwwk5NqcvoUqaBHDfpjJozacIfl2AUG4dPpDSVTkuTHhoXMxv3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "9",
+              "display": "Respirations"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "t37isBRXnEf9.NUQV-lcIJQ0",
+              "display": "Respirations"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "9279-1" },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "9279-1",
+              "display": "Respiratory rate"
+            }
+          ],
+          "text": "Respirations"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eFCspW4QJUk9GOI1nwIiRxg3"
+        },
+        "effectiveDateTime": "2013-03-06T15:47:00Z",
+        "issued": "2013-03-06T15:47:54Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Nurse F"
+          }
+        ],
+        "valueQuantity": {
+          "value": 20,
+          "unit": "/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/essTHxJTMxEmzSOk-ugcUt6.hHpSpuRmKWK9xhtiBs7i05Bx6QAr5ODEBWCOib7Wn3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/essTHxJTMxEmzSOk-ugcUt6.hHpSpuRmKWK9xhtiBs7i05Bx6QAr5ODEBWCOib7Wn3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "essTHxJTMxEmzSOk-ugcUt6.hHpSpuRmKWK9xhtiBs7i05Bx6QAr5ODEBWCOib7Wn3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "11",
+              "display": "Height"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "tkgg8UmEMvovrM.sHkZKrAQ0",
+              "display": "Height"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "8302-2" },
+            {
+              "system": "http://loinc.org",
+              "code": "8302-2",
+              "display": "Body height"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            }
+          ],
+          "text": "Height"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "effectiveDateTime": "2014-05-25T20:17:00Z",
+        "issued": "2014-05-25T20:17:48Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/ePsY4S-71dMUXDyJ6Hsrr9A3",
+            "display": "Nurse Coordinator P"
+          }
+        ],
+        "valueQuantity": {
+          "value": 175.3,
+          "unit": "cm",
+          "system": "http://unitsofmeasure.org",
+          "code": "cm"
+        }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/e-b1M1lPNxxFpjxHbqSFBiYFVksHE8evJxvDuDiSZsso8gpKXuY.OgoWGq..gD-Dp3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/e-b1M1lPNxxFpjxHbqSFBiYFVksHE8evJxvDuDiSZsso8gpKXuY.OgoWGq..gD-Dp3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "e-b1M1lPNxxFpjxHbqSFBiYFVksHE8evJxvDuDiSZsso8gpKXuY.OgoWGq..gD-Dp3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "11",
+              "display": "Height"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "tkgg8UmEMvovrM.sHkZKrAQ0",
+              "display": "Height"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "8302-2" },
+            {
+              "system": "http://loinc.org",
+              "code": "8302-2",
+              "display": "Body height"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            }
+          ],
+          "text": "Height"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "effectiveDateTime": "2014-05-25T20:17:00Z",
+        "issued": "2014-05-25T20:17:48Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/ePsY4S-71dMUXDyJ6Hsrr9A3",
+            "display": "Nurse Coordinator P"
+          }
+        ],
+        "valueQuantity": {
+          "value": 175.3,
+          "unit": "cm",
+          "system": "http://unitsofmeasure.org",
+          "code": "cm"
+        }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/essTHxJTMxEmzSOk-ugcUt8s6w2Slfz8UNxXNHdJlM.WgCDQC88Y734zCRL5Mugsw3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/essTHxJTMxEmzSOk-ugcUt8s6w2Slfz8UNxXNHdJlM.WgCDQC88Y734zCRL5Mugsw3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "essTHxJTMxEmzSOk-ugcUt8s6w2Slfz8UNxXNHdJlM.WgCDQC88Y734zCRL5Mugsw3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "11",
+              "display": "Height"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "tkgg8UmEMvovrM.sHkZKrAQ0",
+              "display": "Height"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "8302-2" },
+            {
+              "system": "http://loinc.org",
+              "code": "8302-2",
+              "display": "Body height"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            }
+          ],
+          "text": "Height"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/e3EuWI.353X.r2MecLrxrXw3"
+        },
+        "effectiveDateTime": "2013-11-06T20:27:00Z",
+        "issued": "2013-11-06T20:28:03Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Nurse F"
+          }
+        ],
+        "valueQuantity": {
+          "value": 175.3,
+          "unit": "cm",
+          "system": "http://unitsofmeasure.org",
+          "code": "cm"
+        }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eOg18ZxFhHXZ8mMWbwwk5Nr0ui8ZUq.DDqdDpysC-qpRZSwQ3jqiC0MQsTED7HMYH3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eOg18ZxFhHXZ8mMWbwwk5Nr0ui8ZUq.DDqdDpysC-qpRZSwQ3jqiC0MQsTED7HMYH3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eOg18ZxFhHXZ8mMWbwwk5Nr0ui8ZUq.DDqdDpysC-qpRZSwQ3jqiC0MQsTED7HMYH3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "11",
+              "display": "Height"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "tkgg8UmEMvovrM.sHkZKrAQ0",
+              "display": "Height"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "8302-2" },
+            {
+              "system": "http://loinc.org",
+              "code": "8302-2",
+              "display": "Body height"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            }
+          ],
+          "text": "Height"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/erBNDXcezxeB7FgoBJD8U9A3"
+        },
+        "effectiveDateTime": "2013-11-06T20:27:00Z",
+        "issued": "2013-11-06T20:28:03Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Nurse F"
+          }
+        ],
+        "valueQuantity": {
+          "value": 175.3,
+          "unit": "cm",
+          "system": "http://unitsofmeasure.org",
+          "code": "cm"
+        }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eWLgNtJS01vSudqD9FhO5mb0VsD9qSuAJfWYpVUQ3yKvtDYAe0uVv5RSkzfsKzEdf3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eWLgNtJS01vSudqD9FhO5mb0VsD9qSuAJfWYpVUQ3yKvtDYAe0uVv5RSkzfsKzEdf3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eWLgNtJS01vSudqD9FhO5mb0VsD9qSuAJfWYpVUQ3yKvtDYAe0uVv5RSkzfsKzEdf3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "11",
+              "display": "Height"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "tkgg8UmEMvovrM.sHkZKrAQ0",
+              "display": "Height"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "8302-2" },
+            {
+              "system": "http://loinc.org",
+              "code": "8302-2",
+              "display": "Body height"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            }
+          ],
+          "text": "Height"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eBZ5MuIRWQUn1Y0B7d1MccQ3"
+        },
+        "effectiveDateTime": "2013-09-04T19:09:00Z",
+        "issued": "2013-09-04T19:09:45Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Nurse F"
+          }
+        ],
+        "valueQuantity": {
+          "value": 175.3,
+          "unit": "cm",
+          "system": "http://unitsofmeasure.org",
+          "code": "cm"
+        }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eOg18ZxFhHXZ8mMWbwwk5NvP9KZXrrDeFM3Tv6r5rcSzyr.Ft84qZqUIjNDMTmkqc3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eOg18ZxFhHXZ8mMWbwwk5NvP9KZXrrDeFM3Tv6r5rcSzyr.Ft84qZqUIjNDMTmkqc3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eOg18ZxFhHXZ8mMWbwwk5NvP9KZXrrDeFM3Tv6r5rcSzyr.Ft84qZqUIjNDMTmkqc3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "11",
+              "display": "Height"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "tkgg8UmEMvovrM.sHkZKrAQ0",
+              "display": "Height"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "8302-2" },
+            {
+              "system": "http://loinc.org",
+              "code": "8302-2",
+              "display": "Body height"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            }
+          ],
+          "text": "Height"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eKxtx9Au7dvAG2aIhcl6BdQ3"
+        },
+        "effectiveDateTime": "2013-09-04T19:09:00Z",
+        "issued": "2013-09-04T19:09:45Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Nurse F"
+          }
+        ],
+        "valueQuantity": {
+          "value": 175.3,
+          "unit": "cm",
+          "system": "http://unitsofmeasure.org",
+          "code": "cm"
+        }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eWLgNtJS01vSudqD9FhO5mYm7NtKfRaYeEgi1BSnE1RiU3um2d5YhR.oO355KS3cR3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eWLgNtJS01vSudqD9FhO5mYm7NtKfRaYeEgi1BSnE1RiU3um2d5YhR.oO355KS3cR3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eWLgNtJS01vSudqD9FhO5mYm7NtKfRaYeEgi1BSnE1RiU3um2d5YhR.oO355KS3cR3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "11",
+              "display": "Height"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "tkgg8UmEMvovrM.sHkZKrAQ0",
+              "display": "Height"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "8302-2" },
+            {
+              "system": "http://loinc.org",
+              "code": "8302-2",
+              "display": "Body height"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            }
+          ],
+          "text": "Height"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eS.7d9jpxYyWd..DflGx7uw3"
+        },
+        "effectiveDateTime": "2013-03-06T15:47:00Z",
+        "issued": "2013-03-06T15:47:54Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Nurse F"
+          }
+        ],
+        "valueQuantity": {
+          "value": 175.3,
+          "unit": "cm",
+          "system": "http://unitsofmeasure.org",
+          "code": "cm"
+        }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eOg18ZxFhHXZ8mMWbwwk5NvPrqVZtPPb5PNYXq1.pFGZbVnJA-a6crQT0N3.b6RaM3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eOg18ZxFhHXZ8mMWbwwk5NvPrqVZtPPb5PNYXq1.pFGZbVnJA-a6crQT0N3.b6RaM3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eOg18ZxFhHXZ8mMWbwwk5NvPrqVZtPPb5PNYXq1.pFGZbVnJA-a6crQT0N3.b6RaM3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "11",
+              "display": "Height"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "tkgg8UmEMvovrM.sHkZKrAQ0",
+              "display": "Height"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "8302-2" },
+            {
+              "system": "http://loinc.org",
+              "code": "8302-2",
+              "display": "Body height"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            }
+          ],
+          "text": "Height"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eFCspW4QJUk9GOI1nwIiRxg3"
+        },
+        "effectiveDateTime": "2013-03-06T15:47:00Z",
+        "issued": "2013-03-06T15:47:54Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Nurse F"
+          }
+        ],
+        "valueQuantity": {
+          "value": 175.3,
+          "unit": "cm",
+          "system": "http://unitsofmeasure.org",
+          "code": "cm"
+        }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/essTHxJTMxEmzSOk-ugcUt7PrNJKM5OTH5DFlNyQrV2a9VInVSEG4.FXAxYW6EogL3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/essTHxJTMxEmzSOk-ugcUt7PrNJKM5OTH5DFlNyQrV2a9VInVSEG4.FXAxYW6EogL3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "essTHxJTMxEmzSOk-ugcUt7PrNJKM5OTH5DFlNyQrV2a9VInVSEG4.FXAxYW6EogL3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "14",
+              "display": "Weight"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "tX9rE8TgbEPXWpgEX7kuaoQ0",
+              "display": "Weight"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "29463-7" },
+            {
+              "system": "http://loinc.org",
+              "code": "29463-7",
+              "display": "Body weight"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "3141-9",
+              "display": "Body weight Measured"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            }
+          ],
+          "text": "Weight"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "effectiveDateTime": "2014-05-25T20:17:00Z",
+        "issued": "2014-05-25T20:17:48Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/ePsY4S-71dMUXDyJ6Hsrr9A3",
+            "display": "Nurse Coordinator P"
+          }
+        ],
+        "valueQuantity": {
+          "value": 94.8,
+          "unit": "kg",
+          "system": "http://unitsofmeasure.org",
+          "code": "kg"
+        }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/e-b1M1lPNxxFpjxHbqSFBieDaZW7Xjz6WrIpo8Uqb2ydJ2I6R1rwHTnma05vgGRhQ3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/e-b1M1lPNxxFpjxHbqSFBieDaZW7Xjz6WrIpo8Uqb2ydJ2I6R1rwHTnma05vgGRhQ3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "e-b1M1lPNxxFpjxHbqSFBieDaZW7Xjz6WrIpo8Uqb2ydJ2I6R1rwHTnma05vgGRhQ3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "14",
+              "display": "Weight"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "tX9rE8TgbEPXWpgEX7kuaoQ0",
+              "display": "Weight"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "29463-7" },
+            {
+              "system": "http://loinc.org",
+              "code": "29463-7",
+              "display": "Body weight"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "3141-9",
+              "display": "Body weight Measured"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            }
+          ],
+          "text": "Weight"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "effectiveDateTime": "2014-05-25T20:17:00Z",
+        "issued": "2014-05-25T20:17:48Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/ePsY4S-71dMUXDyJ6Hsrr9A3",
+            "display": "Nurse Coordinator P"
+          }
+        ],
+        "valueQuantity": {
+          "value": 94.8,
+          "unit": "kg",
+          "system": "http://unitsofmeasure.org",
+          "code": "kg"
+        }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/essTHxJTMxEmzSOk-ugcUt0eZ1wIRWS0nhJyV3uPIOsBrB6KbpsHfh-9nZwXrVv-.3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/essTHxJTMxEmzSOk-ugcUt0eZ1wIRWS0nhJyV3uPIOsBrB6KbpsHfh-9nZwXrVv-.3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "essTHxJTMxEmzSOk-ugcUt0eZ1wIRWS0nhJyV3uPIOsBrB6KbpsHfh-9nZwXrVv-.3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "14",
+              "display": "Weight"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "tX9rE8TgbEPXWpgEX7kuaoQ0",
+              "display": "Weight"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "29463-7" },
+            {
+              "system": "http://loinc.org",
+              "code": "29463-7",
+              "display": "Body weight"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "3141-9",
+              "display": "Body weight Measured"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            }
+          ],
+          "text": "Weight"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/e3EuWI.353X.r2MecLrxrXw3"
+        },
+        "effectiveDateTime": "2013-11-06T20:27:00Z",
+        "issued": "2013-11-06T20:28:03Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Nurse F"
+          }
+        ],
+        "valueQuantity": {
+          "value": 94.3,
+          "unit": "kg",
+          "system": "http://unitsofmeasure.org",
+          "code": "kg"
+        }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eOg18ZxFhHXZ8mMWbwwk5NtON8llmt2FdikYvAG8IyEzUMysACIwNXqUEupIV62wf3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eOg18ZxFhHXZ8mMWbwwk5NtON8llmt2FdikYvAG8IyEzUMysACIwNXqUEupIV62wf3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eOg18ZxFhHXZ8mMWbwwk5NtON8llmt2FdikYvAG8IyEzUMysACIwNXqUEupIV62wf3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "14",
+              "display": "Weight"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "tX9rE8TgbEPXWpgEX7kuaoQ0",
+              "display": "Weight"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "29463-7" },
+            {
+              "system": "http://loinc.org",
+              "code": "29463-7",
+              "display": "Body weight"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "3141-9",
+              "display": "Body weight Measured"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            }
+          ],
+          "text": "Weight"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/erBNDXcezxeB7FgoBJD8U9A3"
+        },
+        "effectiveDateTime": "2013-11-06T20:27:00Z",
+        "issued": "2013-11-06T20:28:03Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Nurse F"
+          }
+        ],
+        "valueQuantity": {
+          "value": 94.3,
+          "unit": "kg",
+          "system": "http://unitsofmeasure.org",
+          "code": "kg"
+        }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eWLgNtJS01vSudqD9FhO5mc-RmlJaSzgw-IakJ3uJthqo.T..pMvmBDu9IN1Bm6lM3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eWLgNtJS01vSudqD9FhO5mc-RmlJaSzgw-IakJ3uJthqo.T..pMvmBDu9IN1Bm6lM3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eWLgNtJS01vSudqD9FhO5mc-RmlJaSzgw-IakJ3uJthqo.T..pMvmBDu9IN1Bm6lM3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "14",
+              "display": "Weight"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "tX9rE8TgbEPXWpgEX7kuaoQ0",
+              "display": "Weight"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "29463-7" },
+            {
+              "system": "http://loinc.org",
+              "code": "29463-7",
+              "display": "Body weight"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "3141-9",
+              "display": "Body weight Measured"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            }
+          ],
+          "text": "Weight"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eBZ5MuIRWQUn1Y0B7d1MccQ3"
+        },
+        "effectiveDateTime": "2013-09-04T19:09:00Z",
+        "issued": "2013-09-04T19:09:45Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Nurse F"
+          }
+        ],
+        "valueQuantity": {
+          "value": 98.4,
+          "unit": "kg",
+          "system": "http://unitsofmeasure.org",
+          "code": "kg"
+        }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eOg18ZxFhHXZ8mMWbwwk5NqUXRXaGqvGJH4xD4c156HizYuBCGRNoaYikTioV-s813"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eOg18ZxFhHXZ8mMWbwwk5NqUXRXaGqvGJH4xD4c156HizYuBCGRNoaYikTioV-s813",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eOg18ZxFhHXZ8mMWbwwk5NqUXRXaGqvGJH4xD4c156HizYuBCGRNoaYikTioV-s813",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "14",
+              "display": "Weight"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "tX9rE8TgbEPXWpgEX7kuaoQ0",
+              "display": "Weight"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "29463-7" },
+            {
+              "system": "http://loinc.org",
+              "code": "29463-7",
+              "display": "Body weight"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "3141-9",
+              "display": "Body weight Measured"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            }
+          ],
+          "text": "Weight"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eKxtx9Au7dvAG2aIhcl6BdQ3"
+        },
+        "effectiveDateTime": "2013-09-04T19:09:00Z",
+        "issued": "2013-09-04T19:09:45Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Nurse F"
+          }
+        ],
+        "valueQuantity": {
+          "value": 98.4,
+          "unit": "kg",
+          "system": "http://unitsofmeasure.org",
+          "code": "kg"
+        }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eWLgNtJS01vSudqD9FhO5mcZWuLiB-Wddbh3.Nn-Um.xRTHAn4foWQBtqTdYhL7Eb3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eWLgNtJS01vSudqD9FhO5mcZWuLiB-Wddbh3.Nn-Um.xRTHAn4foWQBtqTdYhL7Eb3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eWLgNtJS01vSudqD9FhO5mcZWuLiB-Wddbh3.Nn-Um.xRTHAn4foWQBtqTdYhL7Eb3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "14",
+              "display": "Weight"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "tX9rE8TgbEPXWpgEX7kuaoQ0",
+              "display": "Weight"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "29463-7" },
+            {
+              "system": "http://loinc.org",
+              "code": "29463-7",
+              "display": "Body weight"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "3141-9",
+              "display": "Body weight Measured"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            }
+          ],
+          "text": "Weight"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eS.7d9jpxYyWd..DflGx7uw3"
+        },
+        "effectiveDateTime": "2013-03-06T15:47:00Z",
+        "issued": "2013-03-06T15:47:54Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Nurse F"
+          }
+        ],
+        "valueQuantity": {
+          "value": 97.5,
+          "unit": "kg",
+          "system": "http://unitsofmeasure.org",
+          "code": "kg"
+        }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "link": [
+        {
+          "relation": "self",
+          "url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eOg18ZxFhHXZ8mMWbwwk5Nr1Uh5q9-y4-iCn2C9jG36.GDlZgR04zXXeQ9IykRKZZ3"
+        }
+      ],
+      "fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Observation/eOg18ZxFhHXZ8mMWbwwk5Nr1Uh5q9-y4-iCn2C9jG36.GDlZgR04zXXeQ9IykRKZZ3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "eOg18ZxFhHXZ8mMWbwwk5Nr1Uh5q9-y4-iCn2C9jG36.GDlZgR04zXXeQ9IykRKZZ3",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ],
+            "text": "Vital Signs"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.707679",
+              "code": "14",
+              "display": "Weight"
+            },
+            {
+              "system": "http://open.epic.com/FHIR/STU3/StructureDefinition/observation-flowsheet-id",
+              "code": "tX9rE8TgbEPXWpgEX7kuaoQ0",
+              "display": "Weight"
+            },
+            { "system": "urn:oid:1.2.246.537.6.96", "code": "29463-7" },
+            {
+              "system": "http://loinc.org",
+              "code": "29463-7",
+              "display": "Body weight"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "3141-9",
+              "display": "Body weight Measured"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital signs"
+            }
+          ],
+          "text": "Weight"
+        },
+        "subject": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eL4cjWxKfUjn8-KE3GA4nJw3",
+          "display": "Heart, Herman Q"
+        },
+        "context": {
+          "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/eFCspW4QJUk9GOI1nwIiRxg3"
+        },
+        "effectiveDateTime": "2013-03-06T15:47:00Z",
+        "issued": "2013-03-06T15:47:54Z",
+        "performer": [
+          {
+            "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eU2bhJHhLPs8.VF8LzIGbIw3",
+            "display": "Nurse Nurse F"
+          }
+        ],
+        "valueQuantity": {
+          "value": 97.5,
+          "unit": "kg",
+          "system": "http://unitsofmeasure.org",
+          "code": "kg"
+        }
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "resource": {
+        "resourceType": "OperationOutcome",
+        "issue": [
+          {
+            "severity": "warning",
+            "code": "processing",
+            "details": {
+              "coding": [
+                {
+                  "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.657369",
+                  "code": "4119",
+                  "display": "This response includes information available to the authorized user at the time of the request. It may not contain the entire record available in the system."
+                }
+              ],
+              "text": "This response includes information available to the authorized user at the time of the request. It may not contain the entire record available in the system."
+            }
+          }
+        ]
+      },
+      "search": { "mode": "outcome" }
+    }
+  ]
+}

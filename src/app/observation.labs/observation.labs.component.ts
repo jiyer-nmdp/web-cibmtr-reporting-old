@@ -1,8 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 import { Patient } from "../model/patient.";
 import { ObservationLabsService } from "./observation.labs.service";
-import { UtilityService } from '../utility.service';
-import { Router } from "@angular/router";
+import { UtilityService } from "../utility.service";
+import { mergeMap } from "rxjs/operators";
+import { EMPTY, from } from "rxjs";
+import { AppConfig } from "../app.config";
+import { CustomHttpClient } from "../client/custom.http.client";
+import { SpinnerService } from "../spinner/spinner.service";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-observation.labs",
@@ -11,6 +16,7 @@ import { Router } from "@angular/router";
 })
 export class ObservationLabsComponent implements OnInit {
   labs: any;
+  priority: any;
   savedBundle: any;
   toggle: any = [];
   codes: any = [];
@@ -23,41 +29,58 @@ export class ObservationLabsComponent implements OnInit {
   selectedUpdatedResources = [];
   psScope: string;
   cibmtrPatientFullUri: string;
-  success: boolean;
-  fail: boolean;
   ehrpatient: Patient;
   isAllSelected: boolean;
   isAlldisabled: boolean;
+  totalSuccessCount: number;
+  totalFailCount: number;
 
   constructor(
+    private http: CustomHttpClient,
     public observationlabsService: ObservationLabsService,
-    private router: Router,
-    private utility: UtilityService
+    private utility: UtilityService,
+    private spinner: SpinnerService,
+    private route: ActivatedRoute
   ) {
+    console.log(route);
     let data = utility.data;
     this.labs = JSON.parse(data.labs);
+    this.priority = JSON.parse(data.priorityLabs);
     this.psScope = data.psScope;
   }
 
   ngOnInit() {
-    const subj = this.labs.entry[0].resource.subject.reference;
+    const subj = this.getCategoryData()[0].resource.subject.reference;
     const psScope = this.psScope;
 
     this.now = new Date();
 
-    if (
-      this.labs &&
-      this.labs.entry &&
-      this.labs.entry.length > 0 &&
-      this.labs.entry[0].resource.subject
-    ) {
+    if (this.getCategoryData() && this.getCategoryData().length > 0) {
+      this.spinner.start();
       this.observationlabsService
         .getCibmtrObservationsLabs(subj, psScope)
+        .expand((response) => {
+          let next =
+            response.link && response.link.find((l) => l.relation === "next");
+          if (next) {
+            let modifiedUrl =
+              AppConfig.cibmtr_fhir_update_url + "?" + next.url.split("?")[1];
+            return this.http.get(modifiedUrl);
+          } else {
+            return EMPTY;
+          }
+        })
+        .map((response) => {
+          if (response.entry) {
+            return response.entry.flatMap((array) => array);
+          }
+          return [];
+        })
+        .reduce((acc, x) => acc.concat(x), [])
         .subscribe(
-          (response) => {
-            this.savedBundle = response;
-            let entries = this.labs.entry;
-            let savedEntries = this.savedBundle.entry;
+          (savedEntries) => {
+            this.spinner.end();
+            let entries = this.getCategoryData();
             if (entries && entries.length > 0) {
               // filtering the entries to only Observations
               let observationEntries = entries.filter(function (item) {
@@ -108,6 +131,7 @@ export class ObservationLabsComponent implements OnInit {
             }
           },
           (error) => {
+            this.spinner.reset();
             console.log(
               "error occurred while fetching saved observations",
               error
@@ -133,15 +157,8 @@ export class ObservationLabsComponent implements OnInit {
         value.valueQuantity &&
         (value.valueQuantity.value || value.valueQuantity.unit)
       ) {
-        if (
-          value.valueQuantity.value &&
-          value.valueQuantity.unit
-        ) {
-          return (
-            value.valueQuantity.value +
-            " " +
-            value.valueQuantity.unit
-          );
+        if (value.valueQuantity.value && value.valueQuantity.unit) {
+          return value.valueQuantity.value + " " + value.valueQuantity.unit;
         } else if (value.valueQuantity.value) {
           return value.valueQuantity.value;
         }
@@ -154,119 +171,112 @@ export class ObservationLabsComponent implements OnInit {
   }
 
   //code
-  getComponentValue(component){
+  getComponentValue(component) {
     if (component) {
-      let components = []
+      let components = [];
       for (let i = 0; i < component.length; i++) {
-        let code = component[i].code.text + ':'
-        let nodeValue = this.getNodeValue(component[i])
+        let code = component[i].code.text + ":" + " ";
+        let nodeValue = this.getNodeValue(component[i]);
         components.push(code + nodeValue);
       }
-      components.join(',')
-      return components
+      components.join(",");
+      return components;
     }
-}
-    //valueDateTime //valuesampledData //valueAttachemnt(attachement) //ValueInteger  //ValueRange - range.low.value - high.value
-  
+  }
+  //valueDateTime //valuesampledData //valueAttachemnt(attachement) //ValueInteger  //ValueRange - range.low.value - high.value
 
   submitToCibmtr() {
     //reset
-    this.success = false;
-    this.fail = false;
     this.selectedNewEntries = [];
     this.selectedUpdatedEntries = [];
     this.selectedNewResources = [];
     this.selectedUpdatedResources = [];
+
     // New Records
     this.selectedNewEntries.push(
-      this.labs.entry.filter((m) => m.selected === true && m.state === "bold")
+      this.getCategoryData().filter(
+        (m) => m.selected === true && m.state === "bold"
+      )
     );
 
-    this.selectedNewResources = this.buildSelectedResources(
+    this.selectedNewResources = Array.prototype.concat.apply(
+      [],
       this.selectedNewEntries
     );
 
-    if (this.selectedNewResources && this.selectedNewResources.length > 0) {
-      this.observationlabsService
-        .postNewRecords(this.selectedNewResources, this.psScope)
-        .subscribe(
-          (response) => {
-            let id = response.identifier[0].value.substring(
-              response.identifier[0].value.lastIndexOf("/") + 1
-            );
-            Array.prototype.concat
-              .apply([], this.selectedNewEntries)
-              .filter((e) => e.resource.id === id)[0].state = "lighter";
-            this.success = true;
-            // This subscribe will be called for every successful post of new record
-          },
-          (error) => {
-            console.error(error);
-            this.fail = true;
-          },
-          () => {
-            this.checkForSelectAll();
-          }
-        );
-    }
-
     // Updated Records
     this.selectedUpdatedEntries.push(
-      this.labs.entry.filter((m) => m.selected === true && m.state === "normal")
+      this.getCategoryData().filter(
+        (m) => m.selected === true && m.state === "normal"
+      )
     );
 
     this.selectedUpdatedResources = Array.prototype.concat.apply(
       [],
       this.selectedUpdatedEntries
     );
-    if (
-      this.selectedUpdatedResources &&
-      this.selectedUpdatedResources.length > 0
-    ) {
-      this.observationlabsService
-        .postUpdatedRecords(this.selectedUpdatedResources, this.psScope)
+
+    let totalEntries = [
+      ...this.selectedNewResources,
+      ...this.selectedUpdatedResources,
+    ];
+
+    if (totalEntries && totalEntries.length > 0) {
+      let bundles = this.observationlabsService.getBundles(
+        totalEntries,
+        this.psScope
+      );
+
+      let _successCount = 0;
+
+      this.spinner.start();
+      from(bundles)
+        .pipe(
+          mergeMap((bundle) =>
+            this.observationlabsService.getBundleObservable(bundle)
+          )
+        )
+        .finally(() => {
+          this.spinner.end();
+          this.totalSuccessCount = _successCount;
+          this.totalFailCount = totalEntries.length - _successCount;
+          this.checkForSelectAll();
+        })
         .subscribe(
           (response) => {
-            Array.prototype.concat
-              .apply([], this.selectedUpdatedEntries)
-              .filter((e) => e.resource.id === response.id)[0].state =
-              "lighter";
-            this.success = true;
-            // This subscribe will be called for every successful updated of the record
+            response.entry &&
+              response.entry.forEach((entry) => {
+                let idValue = entry.resource.identifier[0].value;
+                const matchedEntry = totalEntries.find((e) => {
+                  return idValue === e.fullUrl;
+                });
+                matchedEntry.state = "lighter";
+                _successCount++;
+              });
           },
-          (error) => {
-            console.error(error);
-            this.fail = true;
-          },
-          () => {
-            this.checkForSelectAll();
+          (errorBundle) => {
+            this.spinner.reset();
+            console.log(
+              "error occurred while fetching saved observations",
+              errorBundle
+            );
           }
         );
     }
   }
 
-  buildSelectedResources(selectedEntries) {
-    let selectedResources = [];
-    const flattenSelectedEntries = Array.prototype.concat.apply(
-      [],
-      selectedEntries
-    );
-    flattenSelectedEntries.forEach((selectedEntry) => {
-      selectedResources.push(selectedEntry.resource);
-    });
-    return selectedResources;
-  }
-
   checkForSelectAll() {
-    this.isAllSelected = this.labs.entry.every((entry) => entry.selected);
-    this.isAlldisabled = this.labs.entry.every(
+    this.isAllSelected = this.getCategoryData().every(
+      (entry) => entry.selected
+    );
+    this.isAlldisabled = this.getCategoryData().every(
       (entry) => entry.selected && entry.state === "lighter"
     );
   }
 
   selectAll() {
     let toggleStatus = this.isAllSelected;
-    this.labs.entry.forEach((entry) => {
+    this.getCategoryData().forEach((entry) => {
       if (entry.state != "lighter") {
         entry.selected = toggleStatus;
       }
@@ -274,14 +284,27 @@ export class ObservationLabsComponent implements OnInit {
   }
 
   toggleOption = function () {
-    this.isAllSelected = this.labs.entry.every(function (entry) {
+    this.isAllSelected = this.getcategorydata().entry.every(function (entry) {
       return entry.selected;
     });
   };
 
   toggleAllOption = function () {
-    this.isAlldisabled = this.labs.entry.every(function (entry) {
+    this.isAlldisabled = this.getcategorydata().entry.every(function (entry) {
       return entry.disabled;
     });
   };
+
+  get toggleAlert() {
+    return this.totalSuccessCount > 0 || this.totalFailCount > 0
+      ? "show"
+      : "hide";
+  }
+
+  getCategoryData() {
+    if (this.route.snapshot.routeConfig.path === "priority") {
+      return this.priority;
+    }
+    return this.labs;
+  }
 }

@@ -1,0 +1,153 @@
+{
+  "resourceType": "Patient",
+  "id": "endFZe2sorgK5yH219Tqbsw3",
+  "extension": [
+    {
+      "extension": [
+        {
+          "valueCoding": {
+            "system": "http://hl7.org/fhir/us/core/ValueSet/omb-race-category",
+            "code": "UNK",
+            "display": "Unknown"
+          },
+          "url": "ombCategory"
+        },
+        {
+          "valueString": "Unknown",
+          "url": "text"
+        }
+      ],
+      "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race"
+    },
+    {
+      "extension": [
+        {
+          "valueCoding": {
+            "system": "http://hl7.org/fhir/us/core/ValueSet/omb-ethnicity-category",
+            "code": "UNK",
+            "display": "Unknown"
+          },
+          "url": "ombCategory"
+        },
+        {
+          "valueString": "Unknown",
+          "url": "text"
+        }
+      ],
+      "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity"
+    },
+    {
+      "valueCode": "F",
+      "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex"
+    }
+  ],
+  "identifier": [
+    {
+      "extension": [
+        {
+          "valueString": "462-90-4504",
+          "url": "http://hl7.org/fhir/StructureDefinition/rendered-value"
+        }
+      ],
+      "use": "usual",
+      "system": "urn:oid:2.16.840.1.113883.4.1",
+      "value": "462-90-4504"
+    },
+    {
+      "use": "usual",
+      "type": {
+        "text": "EPIC"
+      },
+      "system": "urn:oid:1.2.840.114350.1.1",
+      "value": "E3071"
+    },
+    {
+      "use": "usual",
+      "type": {
+        "text": "EXTERNAL"
+      },
+      "value": "Z4962"
+    },
+    {
+      "use": "usual",
+      "type": {
+        "text": "FHIR"
+      },
+      "value": "TEFWnsC5mSQ6Z6BtJEgg6hRm41I4qDKVoV4dffycVLMgB"
+    },
+    {
+      "use": "usual",
+      "type": {
+        "text": "FHIR STU3"
+      },
+      "value": "endFZe2sorgK5yH219Tqbsw3"
+    },
+    {
+      "use": "usual",
+      "type": {
+        "text": "INTERNAL"
+      },
+      "value": "     Z4962"
+    },
+    {
+      "use": "usual",
+      "type": {
+        "text": "MRN"
+      },
+      "system": "urn:oid:1.2.840.114350.1.13.0.1.7.5.737384.14",
+      "value": "202821"
+    }
+  ],
+  "active": true,
+  "name": [
+    {
+      "use": "official",
+      "text": "Angela D Nephrology",
+      "family": "Nephrology",
+      "given": ["Angela", "D"]
+    },
+    {
+      "use": "usual",
+      "text": "Angela D Nephrology",
+      "family": "Nephrology",
+      "given": ["Angela", "D"]
+    }
+  ],
+  "telecom": [
+    {
+      "system": "phone",
+      "value": "608-555-6826",
+      "use": "home"
+    },
+    {
+      "system": "phone",
+      "value": "608-544-1000",
+      "use": "work"
+    },
+    {
+      "system": "phone",
+      "value": "608-550-6826",
+      "use": "mobile"
+    }
+  ],
+  "gender": "female",
+  "birthDate": "1962-07-31",
+  "deceasedBoolean": false,
+  "address": [
+    {
+      "use": "home",
+      "line": ["6826 Maple Street"],
+      "city": "Madison",
+      "state": "WI",
+      "postalCode": "53711",
+      "country": "US"
+    }
+  ],
+  "maritalStatus": {
+    "text": "Single"
+  },
+  "managingOrganization": {
+    "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Organization/enRyWnSP963FYDpoks4NHOA3",
+    "display": "Epic Hospital System"
+  }
+}

@@ -2,8 +2,11 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import { renderFlagCheckIfStmt } from "@angular/compiler/src/render3/view/template";
+
 export const environment = {
-  production: false
+  production: false,
+  mock: false,
 };
 
 /*

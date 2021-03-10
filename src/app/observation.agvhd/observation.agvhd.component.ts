@@ -1,10 +1,11 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { AppConfig } from "../app.config";
+import { Component, OnInit } from "@angular/core";
 import { ObservationAgvhdService } from "./observation.agvhd.service";
-import { LocalStorageService } from "angular-2-local-storage";
-import { Router, ActivatedRoute } from "@angular/router";
-import { Patient } from "../model/patient.";
-import { UtilityService } from '../utility.service';
+import { UtilityService } from "../utility.service";
+import { mergeMap } from "rxjs/operators";
+import { EMPTY, from } from "rxjs";
+import { AppConfig } from "../app.config";
+import { CustomHttpClient } from "../client/custom.http.client";
+import { SpinnerService } from "../spinner/spinner.service";
 
 @Component({
   selector: "app-observation",
@@ -25,56 +26,68 @@ export class ObservationAgvhdComponent implements OnInit {
   selectedUpdatedResources = [];
   psScope: string;
   cibmtrPatientFullUri: string;
-  success: boolean;
-  fail: boolean;
+  isAllSelected: boolean;
+  isAlldisabled: boolean;
+  totalSuccessCount: number;
+  totalFailCount: number;
 
   constructor(
+    private http: CustomHttpClient,
     public observationagvhdService: ObservationAgvhdService,
-    private _localStorageService: LocalStorageService,
-    private route: ActivatedRoute,
-    private router: Router,
-    private utility: UtilityService
-
+    utility: UtilityService,
+    private spinner: SpinnerService
   ) {
     let data = utility.data;
-    this.agvhd =JSON.parse(data.agvhd);
+    this.agvhd = JSON.parse(data.agvhd);
     this.psScope = data.psScope;
   }
 
   ngOnInit() {
-    const subj = this.agvhd.entry[0].resource.subject.reference;
+    const subj = this.agvhd[0].resource.subject.reference;
     const psScope = this.psScope;
+
     this.now = new Date();
 
-    if (
-      this.agvhd &&
-      this.agvhd.entry &&
-      this.agvhd.entry.length > 0 &&
-      this.agvhd.entry[0].resource.subject
-    ) {
+    if (this.agvhd.length > 0 && this.agvhd[0].resource.subject) {
+      this.spinner.start();
       this.observationagvhdService
         .getCibmtrObservations(subj, psScope)
+        .expand((response) => {
+          let next =
+            response.link && response.link.find((l) => l.relation === "next");
+          if (next) {
+            let modifiedUrl =
+              AppConfig.cibmtr_fhir_update_url + "?" + next.url.split("?")[1];
+            return this.http.get(modifiedUrl);
+          } else {
+            return EMPTY;
+          }
+        })
+        //{return response.entry ? flatMap((array) => array)) : response}
+        .map((response) => {
+          if (response.entry) {
+            return response.entry.flatMap((array) => array);
+          }
+          return [];
+        })
+        .reduce((acc, x) => acc.concat(x), [])
         .subscribe(
-          (response) => {
-            this.savedBundle = response;
-            let entries = this.agvhd.entry;
-            let savedEntries = this.savedBundle.entry;
-            if (entries && entries.length > 0) {
+          (savedEntries) => {
+            this.spinner.end();
+            let ehr_entries = this.agvhd;
+            if (ehr_entries && ehr_entries.length > 0) {
               // filtering the entries to only Observations
-              let observationEntries = entries.filter(function (item) {
+              let observationEntries = ehr_entries.filter(function (item) {
                 return item.resource.resourceType === "Observation";
               });
-              // loop through the above mentioned codes
               for (let i = 0; i < AppConfig.codes.length; i++) {
                 let matchingEntries = [];
-
                 for (let j = 0; j < observationEntries.length; j++) {
                   let matchingEntry = observationEntries[
                     j
                   ].resource.code.coding.filter(function (coding) {
                     return AppConfig.codes[i] === coding.code;
                   });
-
                   if (matchingEntry && matchingEntry.length > 0) {
                     let observationEntry = observationEntries[j];
                     // Case I - The record has not been submitted
@@ -85,9 +98,9 @@ export class ObservationAgvhdComponent implements OnInit {
                       // sse stands for submitted saved entry
                       let sse = savedEntries.filter((savedEntry) => {
                         return (
-                          savedEntry.resource.extension &&
+                          savedEntry.resource.identifier &&
                           observationEntry.fullUrl ===
-                            savedEntry.resource.extension[0].valueUri &&
+                            savedEntry.resource.identifier[0].value &&
                           observationEntry.resource.issued ===
                             savedEntry.resource.issued
                         );
@@ -96,9 +109,9 @@ export class ObservationAgvhdComponent implements OnInit {
                       // use - updated saved entry
                       let use = savedEntries.filter((savedEntry) => {
                         return (
-                          savedEntry.resource.extension &&
+                          savedEntry.resource.identifier &&
                           observationEntry.fullUrl ===
-                            savedEntry.resource.extension[0].valueUri &&
+                            savedEntry.resource.identifier[0].value &&
                           observationEntry.resource.issued !=
                             savedEntry.resource.issued
                         );
@@ -108,23 +121,16 @@ export class ObservationAgvhdComponent implements OnInit {
                         observationEntry.selected = true;
                         observationEntry.state = "lighter";
                         observationEntry.resource.id = sse[0].resource.id;
-                        observationEntry.resource.extension = [];
-                        observationEntry.resource.extension[0] =
-                          sse[0].resource.extension[0];
                       }
                       // Case III - The record has been submitted and there were updates made after
                       else if (use.length > 0) {
                         observationEntry.state = "normal";
                         observationEntry.resource.id = use[0].resource.id;
-                        observationEntry.resource.extension = [];
-                        observationEntry.resource.extension[0] =
-                          use[0].resource.extension[0];
                       }
                     }
                     matchingEntries.push(observationEntry);
                   }
                 }
-
                 if (matchingEntries && matchingEntries.length > 0) {
                   this.codes[AppConfig.codes[i]] = {
                     matchingEntries: matchingEntries,
@@ -137,6 +143,7 @@ export class ObservationAgvhdComponent implements OnInit {
             }
           },
           (error) => {
+            this.spinner.reset();
             console.log(
               "error occurred while fetching saved observations",
               error
@@ -148,86 +155,79 @@ export class ObservationAgvhdComponent implements OnInit {
 
   submitToCibmtr() {
     //reset
-    this.success = false;
-    this.fail = false;
     this.selectedNewEntries = [];
     this.selectedUpdatedEntries = [];
     this.selectedNewResources = [];
     this.selectedUpdatedResources = [];
+
     // New Records
-    this.codes.filter((value) => {
-      this.selectedNewEntries.push(
-        value.matchingEntries.filter(
-          (m) => m.selected === true && m.state === "bold"
-        )
-      );
-    });
-    this.selectedNewResources = this.buildSelectedResources(
+    this.selectedNewEntries.push(
+      this.agvhd.filter((m) => m.selected === true && m.state === "bold")
+    );
+
+    this.selectedNewResources = Array.prototype.concat.apply(
+      [],
       this.selectedNewEntries
     );
-    if (this.selectedNewResources && this.selectedNewResources.length > 0) {
-      this.observationagvhdService
-        .postNewRecords(this.selectedNewResources, this.psScope)
-        .subscribe(
-          (response) => {
-            let id = response.extension[0].valueUri.substring(
-              response.extension[0].valueUri.lastIndexOf("/") + 1
-            );
-            Array.prototype.concat
-              .apply([], this.selectedNewEntries)
-              .filter((e) => e.resource.id === id)[0].state = "lighter";
-            this.success = true;
-            // This subscribe will be called for every successful post of new record
-          },
-          (error) => {
-            console.error(error);
-            this.fail = true;
-          },
-          () => {
-            this.checkForSelectAll();
-          }
-        );
-    }
 
     // Updated Records
-    this.codes.filter((value) => {
-      this.selectedUpdatedEntries.push(
-        value.matchingEntries.filter(
-          (m) => m.selected === true && m.state === "normal"
-        )
-      );
-    });
+    this.selectedUpdatedEntries.push(
+      this.agvhd.filter((m) => m.selected === true && m.state === "normal")
+    );
 
     this.selectedUpdatedResources = Array.prototype.concat.apply(
       [],
       this.selectedUpdatedEntries
     );
-    if (
-      this.selectedUpdatedResources &&
-      this.selectedUpdatedResources.length > 0
-    ) {
-      this.observationagvhdService
-        .postUpdatedRecords(this.selectedUpdatedResources, this.psScope)
+
+    let totalEntries = [
+      ...this.selectedNewResources,
+      ...this.selectedUpdatedResources,
+    ];
+
+    if (totalEntries && totalEntries.length > 0) {
+      let bundles = this.observationagvhdService.getBundles(
+        totalEntries,
+        this.psScope
+      );
+
+      let _successCount = 0;
+
+      this.spinner.start();
+      from(bundles)
+        .pipe(
+          mergeMap((bundle) =>
+            this.observationagvhdService.getBundleObservable(bundle)
+          )
+        )
+        .finally(() => {
+          this.spinner.end();
+          this.totalSuccessCount = _successCount;
+          this.totalFailCount = totalEntries.length - _successCount;
+          this.checkForSelectAll();
+        })
         .subscribe(
           (response) => {
-            Array.prototype.concat
-              .apply([], this.selectedUpdatedEntries)
-              .filter((e) => e.resource.id === response.id)[0].state =
-              "lighter";
-            this.success = true;
-            // This subscribe will be called for every successful updated of the record
+            response.entry &&
+              response.entry.forEach((entry) => {
+                let idValue = entry.resource.identifier[0].value;
+                const matchedEntry = totalEntries.find((e) => {
+                  return idValue === e.fullUrl;
+                });
+                matchedEntry.state = "lighter";
+                _successCount++;
+              });
           },
-          (error) => {
-            console.error(error);
-            this.fail = true;
-          },
-          () => {
-            this.checkForSelectAll();
+          (errorBundle) => {
+            this.spinner.reset();
+            console.log(
+              "error occurred while fetching saved observations",
+              errorBundle
+            );
           }
         );
     }
   }
-
   checkForSelectAll() {
     this.keys.forEach((key, i) => {
       this.codes[key].isAllSelected = this.codes[key].matchingEntries.every(
@@ -238,34 +238,6 @@ export class ObservationAgvhdComponent implements OnInit {
           matchingEntry.selected && matchingEntry.state === "lighter"
       );
     });
-  }
-
-  buildSelectedResources(selectedEntries) {
-    let selectedResources = [];
-    const flattenSelectedEntries = Array.prototype.concat.apply(
-      [],
-      selectedEntries
-    );
-    flattenSelectedEntries.forEach((selectedEntry) => {
-      let Ehrid = selectedEntry.resource.id;
-      selectedEntry.resource.extension = this.buildExtensionArray(
-        this._localStorageService.get("iss") + "/Observation" + "/" + Ehrid
-      );
-      selectedResources.push(selectedEntry.resource);
-    });
-    return selectedResources;
-  }
-
-  //Appending  Observation Extension with Full Uri as EHR endpoint in Cibmtr FHIR Server
-  buildExtensionArray(valueUri) {
-    const extension = [
-      {
-        url:
-          "http://hl7.org/fhir/4.0/StructureDefinition/extension-Meta.source",
-        valueUri: valueUri,
-      },
-    ];
-    return extension;
   }
 
   toggleObservations(index) {
@@ -305,15 +277,6 @@ export class ObservationAgvhdComponent implements OnInit {
       });
     }
   }
-
-  /*selectAllEntries() {
-    let toggleStatus = !this.codes[].isAllSelected;
-    this.codes[].matchingEntries.forEach(matchingEntry => {
-      if (matchingEntry.state != "lighter") {
-        matchingEntry.selected = toggleStatus;
-      }
-    });
-  }*/
 
   selectAll(key) {
     let toggleStatus = !this.codes[key].isAllSelected;

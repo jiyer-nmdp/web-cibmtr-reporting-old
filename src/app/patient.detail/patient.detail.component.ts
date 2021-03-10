@@ -18,15 +18,17 @@ export class PatientDetailComponent implements OnInit {
   psScope: string;
   crid: string;
   activeLabel: string;
+  priority: any;
 
   constructor(private router: Router, private utility: UtilityService) {
 
     let data = utility.data;
 
-    this.agvhd = JSON.parse(data.agvhd);
-    this.labs = JSON.parse(data.labs);
-    this.vitals = JSON.parse(data.vitals);
-    this.core = JSON.parse(data.core);
+    this.agvhd = this.utility.bundleObservations(data.agvhd);
+    this.labs = this.utility.bundleObservations(data.labs);
+    this.vitals = this.utility.bundleObservations(data.vitals);
+    this.priority = this.utility.bundleObservations(data.priorityLabs);
+    this.core = this.utility.bundleObservations(data.core);
     this.ehrpatient = JSON.parse(data.ehrpatient);
     this.crid = data.crid;
     this.psScope = data.psScope;

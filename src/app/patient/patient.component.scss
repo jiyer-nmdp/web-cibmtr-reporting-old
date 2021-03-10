@@ -2,20 +2,21 @@
   color: #4a4a4a;
 }
 
-.welcome {
-  width: 769px;
+.welcome-text {
   height: 44px;
   font-family: AvenirNext;
-  font-size: 22px;
+  font-size: 25px;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: gray;
+  color: #4a4a4a;
+  margin: 10px;
 }
 
-.patient-box-shadow {
+.patient-card {
+  margin: 10px;
   height: 410px;
   border-radius: 30px;
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
@@ -23,9 +24,9 @@
   overflow: auto;
 }
 
-.name {
-  padding: 20px 0px 40px 11px;
-  height: 33px;
+.patient-name {
+  height: 60px;
+  padding: 15px 15px;
   font-family: AvenirNext;
   font-size: 24px;
   font-weight: bold;
@@ -34,19 +35,16 @@
   line-height: normal;
   letter-spacing: normal;
   color: #4a4a4a;
-  position: absolute;
 }
 
 .patient_details {
-  position: absolute;
-  top: 10px;
-  padding: 30px 0px 20px 25px;
+  margin: 15px;
   font-family: AvenirNext;
-  font-size: 17px;
+  font-size: 15px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
-  line-height: 1.43;
+  line-height: 1.43em;
   letter-spacing: normal;
   color: gray;
 }
@@ -69,8 +67,9 @@
 }
 
 .patient-crid {
-  padding: 20px 25px 20px 0px;
-  height: 33px;
+  padding: 15px 15px;
+  height: 60px;
+  text-align: right;
   font-family: AvenirNext;
   font-size: 24px;
   font-weight: bold;
@@ -79,7 +78,6 @@
   line-height: normal;
   letter-spacing: normal;
   color: #4a4a4a;
-  position: absolute;
 }
 
 .research-id-text {
@@ -92,4 +90,9 @@
   letter-spacing: normal;
   text-align: right;
   color: #4a4a4a;
+}
+
+#spinner {
+  width: 15px;
+  background: transparent;
 }
