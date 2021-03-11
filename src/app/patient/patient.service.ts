@@ -89,7 +89,7 @@ export class PatientService {
   getObservationCoreChar(identifier): Observable<IPatientContext> {
     let url =
       this.utilityService.rebuild_DSTU2_STU3_Url(
-        "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3"
+        this._localStorageService.get("iss")
       ) +
       "/Observation?category=core-characteristics&_count=40&patient=" +
       identifier;
