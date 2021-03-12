@@ -67,10 +67,17 @@ export class UtilityService {
   bundleObservations(observations) {
     if (observations) {
       let temp = JSON.parse(observations);
+      //Performance Issue
+      // for (observations in temp) {
+      //   if (
+      //     temp.hasOwnProperty("resourceType") &&
+      //     temp["resourceType"] === "OperationOutcome"
+      //   ) {
+      //     delete temp[observations];
+      //   }
+      // }
       if (temp) {
-        return temp.hasOwnProperty("resourceType")
-          ? JSON.parse(observations)
-          : { entry: temp, total: temp.length, resourceType: "Bundle" };
+        return { entry: temp, total: temp.length, resourceType: "Bundle" };
       }
     }
   }
