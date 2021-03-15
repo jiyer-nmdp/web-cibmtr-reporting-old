@@ -40,22 +40,17 @@ export class ObservationVitalsComponent implements OnInit {
     private spinner: SpinnerService
   ) {
     let data = utility.data;
-    this.vitals = utility.bundleObservations(data.vitals);
+    this.vitals = JSON.parse(data.vitals);
     this.psScope = data.psScope;
   }
 
   ngOnInit() {
-    const subj = this.vitals.entry[0].resource.subject.reference;
+    const subj = this.vitals[0].resource.subject.reference;
     const psScope = this.psScope;
 
     this.now = new Date();
 
-    if (
-      this.vitals &&
-      this.vitals.entry &&
-      this.vitals.entry.length > 0 &&
-      this.vitals.entry[0].resource.subject
-    ) {
+    if (this.vitals.length > 0 && this.vitals[0].resource.subject) {
       this.spinner.start();
       this.observationvitalsService
         .getCibmtrObservationsVitals(subj, psScope)
@@ -82,7 +77,7 @@ export class ObservationVitalsComponent implements OnInit {
           (savedEntries) => {
             this.spinner.end();
             //need to refactor savedEntries
-            let ehr_entries = this.vitals.entry;
+            let ehr_entries = this.vitals;
             if (ehr_entries && ehr_entries.length > 0) {
               // filtering the entries to only Observations
               let observationEntries = ehr_entries.filter(function (item) {
@@ -196,7 +191,7 @@ export class ObservationVitalsComponent implements OnInit {
 
     // New Records
     this.selectedNewEntries.push(
-      this.vitals.entry.filter((m) => m.selected === true && m.state === "bold")
+      this.vitals.filter((m) => m.selected === true && m.state === "bold")
     );
 
     this.selectedNewResources = Array.prototype.concat.apply(
@@ -206,9 +201,7 @@ export class ObservationVitalsComponent implements OnInit {
 
     // Updated Records
     this.selectedUpdatedEntries.push(
-      this.vitals.entry.filter(
-        (m) => m.selected === true && m.state === "normal"
-      )
+      this.vitals.filter((m) => m.selected === true && m.state === "normal")
     );
 
     this.selectedUpdatedResources = Array.prototype.concat.apply(
@@ -278,15 +271,15 @@ export class ObservationVitalsComponent implements OnInit {
   // }
 
   checkForSelectAll() {
-    this.isAllSelected = this.vitals.entry.every((entry) => entry.selected);
-    this.isAlldisabled = this.vitals.entry.every(
+    this.isAllSelected = this.vitals.every((entry) => entry.selected);
+    this.isAlldisabled = this.vitals.every(
       (entry) => entry.selected && entry.state === "lighter"
     );
   }
 
   selectAll() {
     let toggleStatus = this.isAllSelected;
-    this.vitals.entry.forEach((entry) => {
+    this.vitals.forEach((entry) => {
       if (entry.state != "lighter") {
         entry.selected = toggleStatus;
       }
@@ -294,13 +287,13 @@ export class ObservationVitalsComponent implements OnInit {
   }
 
   toggleOption = function () {
-    this.isAllSelected = this.vitals.entry.every(function (entry) {
+    this.isAllSelected = this.vitals.every(function (entry) {
       return entry.selected;
     });
   };
 
   toggleAllOption = function () {
-    this.isAlldisabled = this.vitals.entry.every(function (entry) {
+    this.isAlldisabled = this.vitals.every(function (entry) {
       return entry.disabled;
     });
   };

@@ -1,5 +1,5 @@
 .fixed_header {
-  overflow-y: auto;
+  overflow: scroll;
   height: 300px;
 }
 
@@ -19,7 +19,6 @@
   top: 0;
   background: rgb(220, 220, 220);
 }
-
 .date-label {
   margin-top: 10px;
   height: 22px;

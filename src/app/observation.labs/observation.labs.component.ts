@@ -45,22 +45,17 @@ export class ObservationLabsComponent implements OnInit {
     console.log(route);
     let data = utility.data;
     this.labs = JSON.parse(data.labs);
-    this.priority = JSON.parse(data.priority);
+    this.priority = JSON.parse(data.priorityLabs);
     this.psScope = data.psScope;
   }
 
   ngOnInit() {
-    const subj = this.getCategoryData().entry[0].resource.subject.reference;
+    const subj = this.getCategoryData()[0].resource.subject.reference;
     const psScope = this.psScope;
 
     this.now = new Date();
 
-    if (
-      this.getCategoryData() &&
-      this.getCategoryData().entry &&
-      this.getCategoryData().entry.length > 0 &&
-      this.getCategoryData().entry[0].resource.subject
-    ) {
+    if (this.getCategoryData() && this.getCategoryData().length > 0) {
       this.spinner.start();
       this.observationlabsService
         .getCibmtrObservationsLabs(subj, psScope)
@@ -85,7 +80,7 @@ export class ObservationLabsComponent implements OnInit {
         .subscribe(
           (savedEntries) => {
             this.spinner.end();
-            let entries = this.getCategoryData().entry;
+            let entries = this.getCategoryData();
             if (entries && entries.length > 0) {
               // filtering the entries to only Observations
               let observationEntries = entries.filter(function (item) {
@@ -199,7 +194,7 @@ export class ObservationLabsComponent implements OnInit {
 
     // New Records
     this.selectedNewEntries.push(
-      this.getCategoryData().entry.filter(
+      this.getCategoryData().filter(
         (m) => m.selected === true && m.state === "bold"
       )
     );
@@ -211,7 +206,7 @@ export class ObservationLabsComponent implements OnInit {
 
     // Updated Records
     this.selectedUpdatedEntries.push(
-      this.getCategoryData().entry.filter(
+      this.getCategoryData().filter(
         (m) => m.selected === true && m.state === "normal"
       )
     );
@@ -271,17 +266,17 @@ export class ObservationLabsComponent implements OnInit {
   }
 
   checkForSelectAll() {
-    this.isAllSelected = this.getCategoryData().entry.every(
+    this.isAllSelected = this.getCategoryData().every(
       (entry) => entry.selected
     );
-    this.isAlldisabled = this.getCategoryData().entry.every(
+    this.isAlldisabled = this.getCategoryData().every(
       (entry) => entry.selected && entry.state === "lighter"
     );
   }
 
   selectAll() {
     let toggleStatus = this.isAllSelected;
-    this.getCategoryData().entry.forEach((entry) => {
+    this.getCategoryData().forEach((entry) => {
       if (entry.state != "lighter") {
         entry.selected = toggleStatus;
       }

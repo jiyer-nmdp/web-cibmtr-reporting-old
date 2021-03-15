@@ -42,22 +42,17 @@ export class ObservationCoreComponent implements OnInit {
     private spinner: SpinnerService
   ) {
     let data = utility.data;
-    this.core = utility.bundleObservations(data.core);
+    this.core = JSON.parse(data.core);
     this.psScope = data.psScope;
   }
 
   ngOnInit() {
-    const subj = this.core.entry[0].resource.subject.reference;
+    const subj = this.core[0].resource.subject.reference;
     const psScope = this.psScope;
 
     this.now = new Date();
 
-    if (
-      this.core &&
-      this.core.entry &&
-      this.core.entry.length > 0 &&
-      this.core.entry[0].resource.subject
-    ) {
+    if (this.core.length > 0 && this.core[0].resource.subject) {
       this.spinner.start();
       this.observationcoreService
         .getCibmtrObservationsCoreChar(subj, psScope)
@@ -83,7 +78,7 @@ export class ObservationCoreComponent implements OnInit {
         .subscribe(
           (savedEntries) => {
             this.spinner.end();
-            let entries = this.core.entry;
+            let entries = this.core;
             if (entries && entries.length > 0) {
               // filtering the entries to only Observations
               let observationEntries = entries.filter(function (item) {
@@ -197,7 +192,7 @@ export class ObservationCoreComponent implements OnInit {
 
     // New Records
     this.selectedNewEntries.push(
-      this.core.entry.filter((m) => m.selected === true && m.state === "bold")
+      this.core.filter((m) => m.selected === true && m.state === "bold")
     );
 
     this.selectedNewResources = Array.prototype.concat.apply(
@@ -207,7 +202,7 @@ export class ObservationCoreComponent implements OnInit {
 
     // Updated Records
     this.selectedUpdatedEntries.push(
-      this.core.entry.filter((m) => m.selected === true && m.state === "normal")
+      this.core.filter((m) => m.selected === true && m.state === "normal")
     );
 
     this.selectedUpdatedResources = Array.prototype.concat.apply(
@@ -265,15 +260,15 @@ export class ObservationCoreComponent implements OnInit {
   }
 
   checkForSelectAll() {
-    this.isAllSelected = this.core.entry.every((entry) => entry.selected);
-    this.isAlldisabled = this.core.entry.every(
+    this.isAllSelected = this.core.every((entry) => entry.selected);
+    this.isAlldisabled = this.core.every(
       (entry) => entry.selected && entry.state === "lighter"
     );
   }
 
   selectAll() {
     let toggleStatus = this.isAllSelected;
-    this.core.entry.forEach((entry) => {
+    this.core.forEach((entry) => {
       if (entry.state != "lighter") {
         entry.selected = toggleStatus;
       }
@@ -281,13 +276,13 @@ export class ObservationCoreComponent implements OnInit {
   }
 
   toggleOption = function () {
-    this.isAllSelected = this.core.entry.every(function (entry) {
+    this.isAllSelected = this.core.every(function (entry) {
       return entry.selected;
     });
   };
 
   toggleAllOption = function () {
-    this.isAlldisabled = this.core.entry.every(function (entry) {
+    this.isAlldisabled = this.core.every(function (entry) {
       return entry.disabled;
     });
   };

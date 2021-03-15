@@ -18,7 +18,7 @@
               class="label-font"
               id="priority"
               [routerLink]="
-                priority === null
+                !priority
                   ? ['error']
                   : priority.total === 0
                   ? ['info']
@@ -27,11 +27,9 @@
               [ngClass]="{ active: activeLabel == 'priority' }"
               >Priority Labs
             </a>
-            <b
-              *ngIf="priority != null; else other_content"
-              class="badge pull-right"
-              >{{ priority.total }}</b
-            >
+            <b *ngIf="priority; else other_content" class="badge pull-right">{{
+              priority.total
+            }}</b>
             <ng-template #other_content
               ><img
                 src="assets/images/exclamation-triangle.png"
@@ -44,20 +42,14 @@
               class="label-font"
               id="lab"
               [routerLink]="
-                labs === null
-                  ? ['error']
-                  : labs.total === 0
-                  ? ['info']
-                  : ['labs']
+                !labs ? ['error'] : labs.total === 0 ? ['info'] : ['labs']
               "
               [ngClass]="{ active: activeLabel == 'lab' }"
               >Labs
             </a>
-            <b
-              *ngIf="labs != null; else other_content"
-              class="badge pull-right"
-              >{{ labs.total }}</b
-            >
+            <b *ngIf="labs; else other_content" class="badge pull-right">{{
+              labs.total
+            }}</b>
             <ng-template #other_content
               ><img
                 src="assets/images/exclamation-triangle.png"
@@ -71,19 +63,13 @@
               id="vital"
               [ngClass]="{ active: activeLabel == 'vital' }"
               [routerLink]="
-                vitals === null
-                  ? ['error']
-                  : vitals.total === 0
-                  ? ['info']
-                  : ['vitals']
+                !vitals ? ['error'] : vitals.total === 0 ? ['info'] : ['vitals']
               "
               >VitalSigns
             </a>
-            <b
-              *ngIf="vitals != null; else other_content"
-              class="badge pull-right"
-              >{{ vitals.total }}</b
-            >
+            <b *ngIf="vitals; else other_content" class="badge pull-right">{{
+              vitals.total
+            }}</b>
             <ng-template #other_content
               ><img
                 src="assets/images/exclamation-triangle.png"
@@ -97,19 +83,13 @@
               id="agvhd"
               [ngClass]="{ active: activeLabel == 'agvhd' }"
               [routerLink]="
-                agvhd === null
-                  ? ['error']
-                  : agvhd.total === 0
-                  ? ['info']
-                  : ['agvhd']
+                !agvhd ? ['error'] : agvhd.total === 0 ? ['info'] : ['agvhd']
               "
               >Flowsheet-aGVHD
             </a>
-            <b
-              *ngIf="agvhd != null; else other_content"
-              class="badge pull-right"
-              >{{ agvhd.total }}</b
-            >
+            <b *ngIf="agvhd; else other_content" class="badge pull-right">{{
+              agvhd.total
+            }}</b>
             <ng-template #other_content
               ><img
                 src="assets/images/exclamation-triangle.png"
@@ -123,19 +103,13 @@
               id="core"
               [ngClass]="{ active: activeLabel == 'core' }"
               [routerLink]="
-                core === null
-                  ? ['error']
-                  : core.total === 0
-                  ? ['info']
-                  : ['core']
+                !core ? ['error'] : core.total === 0 ? ['info'] : ['core']
               "
               >CoreCharacteristics
             </a>
-            <b
-              *ngIf="core != null; else other_content"
-              class="badge pull-right"
-              >{{ core.total }}</b
-            >
+            <b *ngIf="core; else other_content" class="badge pull-right">{{
+              core.total
+            }}</b>
             <ng-template #other_content
               ><img
                 src="assets/images/exclamation-triangle.png"
