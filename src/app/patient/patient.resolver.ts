@@ -71,6 +71,7 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
             }
           }),
           mergeMap((stu3_id) => {
+            this.spinner.start();
             return forkJoin([
               this.patientDetailService.getPatient(stu3_id),
               this.patientDetailService.getObservation(stu3_id),
@@ -96,6 +97,7 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
   }
 
   handleError(error: HttpErrorResponse) {
+    this.spinner.reset();
     let errorMessage = `Unexpected Failure Patient.Read API \n${
       error.status
     } \n Message : ${error.url || error.message}. `;
