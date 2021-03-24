@@ -284,13 +284,13 @@ export class ObservationLabsComponent implements OnInit {
   }
 
   toggleOption = function () {
-    this.isAllSelected = this.getcategorydata().entry.every(function (entry) {
+    this.isAllSelected = this.getCategoryData().every(function (entry) {
       return entry.selected;
     });
   };
 
   toggleAllOption = function () {
-    this.isAlldisabled = this.getcategorydata().entry.every(function (entry) {
+    this.isAlldisabled = this.getCategoryData().every(function (entry) {
       return entry.disabled;
     });
   };

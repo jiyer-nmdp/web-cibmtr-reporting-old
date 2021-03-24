@@ -55,7 +55,7 @@ export class PatientService {
       ) +
       "/Observation?patient=" +
       identifier +
-      "&_count=500&code=" +
+      "&_count=1000&code=" +
       AppConfig.loinc_codes;
     return this.utilityService
       .getPage(url, this.buildEhrHeaders())
@@ -67,7 +67,7 @@ export class PatientService {
       this.utilityService.rebuild_DSTU2_STU3_Url(
         this._localStorageService.get("iss")
       ) +
-      "/Observation?category=laboratory&_count=500&patient=" +
+      "/Observation?category=laboratory&_count=1000&patient=" +
       identifier;
     return this.utilityService
       .getPage(url, this.buildEhrHeaders())
@@ -79,7 +79,7 @@ export class PatientService {
       this.utilityService.rebuild_DSTU2_STU3_Url(
         this._localStorageService.get("iss")
       ) +
-      "/Observation?category=vital-signs&_count=500&patient=" +
+      "/Observation?category=vital-signs&_count=1000&patient=" +
       identifier;
     return this.utilityService
       .getPage(url, this.buildEhrHeaders())
@@ -91,7 +91,7 @@ export class PatientService {
       this.utilityService.rebuild_DSTU2_STU3_Url(
         this._localStorageService.get("iss")
       ) +
-      "/Observation?category=core-characteristics&_count=40&patient=" +
+      "/Observation?category=core-characteristics&_count=1000&patient=" +
       identifier;
     return this.utilityService
       .getPage(url, this.buildEhrHeaders())

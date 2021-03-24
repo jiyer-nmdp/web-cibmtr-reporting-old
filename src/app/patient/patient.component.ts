@@ -173,7 +173,6 @@ export class PatientComponent implements OnInit {
    * @param ehrpatient
    */
   retreiveFhirPatient(ehrpatient, selectedScope) {
-    this.cridCallComplete = false;
     this.psScope = "rc_" + selectedScope.value;
     this.selectedCenter_name = selectedScope.name;
 
@@ -194,6 +193,7 @@ export class PatientComponent implements OnInit {
 
     this.fhirService
       .lookupPatientCrid(logicalId.concat(`&_security=${encodedScope}`))
+      .pipe(take(1))
       .subscribe(
         (resp: any) => {
           const total = resp.total;
@@ -217,7 +217,7 @@ export class PatientComponent implements OnInit {
             }
           }
           this.cridCallComplete = true;
-          this.cridSubject.next(this.crid);
+          this.cridSubject.next("Patient lookup Successful");
         },
         () => {
           this.handleErrorv2;
@@ -274,7 +274,6 @@ export class PatientComponent implements OnInit {
    * @param ehrpatient
    */
   register(e: any, ehrpatient: Patient) {
-    this.cridCallComplete = false;
     e.preventDefault();
     e.stopPropagation();
     this.isLoading = true;
