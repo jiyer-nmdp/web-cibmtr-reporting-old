@@ -35,16 +35,13 @@ export class AppConfig {
   //Middleware URLs
 
   public static crid_service_endpoint =
-    "https://qa-internal-api.nmdp.org/cibmtrehrclientbackendqa/v1/CRID";
+    "https://qa-internal-api.nmdp.org/cibmtr-fhir-backend/v1/r3/CRID";
+
+  public static cibmtr_fhir_url =
+    "https://qa-internal-api.nmdp.org/cibmtr-fhir-backend/v1/r3/";
 
   public static observation_codes =
     "code=https://cdebrowser.nci.nih.gov|2003853,https://cdebrowser.nci.nih.gov|2603692,https://cdebrowser.nci.nih.gov|2787385,https://cdebrowser.nci.nih.gov|2787392,https://cdebrowser.nci.nih.gov|2787396,https://cdebrowser.nci.nih.gov|2787403,https://cdebrowser.nci.nih.gov|2787415,https://cdebrowser.nci.nih.gov|2787423,https://cdebrowser.nci.nih.gov|2787453,https://cdebrowser.nci.nih.gov|2787459,https://cdebrowser.nci.nih.gov|2787467,https://cdebrowser.nci.nih.gov|2787484,https://cdebrowser.nci.nih.gov|2787521,https://cdebrowser.nci.nih.gov|2787539,https://cdebrowser.nci.nih.gov|2787565,https://cdebrowser.nci.nih.gov|2787579,https://cdebrowser.nci.nih.gov|2787616,https://cdebrowser.nci.nih.gov|2787667,https://cdebrowser.nci.nih.gov|2787671,https://cdebrowser.nci.nih.gov|2787840,https://cdebrowser.nci.nih.gov|2787856,https://cdebrowser.nci.nih.gov|2787862,https://cdebrowser.nci.nih.gov|2787870,https://cdebrowser.nci.nih.gov|2787872,https://cdebrowser.nci.nih.gov|2787874,https://cdebrowser.nci.nih.gov|2793688,https://cdebrowser.nci.nih.gov|2797618,https://cdebrowser.nci.nih.gov|2797645,https://cdebrowser.nci.nih.gov|2797671,https://cdebrowser.nci.nih.gov|2860477,https://cdebrowser.nci.nih.gov|2861433,https://cdebrowser.nci.nih.gov|3578143,https://cdebrowser.nci.nih.gov|4492414,https://cdebrowser.nci.nih.gov|492418,https://cdebrowser.nci.nih.gov|4492434,https://cdebrowser.nci.nih.gov|4492471,https://cdebrowser.nci.nih.gov|4492511,https://cdebrowser.nci.nih.gov|4492571,https://cdebrowser.nci.nih.gov|4492575";
-
-  public static cibmtr_fhir_base_url =
-    "https://qa-internal-api.nmdp.org/cibmtrehrclientbackendqa/v1/Patient?identifier=";
-
-  public static cibmtr_fhir_update_url =
-    "https://qa-internal-api.nmdp.org/cibmtrehrclientbackendqa/v1/";
 
   public static codes = [
     "2003853",
@@ -88,7 +85,7 @@ export class AppConfig {
     "4492575",
   ];
 
-  public static loinc_system = "http://loinc.org";
+  //public static loinc_system = "http://loinc.org";
 
   //public static pipe_escape = "%7c";
 

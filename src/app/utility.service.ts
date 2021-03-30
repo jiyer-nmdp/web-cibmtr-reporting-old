@@ -66,18 +66,21 @@ export class UtilityService {
 
   bundleObservations(observations) {
     if (observations) {
-      let temp = JSON.parse(observations);
-      //Performance Issue
-      // for (observations in temp) {
-      //   if (
-      //     temp.hasOwnProperty("resourceType") &&
-      //     temp["resourceType"] === "OperationOutcome"
-      //   ) {
-      //     delete temp[observations];
-      //   }
-      // }
-      if (temp) {
-        return { entry: temp, total: temp.length, resourceType: "Bundle" };
+      let filtered_Obs = JSON.parse(observations);
+      for (observations in filtered_Obs) {
+        if (
+          filtered_Obs.hasOwnProperty("resourceType") &&
+          filtered_Obs["resourceType"] === "Observation"
+        ) {
+          delete filtered_Obs[observations];
+        }
+      }
+      if (filtered_Obs) {
+        return {
+          entry: filtered_Obs,
+          total: filtered_Obs.length,
+          resourceType: "Bundle",
+        };
       }
     }
   }
