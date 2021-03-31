@@ -3,6 +3,7 @@ import { AuthorizationService } from "./authorization.service";
 import { Location } from "@angular/common";
 import { LocalStorageService } from "angular-2-local-storage";
 import { HttpErrorResponse } from "@angular/common/http";
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
 export class AppInitService {
@@ -24,11 +25,17 @@ export class AppInitService {
       window.location.href
     );
 
+    let authorizationState = this.authorizationService.getEhrState(
+      window.location.href
+    );
+
     if (authorizationToken !== null) {
       return this.authorizationService
         .codeToBearerToken(
           this._localStorageService.get("tokenUrl"),
-          authorizationToken
+          authorizationToken,
+          authorizationState,
+          this._localStorageService.get("validCodeState")
         )
         .then((response) => {
           this._localStorageService.set(
@@ -50,12 +57,15 @@ export class AppInitService {
       this._localStorageService.set("iss", iss);
 
       return this.authorizationService.getMetadata(iss).then((response) => {
+        let validCodeState = uuidv4();
+        this._localStorageService.set("validCodeState", validCodeState);
         let tokenUrl = this.authorizationService.getTokenUrl(response),
           authorizeUrl = this.authorizationService.getAuthorizeUrl(response),
           authorizationCodeUrl = this.authorizationService.constructAuthorizationUrl(
             authorizeUrl,
             launchToken,
-            iss
+            iss,
+            validCodeState
           );
         this._localStorageService.set("tokenUrl", tokenUrl);
         window.location.href = authorizationCodeUrl;

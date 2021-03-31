@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Patient } from "../model/patient.";
 import { ActivatedRoute, Router } from "@angular/router";
-import { throwError, Observable } from "rxjs";
+import { throwError, Observable, Subject } from "rxjs";
 import * as jwt_decode from "jwt-decode";
 import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
 import { FhirService } from "./fhir.service";
@@ -30,7 +30,6 @@ export class PatientComponent implements OnInit {
   priorityLabs: any;
   cibmtrObservations: any;
   crid: string;
-  crid$: Observable<string>;
   logicalId: string;
   fhirApp: string = "FHIR";
   cridApp: string = "CRID";
@@ -42,6 +41,8 @@ export class PatientComponent implements OnInit {
   cibmtrPatientId: Observable<any>;
   dataManager_name: string;
   selectedCenter_name: string;
+  cridSubject: Subject<any> = new Subject();
+  crid$: Observable<string> = this.cridSubject.asObservable();
 
   constructor(
     private _route: ActivatedRoute,
@@ -172,7 +173,6 @@ export class PatientComponent implements OnInit {
    * @param ehrpatient
    */
   retreiveFhirPatient(ehrpatient, selectedScope) {
-    this.cridCallComplete = false;
     this.psScope = "rc_" + selectedScope.value;
     this.selectedCenter_name = selectedScope.name;
 
@@ -191,37 +191,38 @@ export class PatientComponent implements OnInit {
       "".concat(AppConfig.cibmtr_centers_namespace, "|", this.psScope)
     );
 
-    this.crid$ = this.fhirService
+    this.fhirService
       .lookupPatientCrid(logicalId.concat(`&_security=${encodedScope}`))
-      .pipe(take(1));
-    this.crid$.subscribe(
-      (resp: any) => {
-        const total = resp.total;
-        if (total && total > 0) {
-          if (resp.entry) {
-            resp.entry.filter((entry) => {
-              if (entry.resource) {
-                if (
-                  entry.resource.identifier &&
-                  entry.resource.identifier.length > 0
-                ) {
-                  const filteredCrid = entry.resource.identifier.filter(
-                    (i) => i.system === AppConfig.cibmtr_crid_namespace
-                  );
-                  if (filteredCrid && filteredCrid.length > 0) {
-                    this.crid = filteredCrid[0].value;
+      .pipe(take(1))
+      .subscribe(
+        (resp: any) => {
+          const total = resp.total;
+          if (total && total > 0) {
+            if (resp.entry) {
+              resp.entry.filter((entry) => {
+                if (entry.resource) {
+                  if (
+                    entry.resource.identifier &&
+                    entry.resource.identifier.length > 0
+                  ) {
+                    const filteredCrid = entry.resource.identifier.filter(
+                      (i) => i.system === AppConfig.cibmtr_crid_namespace
+                    );
+                    if (filteredCrid && filteredCrid.length > 0) {
+                      this.crid = filteredCrid[0].value;
+                    }
                   }
                 }
-              }
-            });
+              });
+            }
           }
+          this.cridCallComplete = true;
+          this.cridSubject.next("Patient lookup Successful");
+        },
+        () => {
+          this.handleErrorv2;
         }
-        this.cridCallComplete = true;
-      },
-      () => {
-        this.handleErrorv2;
-      }
-    );
+      );
   }
 
   /**
@@ -273,7 +274,6 @@ export class PatientComponent implements OnInit {
    * @param ehrpatient
    */
   register(e: any, ehrpatient: Patient) {
-    this.cridCallComplete = false;
     e.preventDefault();
     e.stopPropagation();
     this.isLoading = true;
@@ -423,6 +423,7 @@ export class PatientComponent implements OnInit {
   appendCridIdentifier(ehrpatient: Patient, crid: string, logicalId: string) {
     const {
       id,
+      identifier,
       text: { status } = { status: "generated" },
       ...remainingfields
     } = ehrpatient;
@@ -441,7 +442,7 @@ export class PatientComponent implements OnInit {
         ],
       },
       identifier: [
-        ...remainingfields.identifier,
+        identifier,
         {
           use: "official",
           system: AppConfig.epic_logicalId_namespace,
