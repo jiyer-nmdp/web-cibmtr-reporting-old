@@ -145,7 +145,6 @@ export class AuthorizationService {
     for (let i = 0; i < params.length; i++) {
       let pv = params[i].split("=");
       if (pv[0] === "launch") {
-        console.log("absUrl  -> ", absUrl);
         return pv[1].split("#")[0];
       }
     }
