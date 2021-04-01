@@ -44,8 +44,8 @@ export class ObservationLabsComponent implements OnInit {
   ) {
     console.log(route);
     let data = utility.data;
-    this.labs = JSON.parse(data.labs);
-    this.priority = JSON.parse(data.priorityLabs);
+    this.labs = utility.bundleObservations(data.labs).entry;
+    this.priority = utility.bundleObservations(data.priorityLabs).entry;
     this.psScope = data.psScope;
   }
 
