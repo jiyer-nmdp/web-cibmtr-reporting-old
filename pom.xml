@@ -24,7 +24,7 @@
 		<npm.version>6.11.3</npm.version>
 		<skipTests>true</skipTests>
     <bambooBuildNumberSuffix />
-    <bambooProjectKey>aof</bambooProjectKey>
+    <bambooProjectKey>cibmtr_aof</bambooProjectKey>
 	</properties>
 
 	<!--<properties><project.build.sourceEncoding>UTF-8</project.build.sourceEncoding><npm.build.cmd>build</npm.build.cmd><nodejs.version>v8.9.4</nodejs.version><npm.version>5.6.0</npm.version><skipTests>true</skipTests><sonar.exclusions>**/*.spec.js, bower_components/**, node_modules/**, src/content/css/vendor.css</sonar.exclusions><sonar.javascript.jstestdriver.reportsPath>${project.build.directory}/test-results/karma</sonar.javascript.jstestdriver.reportsPath><sonar.javascript.lcov.reportPath>${project.build.directory}/test-results/coverage/report-lcov/lcov.info</sonar.javascript.lcov.reportPath><sonar.sources>src</sonar.sources><sonar.test.inclusions>**/*.spec.js</sonar.test.inclusions><sonar.tests>src/test/javascript</sonar.tests></properties>-->
