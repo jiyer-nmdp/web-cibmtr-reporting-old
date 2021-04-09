@@ -216,5 +216,29 @@
 				</plugins>
 			</build>
 		</profile>
+    
+		<profile>
+			<id>BAMBOO_BUILD_DEVELOP_ONLY</id>
+			<activation>
+				<property>
+					<name>env.bamboo_shortPlanName</name>
+					<value>develop</value>
+				</property>
+			</activation>
+			<properties>
+				<bambooBuildNumberSuffix>.${env.bamboo_buildNumber}</bambooBuildNumberSuffix>
+			</properties>
+		</profile>
+		<profile>
+			<id>BAMBOO_BUILD</id>
+			<activation>
+				<property>
+					<name>env.bamboo_project_key</name>
+				</property>
+			</activation>
+			<properties>
+				<bambooProjectKey>${env.bamboo_project_key}</bambooProjectKey>
+			</properties>
+		</profile>
 	</profiles>
 </project>
