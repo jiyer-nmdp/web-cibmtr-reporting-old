@@ -65,19 +65,20 @@ export class UtilityService {
    */
 
   bundleObservations(observations) {
-    if (observations) {
-      const obsArray = JSON.parse(observations);
-      const filteredObservations = obsArray.filter((obs) => {
+    let filteredObservations;
+    let obsArray = JSON.parse(observations);
+    if (obsArray) {
+      filteredObservations = obsArray.filter((obs) => {
         return obs.resource && obs.resource.resourceType === "Observation";
       });
+    }
 
-      if (filteredObservations) {
-        return {
-          entry: filteredObservations,
-          total: filteredObservations.length,
-          resourceType: "Bundle",
-        };
-      }
+    if (filteredObservations) {
+      return {
+        entry: filteredObservations,
+        total: filteredObservations.length,
+        resourceType: "Bundle",
+      };
     }
   }
 }
