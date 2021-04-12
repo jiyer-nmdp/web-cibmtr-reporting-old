@@ -23,6 +23,8 @@
 		<output.directory>www</output.directory>
 		<npm.version>6.11.3</npm.version>
 		<skipTests>true</skipTests>
+    <bambooBuildNumberSuffix />
+    <bambooProjectKey>web_cibmtr_reporting</bambooProjectKey>
 	</properties>
 
 	<!--<properties><project.build.sourceEncoding>UTF-8</project.build.sourceEncoding><npm.build.cmd>build</npm.build.cmd><nodejs.version>v8.9.4</nodejs.version><npm.version>5.6.0</npm.version><skipTests>true</skipTests><sonar.exclusions>**/*.spec.js, bower_components/**, node_modules/**, src/content/css/vendor.css</sonar.exclusions><sonar.javascript.jstestdriver.reportsPath>${project.build.directory}/test-results/karma</sonar.javascript.jstestdriver.reportsPath><sonar.javascript.lcov.reportPath>${project.build.directory}/test-results/coverage/report-lcov/lcov.info</sonar.javascript.lcov.reportPath><sonar.sources>src</sonar.sources><sonar.test.inclusions>**/*.spec.js</sonar.test.inclusions><sonar.tests>src/test/javascript</sonar.tests></properties>-->
@@ -213,6 +215,30 @@
 					</plugin>
 				</plugins>
 			</build>
+		</profile>
+    
+		<profile>
+			<id>BAMBOO_BUILD_DEVELOP_ONLY</id>
+			<activation>
+				<property>
+					<name>env.bamboo_shortPlanName</name>
+					<value>develop</value>
+				</property>
+			</activation>
+			<properties>
+				<bambooBuildNumberSuffix>.${env.bamboo_buildNumber}</bambooBuildNumberSuffix>
+			</properties>
+		</profile>
+		<profile>
+			<id>BAMBOO_BUILD</id>
+			<activation>
+				<property>
+					<name>env.bamboo_project_key</name>
+				</property>
+			</activation>
+			<properties>
+				<bambooProjectKey>${env.bamboo_project_key}</bambooProjectKey>
+			</properties>
 		</profile>
 	</profiles>
 </project>
