@@ -9,7 +9,8 @@ export class FhirService {
   constructor(private http: CustomHttpClient) {}
 
   lookupPatientCrid(identifier): Observable<any> {
-    let fhirGetUrl = AppConfig.cibmtr_fhir_base_url.concat(identifier);
+    let fhirGetUrl =
+      AppConfig.cibmtr_fhir_url + "Patient?identifier=".concat(identifier);
     return this.http.get(fhirGetUrl);
   }
 
@@ -20,7 +21,7 @@ export class FhirService {
 
   //Updated EHR Patient in Cibmtr FHIR Server
   submitPatient(updatedEhrPatient) {
-    let fhirPostUrl = AppConfig.cibmtr_fhir_update_url + "Patient";
+    let fhirPostUrl = AppConfig.cibmtr_fhir_url + "Patient";
     return this.http.post(fhirPostUrl, updatedEhrPatient);
   }
 
