@@ -17,7 +17,20 @@ export class AuthorizationService {
     return null;
   }
 
-  codeToBearerToken(tokenurl, code) {
+  getEhrState(url) {
+    let segments = url.split("?")[1].split("&");
+    for (let i = 0; i < segments.length; i++) {
+      if (segments[i].substr(0, 6) === "state=") {
+        return segments[i].replace("state=", "").split("#")[0];
+      }
+    }
+    return null;
+  }
+
+  codeToBearerToken(tokenurl, code, state, validState) {
+    if(!validState || validState !== state) {
+      return Promise.reject(new Error("Invalid or missing state."));
+    }
     //HTTP Post request  get Bearer token
     let body =
       "grant_type=authorization_code" +
@@ -37,7 +50,7 @@ export class AuthorizationService {
       .toPromise();
   }
 
-  constructAuthorizationUrl(baseUrl, launchToken, aud) {
+  constructAuthorizationUrl(baseUrl, launchToken, aud, state) {
     return (
       baseUrl +
       "?scope=launch&response_type=code" +
@@ -49,7 +62,8 @@ export class AuthorizationService {
       launchToken +
       "&aud=" +
       encodeURIComponent(aud) +
-      "&state=search"
+      "&state=" +
+      encodeURIComponent(state)
     );
   }
 
@@ -131,7 +145,6 @@ export class AuthorizationService {
     for (let i = 0; i < params.length; i++) {
       let pv = params[i].split("=");
       if (pv[0] === "launch") {
-        console.log("absUrl  -> ", absUrl);
         return pv[1].split("#")[0];
       }
     }
