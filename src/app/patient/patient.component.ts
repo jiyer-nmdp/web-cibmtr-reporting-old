@@ -233,95 +233,77 @@ export class PatientComponent implements OnInit {
     }
   }
 
-  formatContact(telecom) {
-    let contact = "";
-    for (let i = 0; i < telecom.length; i++) {
-      contact = contact + telecom[i].value + " (" + telecom[i].use + ")";
-      if (i < telecom.length - 1) {
-        contact = contact + ", ";
-      }
-    }
-    return contact;
-  }
-
-  displayMaritalStatus(status) {
-    if (status && status.coding) {
-      return status.coding[0].display;
-    }
-    return "";
-  }
-
-  register(e: any, ehrpatient: Patient) {
+  register(e: any, ehrpatient: any) {
     e.preventDefault();
     e.stopPropagation();
     this.isLoading = true;
 
-    let genderLowerCase;
-
+    //SSN
     let ehrSsn = ehrpatient.identifier
-      .filter(
-        (i) =>
-          i.system === "urn:oid:2.16.840.1.113883.4.1" ||
-          i.system === "http://hl7.org/fhir/sid/us-ssn"
-      )
+      .filter((i) => AppConfig.ssn_system.includes(i.system))
       .map((i) => i.value)
       .join("");
 
     //Gender
-    //let genderenums = ["unknown", "other"];
-
-    if (
-      !ehrpatient.gender ||
-      ehrpatient.gender === "unknown" ||
-      ehrpatient.gender === "other"
-    ) {
+    const gender = ehrpatient.gender.toLowerCase();
+    if (!gender || gender === "unknown" || gender === "other") {
       alert(
         "Unable to register this patient " +
           ehrpatient.gender +
           " is not currently supported as a gender value. Please contact your center's CIBMTR CRC to review this case."
       );
-      this.isLoading = false;
       return;
     } else {
-      genderLowerCase = ehrpatient.gender.toLowerCase();
+      gender;
     }
 
-    //TODO Name consider if official
-    let racecode;
-    let ethinicitycode;
+    const raceCodes = ehrpatient.extension
+      .map((outerEle) => {
+        return (
+          outerEle.extension &&
+          outerEle.extension.filter(
+            (innerEle) =>
+              innerEle.valueCoding &&
+              AppConfig.raceOmbsystem.includes(innerEle.valueCoding.system)
+          )
+        );
+      })
+      .filter((a) => a !== undefined && a.length > 0) // filter
+      .reduce((acc, val) => acc.concat(val), []) // flatten the array
+      .map((i) => i.valueCoding && i.valueCoding.code); // extract the codes
 
-    if (ehrpatient.extension && ehrpatient.extension.length >= 1) {
-      for (let i = 0; i < ehrpatient.extension.length; i++) {
-        if (
-          ehrpatient.extension[i].extension &&
-          ehrpatient.extension[i].extension.length >= 1
-        ) {
-          for (let j = 0; j < ehrpatient.extension[i].extension.length; j++) {
-            if (ehrpatient.extension[i].extension[j].valueCoding) {
-              if (
-                AppConfig.raceOmbsystem.includes(
-                  ehrpatient.extension[i].extension[j].valueCoding.system
-                )
-              ) {
-                racecode =
-                  ehrpatient.extension[i].extension[j].valueCoding.code;
-                let racecodes = racecode.concat(",");
-                console.log(racecodes);
-              }
+    const raceDetailCodes = ehrpatient.extension
+      .map((outerEle) => {
+        return (
+          outerEle.extension &&
+          outerEle.extension.filter(
+            (innerEle) =>
+              innerEle.valueCoding &&
+              AppConfig.raceDetails_Ombsystem.includes(
+                innerEle.valueCoding.system
+              )
+          )
+        );
+      })
+      .filter((a) => a !== undefined && a.length > 0)
+      .reduce((acc, val) => acc.concat(val), [])
+      .map((i) => i.valueCoding && i.valueCoding.code);
 
-              if (
-                AppConfig.ethnicityOmbsystem.includes(
-                  ehrpatient.extension[i].extension[j].valueCoding.system
-                )
-              ) {
-                ethinicitycode =
-                  ehrpatient.extension[i].extension[j].valueCoding.code;
-              }
-            }
-          }
-        }
-      }
-    }
+    const ethnicityCodes = ehrpatient.extension
+      .map((outerEle) => {
+        return (
+          outerEle.extension &&
+          outerEle.extension.filter(
+            (innerEle) =>
+              innerEle.valueCoding &&
+              AppConfig.ethnicityOmbsystem.includes(innerEle.valueCoding.system)
+          )
+        );
+      })
+      .filter((a) => a !== undefined && a.length > 0)
+      .reduce((acc, val) => acc.concat(val), [])
+      .map((i) => i.valueCoding && i.valueCoding.code)
+      .join();
 
     //CRID Payload
 
@@ -331,17 +313,16 @@ export class PatientComponent implements OnInit {
         firstName: ehrpatient.name[0].given[0],
         lastName: ehrpatient.name[0].family,
         birthDate: ehrpatient.birthDate,
-        gender: genderLowerCase === "male" ? "M" : "F",
+        gender: gender === "male" ? "M" : "F",
         ssn: ehrSsn,
-        race: [racecode],
-        ethnicity: ethinicitycode,
+        race: raceCodes,
+        raceDetails: raceDetailCodes,
+        ethnicity: ethnicityCodes,
       },
     };
 
-    //Delete payload entries if contains undefiend/null values
     for (let [key, value] of Object.entries(payload.patient)) {
-      if (value === null || value === undefined || value === "")
-        delete payload.patient[key];
+      if (!value) delete payload.patient[key];
     }
 
     console.log("Sanitized", payload);
