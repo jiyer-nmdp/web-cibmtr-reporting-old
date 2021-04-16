@@ -29,7 +29,7 @@ export class ObservationVitalsService {
 
   getBundleObservable(bundle) {
     return this.http
-      .post(AppConfig.cibmtr_fhir_url + "Bundle", bundle)
+      .post(AppConfig.cibmtr_fhir_update_url + "Bundle", bundle)
       .pipe(map(() => bundle))
       .retry(1)
       .catch(() => EMPTY);
@@ -103,7 +103,7 @@ export class ObservationVitalsService {
 
   getCibmtrObservationsVitals(subject, psScope): Observable<any> {
     const url =
-      AppConfig.cibmtr_fhir_url +
+      AppConfig.cibmtr_fhir_update_url +
       "Observation?subject=" +
       subject +
       "&_security=" +

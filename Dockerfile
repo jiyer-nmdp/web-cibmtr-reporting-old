@@ -4,7 +4,6 @@
 
 #base image
 FROM node:11-alpine AS builder
-#FROM dtr.nmdp.org:4444/nmdp/nmdp-node:12-stretch-slim.nmdp.latest AS builder
 
 # set working directory
 WORKDIR /usr/src/app
@@ -13,12 +12,12 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # expose port
-#EXPOSE 4200
+EXPOSE 80
 
 # Multiple registries - NMDP scope Login Widget and Angulang buir Libraries
 COPY .npmrc /usr/src/app/
 
-# Install Angular Cli globally
+# Install Angular Cli globally 
 RUN npm install -g @angular/cli@7.3.4
 
 # Install Node Modules
@@ -27,10 +26,9 @@ RUN npm install
 #Copying rest of project into image
 COPY . .
 
-ARG ENVIRONMENT=prod
-
 # build the artifacts
-RUN npm run build:$ENVIRONMENT
+RUN npm run build:prod
+
 
 # Stage 2
 FROM nginx:1.13.3-alpine
@@ -51,5 +49,5 @@ RUN chmod -R 777 /usr/share/nginx/html/
 # expose port
 EXPOSE 80
 
-# start the nginx service with env-variable dynamic injection
-CMD ["/bin/sh",  "-c",  "envsubst < /usr/share/nginx/html/CibmtrEHRApp/assets/env.template.js > /usr/share/nginx/html/CibmtrEHRApp/assets/env.js && nginx -g 'daemon off;'"]
+# start the nginx service
+CMD ["nginx", "-g", "daemon off;"]

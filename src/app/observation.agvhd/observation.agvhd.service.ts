@@ -28,7 +28,7 @@ export class ObservationAgvhdService {
 
   getBundleObservable(bundle) {
     return this.http
-      .post(AppConfig.cibmtr_fhir_url + "Bundle", bundle)
+      .post(AppConfig.cibmtr_fhir_update_url + "Bundle", bundle)
       .pipe(map(() => bundle))
       .retry(1)
       .catch(() => EMPTY);
@@ -103,12 +103,12 @@ export class ObservationAgvhdService {
 
   getCibmtrObservations(subject, psScope): Observable<any> {
     const url =
-      AppConfig.cibmtr_fhir_url +
+      AppConfig.cibmtr_fhir_update_url +
       "Observation?subject=" +
       subject +
       "&_security=" +
       psScope +
-      "&_total=accurate&_count=500&category=vital-signs";
+      "&_total=accurate&_count=500";
     return this.http.get(url);
   }
 }
