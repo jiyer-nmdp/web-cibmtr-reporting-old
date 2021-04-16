@@ -264,7 +264,7 @@ export class PatientComponent implements OnInit {
           outerEle.extension.filter(
             (innerEle) =>
               innerEle.valueCoding &&
-              AppConfig.raceOmbsystem.includes(innerEle.valueCoding.system)
+              AppConfig.race_ombsystem.includes(innerEle.valueCoding.system)
           )
         );
       })
@@ -279,7 +279,7 @@ export class PatientComponent implements OnInit {
           outerEle.extension.filter(
             (innerEle) =>
               innerEle.valueCoding &&
-              AppConfig.raceDetails_Ombsystem.includes(
+              AppConfig.racedetails_ombsystem.includes(
                 innerEle.valueCoding.system
               )
           )
@@ -296,7 +296,9 @@ export class PatientComponent implements OnInit {
           outerEle.extension.filter(
             (innerEle) =>
               innerEle.valueCoding &&
-              AppConfig.ethnicityOmbsystem.includes(innerEle.valueCoding.system)
+              AppConfig.ethnicity_ombsystem.includes(
+                innerEle.valueCoding.system
+              )
           )
         );
       })
