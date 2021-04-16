@@ -42,7 +42,7 @@ export class ObservationCoreComponent implements OnInit {
     private spinner: SpinnerService
   ) {
     let data = utility.data;
-    this.core = JSON.parse(data.core);
+    this.core = utility.bundleObservations(data.core).entry;
     this.psScope = data.psScope;
   }
 
@@ -61,7 +61,7 @@ export class ObservationCoreComponent implements OnInit {
             response.link && response.link.find((l) => l.relation === "next");
           if (next) {
             let modifiedUrl =
-              AppConfig.cibmtr_fhir_update_url + "?" + next.url.split("?")[1];
+              AppConfig.cibmtr_fhir_url + "?" + next.url.split("?")[1];
             return this.http.get(modifiedUrl);
           } else {
             return EMPTY;

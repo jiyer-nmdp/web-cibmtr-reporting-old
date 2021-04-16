@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  mock: false,
+  qa: true,
   ehr_client_id: window["env"]["ehr_client_id"],
   okta_setup: {
     client_id: window["env"]["okta_client_id"],

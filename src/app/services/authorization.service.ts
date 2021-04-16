@@ -37,9 +37,9 @@ export class AuthorizationService {
       "&code=" +
       code +
       "&redirect_uri=" +
-      AppConfig.epic_oauth_redirect_url +
+      AppConfig.ehr_oauth_redirect_url +
       "&client_id=" +
-      AppConfig.client_id;
+      AppConfig.ehr_client_id;
 
     return this.http
       .post(tokenurl, body, {
@@ -55,9 +55,9 @@ export class AuthorizationService {
       baseUrl +
       "?scope=launch&response_type=code" +
       "&redirect_uri=" +
-      encodeURIComponent(AppConfig.epic_oauth_redirect_url) +
+      encodeURIComponent(AppConfig.ehr_oauth_redirect_url) +
       "&client_id=" +
-      AppConfig.client_id +
+      AppConfig.ehr_client_id +
       "&launch=" +
       launchToken +
       "&aud=" +
@@ -145,7 +145,6 @@ export class AuthorizationService {
     for (let i = 0; i < params.length; i++) {
       let pv = params[i].split("=");
       if (pv[0] === "launch") {
-        console.log("absUrl  -> ", absUrl);
         return pv[1].split("#")[0];
       }
     }
