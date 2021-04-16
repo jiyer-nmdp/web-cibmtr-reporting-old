@@ -18,6 +18,19 @@
     <url>https://github.com/nmdp-bioinformatics/web-cibmtr-reporting</url>
   </scm>
 
+  <distributionManagement>
+		<snapshotRepository>
+			<id>nmdp-nexus-snapshots</id>
+			<name>NMDP Nexus Snapshots</name>
+			<url>http://repo.nmdp.org/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+		<repository>
+			<id>nmdp-nexus-releases</id>
+			<name>NMDP Nexus Release Repository</name>
+			<url>http://repo.nmdp.org/nexus/content/repositories/releases/</url>
+		</repository>
+	</distributionManagement>
+  
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <output.directory>www</output.directory>
