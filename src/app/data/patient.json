@@ -5,36 +5,16 @@
     {
       "extension": [
         {
-          "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race",
           "valueCoding": {
-            "system": "urn:oid:2.16.840.1.113883.6.238",
-            "code": "2106-3",
-            "display": "White"
-          }
+            "system": "http://hl7.org/fhir/us/core/ValueSet/omb-race-category",
+            "code": "UNK",
+            "display": "Unknown"
+          },
+          "url": "ombCategory"
         },
         {
-          "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race",
-          "valueCoding": {
-            "system": "urn:oid:2.16.840.1.113883.6.238",
-            "code": "2028-9",
-            "display": "Asian"
-          }
-        },
-        {
-          "url": "http://hl7.org/fhir/us/core/ValueSet/detailed-race",
-          "valueCoding": {
-            "system": "urn:oid:2.16.840.1.113883.6.238",
-            "code": "1004-1",
-            "display": "American Indian"
-          }
-        },
-        {
-          "url": "http://hl7.org/fhir/us/core/ValueSet/detailed-race",
-          "valueCoding": {
-            "system": "urn:oid:2.16.840.1.113883.6.238",
-            "code": "1039-7",
-            "display": "Burt Lake Band"
-          }
+          "valueString": "Unknown",
+          "url": "text"
         }
       ],
       "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race"
@@ -49,7 +29,6 @@
           },
           "url": "ombCategory"
         },
-
         {
           "valueString": "Unknown",
           "url": "text"

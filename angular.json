@@ -40,30 +40,6 @@
                 }
               ]
             },
-            "dev": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.dev.ts"
-                }
-              ]
-            },
-            "qa": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.qa.ts"
-                }
-              ]
-            },
-            "preprod": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.preprod.ts"
-                }
-              ]
-            },
             "production": {
               "fileReplacements": [
                 {
@@ -101,15 +77,6 @@
             },
             "mock": {
               "browserTarget": "CibmtrEHRApp:build:mock"
-            },
-            "dev": {
-              "browserTarget": "CibmtrEHRApp:build:dev"
-            },
-            "qa": {
-              "browserTarget": "CibmtrEHRApp:build:qa"
-            },
-            "preprod": {
-              "browserTarget": "CibmtrEHRApp:build:preprod"
             }
           }
         },
