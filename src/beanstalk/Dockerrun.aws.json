@@ -1,7 +1,7 @@
 {
   "AWSEBDockerrunVersion": 1,
   "Image": {
-    "Name": "dockerhub.nmdp.org:8443/nmdp/web-cibmtr-reporting-{env}:{version}"
+    "Name": "dockerhub.nmdp.org:8443/nmdp/${bambooProjectKey}_${project.artifactId}:${project.version}${bambooBuildNumberSuffix}"
   },
   "Ports": [
     {
