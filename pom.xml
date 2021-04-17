@@ -8,14 +8,15 @@
   <groupId>org.nmdp.CibmtrReportingApp</groupId>
   <artifactId>reporting-app-frontend</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>CibmtrReportingApp Frontend</name>
-  <description>CibmtrReportingApp Project</description>
+
+  <name>Cibmtr Reporting App Frontend</name>
+  <description>Frontend app for EHR data submissions</description>
 
 
   <scm>
-    <connection>scm:git:github.com/nmdp-bioinformatics/web-cibmtr-reporting.git</connection>
-    <developerConnection>scm:git:https://github.com/nmdp-bioinformatics/web-cibmtr-reporting.git</developerConnection>
-    <url>https://github.com/nmdp-bioinformatics/web-cibmtr-reporting</url>
+    <connection>scm:git:github.com/jiyer-nmdp/web-cibmtr-reporting.git</connection>
+    <developerConnection>scm:git:https://github.com/jiyer-nmdp/web-cibmtr-reporting.git</developerConnection>
+    <url>https://github.com/jiyer-nmdp/web-cibmtr-reporting</url>
   </scm>
 
   <distributionManagement>
@@ -29,8 +30,12 @@
 			<name>NMDP Nexus Release Repository</name>
 			<url>http://repo.nmdp.org/nexus/content/repositories/releases/</url>
 		</repository>
+    <site>
+      <id>git.server</id>
+      <url>https://github.com/jiyer-nmdp/web-cibmtr-reporting.git</url>
+    </site>
 	</distributionManagement>
-  
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <output.directory>www</output.directory>
@@ -38,7 +43,6 @@
     <skipTests>true</skipTests>
     <bambooBuildNumberSuffix/>
     <bambooProjectKey>fhir_fe</bambooProjectKey>
-    <maven_assembly_plugin_version>3.1.0</maven_assembly_plugin_version>
   </properties>
 
   <build>
@@ -46,7 +50,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
-        <version>${maven_assembly_plugin_version}</version>
         <executions>
           <execution>
             <id>application-source-bundle-zip</id>
@@ -56,7 +59,7 @@
             </goals>
             <configuration>
               <descriptors>
-                <descriptor>src/beanstalk/assembly.xml</descriptor>
+                <descriptor>src/beanstalk/bundle-assembly.xml</descriptor>
               </descriptors>
             </configuration>
           </execution>
