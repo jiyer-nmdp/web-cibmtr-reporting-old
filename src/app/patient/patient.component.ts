@@ -272,22 +272,22 @@ export class PatientComponent implements OnInit {
       .reduce((acc, val) => acc.concat(val), []) // flatten the array
       .map((i) => i.valueCoding && i.valueCoding.code); // extract the codes
 
-    const raceDetailCodes = ehrpatient.extension
-      .map((outerEle) => {
-        return (
-          outerEle.extension &&
-          outerEle.extension.filter(
-            (innerEle) =>
-              innerEle.valueCoding &&
-              AppConfig.racedetails_ombsystem.includes(
-                innerEle.valueCoding.system
-              )
-          )
-        );
-      })
-      .filter((a) => a !== undefined && a.length > 0)
-      .reduce((acc, val) => acc.concat(val), [])
-      .map((i) => i.valueCoding && i.valueCoding.code);
+    // const raceDetailCodes = ehrpatient.extension
+    //   .map((outerEle) => {
+    //     return (
+    //       outerEle.extension &&
+    //       outerEle.extension.filter(
+    //         (innerEle) =>
+    //           innerEle.valueCoding &&
+    //           AppConfig.racedetails_ombsystem.includes(
+    //             innerEle.valueCoding.system
+    //           )
+    //       )
+    //     );
+    //   })
+    //   .filter((a) => a !== undefined && a.length > 0)
+    //   .reduce((acc, val) => acc.concat(val), [])
+    //   .map((i) => i.valueCoding && i.valueCoding.code);
 
     const ethnicityCodes = ehrpatient.extension
       .map((outerEle) => {
@@ -318,7 +318,7 @@ export class PatientComponent implements OnInit {
         gender: gender === "male" ? "M" : "F",
         ssn: ehrSsn,
         race: raceCodes,
-        raceDetails: raceDetailCodes,
+        //raceDetails: raceDetailCodes,
         ethnicity: ethnicityCodes,
       },
     };
