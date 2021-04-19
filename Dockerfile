@@ -3,7 +3,7 @@
 # Stage 1
 
 #base image
-FROM dtr.nmdp.org:4444/nmdp/nmdp-node:12-alpine3.11.nmdp.latest AS builder
+FROM dockerhub.nmdp.org:8443/node:11-alpine AS builder
 #FROM dtr.nmdp.org:4444/nmdp/nmdp-node:12-stretch-slim.nmdp.latest AS builder
 
 # set working directory
@@ -33,7 +33,7 @@ ARG ENVIRONMENT=prod
 RUN npm run build:$ENVIRONMENT
 
 # Stage 2
-FROM dtr.nmdp.org:4444/nmdp/nmdp-nginx:1.19.6-alpine.nmdp.latest
+FROM dockerhub.nmdp.org:8443/nginx:latest
 
 # Copy our default nginx conf
 COPY nginx/default.conf /etc/nginx/conf.d/
