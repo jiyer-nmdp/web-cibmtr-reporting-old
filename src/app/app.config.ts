@@ -12,11 +12,11 @@ export class AppConfig {
     "http://terminology.hl7.org/CodeSystem/v3-NullFlavor",
   ];
 
-  public static racedetails_ombsystem = [
-    "http://hl7.org/fhir/us/core/ValueSet/detailed-race",
-    "urn:oid:2.16.840.1.113883.6.238",
-    "http://terminology.hl7.org/CodeSystem/v3-NullFlavor",
-  ];
+  // public static racedetails_ombsystem = [
+  //   "http://hl7.org/fhir/us/core/ValueSet/detailed-race",
+  //   "urn:oid:2.16.840.1.113883.6.238",
+  //   "http://terminology.hl7.org/CodeSystem/v3-NullFlavor",
+  // ];
 
   public static ethnicity_ombsystem = [
     "http://hl7.org/fhir/us/core/ValueSet/omb-ethnicity-category",
