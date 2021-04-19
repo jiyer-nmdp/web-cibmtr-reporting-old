@@ -245,16 +245,23 @@ export class PatientComponent implements OnInit {
       .join("");
 
     //Gender
-    const gender = ehrpatient.gender.toLowerCase();
-    if (!gender || gender === "unknown" || gender === "other") {
+    //let genderenums = ["unknown", "other"];
+
+    let gender;
+    if (
+      !ehrpatient.gender ||
+      ehrpatient.gender === "unknown" ||
+      ehrpatient.gender === "other"
+    ) {
       alert(
         "Unable to register this patient " +
           ehrpatient.gender +
           " is not currently supported as a gender value. Please contact your center's CIBMTR CRC to review this case."
       );
+      this.isLoading = false;
       return;
     } else {
-      gender;
+      gender = ehrpatient.gender.toLowerCase();
     }
 
     const raceCodes = ehrpatient.extension
