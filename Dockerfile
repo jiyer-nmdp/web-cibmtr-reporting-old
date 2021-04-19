@@ -13,7 +13,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # expose port
-#EXPOSE 4200
+EXPOSE 80
 
 # Multiple registries - NMDP scope Login Widget and Angulang buir Libraries
 COPY .npmrc /usr/src/app/
