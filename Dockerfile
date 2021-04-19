@@ -3,7 +3,7 @@
 # Stage 1
 
 #base image
-FROM dockerhub.nmdp.org:8443/nmdp/nmdp-node:12-alpine3.11.nmdp.latest AS builder
+FROM dockerhub.nmdp.org:8443/nmdp/nmdp-node:12-stretch-slim.nmdp.latest AS builder
 #FROM dtr.nmdp.org:4444/nmdp/nmdp-node:12-stretch-slim.nmdp.latest AS builder
 
 # set working directory
