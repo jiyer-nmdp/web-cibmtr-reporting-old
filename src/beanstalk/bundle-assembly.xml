@@ -12,7 +12,7 @@
             <directory>${project.basedir}/src/beanstalk</directory>
             <outputDirectory>.ebextensions</outputDirectory>
             <includes>
-                <include>*</include>
+                <include>*.config</include>
             </includes>
           <filtered>true</filtered>
         </fileSet>
