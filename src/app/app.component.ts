@@ -4,6 +4,8 @@ import { CustomHttpClient } from "./client/custom.http.client";
 import { Router } from "@angular/router";
 import {environment} from "../environments/environment";
 
+declare function setenv(window): void;
+
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
@@ -19,6 +21,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    setenv(window);
     CustomHttpClient.callbackFunction(this.processTimeout.bind(this));
     this.loginWidget.getNewToken((accessToken: any) => {
       this.ref.detectChanges();

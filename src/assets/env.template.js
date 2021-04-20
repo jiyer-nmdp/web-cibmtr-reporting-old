@@ -1,4 +1,4 @@
-(function(window) {
+(function setenv(window) {
   window["env"] = window["env"] || {};
 
   // Environment variable placeholders
