@@ -16,7 +16,7 @@ const ehr_url = [
   {
     //
     url:
-      "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eQYVH16R88hl-NPxd4lL17A3",
+      "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eQYVH16R88hl-NPxd4lL17A31",
     json: patient,
   },
   {
