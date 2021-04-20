@@ -3,7 +3,7 @@ export const environment = {
   qa: true,
   ehr_client_id: window["env"]["ehr_client_id"],
   okta_setup: {
-    client_id: window["env"]["okta_client_id"],
+    clientId: window["env"]["okta_client_id"],
     scopes: [window["env"]["okta_scopes"]],
     environment : window["env"]["okta_env_name"]
   },
