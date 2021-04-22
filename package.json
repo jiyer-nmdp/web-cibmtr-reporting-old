@@ -29,7 +29,7 @@
     "@angular/platform-browser": "^8.2.14",
     "@angular/platform-browser-dynamic": "^8.2.14",
     "@angular/router": "^8.2.14",
-    "@nmdp/nmdp-login": "1.0.2",
+    "@nmdp/nmdp-login": "1.2.0",
     "angular-2-local-storage": "^3.0.2",
     "bootstrap": "^3.4.1",
     "core-js": "^2.6.11",
