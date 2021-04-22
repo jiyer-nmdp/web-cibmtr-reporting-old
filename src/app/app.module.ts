@@ -10,7 +10,6 @@ import { PatientService } from "./patient/patient.service";
 import { PatientResolver } from "./patient/patient.resolver";
 import { ObservationAgvhdComponent } from "./observation.agvhd/observation.agvhd.component";
 import { ModalModule } from "ngx-bootstrap";
-import { FormsModule } from "@angular/forms";
 import { NmdpWidgetModule } from "@nmdp/nmdp-login/Angular/service/nmdp.widget.module";
 import { AuthorizationService } from "./services/authorization.service";
 import { FhirService } from "./patient/fhir.service";
@@ -58,7 +57,6 @@ export const isMock = environment.mock;
     AppRoutingModule,
     HttpClientModule,
     ModalModule.forRoot(),
-    FormsModule,
     HttpModule,
     NmdpWidgetModule.forRoot(),
     AlertModule.forRoot(),
