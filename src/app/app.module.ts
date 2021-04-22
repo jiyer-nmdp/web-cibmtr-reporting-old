@@ -1,7 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule, APP_INITIALIZER } from "@angular/core";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
-import { HttpModule } from "@angular/http";
 import { AppRoutingModule, routingComponents } from "./app.routing.module";
 import { AppComponent } from "./app.component";
 import { CustomHttpInterceptor } from "./interceptors/http.interceptor";
@@ -57,7 +56,6 @@ export const isMock = environment.mock;
     AppRoutingModule,
     HttpClientModule,
     ModalModule.forRoot(),
-    HttpModule,
     NmdpWidgetModule.forRoot(),
     AlertModule.forRoot(),
     LocalStorageModule.forRoot({
