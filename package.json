@@ -41,13 +41,13 @@
     "node-sass": "^4.13.0",
     "rxjs": "6.6.7",
     "rxjs-compat": "6.3.3",
-    "tslib": "^1.10.0",
     "uuid": "^3.4.0",
-    "zone.js": "~0.11.4"
+    "zone.js": "~0.11.4",
+    "tslib": "^2.0.3"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.1102.0",
-    "@angular-devkit/build-ng-packagr": "^0.1000.8",
+    "@angular-devkit/build-angular": "^0.1002.3",
+    "@angular-devkit/build-ng-packagr": "^0.1002.3",
     "@angular/cli": "^10.2.3",
     "@angular/compiler-cli": "^10.2.5",
     "@angular/language-service": "^10.2.5",
