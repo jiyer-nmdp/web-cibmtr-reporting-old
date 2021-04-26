@@ -3,7 +3,7 @@
   "version": "2.6.0-SNAPSHOT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "concurrently \"npm run clean && npm run build:watch\" \"npm run serve\"",
     "start:mock": "ng serve --configuration=mock",
     "build": "ng build",
     "build:prod": "ng build --prod",
@@ -30,7 +30,8 @@
     "@angular/platform-browser": "^8.2.14",
     "@angular/platform-browser-dynamic": "^8.2.14",
     "@angular/router": "^8.2.14",
-    "@nmdp/nmdp-login": "1.0.2",
+    "@nmdp/nmdp-login": "1.2.0",
+    "@okta/okta-signin-widget": "^4.5.2",
     "angular-2-local-storage": "^3.0.2",
     "bootstrap": "^3.4.1",
     "core-js": "^2.6.11",
