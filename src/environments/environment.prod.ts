@@ -7,5 +7,6 @@ export const environment = {
     environment : window["env"]["okta_env_name"]
   },
   ehr_redirect_url: window["env"]["ehr_redirect_url"],
-  cibmtr_fhir_r3_url: window["env"]["cibmtr_fhir_r3_url"]
+  cibmtr_fhir_r3_url: window["env"]["cibmtr_fhir_r3_url"],
+  loinc_codes:[window["env"]["loinc_codes"]]
 };

@@ -27,10 +27,10 @@ RUN npm install
 #Copying rest of project into image
 COPY . .
 
-ARG ENVIRONMENT=prod
+ARG build_environment
 
 # build the artifacts
-RUN npm run build:$ENVIRONMENT
+RUN npm run build:${build_environment}
 
 # Stage 2
 FROM dockerhub.nmdp.org:8443/nginx:latest
