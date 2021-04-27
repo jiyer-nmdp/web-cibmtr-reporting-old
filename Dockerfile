@@ -30,7 +30,7 @@ COPY . .
 ARG bamboo_build_environment
 
 # build the artifacts
-RUN npm run build:${bamboo_build_environment}
+RUN npm run build:$bamboo_build_environment
 
 # Stage 2
 FROM dockerhub.nmdp.org:8443/nginx:latest
