@@ -75,13 +75,13 @@ export class PatientComponent implements OnInit {
     });
   }
 
-  determineModal(): Promise<any[]> {
+  async determineModal(): Promise<any[]> {
     if (!this.nmdpWidget.isLoggedIn) {
       return;
     }
 
     let decodedValue = this.getDecodedAccessToken(
-      this.nmdpWidget.getAccessToken()
+      await this.nmdpWidget.getAccessToken()
     );
 
     let scopes = decodedValue.authz_cibmtr_fhir_ehr_client.filter(

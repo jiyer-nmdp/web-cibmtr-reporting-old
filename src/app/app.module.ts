@@ -8,7 +8,7 @@ import { HttpMockRequestInterceptor } from "./mock/mock.http.interceptor";
 import { PatientService } from "./patient/patient.service";
 import { PatientResolver } from "./patient/patient.resolver";
 import { ObservationAgvhdComponent } from "./observation.agvhd/observation.agvhd.component";
-import { NmdpWidgetModule } from "@nmdp/nmdp-login/Angular/service/nmdp.widget.module";
+import { NmdpWidgetModule } from "@nmdp/nmdp-login";
 import { AuthorizationService } from "./services/authorization.service";
 import { FhirService } from "./patient/fhir.service";
 import { LocalStorageModule } from "angular-2-local-storage";
@@ -32,6 +32,7 @@ import { MaterialModule } from "./material/material.module";
 import { environment } from "src/environments/environment.mock";
 import { SpinnerComponent } from "./spinner/spinner.component";
 import { SpinnerService } from "./spinner/spinner.service";
+import { ModalModule } from "ngx-bootstrap/modal/modal.module";
 
 export const isMock = environment.mock;
 
@@ -55,7 +56,7 @@ export const isMock = environment.mock;
     AppRoutingModule,
     HttpClientModule,
     ModalModule.forRoot(),
-    NmdpWidgetModule.forRoot(),
+    NmdpWidgetModule.forRoot("assets/MyConfig.json"),
     AlertModule.forRoot(),
     LocalStorageModule.forRoot({
       prefix: "cibmtr",
@@ -88,7 +89,6 @@ export const isMock = environment.mock;
       deps: [AppInitService],
       multi: true,
     },
-
     ...(isMock
       ? [
           {

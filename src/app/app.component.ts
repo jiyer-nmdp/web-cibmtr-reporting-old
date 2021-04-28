@@ -1,6 +1,17 @@
-import { Component, ChangeDetectorRef, OnInit } from "@angular/core";
-import { NmdpWidget } from "@nmdp/nmdp-login/Angular/service/nmdp.widget";
-import { CustomHttpClient } from "./client/custom.http.client";
+import {
+  Component,
+  ChangeDetectorRef,
+  OnInit,
+  HostListener,
+} from "@angular/core";
+import {
+  NmdpWidget,
+  SESSION_TIMEOUT,
+  NEW_SESSION,
+  SESSION_CLOSED,
+  SESSION_EXTENDED,
+} from "@nmdp/nmdp-login";
+import { NMDPHttpClientInterceptor } from "@nmdp/nmdp-login";
 import { Router } from "@angular/router";
 import {environment} from "../environments/environment";
 
@@ -14,15 +25,13 @@ export class AppComponent implements OnInit {
     private loginWidget: NmdpWidget,
     private ref: ChangeDetectorRef,
     private router: Router
-  ) {
-    this.loginWidget.init(environment.okta_setup, "#nmdp-login-container");
-  }
+  ) {}
 
   ngOnInit() {
-    CustomHttpClient.callbackFunction(this.processTimeout.bind(this));
-    this.loginWidget.getNewToken((accessToken: any) => {
-      this.ref.detectChanges();
-    });
+    this.loginWidget.setWidgetLocation("#nmdp-login-container");
+    this.loginWidget.onEvent.subscribe(this.processSELEvent.bind(this));
+    NMDPHttpClientInterceptor.enable();
+    this.loginWidget.sessionInfo();
   }
 
   getLoginWidget() {
@@ -39,21 +48,60 @@ export class AppComponent implements OnInit {
   }
 
   processTimeout(timeoutType) {
-    if (timeoutType === "SESSION_IDLE_TIMEOUT") {
-      alert("An idle application session timeout has occurred");
-    } else if (timeoutType === "SESSION_LIFETIME_TIMEOUT") {
-      alert("Application session is lifetime Timeout, need to re-authn");
-    }
     const oldSubject = this.loginWidget.subject;
-    // check to see if session is active
+    // check to see if session is active and retrieve a new token if appropriate
+    // this will display a new login screen if needed
     this.loginWidget.getNewToken((rawtoken) => {
-      // this will display a new login screen if needed
-      if (oldSubject == null || this.loginWidget.subject != oldSubject) {
+      // This logic is only needed if there is information cached
+      // specific to a user.  In that case, here is where one would
+      // destroy the cached information when a different user has logged in
+
+      if (oldSubject != null && this.loginWidget.subject != oldSubject) {
         // clean out any old data from previous usage
         // as a different user may be at the browser
-        alert("Different user has logged in");
+        alert(
+          `a different user has logged in oldSubject ${oldSubject} new subject: ${this.loginWidget.subject}`
+        );
       }
     });
+  }
+  processSELEvent(event: any) {
+    switch (event.type) {
+      case SESSION_CLOSED:
+        // detect the changes -- needed so that the login form will be displayed
+        this.ref.detectChanges();
+        // show the login.  Can also use this.nmdpWidget.getNewToken(), but that makes an extra call to Okta...
+        this.loginWidget.showLogin();
+        break;
+
+      case NEW_SESSION:
+        this.loginWidget.getAccessToken();
+        this.ref.detectChanges();
+        break;
+
+      case SESSION_EXTENDED:
+        // No need to do anything with this event.
+        // This event would need to be handled if there were a count-down timer or other time-limited
+        // logic that needed to know when the SSO Session was extended
+        break;
+
+      case SESSION_TIMEOUT:
+        this.processTimeout(event.data);
+        break;
+    }
+  }
+  @HostListener("window:mousedown", ["$event"])
+  mouseDownEvent(event: MouseEvent) {
+    if (this.loginWidget.isLoggedIn()) this.loginWidget.markActive();
+  }
+  @HostListener("window:focus", ["$event"])
+  focusEvent(event: FocusEvent) {
+    if (this.loginWidget.isLoggedIn()) this.loginWidget.markActive();
+  }
+
+  @HostListener("window:keydown", ["$event"])
+  keyDownEvent(event: KeyboardEvent) {
+    if (this.loginWidget.isLoggedIn()) this.loginWidget.markActive();
   }
 
   handleError(error: Response) {
