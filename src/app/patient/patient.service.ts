@@ -4,12 +4,12 @@ import {
   HttpHeaders,
   HttpErrorResponse,
 } from "@angular/common/http";
-import { Observable, throwError, of } from "rxjs";
+import {Observable, throwError, of, forkJoin} from "rxjs";
 import { AppConfig } from "../app.config";
 import { IPatientContext } from "../model/patient.";
 import { LocalStorageService } from "angular-2-local-storage";
 import { UtilityService } from "../utility.service";
-import { catchError } from "rxjs/operators";
+import {catchError, map} from "rxjs/operators";
 
 @Injectable()
 export class PatientService {
@@ -34,17 +34,34 @@ export class PatientService {
   }
 
   getObservationPriorityLabs(identifier): Observable<IPatientContext> {
-    let url =
-      this.utilityService.rebuild_DSTU2_STU3_Url(
-        this._localStorageService.get("iss")
-      ) +
-      "/Observation?patient=" +
-      identifier +
-      "&_count=1000&code=" +
-      AppConfig.loinc_codes;
-    return this.utilityService
-      .getPage(url, this.buildEhrHeaders())
-      .pipe(catchError(() => of(null)));
+    let requestUrls:any[] = [];
+    let splitLoincCodesArray = this.utilityService.chunk(AppConfig.loinc_codes.toString().split(','),150);
+    splitLoincCodesArray.forEach((loincs) =>
+    {
+      let loinc_codes = loincs.join(',');
+      let url = this.utilityService.rebuild_DSTU2_STU3_Url
+        (this._localStorageService.get("iss")) +
+        "/Observation?patient=" +
+        identifier +
+        "&_count=1000&code=" +
+        loinc_codes;
+      requestUrls.push(this.utilityService.getPage(url, this.buildEhrHeaders()));
+    });
+    return forkJoin(requestUrls).pipe(
+      map((res: []) =>
+      {
+        let bundles:any[] = [];
+        res.forEach((r1: any) =>
+          {
+            if (r1 instanceof Array)
+            {
+              r1.forEach(r => bundles.push(r));
+            }
+          }
+        );
+        return bundles;
+      }),
+      catchError(() => of(null)));
   }
 
   getObservationLabs(identifier): Observable<any> {
