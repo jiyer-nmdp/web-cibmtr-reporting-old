@@ -17,7 +17,7 @@ EXPOSE 80
 # Multiple registries - NMDP scope Login Widget and Angulang buir Libraries
 COPY .npmrc /usr/src/app/
 
-# Install Angular Cli globally 
+# Install Angular Cli globally
 RUN npm install -g @angular/cli@7.3.4
 
 # Install Node Modules
@@ -26,12 +26,13 @@ RUN npm install
 #Copying rest of project into image
 COPY . .
 
-# build the artifacts
-RUN npm run build:prod
+ARG build_environment
 
+# build the artifacts
+RUN npm run build:$build_environment
 
 # Stage 2
-FROM nginx:1.13.3-alpine
+FROM dockerhub.nmdp.org:8443/nginx:latest
 
 # Copy our default nginx conf
 COPY nginx/default.conf /etc/nginx/conf.d/
@@ -49,5 +50,5 @@ RUN chmod -R 777 /usr/share/nginx/html/
 # expose port
 EXPOSE 80
 
-# start the nginx service
-CMD ["nginx", "-g", "daemon off;"]
+# start the nginx service with env-variable dynamic injection
+CMD ["/bin/sh",  "-c",  "envsubst < /usr/share/nginx/html/CibmtrEHRApp/assets/env.template.js > /usr/share/nginx/html/CibmtrEHRApp/assets/env.js && nginx -g 'daemon off;'"]
