@@ -1,12 +1,15 @@
 {
   "name": "cibmtr-ehrapp",
-  "version": "0.0.2",
+  "version": "2.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "start:mock": "ng serve --configuration=mock",
     "build": "ng build",
     "build:prod": "ng build --prod",
+    "build:dev": "ng build --configuration=dev",
+    "build:qa": "ng build --configuration=qa",
+    "build:preprod": "ng build --configuration=preprod",
     "build:docker": "docker build -t web-cibmtr-reporting .",
     "run:docker": "docker run -d -p 80:80 --name web-cibmtr-reporting web-cibmtr-reporting",
     "test": "ng test",
