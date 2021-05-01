@@ -38,7 +38,7 @@ export class ObservationAgvhdComponent implements OnInit {
     private spinner: SpinnerService
   ) {
     let data = utility.data;
-    this.agvhd = utility.bundleObservations(data.agvhd).entry;
+    this.agvhd = JSON.parse(data.agvhd);
     this.psScope = data.psScope;
   }
 
@@ -57,7 +57,7 @@ export class ObservationAgvhdComponent implements OnInit {
             response.link && response.link.find((l) => l.relation === "next");
           if (next) {
             let modifiedUrl =
-              AppConfig.cibmtr_fhir_url + "?" + next.url.split("?")[1];
+              AppConfig.cibmtr_fhir_update_url + "?" + next.url.split("?")[1];
             return this.http.get(modifiedUrl);
           } else {
             return EMPTY;

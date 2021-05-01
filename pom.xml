@@ -44,7 +44,7 @@
     <bambooBuildNumberSuffix/>
     <bambooProjectKey>fhir_fe</bambooProjectKey>
   </properties>
-
+  
   <build>
     <plugins>
       <plugin>

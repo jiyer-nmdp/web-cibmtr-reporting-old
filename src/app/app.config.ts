@@ -35,7 +35,7 @@ export class AppConfig {
 
   //EPIC Patient Namespace Logical ID
   public static epic_logicalId_namespace = "urn:ietf:rfc:3986";
-
+  
   //EHR Client ID's
   public static ehr_client_id = environment.ehr_client_id;
 

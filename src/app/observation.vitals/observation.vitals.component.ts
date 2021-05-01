@@ -40,7 +40,7 @@ export class ObservationVitalsComponent implements OnInit {
     private spinner: SpinnerService
   ) {
     let data = utility.data;
-    this.vitals = utility.bundleObservations(data.vitals).entry;
+    this.vitals = JSON.parse(data.vitals);
     this.psScope = data.psScope;
   }
 
@@ -59,7 +59,7 @@ export class ObservationVitalsComponent implements OnInit {
             response.link && response.link.find((l) => l.relation === "next");
           if (next) {
             let modifiedUrl =
-              AppConfig.cibmtr_fhir_url + "?" + next.url.split("?")[1];
+              AppConfig.cibmtr_fhir_update_url + "?" + next.url.split("?")[1];
             return this.http.get(modifiedUrl);
           } else {
             return EMPTY;

@@ -88,9 +88,11 @@ export class PatientComponent implements OnInit {
       (item) => item.includes("_role_rc") && item.includes("_fn3")
     );
 
+    //two-way binding in UI
     this.dataManager_name =
       decodedValue.first_name + " " + decodedValue.last_name;
 
+    //Scope format - "l1_role_rc_10121_fn3"
     scopes.forEach((scope, index) => {
       scopes[index] = scope.match(/(rc_\d+)_fn3/)[1];
     });
@@ -103,7 +105,8 @@ export class PatientComponent implements OnInit {
    * @param scopes
    */
   async fetchData(scopes): Promise<any[]> {
-    let cibmtrUrl = AppConfig.cibmtr_fhir_url + "Organization?_security=";
+    let cibmtrUrl =
+      AppConfig.cibmtr_fhir_update_url + "Organization?_security=";
 
     let cibmtrCenters = [];
     if (scopes !== "") {
@@ -163,6 +166,12 @@ export class PatientComponent implements OnInit {
     );
   };
 
+  //Rewrite to allow identifier - LogicalId search and also _security = selected center
+  //https://dev-api.nmdp.org/cibmtrehrclientbackend/v2/Patient?_security=rc_10121&identifier=urn:oid:1.2.840.114350.1.13.0.1.7.5.737384.14%7C202884
+  /**
+   *
+   * @param ehrpatient
+   */
   retreiveFhirPatient(ehrpatient, selectedScope) {
     this.psScope = "rc_" + selectedScope.value;
     this.selectedCenter_name = selectedScope.name;
@@ -314,6 +323,7 @@ export class PatientComponent implements OnInit {
       .map((i) => i.valueCoding && i.valueCoding.code)
       .join();
 
+
     //CRID Payload
 
     let payload = {
@@ -429,6 +439,8 @@ export class PatientComponent implements OnInit {
   }
 
   proceed() {
+    // Navigate to the Patient Details Component
+
     this.utility.data = {
       agvhd: JSON.stringify(this.agvhd),
       labs: JSON.stringify(this.labs),
