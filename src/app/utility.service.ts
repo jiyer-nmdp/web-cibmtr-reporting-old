@@ -65,20 +65,20 @@ export class UtilityService {
    */
 
   bundleObservations(observations) {
-    if (observations) {
-      let temp = JSON.parse(observations);
-      //Performance Issue
-      // for (observations in temp) {
-      //   if (
-      //     temp.hasOwnProperty("resourceType") &&
-      //     temp["resourceType"] === "OperationOutcome"
-      //   ) {
-      //     delete temp[observations];
-      //   }
-      // }
-      if (temp) {
-        return { entry: temp, total: temp.length, resourceType: "Bundle" };
-      }
+    let filteredObservations;
+    let obsArray = JSON.parse(observations);
+    if (obsArray) {
+      filteredObservations = obsArray.filter((obs) => {
+        return obs.resource && obs.resource.resourceType === "Observation";
+      });
+    }
+
+    if (filteredObservations) {
+      return {
+        entry: filteredObservations,
+        total: filteredObservations.length,
+        resourceType: "Bundle",
+      };
     }
   }
 }
