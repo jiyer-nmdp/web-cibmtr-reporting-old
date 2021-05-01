@@ -1,19 +1,59 @@
 {
   "resourceType": "Patient",
-  "id": "endFZe2sorgK5yH219Tqbsw3",
+  "id": "eQYVH16R88hl-NPxd4lL17A31",
   "extension": [
     {
       "extension": [
         {
           "valueCoding": {
             "system": "http://hl7.org/fhir/us/core/ValueSet/omb-race-category",
-            "code": "UNK",
-            "display": "Unknown"
+            "code": "2106-3",
+            "display": "White"
           },
           "url": "ombCategory"
         },
         {
-          "valueString": "Unknown",
+          "valueCoding": {
+            "system": "http://hl7.org/fhir/us/core/ValueSet/omb-race-category",
+            "code": "2028-9",
+            "display": "Asian"
+          },
+          "url": "ombCategory"
+        },
+        {
+          "valueCoding": {
+            "system": "http://hl7.org/fhir/us/core/ValueSet/omb-race-category",
+            "code": "1004-1",
+            "display": "American Indian"
+          },
+          "url": "ombCategory"
+        },
+        {
+          "valueCoding": {
+            "system": "http://hl7.org/fhir/us/core/ValueSet/detailed-race",
+            "code": "1039-7",
+            "display": "Burt Lake Band"
+          },
+          "url": "ombCategory"
+        },
+        {
+          "valueCoding": {
+            "system": "http://hl7.org/fhir/us/core/ValueSet/detailed-race",
+            "code": "1039-8",
+            "display": "Burt Lake"
+          },
+          "url": "ombCategory"
+        },
+        {
+          "valueCoding": {
+            "system": "http://hl7.org/fhir/us/core/ValueSet/detailed-race",
+            "code": "1039-4",
+            "display": "Burt"
+          },
+          "url": "ombCategory"
+        },
+        {
+          "valueString": "White",
           "url": "text"
         }
       ],
@@ -24,13 +64,13 @@
         {
           "valueCoding": {
             "system": "http://hl7.org/fhir/us/core/ValueSet/omb-ethnicity-category",
-            "code": "UNK",
-            "display": "Unknown"
+            "code": "2186-5",
+            "display": "Not Hispanic or Latino"
           },
           "url": "ombCategory"
         },
         {
-          "valueString": "Unknown",
+          "valueString": "Not Hispanic or Latino",
           "url": "text"
         }
       ],
@@ -130,8 +170,8 @@
       "use": "mobile"
     }
   ],
-  "gender": "female",
-  "birthDate": "1962-07-31",
+  "gender": "male",
+  "birthDate": "1962-08-01",
   "deceasedBoolean": false,
   "address": [
     {

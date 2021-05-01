@@ -3,6 +3,7 @@ import { NmdpWidget } from "@nmdp/nmdp-login/Angular/service/nmdp.widget";
 import { PatientService } from "./patient/patient.service";
 import { CustomHttpClient } from "./client/custom.http.client";
 import { Router } from "@angular/router";
+import {environment} from "../environments/environment";
 
 @Component({
   selector: "app-root",
@@ -16,7 +17,7 @@ export class AppComponent implements OnInit {
     private patientService: PatientService,
     private router: Router
   ) {
-    this.loginWidget.init("assets/MyConfig.json", "#nmdp-login-container");
+    this.loginWidget.init(environment.okta_setup, "#nmdp-login-container");
   }
 
   ngOnInit() {

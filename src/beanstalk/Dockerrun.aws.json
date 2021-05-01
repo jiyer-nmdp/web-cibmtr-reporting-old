@@ -1,0 +1,12 @@
+{
+  "AWSEBDockerrunVersion": 1,
+  "Image": {
+    "Name": "dockerhub.nmdp.org:8443/nmdp/${bambooProjectKey}_${project.artifactId}:${project.version}${bambooBuildNumberSuffix}"
+  },
+  "Ports": [
+    {
+      "ContainerPort": 80,
+      "HostPort": 8080
+    }
+  ]
+}
