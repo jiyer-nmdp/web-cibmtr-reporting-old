@@ -42,7 +42,6 @@
     <npm.version>6.11.3</npm.version>
     <skipTests>true</skipTests>
     <bambooBuildNumberSuffix/>
-    <build_env_name/>
     <bambooProjectKey>fhir_fe</bambooProjectKey>
   </properties>
 
@@ -90,7 +89,6 @@
       </activation>
       <properties>
         <bambooBuildNumberSuffix>.${env.bamboo_buildNumber}</bambooBuildNumberSuffix>
-        <build_env_name>${env.bamboo_build_environment}</build_env_name>
       </properties>
     </profile>
     <profile>
@@ -102,8 +100,7 @@
       </activation>
       <properties>
         <bambooProjectKey>${env.bamboo_project_key}</bambooProjectKey>
-        <build_env_name>${env.bamboo_build_environment}</build_env_name>
-      </properties>
+       </properties>
     </profile>
   </profiles>
 </project>
