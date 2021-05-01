@@ -1,6 +1,5 @@
 import { Component, ChangeDetectorRef, OnInit } from "@angular/core";
 import { NmdpWidget } from "@nmdp/nmdp-login/Angular/service/nmdp.widget";
-import { PatientService } from "./patient/patient.service";
 import { CustomHttpClient } from "./client/custom.http.client";
 import { Router } from "@angular/router";
 import {environment} from "../environments/environment";
@@ -14,7 +13,6 @@ export class AppComponent implements OnInit {
   constructor(
     private loginWidget: NmdpWidget,
     private ref: ChangeDetectorRef,
-    private patientService: PatientService,
     private router: Router
   ) {
     this.loginWidget.init(environment.okta_setup, "#nmdp-login-container");
