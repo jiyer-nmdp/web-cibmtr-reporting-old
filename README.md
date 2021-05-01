@@ -4,15 +4,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 The App Currently retriving EHR Patient and Observations and  Save/update in CIBMTR FHIR Server with CRID.
 
-## Development environment setup
-
-1. Install Node.js (https://nodejs.org/), e.g. using Homebrew:  `brew install node`
-2. Install Angular CLI:  `npm install -g @angular/cli`
-3. Clone git repo:  `git clone https://github.com/nmdp-bioinformatics/web-cibmtr-reporting.git`
-4. Change active directory to location of git clone:  `cd web-cibmtr-reporting`
-5. Select a code branch, e.g.:  `git checkout develop`
-6. Install dependencies listed in package.json:  `npm install`
-7. Start working with the code, run `ng` commands, etc.
 
 ## Build and Run on Docker
 
