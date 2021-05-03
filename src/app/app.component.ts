@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.loginWidget.setWidgetLocation("#nmdp-login-container");
+    this.loginWidget.setWidgetLocation("nmdp-login-container");
     this.loginWidget.onEvent.subscribe(this.processSELEvent.bind(this));
     NMDPHttpClientInterceptor.enable();
     this.loginWidget.sessionInfo();

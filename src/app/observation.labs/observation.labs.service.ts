@@ -1,14 +1,14 @@
 import { Injectable } from "@angular/core";
 import { AppConfig } from "../app.config";
 import { EMPTY, Observable } from "rxjs";
-import { CustomHttpClient } from "../client/custom.http.client";
+import { HttpClient } from "@angular/common/http";
 import { UtilityService } from "../utility.service";
 import { map } from "rxjs/operators";
 
 @Injectable()
 export class ObservationLabsService {
   constructor(
-    private http: CustomHttpClient,
+    private http: HttpClient,
     private utilityService: UtilityService
   ) {}
 

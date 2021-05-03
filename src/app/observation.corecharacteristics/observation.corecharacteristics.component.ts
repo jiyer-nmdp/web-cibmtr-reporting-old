@@ -5,8 +5,8 @@ import { UtilityService } from "../utility.service";
 import { mergeMap } from "rxjs/operators";
 import { EMPTY, from } from "rxjs";
 import { AppConfig } from "../app.config";
-import { CustomHttpClient } from "../client/custom.http.client";
 import { SpinnerService } from "../spinner/spinner.service";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: "app-observation.core",
@@ -36,7 +36,7 @@ export class ObservationCoreComponent implements OnInit {
   error: boolean = false;
 
   constructor(
-    private http: CustomHttpClient,
+    private http: HttpClient,
     public observationcoreService: ObservationCoreService,
     utility: UtilityService,
     private spinner: SpinnerService
@@ -68,7 +68,7 @@ export class ObservationCoreComponent implements OnInit {
           }
         })
         //{return response.entry ? flatMap((array) => array)) : response}
-        .map((response) => {
+        .map((response: any) => {
           if (response.entry) {
             return response.entry.flatMap((array) => array);
           }

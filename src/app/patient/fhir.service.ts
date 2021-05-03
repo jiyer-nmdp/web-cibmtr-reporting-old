@@ -2,11 +2,11 @@ import { Injectable } from "@angular/core";
 import { AppConfig } from "../app.config";
 import { Observable } from "rxjs";
 import "rxjs/Rx";
-import { CustomHttpClient } from "../client/custom.http.client";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable()
 export class FhirService {
-  constructor(private http: CustomHttpClient) {}
+  constructor(private http: HttpClient) {}
 
   lookupPatientCrid(identifier): Observable<any> {
     let fhirGetUrl =

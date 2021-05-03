@@ -8,14 +8,18 @@ import { HttpMockRequestInterceptor } from "./mock/mock.http.interceptor";
 import { PatientService } from "./patient/patient.service";
 import { PatientResolver } from "./patient/patient.resolver";
 import { ObservationAgvhdComponent } from "./observation.agvhd/observation.agvhd.component";
-import { NmdpWidgetModule } from "@nmdp/nmdp-login";
+import {
+  NmdpWidgetModule,
+  NmdpWidget,
+  SESSION_CLOSED,
+  SESSION_TIMEOUT,
+} from "@nmdp/nmdp-login";
 import { AuthorizationService } from "./services/authorization.service";
 import { FhirService } from "./patient/fhir.service";
 import { LocalStorageModule } from "angular-2-local-storage";
 import { CustomHttpClient } from "./client/custom.http.client";
 import { AppInitService } from "./services/app.init";
 import { ObservationAgvhdService } from "./observation.agvhd/observation.agvhd.service";
-import { AlertModule } from "ngx-bootstrap/alert";
 import { DialogComponent } from "./dialog/dialog.component";
 import { PatientDetailComponent } from "./patient.detail/patient.detail.component";
 import { DefaultComponent } from "./default/default.component";
@@ -32,9 +36,21 @@ import { MaterialModule } from "./material/material.module";
 import { environment } from "src/environments/environment.mock";
 import { SpinnerComponent } from "./spinner/spinner.component";
 import { SpinnerService } from "./spinner/spinner.service";
-import { ModalModule } from "ngx-bootstrap/modal/modal.module";
+import { filter } from "rxjs/operators";
 
 export const isMock = environment.mock;
+
+export function initializeApp(widget: NmdpWidget) {
+  return () => {
+    widget.markActive();
+    widget.onEvent.pipe(
+      filter(
+        (event) =>
+          event.type === SESSION_TIMEOUT || event.type === SESSION_CLOSED
+      )
+    );
+  };
+}
 
 @NgModule({
   declarations: [
@@ -55,9 +71,7 @@ export const isMock = environment.mock;
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ModalModule.forRoot(),
     NmdpWidgetModule.forRoot("assets/MyConfig.json"),
-    AlertModule.forRoot(),
     LocalStorageModule.forRoot({
       prefix: "cibmtr",
       storageType: "localStorage",
@@ -86,7 +100,7 @@ export const isMock = environment.mock;
     {
       provide: APP_INITIALIZER,
       useFactory: appInitFactory,
-      deps: [AppInitService],
+      deps: [AppInitService, NmdpWidget],
       multi: true,
     },
     ...(isMock

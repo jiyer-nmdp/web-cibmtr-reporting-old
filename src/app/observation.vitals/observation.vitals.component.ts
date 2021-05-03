@@ -5,7 +5,7 @@ import { UtilityService } from "../utility.service";
 import { mergeMap } from "rxjs/operators";
 import { EMPTY, from } from "rxjs";
 import { AppConfig } from "../app.config";
-import { CustomHttpClient } from "../client/custom.http.client";
+import { HttpClient } from "@angular/common/http";
 import { SpinnerService } from "../spinner/spinner.service";
 
 @Component({
@@ -34,7 +34,7 @@ export class ObservationVitalsComponent implements OnInit {
   totalFailCount: number;
 
   constructor(
-    private http: CustomHttpClient,
+    private http: HttpClient,
     public observationvitalsService: ObservationVitalsService,
     utility: UtilityService,
     private spinner: SpinnerService
@@ -66,7 +66,7 @@ export class ObservationVitalsComponent implements OnInit {
           }
         })
         //{return response.entry ? flatMap((array) => array)) : response}
-        .map((response) => {
+        .map((response: any) => {
           if (response.entry) {
             return response.entry.flatMap((array) => array);
           }

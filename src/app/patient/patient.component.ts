@@ -7,8 +7,8 @@ import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
 import { FhirService } from "./fhir.service";
 import { AppConfig } from "../app.config";
 import { take } from "rxjs/operators";
-import { NmdpWidget } from "@nmdp/nmdp-login/Angular/service/nmdp.widget";
-import { CustomHttpClient } from "../client/custom.http.client";
+import { NmdpWidget } from "@nmdp/nmdp-login";
+import { HttpClient } from "@angular/common/http";
 import { DialogComponent } from "../dialog/dialog.component";
 import { LocalStorageService } from "angular-2-local-storage";
 import { HttpErrorResponse } from "@angular/common/http";
@@ -48,9 +48,9 @@ export class PatientComponent implements OnInit {
     private _route: ActivatedRoute,
     private modalService: BsModalService,
     private fhirService: FhirService,
-    private nmdpWidget: NmdpWidget,
+    private widget: NmdpWidget,
     private _localStorageService: LocalStorageService,
-    private http: CustomHttpClient,
+    private http: HttpClient,
     private router: Router,
     private spinner: SpinnerService,
     private utility: UtilityService
@@ -76,12 +76,12 @@ export class PatientComponent implements OnInit {
   }
 
   async determineModal(): Promise<any[]> {
-    if (!this.nmdpWidget.isLoggedIn) {
+    if (!this.widget) {
       return;
     }
 
     let decodedValue = this.getDecodedAccessToken(
-      await this.nmdpWidget.getAccessToken()
+      await this.widget.getAccessToken()
     );
 
     let scopes = decodedValue.authz_cibmtr_fhir_ehr_client.filter(
@@ -110,7 +110,7 @@ export class PatientComponent implements OnInit {
       await this.http
         .get(`${cibmtrUrl}${scopes}`)
         .toPromise()
-        .then((cibmtrResponse) => {
+        .then((cibmtrResponse: any) => {
           let cibmtrEntry = cibmtrResponse.entry;
           cibmtrEntry.forEach((element) => {
             let value = element.resource.identifier[0].value;

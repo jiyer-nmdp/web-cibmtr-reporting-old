@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { AppConfig } from "../app.config";
 import { Observable } from "rxjs";
-import { CustomHttpClient } from "../client/custom.http.client";
+import { HttpClient } from "@angular/common/http";
 import { UtilityService } from "../utility.service";
 import { map } from "rxjs/operators";
 import { EMPTY } from "rxjs";
@@ -9,7 +9,7 @@ import { EMPTY } from "rxjs";
 @Injectable()
 export class ObservationCoreService {
   constructor(
-    private http: CustomHttpClient,
+    private http: HttpClient,
     private utilityService: UtilityService
   ) {}
 
