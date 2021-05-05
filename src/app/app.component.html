@@ -1,9 +1,5 @@
 <div>
-  <div
-    *ngIf="!getLoginWidget().isLoggedIn()"
-    id="nmdp-login-container"
-    style="text-align: left"
-  ></div>
+  <div *ngIf="!getLoginWidget().isLoggedIn()" id="nmdp-login-container"></div>
   <div *ngIf="getLoginWidget().isLoggedIn()">
     <div class="header">
       <div class="navbar-default" role="navigation">

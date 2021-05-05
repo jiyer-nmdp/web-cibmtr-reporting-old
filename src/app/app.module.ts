@@ -8,12 +8,7 @@ import { HttpMockRequestInterceptor } from "./mock/mock.http.interceptor";
 import { PatientService } from "./patient/patient.service";
 import { PatientResolver } from "./patient/patient.resolver";
 import { ObservationAgvhdComponent } from "./observation.agvhd/observation.agvhd.component";
-import {
-  NmdpWidgetModule,
-  NmdpWidget,
-  SESSION_CLOSED,
-  SESSION_TIMEOUT,
-} from "@nmdp/nmdp-login";
+import { NmdpWidgetModule } from "@nmdp/nmdp-login";
 import { AuthorizationService } from "./services/authorization.service";
 import { FhirService } from "./patient/fhir.service";
 import { LocalStorageModule } from "angular-2-local-storage";
@@ -36,21 +31,10 @@ import { MaterialModule } from "./material/material.module";
 import { environment } from "src/environments/environment.mock";
 import { SpinnerComponent } from "./spinner/spinner.component";
 import { SpinnerService } from "./spinner/spinner.service";
-import { filter } from "rxjs/operators";
+import { ModalModule } from "ngx-bootstrap/modal";
+import { FormsModule } from "@angular/forms";
 
 export const isMock = environment.mock;
-
-export function initializeApp(widget: NmdpWidget) {
-  return () => {
-    widget.markActive();
-    widget.onEvent.pipe(
-      filter(
-        (event) =>
-          event.type === SESSION_TIMEOUT || event.type === SESSION_CLOSED
-      )
-    );
-  };
-}
 
 @NgModule({
   declarations: [
@@ -71,6 +55,8 @@ export function initializeApp(widget: NmdpWidget) {
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ModalModule.forRoot(),
+    FormsModule,
     NmdpWidgetModule.forRoot("assets/MyConfig.json"),
     LocalStorageModule.forRoot({
       prefix: "cibmtr",
@@ -100,7 +86,7 @@ export function initializeApp(widget: NmdpWidget) {
     {
       provide: APP_INITIALIZER,
       useFactory: appInitFactory,
-      deps: [AppInitService, NmdpWidget],
+      deps: [AppInitService],
       multi: true,
     },
     ...(isMock

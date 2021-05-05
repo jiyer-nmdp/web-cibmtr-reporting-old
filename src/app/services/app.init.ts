@@ -1,4 +1,4 @@
-import { Injectable, NgZone } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { AuthorizationService } from "./authorization.service";
 import { Location } from "@angular/common";
 import { LocalStorageService } from "angular-2-local-storage";

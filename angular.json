@@ -17,6 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": ["@nmdp/nmdp-login", "rxjs"],
             "outputPath": "dist/CibmtrEHRApp",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -24,11 +25,11 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/@nmdp/nmdp-login/css/okta-sign-in.min.css",
+              "node_modules/@nmdp/nmdp-login/css/nmdp-login.css"
             ],
-            "scripts": []
+            "scripts": ["node_modules/@nmdp/nmdp-login/js/nmdp-login.js"]
           },
           "configurations": {
             "mock": {

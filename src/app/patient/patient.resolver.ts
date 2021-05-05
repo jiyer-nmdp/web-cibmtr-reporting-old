@@ -11,7 +11,6 @@ import { PatientService } from "./patient.service";
 import { LocalStorageService } from "angular-2-local-storage";
 import { IIdentifiers } from "../model/identifiers";
 import { HttpHeaders } from "@angular/common/http";
-import { NmdpWidget } from "@nmdp/nmdp-login/Angular/service/nmdp.widget";
 import { HttpClient } from "@angular/common/http";
 import { HttpErrorResponse } from "@angular/common/http";
 import { map, mergeMap, catchError } from "rxjs/operators";
@@ -34,7 +33,8 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
 
     //Post call to get the STU3 patient id by retreving the patient identifier from local storage
 
-    let issurl: string = this._localStorageService.get("iss");
+    let issurl: string =
+      "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3";
 
     if (issurl.includes("DSTU2")) {
       let ehrHeaders: HttpHeaders = new HttpHeaders()
@@ -83,7 +83,7 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
           })
         );
     } else {
-      let id = this._localStorageService.get("patient");
+      let id = "enUzUbclL5CmKODptMHj-iw3";
       this.spinner.start();
       return forkJoin([
         this.patientDetailService.getPatient(id),

@@ -1,17 +1,13 @@
+import { Component, ChangeDetectorRef, OnInit } from "@angular/core";
 import {
-  Component,
-  ChangeDetectorRef,
-  OnInit,
-  HostListener,
-} from "@angular/core";
-import {
-  NmdpWidget,
-  SESSION_TIMEOUT,
   NEW_SESSION,
+  NMDPHttpClientInterceptor,
+  NmdpWidget,
   SESSION_CLOSED,
   SESSION_EXTENDED,
+  SESSION_TIMEOUT,
 } from "@nmdp/nmdp-login";
-import { NMDPHttpClientInterceptor } from "@nmdp/nmdp-login";
+import { CustomHttpClient } from "./client/custom.http.client";
 import { Router } from "@angular/router";
 import {environment} from "../environments/environment";
 
@@ -28,10 +24,39 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.loginWidget.setWidgetLocation("nmdp-login-container");
-    this.loginWidget.onEvent.subscribe(this.processSELEvent.bind(this));
+    this.loginWidget.setWidgetLocation("#nmdp-login-container");
+    CustomHttpClient.callbackFunction(this.processSELEvent.bind(this));
     NMDPHttpClientInterceptor.enable();
     this.loginWidget.sessionInfo();
+    this.loginWidget.getNewToken((accessToken: any) => {
+      this.ref.detectChanges();
+    });
+  }
+
+  processSELEvent(event: any) {
+    switch (event.type) {
+      case SESSION_CLOSED:
+        // detect the changes -- needed so that the login form will be displayed
+        this.ref.detectChanges();
+        // show the login.  Can also use this.nmdpWidget.getNewToken(), but that makes an extra call to Okta...
+        this.loginWidget.showLogin();
+        break;
+
+      case NEW_SESSION:
+        this.loginWidget.getAccessToken();
+        this.ref.detectChanges();
+        break;
+
+      case SESSION_EXTENDED:
+        // No need to do anything with this event.
+        // This event would need to be handled if there were a count-down timer or other time-limited
+        // logic that needed to know when the SSO Session was extended
+        break;
+
+      case SESSION_TIMEOUT:
+        this.processTimeout(event.data);
+        break;
+    }
   }
 
   getLoginWidget() {
@@ -64,44 +89,6 @@ export class AppComponent implements OnInit {
         );
       }
     });
-  }
-  processSELEvent(event: any) {
-    switch (event.type) {
-      case SESSION_CLOSED:
-        // detect the changes -- needed so that the login form will be displayed
-        this.ref.detectChanges();
-        // show the login.  Can also use this.nmdpWidget.getNewToken(), but that makes an extra call to Okta...
-        this.loginWidget.showLogin();
-        break;
-
-      case NEW_SESSION:
-        this.loginWidget.getAccessToken();
-        this.ref.detectChanges();
-        break;
-
-      case SESSION_EXTENDED:
-        // No need to do anything with this event.
-        // This event would need to be handled if there were a count-down timer or other time-limited
-        // logic that needed to know when the SSO Session was extended
-        break;
-
-      case SESSION_TIMEOUT:
-        this.processTimeout(event.data);
-        break;
-    }
-  }
-  @HostListener("window:mousedown", ["$event"])
-  mouseDownEvent(event: MouseEvent) {
-    if (this.loginWidget.isLoggedIn()) this.loginWidget.markActive();
-  }
-  @HostListener("window:focus", ["$event"])
-  focusEvent(event: FocusEvent) {
-    if (this.loginWidget.isLoggedIn()) this.loginWidget.markActive();
-  }
-
-  @HostListener("window:keydown", ["$event"])
-  keyDownEvent(event: KeyboardEvent) {
-    if (this.loginWidget.isLoggedIn()) this.loginWidget.markActive();
   }
 
   handleError(error: Response) {

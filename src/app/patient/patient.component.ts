@@ -452,7 +452,6 @@ export class PatientComponent implements OnInit {
   getDecodedAccessToken(accessToken: string): any {
     return jwt_decode(accessToken);
   }
-
   /**
    *
    * @param error
