@@ -6,6 +6,8 @@
 #FROM node:11-alpine AS builder
 FROM dtr.nmdp.org:4444/nmdp/nmdp-node:12-stretch-slim.nmdp.latest AS builder
 
+USER root
+
 # set working directory
 WORKDIR /usr/src/app
 
