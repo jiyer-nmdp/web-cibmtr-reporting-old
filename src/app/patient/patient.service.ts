@@ -21,7 +21,7 @@ export class PatientService {
   getPatient(identifier): Observable<IPatientContext> {
     let url =
       this.utilityService.rebuild_DSTU2_STU3_Url(
-        this._localStorageService.get("iss")
+        "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3"
       ) +
       "/Patient/" +
       identifier;
@@ -37,7 +37,7 @@ export class PatientService {
   getObservation(identifier): Observable<IPatientContext> {
     let url =
       this.utilityService.rebuild_DSTU2_STU3_Url(
-        this._localStorageService.get("iss")
+        "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3"
       ) +
       "/Observation?patient=" +
       identifier +
@@ -51,7 +51,7 @@ export class PatientService {
   getObservationPriorityLabs(identifier): Observable<IPatientContext> {
     let url =
       this.utilityService.rebuild_DSTU2_STU3_Url(
-        this._localStorageService.get("iss")
+        "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3"
       ) +
       "/Observation?patient=" +
       identifier +
@@ -65,7 +65,7 @@ export class PatientService {
   getObservationLabs(identifier): Observable<IPatientContext> {
     let url =
       this.utilityService.rebuild_DSTU2_STU3_Url(
-        this._localStorageService.get("iss")
+        "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3"
       ) +
       "/Observation?category=laboratory&_count=1000&patient=" +
       identifier;
@@ -77,7 +77,7 @@ export class PatientService {
   getObservationVitalSigns(identifier): Observable<IPatientContext> {
     let url =
       this.utilityService.rebuild_DSTU2_STU3_Url(
-        this._localStorageService.get("iss")
+        "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3"
       ) +
       "/Observation?category=vital-signs&_count=1000&patient=" +
       identifier;
@@ -89,7 +89,7 @@ export class PatientService {
   getObservationCoreChar(identifier): Observable<IPatientContext> {
     let url =
       this.utilityService.rebuild_DSTU2_STU3_Url(
-        this._localStorageService.get("iss")
+        "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3"
       ) +
       "/Observation?category=core-characteristics&_count=1000&patient=" +
       identifier;
@@ -104,7 +104,7 @@ export class PatientService {
       .set("Accept", "application/json")
       .set(
         "Authorization",
-        `Bearer ${this._localStorageService.get("accessToken")}`
+        `Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1cm46ZXBpYzphcHBvcmNoYXJkLmN1cnByb2QiLCJjbGllbnRfaWQiOiJiNWFhYTBjNi02OTA5LTQ0NzMtYTExZS1mYTc0OTJjZGNlNmQiLCJlcGljLmVjaSI6InVybjplcGljOkN1cnJlbnQtQXBwLU9yY2hhcmQtUHJvZHVjdGlvbiIsImVwaWMubWV0YWRhdGEiOiJ3dVdQcmFyVkVKU3RGdmRxc1d6MGI1QWh0Y0JWa0V5d2JXVTJxY1IxSDl5akhWeHlzVUtfZVRVVVRvdlRDaXFNb0ZYY1R1Y2Rscjh6b2I3MWpvUFd0NjdTVHhTUU11ZlBiNEc0ZFFFUVU3SHlNYXRkWnlyVXQwMHdaUkJ6QVVodyIsImVwaWMudG9rZW50eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjIwMjQ2MjQ4LCJpYXQiOjE2MjAyNDI2NDgsImlzcyI6InVybjplcGljOmFwcG9yY2hhcmQuY3VycHJvZCIsImp0aSI6IjRlNWI1ZjU1LTM0ZGEtNDFmOS1iOTQxLTEyZDE1ZWNjZjcwMyIsIm5iZiI6MTYyMDI0MjY0OCwic3ViIjoiZVE0dTQ0SE56Mi45VmxiWHdiU2c3THczIn0.JlycR1Iwr5lBdWn1a1Le0rOstDko1Foov9KaIdLY6Ek9AJ32ZcCoPChSm-KACvUWc-WgscnzMDw8YMfIk_EkMfx9SQ1OhHwemM1VyvkxsRcktVpU_-1DRZsLfo65_R44hphTi800Gk0BTKU4Nygj-ZTzHAl3RA2-DGJCZqe_ylnYzNR6JVbPcWq-wQfuU7ZFC-bWIvMvlQXBbzSd6KEczECILRoAmeoveDiGjSYLv4eSk5paJP24NJ_m_YQzkGOGxfrLUIi0QS8clLz4n9PDhKHjO_mcEHOIByfj4nmRCSouVZVBuo15h-CbvavvxtGd_AA82oQOo3AT3ctZerUwuw`
       );
 
     return ehrHeaders;
