@@ -33,8 +33,7 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
 
     //Post call to get the STU3 patient id by retreving the patient identifier from local storage
 
-    let issurl: string =
-      "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3";
+    let issurl: string = this._localStorageService.get("iss");
 
     if (issurl.includes("DSTU2")) {
       let ehrHeaders: HttpHeaders = new HttpHeaders()
@@ -83,7 +82,7 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
           })
         );
     } else {
-      let id = "enUzUbclL5CmKODptMHj-iw3";
+      let id = this._localStorageService.get("patient");
       this.spinner.start();
       return forkJoin([
         this.patientDetailService.getPatient(id),

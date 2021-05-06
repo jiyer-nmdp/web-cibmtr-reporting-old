@@ -7,7 +7,6 @@ import {
   SESSION_EXTENDED,
   SESSION_TIMEOUT,
 } from "@nmdp/nmdp-login";
-import { CustomHttpClient } from "./client/custom.http.client";
 import { Router } from "@angular/router";
 import {environment} from "../environments/environment";
 
@@ -25,12 +24,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.loginWidget.setWidgetLocation("#nmdp-login-container");
-    CustomHttpClient.callbackFunction(this.processSELEvent.bind(this));
+    this.loginWidget.onEvent.subscribe(this.processSELEvent.bind(this));
     NMDPHttpClientInterceptor.enable();
     this.loginWidget.sessionInfo();
-    this.loginWidget.getNewToken((accessToken: any) => {
-      this.ref.detectChanges();
-    });
   }
 
   processSELEvent(event: any) {
@@ -66,7 +62,6 @@ export class AppComponent implements OnInit {
   logout() {
     this.loginWidget.signout((err: any) => {
       this.ref.detectChanges();
-      this.ngOnInit();
       //when User click logout of navigation , and patient conext is cleared.
       this.router.navigateByUrl("/main");
     });
