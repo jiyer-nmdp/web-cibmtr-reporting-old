@@ -1,7 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
-import { MatBadgeModule, MatIconModule } from "@angular/material";
 
-const MaterialComponents = [MatIconModule, MatBadgeModule];
+const MaterialComponents = [];
 
 @NgModule({
   imports: [MaterialComponents],

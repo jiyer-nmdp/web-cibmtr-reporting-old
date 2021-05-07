@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import "rxjs/Rx";
-import { NmdpWidget } from "@nmdp/nmdp-login/Angular/service/nmdp.widget";
+import { NmdpWidget } from "@nmdp/nmdp-login";
 
 @Injectable()
 export class CustomHttpClient {

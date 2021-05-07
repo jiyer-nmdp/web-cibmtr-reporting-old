@@ -1,7 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule, APP_INITIALIZER } from "@angular/core";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
-import { HttpModule } from "@angular/http";
 import { AppRoutingModule, routingComponents } from "./app.routing.module";
 import { AppComponent } from "./app.component";
 import { CustomHttpInterceptor } from "./interceptors/http.interceptor";
@@ -9,16 +8,13 @@ import { HttpMockRequestInterceptor } from "./mock/mock.http.interceptor";
 import { PatientService } from "./patient/patient.service";
 import { PatientResolver } from "./patient/patient.resolver";
 import { ObservationAgvhdComponent } from "./observation.agvhd/observation.agvhd.component";
-import { ModalModule } from "ngx-bootstrap";
-import { FormsModule } from "@angular/forms";
-import { NmdpWidgetModule } from "@nmdp/nmdp-login/Angular/service/nmdp.widget.module";
+import { NmdpWidgetModule } from "@nmdp/nmdp-login";
 import { AuthorizationService } from "./services/authorization.service";
 import { FhirService } from "./patient/fhir.service";
 import { LocalStorageModule } from "angular-2-local-storage";
 import { CustomHttpClient } from "./client/custom.http.client";
 import { AppInitService } from "./services/app.init";
 import { ObservationAgvhdService } from "./observation.agvhd/observation.agvhd.service";
-import { AlertModule } from "ngx-bootstrap/alert";
 import { DialogComponent } from "./dialog/dialog.component";
 import { PatientDetailComponent } from "./patient.detail/patient.detail.component";
 import { DefaultComponent } from "./default/default.component";
@@ -35,6 +31,8 @@ import { MaterialModule } from "./material/material.module";
 import { environment } from "src/environments/environment.mock";
 import { SpinnerComponent } from "./spinner/spinner.component";
 import { SpinnerService } from "./spinner/spinner.service";
+import { ModalModule } from "ngx-bootstrap/modal";
+import { FormsModule } from "@angular/forms";
 
 export const isMock = environment.mock;
 
@@ -59,9 +57,7 @@ export const isMock = environment.mock;
     HttpClientModule,
     ModalModule.forRoot(),
     FormsModule,
-    HttpModule,
-    NmdpWidgetModule.forRoot(),
-    AlertModule.forRoot(),
+    NmdpWidgetModule.forRoot("assets/env.js"),
     LocalStorageModule.forRoot({
       prefix: "cibmtr",
       storageType: "localStorage",
@@ -93,7 +89,6 @@ export const isMock = environment.mock;
       deps: [AppInitService],
       multi: true,
     },
-
     ...(isMock
       ? [
           {

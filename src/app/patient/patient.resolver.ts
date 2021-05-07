@@ -11,7 +11,6 @@ import { PatientService } from "./patient.service";
 import { LocalStorageService } from "angular-2-local-storage";
 import { IIdentifiers } from "../model/identifiers";
 import { HttpHeaders } from "@angular/common/http";
-import { NmdpWidget } from "@nmdp/nmdp-login/Angular/service/nmdp.widget";
 import { HttpClient } from "@angular/common/http";
 import { HttpErrorResponse } from "@angular/common/http";
 import { map, mergeMap, catchError } from "rxjs/operators";
