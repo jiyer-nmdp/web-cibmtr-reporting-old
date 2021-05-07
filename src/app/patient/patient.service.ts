@@ -4,11 +4,12 @@ import {
   HttpHeaders,
   HttpErrorResponse,
 } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Observable, throwError } from "rxjs";
 import { AppConfig } from "../app.config";
 import { IPatientContext } from "../model/patient.";
 import { LocalStorageService } from "angular-2-local-storage";
 import { UtilityService } from "../utility.service";
+import { catchError, timestamp } from "rxjs/operators";
 
 @Injectable()
 export class PatientService {
@@ -29,9 +30,7 @@ export class PatientService {
       .get<IPatientContext>(url, {
         headers: this.buildEhrHeaders(),
       })
-      .catch((e: any) =>
-        Observable.throw(this.handleError(e, new Date().getTime()))
-      );
+      .pipe(catchError(this.handleError));
   }
 
   getObservation(identifier): Observable<IPatientContext> {
@@ -110,9 +109,9 @@ export class PatientService {
     return ehrHeaders;
   }
 
-  handleError(error: HttpErrorResponse, timestamp: any) {
+  handleError(error: HttpErrorResponse) {
     let errorMessage = `Unable to process request for \nURL : ${error.url}.  \nStatus: ${error.status}. \nStatusText: ${error.statusText} \nTimestamp : ${timestamp}`;
     alert(errorMessage);
-    console.log(errorMessage);
+    return throwError(errorMessage);
   }
 }
