@@ -8,7 +8,6 @@ import {
   SESSION_TIMEOUT,
 } from "@nmdp/nmdp-login";
 import { Router } from "@angular/router";
-import {environment} from "../environments/environment";
 
 @Component({
   selector: "app-root",
