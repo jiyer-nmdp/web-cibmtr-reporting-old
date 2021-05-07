@@ -21,7 +21,7 @@ EXPOSE 80
 COPY .npmrc /usr/src/app/
 
 # Install Angular Cli globally
-RUN npm install -g @angular/cli@7.3.4
+RUN npm install -g @angular/cli@11.2.11
 
 # Install Node Modules
 RUN npm install
