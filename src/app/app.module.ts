@@ -57,7 +57,7 @@ export const isMock = environment.mock;
     HttpClientModule,
     ModalModule.forRoot(),
     FormsModule,
-    NmdpWidgetModule.forRoot(environment.okta_setup),
+    NmdpWidgetModule.forRoot("assets/MyConfig.json"),
     LocalStorageModule.forRoot({
       prefix: "cibmtr",
       storageType: "localStorage",
