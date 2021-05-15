@@ -3,7 +3,7 @@ import { AppConfig } from "../app.config";
 import { Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { UtilityService } from "../utility.service";
-import { map } from "rxjs/operators";
+import { map, retry, catchError } from "rxjs/operators";
 import { EMPTY } from "rxjs";
 
 @Injectable()
@@ -28,11 +28,11 @@ export class ObservationCoreService {
   }
 
   getBundleObservable(bundle) {
-    return this.http
-      .post(AppConfig.cibmtr_fhir_url + "Bundle", bundle)
-      .pipe(map(() => bundle))
-      .retry(1)
-      .catch(() => EMPTY);
+    return this.http.post(AppConfig.cibmtr_fhir_url + "Bundle", bundle).pipe(
+      map(() => bundle),
+      retry(1),
+      catchError(() => EMPTY)
+    );
   }
 
   // Below method submit updated records to the cibmtr

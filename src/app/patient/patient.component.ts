@@ -6,7 +6,7 @@ import * as jwt_decode from "jwt-decode";
 import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
 import { FhirService } from "./fhir.service";
 import { AppConfig } from "../app.config";
-import { take } from "rxjs/operators";
+import { take, retry } from "rxjs/operators";
 import { NmdpWidget } from "@nmdp/nmdp-login";
 import { HttpClient } from "@angular/common/http";
 import { DialogComponent } from "../dialog/dialog.component";
@@ -362,7 +362,7 @@ export class PatientComponent implements OnInit {
           //Now that we got the CRID save the Info into FHIR
           this.fhirService
             .submitPatient(updatedEhrPatient)
-            .retry(1)
+            .pipe(retry(1))
             .subscribe(
               () => {
                 console.log("Submitted patient");

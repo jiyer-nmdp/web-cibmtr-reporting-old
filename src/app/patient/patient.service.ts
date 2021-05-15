@@ -22,7 +22,7 @@ export class PatientService {
   getPatient(identifier): Observable<IPatientContext> {
     let url =
       this.utilityService.rebuild_DSTU2_STU3_Url(
-        "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3"
+        this._localStorageService.get("iss")
       ) +
       "/Patient/" +
       identifier;
@@ -36,7 +36,7 @@ export class PatientService {
   getObservation(identifier): Observable<IPatientContext> {
     let url =
       this.utilityService.rebuild_DSTU2_STU3_Url(
-        "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3"
+        this._localStorageService.get("iss")
       ) +
       "/Observation?patient=" +
       identifier +
@@ -44,13 +44,13 @@ export class PatientService {
       AppConfig.observation_codes;
     return this.utilityService
       .getPage(url, this.buildEhrHeaders())
-      .catch((e: any) => Observable.of(null));
+      .pipe(catchError(null));
   }
 
   getObservationPriorityLabs(identifier): Observable<IPatientContext> {
     let url =
       this.utilityService.rebuild_DSTU2_STU3_Url(
-        "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3"
+        this._localStorageService.get("iss")
       ) +
       "/Observation?patient=" +
       identifier +
@@ -58,43 +58,43 @@ export class PatientService {
       AppConfig.loinc_codes;
     return this.utilityService
       .getPage(url, this.buildEhrHeaders())
-      .catch((e: any) => Observable.of(null));
+      .pipe(catchError(null));
   }
 
   getObservationLabs(identifier): Observable<IPatientContext> {
     let url =
       this.utilityService.rebuild_DSTU2_STU3_Url(
-        "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3"
+        this._localStorageService.get("iss")
       ) +
       "/Observation?category=laboratory&_count=1000&patient=" +
       identifier;
     return this.utilityService
       .getPage(url, this.buildEhrHeaders())
-      .catch((e: any) => Observable.of(null));
+      .pipe(catchError(null));
   }
 
   getObservationVitalSigns(identifier): Observable<IPatientContext> {
     let url =
       this.utilityService.rebuild_DSTU2_STU3_Url(
-        "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3"
+        this._localStorageService.get("iss")
       ) +
       "/Observation?category=vital-signs&_count=1000&patient=" +
       identifier;
     return this.utilityService
       .getPage(url, this.buildEhrHeaders())
-      .catch((e: any) => Observable.of(null));
+      .pipe(catchError(null));
   }
 
   getObservationCoreChar(identifier): Observable<IPatientContext> {
     let url =
       this.utilityService.rebuild_DSTU2_STU3_Url(
-        "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3"
+        this._localStorageService.get("iss")
       ) +
       "/Observation?category=core-characteristics&_count=1000&patient=" +
       identifier;
     return this.utilityService
       .getPage(url, this.buildEhrHeaders())
-      .catch((e: any) => Observable.of(null));
+      .pipe(catchError(null));
   }
 
   buildEhrHeaders() {
@@ -103,7 +103,7 @@ export class PatientService {
       .set("Accept", "application/json")
       .set(
         "Authorization",
-        `Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1cm46ZXBpYzphcHBvcmNoYXJkLmN1cnByb2QiLCJjbGllbnRfaWQiOiJmZTMwZTE2NC1hMjY1LTRmNzEtOWIxNC01NzBiZThjYjNmMjciLCJlcGljLmVjaSI6InVybjplcGljOkN1cnJlbnQtQXBwLU9yY2hhcmQtUHJvZHVjdGlvbiIsImVwaWMubWV0YWRhdGEiOiJBZi1FOXo0VXVjQ281czZWbUMxVFpaTnE0V25aRXdWUGs1RURZTkRMcGtEMDBHWjE1MFFFTzFKMkRhbkxmRElMcEVlWG5ybXVpYktOZjI3Ui03Q2M4dG51NGt0MkNQRUhndmI2SHk1UHpPcFZ4UUl0TGRBcDZSX01hYkE1WU1qdCIsImVwaWMudG9rZW50eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjIwNzEwMTUwLCJpYXQiOjE2MjA3MDY1NTAsImlzcyI6InVybjplcGljOmFwcG9yY2hhcmQuY3VycHJvZCIsImp0aSI6ImYzYmMwNTZmLWMxMTQtNDllZS04OGZhLTUzNjZjYmQ1YmMwMSIsIm5iZiI6MTYyMDcwNjU1MCwic3ViIjoiZVE0dTQ0SE56Mi45VmxiWHdiU2c3THczIn0.U0w1D6cmqSeJQqC01lhh16rZBcrAUjwzUD8lMEUuwaQ2M09Gu9x2F6anNd84oyG6_POXjuXwlo0R6gxDLgDjgo5slNesmtD8eKD1blTWH2F1Zgt2FMxAJpDovzVRt5Km-ixkHcWNWaJwidTQA9ijvMXcjBR_Ip-MggQjqPIM508p_TfKe2s1aB7GNkErK28wZz5NLkYVe9jiPT1vGJJXdAg1PgHIvvV2lAEmYlKze5_N4K0aqPi2NeKt9zrT_kchv7DayKoTISwa0fP1y2SjrpNDFQJSf5zyf1lUHoX6w31-qqSN4jzdpE890RdEu5xwmcOT5BL6dhDWrie-j1PaFQ `
+        `Bearer ${this._localStorageService.get("accessToken")}`
       );
 
     return ehrHeaders;
