@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ObservationAgvhdService } from "./observation.agvhd.service";
 import { UtilityService } from "../utility.service";
-import { mergeMap } from "rxjs/operators";
+import { finalize, mergeMap, expand, map, reduce } from "rxjs/operators";
 import { EMPTY, from } from "rxjs";
 import { AppConfig } from "../app.config";
 import { HttpClient } from "@angular/common/http";
@@ -52,25 +52,27 @@ export class ObservationAgvhdComponent implements OnInit {
       this.spinner.start();
       this.observationagvhdService
         .getCibmtrObservations(subj, psScope)
-        .expand((response) => {
-          let next =
-            response.link && response.link.find((l) => l.relation === "next");
-          if (next) {
-            let modifiedUrl =
-              AppConfig.cibmtr_fhir_url + "?" + next.url.split("?")[1];
-            return this.http.get(modifiedUrl);
-          } else {
-            return EMPTY;
-          }
-        })
-        //{return response.entry ? flatMap((array) => array)) : response}
-        .map((response: any) => {
-          if (response.entry) {
-            return response.entry.flatMap((array) => array);
-          }
-          return [];
-        })
-        .reduce((acc, x) => acc.concat(x), [])
+        .pipe(
+          expand((response) => {
+            let next =
+              response.link && response.link.find((l) => l.relation === "next");
+            if (next) {
+              let modifiedUrl =
+                AppConfig.cibmtr_fhir_url + "?" + next.url.split("?")[1];
+              return this.http.get(modifiedUrl);
+            } else {
+              return EMPTY;
+            }
+          }),
+          //{return response.entry ? flatMap((array) => array)) : response}
+          map((response: any) => {
+            if (response.entry) {
+              return response.entry.flatMap((array) => array);
+            }
+            return [];
+          }),
+          reduce((acc, x) => acc.concat(x), [])
+        )
         .subscribe(
           (savedEntries) => {
             this.spinner.end();
@@ -198,16 +200,16 @@ export class ObservationAgvhdComponent implements OnInit {
         .pipe(
           mergeMap((bundle) =>
             this.observationagvhdService.getBundleObservable(bundle)
-          )
+          ),
+          finalize(() => {
+            this.spinner.end();
+            this.totalSuccessCount = _successCount;
+            this.totalFailCount = totalEntries.length - _successCount;
+            this.checkForSelectAll();
+          })
         )
-        .finally(() => {
-          this.spinner.end();
-          this.totalSuccessCount = _successCount;
-          this.totalFailCount = totalEntries.length - _successCount;
-          this.checkForSelectAll();
-        })
         .subscribe(
-          (response) => {
+          (response: any) => {
             response.entry &&
               response.entry.forEach((entry) => {
                 let idValue = entry.resource.identifier[0].value;

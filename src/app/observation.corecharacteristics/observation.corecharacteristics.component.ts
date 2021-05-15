@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Patient } from "../model/patient.";
 import { ObservationCoreService } from "./observation.corecharacteristics.service";
 import { UtilityService } from "../utility.service";
-import { mergeMap } from "rxjs/operators";
+import { mergeMap, expand, map, reduce, finalize } from "rxjs/operators";
 import { EMPTY, from } from "rxjs";
 import { AppConfig } from "../app.config";
 import { SpinnerService } from "../spinner/spinner.service";
@@ -56,25 +56,27 @@ export class ObservationCoreComponent implements OnInit {
       this.spinner.start();
       this.observationcoreService
         .getCibmtrObservationsCoreChar(subj, psScope)
-        .expand((response) => {
-          let next =
-            response.link && response.link.find((l) => l.relation === "next");
-          if (next) {
-            let modifiedUrl =
-              AppConfig.cibmtr_fhir_url + "?" + next.url.split("?")[1];
-            return this.http.get(modifiedUrl);
-          } else {
-            return EMPTY;
-          }
-        })
-        //{return response.entry ? flatMap((array) => array)) : response}
-        .map((response: any) => {
-          if (response.entry) {
-            return response.entry.flatMap((array) => array);
-          }
-          return [];
-        })
-        .reduce((acc, x) => acc.concat(x), [])
+        .pipe(
+          expand((response) => {
+            let next =
+              response.link && response.link.find((l) => l.relation === "next");
+            if (next) {
+              let modifiedUrl =
+                AppConfig.cibmtr_fhir_url + "?" + next.url.split("?")[1];
+              return this.http.get(modifiedUrl);
+            } else {
+              return EMPTY;
+            }
+          }),
+          //{return response.entry ? flatMap((array) => array)) : response}
+          map((response: any) => {
+            if (response.entry) {
+              return response.entry.flatMap((array) => array);
+            }
+            return [];
+          }),
+          reduce((acc, x) => acc.concat(x), [])
+        )
         .subscribe(
           (savedEntries) => {
             this.spinner.end();
@@ -228,16 +230,16 @@ export class ObservationCoreComponent implements OnInit {
         .pipe(
           mergeMap((bundle) =>
             this.observationcoreService.getBundleObservable(bundle)
-          )
+          ),
+          finalize(() => {
+            this.spinner.end();
+            this.totalSuccessCount = _successCount;
+            this.totalFailCount = totalEntries.length - _successCount;
+            this.checkForSelectAll();
+          })
         )
-        .finally(() => {
-          this.spinner.end();
-          this.totalSuccessCount = _successCount;
-          this.totalFailCount = totalEntries.length - _successCount;
-          this.checkForSelectAll();
-        })
         .subscribe(
-          (response) => {
+          (response: any) => {
             response.entry &&
               response.entry.forEach((entry) => {
                 let idValue = entry.resource.identifier[0].value;

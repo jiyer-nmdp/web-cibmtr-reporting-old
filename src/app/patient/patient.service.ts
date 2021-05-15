@@ -44,7 +44,7 @@ export class PatientService {
       AppConfig.observation_codes;
     return this.utilityService
       .getPage(url, this.buildEhrHeaders())
-      .catch((e: any) => Observable.of(null));
+      .pipe(catchError(null));
   }
 
   getObservationPriorityLabs(identifier): Observable<IPatientContext> {
@@ -58,7 +58,7 @@ export class PatientService {
       AppConfig.loinc_codes;
     return this.utilityService
       .getPage(url, this.buildEhrHeaders())
-      .catch((e: any) => Observable.of(null));
+      .pipe(catchError(null));
   }
 
   getObservationLabs(identifier): Observable<IPatientContext> {
@@ -70,7 +70,7 @@ export class PatientService {
       identifier;
     return this.utilityService
       .getPage(url, this.buildEhrHeaders())
-      .catch((e: any) => Observable.of(null));
+      .pipe(catchError(null));
   }
 
   getObservationVitalSigns(identifier): Observable<IPatientContext> {
@@ -82,7 +82,7 @@ export class PatientService {
       identifier;
     return this.utilityService
       .getPage(url, this.buildEhrHeaders())
-      .catch((e: any) => Observable.of(null));
+      .pipe(catchError(null));
   }
 
   getObservationCoreChar(identifier): Observable<IPatientContext> {
@@ -94,7 +94,7 @@ export class PatientService {
       identifier;
     return this.utilityService
       .getPage(url, this.buildEhrHeaders())
-      .catch((e: any) => Observable.of(null));
+      .pipe(catchError(null));
   }
 
   buildEhrHeaders() {
