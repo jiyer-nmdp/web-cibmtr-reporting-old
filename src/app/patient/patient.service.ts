@@ -4,7 +4,7 @@ import {
   HttpHeaders,
   HttpErrorResponse,
 } from "@angular/common/http";
-import { Observable, throwError } from "rxjs";
+import { Observable, throwError, of } from "rxjs";
 import { AppConfig } from "../app.config";
 import { IPatientContext } from "../model/patient.";
 import { LocalStorageService } from "angular-2-local-storage";
@@ -44,7 +44,7 @@ export class PatientService {
       AppConfig.observation_codes;
     return this.utilityService
       .getPage(url, this.buildEhrHeaders())
-      .pipe(catchError(null));
+      .pipe(catchError(() => of(null)));
   }
 
   getObservationPriorityLabs(identifier): Observable<IPatientContext> {
@@ -58,7 +58,7 @@ export class PatientService {
       AppConfig.loinc_codes;
     return this.utilityService
       .getPage(url, this.buildEhrHeaders())
-      .pipe(catchError(null));
+      .pipe(catchError(() => of(null)));
   }
 
   getObservationLabs(identifier): Observable<IPatientContext> {
@@ -70,7 +70,7 @@ export class PatientService {
       identifier;
     return this.utilityService
       .getPage(url, this.buildEhrHeaders())
-      .pipe(catchError(null));
+      .pipe(catchError(() => of(null)));
   }
 
   getObservationVitalSigns(identifier): Observable<IPatientContext> {
@@ -82,7 +82,7 @@ export class PatientService {
       identifier;
     return this.utilityService
       .getPage(url, this.buildEhrHeaders())
-      .pipe(catchError(null));
+      .pipe(catchError(() => of(null)));
   }
 
   getObservationCoreChar(identifier): Observable<IPatientContext> {
@@ -94,7 +94,7 @@ export class PatientService {
       identifier;
     return this.utilityService
       .getPage(url, this.buildEhrHeaders())
-      .pipe(catchError(null));
+      .pipe(catchError(() => of(null)));
   }
 
   buildEhrHeaders() {
@@ -110,7 +110,7 @@ export class PatientService {
   }
 
   handleError(error: HttpErrorResponse) {
-    let errorMessage = `Unable to process request for \nURL : ${error.url}.  \nStatus: ${error.status}. \nStatusText: ${error.statusText} \nTimestamp : ${timestamp}`;
+    let errorMessage = `Unable to process request for \nURL : ${error.url}.  \nStatus: ${error.status}. \nStatusText: ${error.statusText}`;
     alert(errorMessage);
     return throwError(errorMessage);
   }

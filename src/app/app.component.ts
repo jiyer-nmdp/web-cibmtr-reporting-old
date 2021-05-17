@@ -1,4 +1,9 @@
-import { Component, ChangeDetectorRef, OnInit } from "@angular/core";
+import {
+  Component,
+  ChangeDetectorRef,
+  OnInit,
+  HostListener,
+} from "@angular/core";
 import {
   NEW_SESSION,
   NMDPHttpClientInterceptor,
@@ -28,9 +33,17 @@ export class AppComponent implements OnInit {
     this.loginWidget.sessionInfo();
   }
 
+  getLoginWidget() {
+    return this.loginWidget;
+  }
+
+  logout() {
+    this.loginWidget.signout();
+  }
+
   processSELEvent(event: any) {
     switch (event.type) {
-      case SESSION_CLOSED:
+      case SESSION_CLOSED || SESSION_TIMEOUT:
         // detect the changes -- needed so that the login form will be displayed
         this.ref.detectChanges();
         // show the login.  Can also use this.nmdpWidget.getNewToken(), but that makes an extra call to Okta...
@@ -47,42 +60,21 @@ export class AppComponent implements OnInit {
         // This event would need to be handled if there were a count-down timer or other time-limited
         // logic that needed to know when the SSO Session was extended
         break;
-
-      case SESSION_TIMEOUT:
-        this.processTimeout(event.data);
-        break;
     }
   }
 
-  getLoginWidget() {
-    return this.loginWidget;
+  @HostListener("window:mousedown", ["$event"])
+  mouseDownEvent(event: MouseEvent) {
+    if (this.loginWidget.isLoggedIn()) this.loginWidget.markActive();
+  }
+  @HostListener("window:focus", ["$event"])
+  focusEvent(event: FocusEvent) {
+    if (this.loginWidget.isLoggedIn()) this.loginWidget.markActive();
   }
 
-  logout() {
-    this.loginWidget.signout((err: any) => {
-      this.ref.detectChanges();
-      //when User click logout of navigation , and patient conext is cleared.
-      this.router.navigateByUrl("/main");
-    });
-  }
-
-  processTimeout(timeoutType) {
-    const oldSubject = this.loginWidget.subject;
-    // check to see if session is active and retrieve a new token if appropriate
-    // this will display a new login screen if needed
-    this.loginWidget.getNewToken((rawtoken) => {
-      // This logic is only needed if there is information cached
-      // specific to a user.  In that case, here is where one would
-      // destroy the cached information when a different user has logged in
-
-      if (oldSubject != null && this.loginWidget.subject != oldSubject) {
-        // clean out any old data from previous usage
-        // as a different user may be at the browser
-        alert(
-          `a different user has logged in oldSubject ${oldSubject} new subject: ${this.loginWidget.subject}`
-        );
-      }
-    });
+  @HostListener("window:keydown", ["$event"])
+  keyDownEvent(event: KeyboardEvent) {
+    if (this.loginWidget.isLoggedIn()) this.loginWidget.markActive();
   }
 
   handleError(error: Response) {
