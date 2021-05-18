@@ -15,6 +15,7 @@
       <b>Date Retrieved </b> : {{ now | date: "yyyy-MM-dd HH:mm" }}
     </div>
   </nav>
+
   <div class="fixed_header">
     <table class="table table-striped">
       <thead>
@@ -63,15 +64,13 @@
   </div>
 
   <div class="row top-buffer">
-    <div class="col-12 col-md-6">
-      <button
-        type="button"
-        class="btn btn-primary pull-right"
-        (click)="submitToCibmtr()"
-        enabled
-      >
-        Submit to CIBMTR
-      </button>
-    </div>
+    <button
+      type="button"
+      class="btn btn-primary pull-right"
+      (click)="submitToCibmtr()"
+      enabled
+    >
+      Submit to CIBMTR
+    </button>
   </div>
 </div>
