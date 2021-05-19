@@ -39,6 +39,8 @@ export class AppComponent implements OnInit {
 
   logout() {
     this.loginWidget.signout();
+    //Route Navigation should be redirect from main when user logsout.
+    this.router.navigateByUrl("/main");
   }
 
   processSELEvent(event: any) {
