@@ -6,7 +6,6 @@ import {
 } from "@angular/core";
 import {
   NEW_SESSION,
-  NMDPHttpClientInterceptor,
   NmdpWidget,
   SESSION_CLOSED,
   SESSION_EXTENDED,
@@ -30,7 +29,6 @@ export class AppComponent implements OnInit {
     this.loginWidget.setWidgetLocation("#nmdp-login-container");
     this.loginWidget.onEvent.subscribe(this.processSELEvent.bind(this));
     this.loginWidget.sessionInfo();
-    NMDPHttpClientInterceptor.enable();
   }
 
   getLoginWidget() {
@@ -39,6 +37,8 @@ export class AppComponent implements OnInit {
 
   logout() {
     this.loginWidget.signout();
+    //Route Navigation should be redirect from main when user logsout.
+    this.router.navigateByUrl("/main");
   }
 
   processSELEvent(event: any) {

@@ -1,26 +1,40 @@
 import { Injectable } from "@angular/core";
+import { NmdpWidget } from "@nmdp/nmdp-login";
 
 import {
   HttpInterceptor,
   HttpHandler,
   HttpRequest,
   HttpEvent,
-  HttpResponse
 } from "@angular/common/http";
 
-import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+import { Observable, from } from "rxjs";
+import { map, switchMap } from "rxjs/operators";
 
 @Injectable()
-export class CustomHttpInterceptor implements HttpInterceptor {
+export class TokenInterceptor implements HttpInterceptor {
+  constructor(private nmdpWidget: NmdpWidget) {}
+
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    return next.handle(request).pipe(
-      map((event: HttpEvent<any>) => {
-        return event;
-      })
-    );
+    if (request.url.includes("nmdp")) {
+      const token$ = from(this.nmdpWidget.getAccessToken());
+      return token$.pipe(
+        map((token) => {
+          const headers = request.headers.set(
+            "Authorization",
+            `Bearer ${token}`
+          );
+
+          return request.clone({
+            headers,
+          });
+        }),
+        switchMap((authRequest) => next.handle(authRequest))
+      );
+    }
+    return next.handle(request);
   }
 }

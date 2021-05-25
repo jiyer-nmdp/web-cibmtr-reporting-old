@@ -3,7 +3,6 @@ import { NgModule, APP_INITIALIZER } from "@angular/core";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AppRoutingModule, routingComponents } from "./app.routing.module";
 import { AppComponent } from "./app.component";
-import { CustomHttpInterceptor } from "./interceptors/http.interceptor";
 import { HttpMockRequestInterceptor } from "./mock/mock.http.interceptor";
 import { PatientService } from "./patient/patient.service";
 import { PatientResolver } from "./patient/patient.resolver";
@@ -12,7 +11,6 @@ import { NmdpWidgetModule } from "@nmdp/nmdp-login";
 import { AuthorizationService } from "./services/authorization.service";
 import { FhirService } from "./patient/fhir.service";
 import { LocalStorageModule } from "angular-2-local-storage";
-import { CustomHttpClient } from "./client/custom.http.client";
 import { AppInitService } from "./services/app.init";
 import { ObservationAgvhdService } from "./observation.agvhd/observation.agvhd.service";
 import { DialogComponent } from "./dialog/dialog.component";
@@ -33,6 +31,7 @@ import { SpinnerComponent } from "./spinner/spinner.component";
 import { SpinnerService } from "./spinner/spinner.service";
 import { ModalModule } from "ngx-bootstrap/modal";
 import { FormsModule } from "@angular/forms";
+import { TokenInterceptor } from "./interceptors/http.interceptor";
 
 export const isMock = environment.mock;
 
@@ -77,10 +76,9 @@ export const isMock = environment.mock;
     AppInitService,
     FhirService,
     SpinnerService,
-    CustomHttpClient,
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: CustomHttpInterceptor,
+      useClass: TokenInterceptor,
       multi: true,
     },
     {
