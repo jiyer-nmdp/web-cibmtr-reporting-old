@@ -8,10 +8,9 @@ import { FhirService } from "./fhir.service";
 import { AppConfig } from "../app.config";
 import { take, retry } from "rxjs/operators";
 import { NmdpWidget } from "@nmdp/nmdp-login";
-import { HttpClient } from "@angular/common/http";
 import { DialogComponent } from "../dialog/dialog.component";
 import { LocalStorageService } from "angular-2-local-storage";
-import { HttpErrorResponse } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { UtilityService } from "../utility.service";
 import { SpinnerService } from "../spinner/spinner.service";
 
