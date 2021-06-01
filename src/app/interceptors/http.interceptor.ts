@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import { NmdpWidget } from "@nmdp/nmdp-login";
 
 import {
   HttpInterceptor,
@@ -10,17 +9,18 @@ import {
 
 import { Observable, from } from "rxjs";
 import { map, switchMap } from "rxjs/operators";
+import { SessionService } from "../services/session.service";
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  constructor(private nmdpWidget: NmdpWidget) {}
+  constructor(private sessionService: SessionService) {}
 
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     if (request.url.includes("nmdp")) {
-      const token$ = from(this.nmdpWidget.getAccessToken());
+      const token$ = from(this.sessionService.getAccessToken());
       return token$.pipe(
         map((token) => {
           const headers = request.headers.set(
