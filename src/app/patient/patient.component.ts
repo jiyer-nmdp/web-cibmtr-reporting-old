@@ -6,12 +6,11 @@ import * as jwt_decode from "jwt-decode";
 import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
 import { FhirService } from "./fhir.service";
 import { AppConfig } from "../app.config";
-import { take } from "rxjs/operators";
-import { NmdpWidget } from "@nmdp/nmdp-login/Angular/service/nmdp.widget";
-import { CustomHttpClient } from "../client/custom.http.client";
+import { take, retry } from "rxjs/operators";
+import { NmdpWidget } from "@nmdp/nmdp-login";
 import { DialogComponent } from "../dialog/dialog.component";
 import { LocalStorageService } from "angular-2-local-storage";
-import { HttpErrorResponse } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { UtilityService } from "../utility.service";
 import { SpinnerService } from "../spinner/spinner.service";
 
@@ -48,9 +47,9 @@ export class PatientComponent implements OnInit {
     private _route: ActivatedRoute,
     private modalService: BsModalService,
     private fhirService: FhirService,
-    private nmdpWidget: NmdpWidget,
+    private widget: NmdpWidget,
     private _localStorageService: LocalStorageService,
-    private http: CustomHttpClient,
+    private http: HttpClient,
     private router: Router,
     private spinner: SpinnerService,
     private utility: UtilityService
@@ -75,13 +74,13 @@ export class PatientComponent implements OnInit {
     });
   }
 
-  determineModal(): Promise<any[]> {
-    if (!this.nmdpWidget.isLoggedIn) {
+  async determineModal(): Promise<any[]> {
+    if (!this.widget) {
       return;
     }
 
     let decodedValue = this.getDecodedAccessToken(
-      this.nmdpWidget.getAccessToken()
+      await this.widget.getAccessToken()
     );
 
     let scopes = decodedValue.authz_cibmtr_fhir_ehr_client.filter(
@@ -110,7 +109,7 @@ export class PatientComponent implements OnInit {
       await this.http
         .get(`${cibmtrUrl}${scopes}`)
         .toPromise()
-        .then((cibmtrResponse) => {
+        .then((cibmtrResponse: any) => {
           let cibmtrEntry = cibmtrResponse.entry;
           cibmtrEntry.forEach((element) => {
             let value = element.resource.identifier[0].value;
@@ -362,7 +361,7 @@ export class PatientComponent implements OnInit {
           //Now that we got the CRID save the Info into FHIR
           this.fhirService
             .submitPatient(updatedEhrPatient)
-            .retry(1)
+            .pipe(retry(1))
             .subscribe(
               () => {
                 console.log("Submitted patient");
@@ -452,7 +451,6 @@ export class PatientComponent implements OnInit {
   getDecodedAccessToken(accessToken: string): any {
     return jwt_decode(accessToken);
   }
-
   /**
    *
    * @param error

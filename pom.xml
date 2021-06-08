@@ -8,7 +8,6 @@
   <groupId>org.nmdp.CibmtrReportingApp</groupId>
   <artifactId>reporting-app-frontend</artifactId>
   <version>2.5.0</version>
-
   <name>Cibmtr Reporting App Frontend</name>
   <description>Frontend app for EHR data submissions</description>
 

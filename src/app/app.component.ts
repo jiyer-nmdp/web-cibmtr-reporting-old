@@ -1,8 +1,18 @@
-import { Component, ChangeDetectorRef, OnInit } from "@angular/core";
-import { NmdpWidget } from "@nmdp/nmdp-login/Angular/service/nmdp.widget";
-import { CustomHttpClient } from "./client/custom.http.client";
+import {
+  Component,
+  ChangeDetectorRef,
+  OnInit,
+  HostListener,
+} from "@angular/core";
+import {
+  NEW_SESSION,
+  NmdpWidget,
+  SESSION_CLOSED,
+  SESSION_EXTENDED,
+  SESSION_TIMEOUT,
+} from "@nmdp/nmdp-login";
 import { Router } from "@angular/router";
-import {environment} from "../environments/environment";
+import { SessionService } from "./services/session.service";
 
 @Component({
   selector: "app-root",
@@ -13,16 +23,14 @@ export class AppComponent implements OnInit {
   constructor(
     private loginWidget: NmdpWidget,
     private ref: ChangeDetectorRef,
-    private router: Router
-  ) {
-    this.loginWidget.init(environment.okta_setup, "#nmdp-login-container");
-  }
+    private router: Router,
+    private sessionService: SessionService
+  ) {}
 
   ngOnInit() {
-    CustomHttpClient.callbackFunction(this.processTimeout.bind(this));
-    this.loginWidget.getNewToken((accessToken: any) => {
-      this.ref.detectChanges();
-    });
+    this.loginWidget.setWidgetLocation("#nmdp-login-container");
+    this.loginWidget.onEvent.subscribe(this.processSELEvent.bind(this));
+    this.loginWidget.sessionInfo();
   }
 
   getLoginWidget() {
@@ -30,30 +38,48 @@ export class AppComponent implements OnInit {
   }
 
   logout() {
-    this.loginWidget.signout((err: any) => {
-      this.ref.detectChanges();
-      this.ngOnInit();
-      //when User click logout of navigation , and patient conext is cleared.
-      this.router.navigateByUrl("/main");
-    });
+    this.sessionService.sessionDestroyed();
+    this.loginWidget.signout();
+    //Route Navigation should be redirect from main when user logsout.
+    this.router.navigateByUrl("/main");
   }
 
-  processTimeout(timeoutType) {
-    if (timeoutType === "SESSION_IDLE_TIMEOUT") {
-      alert("An idle application session timeout has occurred");
-    } else if (timeoutType === "SESSION_LIFETIME_TIMEOUT") {
-      alert("Application session is lifetime Timeout, need to re-authn");
+  processSELEvent(event: any) {
+    switch (event.type) {
+      case SESSION_CLOSED || SESSION_TIMEOUT:
+        this.sessionService.sessionDestroyed();
+        // detect the changes -- needed so that the login form will be displayed
+        this.ref.detectChanges();
+        // show the login.  Can also use this.nmdpWidget.getNewToken(), but that makes an extra call to Okta...
+        this.loginWidget.showLogin();
+        break;
+
+      case NEW_SESSION:
+        this.sessionService.fetchSessionAliveStatus();
+        this.loginWidget.getAccessToken();
+        this.ref.detectChanges();
+        break;
+
+      case SESSION_EXTENDED:
+        // No need to do anything with this event.
+        // This event would need to be handled if there were a count-down timer or other time-limited
+        // logic that needed to know when the SSO Session was extended
+        break;
     }
-    const oldSubject = this.loginWidget.subject;
-    // check to see if session is active
-    this.loginWidget.getNewToken((rawtoken) => {
-      // this will display a new login screen if needed
-      if (oldSubject == null || this.loginWidget.subject != oldSubject) {
-        // clean out any old data from previous usage
-        // as a different user may be at the browser
-        alert("Different user has logged in");
-      }
-    });
+  }
+
+  @HostListener("window:mousedown", ["$event"])
+  mouseDownEvent(event: MouseEvent) {
+    if (this.loginWidget.isLoggedIn()) this.loginWidget.markActive();
+  }
+  @HostListener("window:focus", ["$event"])
+  focusEvent(event: FocusEvent) {
+    if (this.loginWidget.isLoggedIn()) this.loginWidget.markActive();
+  }
+
+  @HostListener("window:keydown", ["$event"])
+  keyDownEvent(event: KeyboardEvent) {
+    if (this.loginWidget.isLoggedIn()) this.loginWidget.markActive();
   }
 
   handleError(error: Response) {

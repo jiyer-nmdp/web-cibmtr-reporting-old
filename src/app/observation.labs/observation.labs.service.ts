@@ -1,14 +1,14 @@
 import { Injectable } from "@angular/core";
 import { AppConfig } from "../app.config";
 import { EMPTY, Observable } from "rxjs";
-import { CustomHttpClient } from "../client/custom.http.client";
+import { HttpClient } from "@angular/common/http";
 import { UtilityService } from "../utility.service";
-import { map } from "rxjs/operators";
+import { catchError, map, retry } from "rxjs/operators";
 
 @Injectable()
 export class ObservationLabsService {
   constructor(
-    private http: CustomHttpClient,
+    private http: HttpClient,
     private utilityService: UtilityService
   ) {}
 
@@ -27,11 +27,11 @@ export class ObservationLabsService {
   }
 
   getBundleObservable(bundle) {
-    return this.http
-      .post(AppConfig.cibmtr_fhir_url + "Bundle", bundle)
-      .pipe(map(() => bundle))
-      .retry(1)
-      .catch(() => EMPTY);
+    return this.http.post(AppConfig.cibmtr_fhir_url + "Bundle", bundle).pipe(
+      map(() => bundle),
+      retry(1),
+      catchError(() => EMPTY)
+    );
   }
 
   // Below method submit updated records to the cibmtr

@@ -3,8 +3,10 @@
 # Stage 1
 
 #base image
-FROM node:11-alpine AS builder
-#FROM dtr.nmdp.org:4444/nmdp/nmdp-node:12-stretch-slim.nmdp.latest AS builder
+#FROM node:11-alpine AS builder
+FROM dtr.nmdp.org:4444/nmdp/nmdp-node:12-stretch-slim.nmdp.latest AS builder
+
+USER root
 
 # set working directory
 WORKDIR /usr/src/app
@@ -19,7 +21,7 @@ EXPOSE 80
 COPY .npmrc /usr/src/app/
 
 # Install Angular Cli globally
-RUN npm install -g @angular/cli@7.3.4
+RUN npm install -g @angular/cli@11.2.11
 
 # Install Node Modules
 RUN npm install

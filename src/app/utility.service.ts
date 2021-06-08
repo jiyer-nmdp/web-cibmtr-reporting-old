@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { EMPTY } from "rxjs";
 import { HttpClient } from "@angular/common/http";
+import { expand, map, reduce } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root",
@@ -20,9 +21,8 @@ export class UtilityService {
    * @param theHeaders
    */
   getPage(url, theHeaders) {
-    return this.http
-      .get(url, { headers: theHeaders })
-      .expand((response: any) => {
+    return this.http.get(url, { headers: theHeaders }).pipe(
+      expand((response: any) => {
         let next =
           response.link && response.link.find((l) => l.relation === "next");
         if (next) {
@@ -30,14 +30,15 @@ export class UtilityService {
         } else {
           return EMPTY;
         }
-      })
-      .map((response: any) => {
+      }),
+      map((response: any) => {
         if (response.entry) {
           return response.entry.flatMap((array) => array);
         }
         return [];
-      })
-      .reduce((acc: any[], x: any) => acc.concat(x), []);
+      }),
+      reduce((acc: any[], x: any) => acc.concat(x), [])
+    );
   }
 
   //rewrite if iss url contains "DSTU2" string

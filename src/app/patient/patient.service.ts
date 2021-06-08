@@ -4,11 +4,12 @@ import {
   HttpHeaders,
   HttpErrorResponse,
 } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Observable, throwError, of } from "rxjs";
 import { AppConfig } from "../app.config";
 import { IPatientContext } from "../model/patient.";
 import { LocalStorageService } from "angular-2-local-storage";
 import { UtilityService } from "../utility.service";
+import { catchError, timestamp } from "rxjs/operators";
 
 @Injectable()
 export class PatientService {
@@ -29,9 +30,7 @@ export class PatientService {
       .get<IPatientContext>(url, {
         headers: this.buildEhrHeaders(),
       })
-      .catch((e: any) =>
-        Observable.throw(this.handleError(e, new Date().getTime()))
-      );
+      .pipe(catchError(this.handleError));
   }
 
   getObservation(identifier): Observable<IPatientContext> {
@@ -45,7 +44,7 @@ export class PatientService {
       AppConfig.observation_codes;
     return this.utilityService
       .getPage(url, this.buildEhrHeaders())
-      .catch((e: any) => Observable.of(null));
+      .pipe(catchError(() => of(null)));
   }
 
   getObservationPriorityLabs(identifier): Observable<IPatientContext> {
@@ -59,7 +58,7 @@ export class PatientService {
       AppConfig.loinc_codes;
     return this.utilityService
       .getPage(url, this.buildEhrHeaders())
-      .catch((e: any) => Observable.of(null));
+      .pipe(catchError(() => of(null)));
   }
 
   getObservationLabs(identifier): Observable<IPatientContext> {
@@ -71,7 +70,7 @@ export class PatientService {
       identifier;
     return this.utilityService
       .getPage(url, this.buildEhrHeaders())
-      .catch((e: any) => Observable.of(null));
+      .pipe(catchError(() => of(null)));
   }
 
   getObservationVitalSigns(identifier): Observable<IPatientContext> {
@@ -83,7 +82,7 @@ export class PatientService {
       identifier;
     return this.utilityService
       .getPage(url, this.buildEhrHeaders())
-      .catch((e: any) => Observable.of(null));
+      .pipe(catchError(() => of(null)));
   }
 
   getObservationCoreChar(identifier): Observable<IPatientContext> {
@@ -95,7 +94,7 @@ export class PatientService {
       identifier;
     return this.utilityService
       .getPage(url, this.buildEhrHeaders())
-      .catch((e: any) => Observable.of(null));
+      .pipe(catchError(() => of(null)));
   }
 
   buildEhrHeaders() {
@@ -110,9 +109,9 @@ export class PatientService {
     return ehrHeaders;
   }
 
-  handleError(error: HttpErrorResponse, timestamp: any) {
-    let errorMessage = `Unable to process request for \nURL : ${error.url}.  \nStatus: ${error.status}. \nStatusText: ${error.statusText} \nTimestamp : ${timestamp}`;
+  handleError(error: HttpErrorResponse) {
+    let errorMessage = `Unable to process request for \nURL : ${error.url}.  \nStatus: ${error.status}. \nStatusText: ${error.statusText}`;
     alert(errorMessage);
-    console.log(errorMessage);
+    return throwError(errorMessage);
   }
 }
