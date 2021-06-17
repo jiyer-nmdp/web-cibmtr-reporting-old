@@ -6,6 +6,7 @@ import {
 } from "@angular/core";
 import {
   NEW_SESSION,
+  NMDPHttpClientInterceptor,
   NmdpWidget,
   SESSION_CLOSED,
   SESSION_EXTENDED,
@@ -30,6 +31,9 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.loginWidget.setWidgetLocation("#nmdp-login-container");
     this.loginWidget.onEvent.subscribe(this.processSELEvent.bind(this));
+    var regExp = new RegExp("^((?!nmdp.org).)*$");
+    NMDPHttpClientInterceptor.addExcludeUrl(regExp, null, false);
+    NMDPHttpClientInterceptor.enable();
     this.loginWidget.sessionInfo();
   }
 
@@ -55,7 +59,6 @@ export class AppComponent implements OnInit {
         break;
 
       case NEW_SESSION:
-        this.sessionService.fetchSessionAliveStatus();
         this.loginWidget.getAccessToken();
         this.ref.detectChanges();
         break;
