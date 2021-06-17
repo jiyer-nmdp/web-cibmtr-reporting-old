@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { Patient } from "../model/patient.";
 import { ActivatedRoute, Router } from "@angular/router";
 import { throwError, Observable, Subject } from "rxjs";
-import * as jwt_decode from "jwt-decode";
 import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
 import { FhirService } from "./fhir.service";
 import { AppConfig } from "../app.config";
@@ -79,7 +78,7 @@ export class PatientComponent implements OnInit {
       return;
     }
 
-    let decodedValue = this.getDecodedAccessToken(
+    let decodedValue = this.widget.decodeJWT(
       await this.widget.getAccessToken()
     );
 
@@ -448,9 +447,7 @@ export class PatientComponent implements OnInit {
    *
    * @param accessToken
    */
-  getDecodedAccessToken(accessToken: string): any {
-    return jwt_decode(accessToken);
-  }
+
   /**
    *
    * @param error
