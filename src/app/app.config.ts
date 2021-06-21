@@ -39,6 +39,9 @@ export class AppConfig {
   //EHR Client ID's
   public static ehr_client_id = environment.ehr_client_id;
 
+  //Logica health client id list
+  public static logica_client_ids = environment.logica_client_ids;
+
   //EHR Redirect URL
   public static ehr_oauth_redirect_url = environment.ehr_redirect_url;
 
