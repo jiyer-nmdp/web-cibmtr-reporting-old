@@ -101,14 +101,14 @@ export class ObservationAgvhdService {
     };
   }
 
-  getCibmtrObservations(subject, psScope): Observable<any> {
-    const url =
-      AppConfig.cibmtr_fhir_url +
-      "Observation?subject=" +
-      subject +
-      "&_security=" +
-      psScope +
-      "&_total=accurate&_count=500&category=vital-signs";
-    return this.http.get(url);
-  }
+  // getCibmtrObservations(subject, psScope): Observable<any> {
+  //   const url =
+  //     AppConfig.cibmtr_fhir_url +
+  //     "Observation?subject=" +
+  //     subject +
+  //     "&_security=" +
+  //     psScope +
+  //     "&_total=accurate&_count=500&category=vital-signs";
+  //   return this.http.get(url);
+  // }
 }

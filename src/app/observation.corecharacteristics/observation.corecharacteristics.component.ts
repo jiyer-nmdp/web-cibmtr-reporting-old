@@ -38,7 +38,7 @@ export class ObservationCoreComponent implements OnInit {
   constructor(
     private http: HttpClient,
     public observationcoreService: ObservationCoreService,
-    utility: UtilityService,
+    private utility: UtilityService,
     private spinner: SpinnerService
   ) {
     let data = utility.data;
@@ -54,8 +54,8 @@ export class ObservationCoreComponent implements OnInit {
 
     if (this.core.length > 0 && this.core[0].resource.subject) {
       this.spinner.start();
-      this.observationcoreService
-        .getCibmtrObservationsCoreChar(subj, psScope)
+      this.utility
+        .getCibmtrObservations(subj, psScope, "core-characteristics")
         .pipe(
           expand((response) => {
             let next =

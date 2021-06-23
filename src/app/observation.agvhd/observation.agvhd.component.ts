@@ -34,7 +34,7 @@ export class ObservationAgvhdComponent implements OnInit {
   constructor(
     private http: HttpClient,
     public observationagvhdService: ObservationAgvhdService,
-    utility: UtilityService,
+    private utility: UtilityService,
     private spinner: SpinnerService
   ) {
     let data = utility.data;
@@ -50,8 +50,8 @@ export class ObservationAgvhdComponent implements OnInit {
 
     if (this.agvhd.length > 0 && this.agvhd[0].resource.subject) {
       this.spinner.start();
-      this.observationagvhdService
-        .getCibmtrObservations(subj, psScope)
+      this.utility
+        .getCibmtrObservations(subj, psScope,"vital-signs")
         .pipe(
           expand((response) => {
             let next =

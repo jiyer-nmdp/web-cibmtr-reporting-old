@@ -57,8 +57,8 @@ export class ObservationLabsComponent implements OnInit {
 
     if (this.getCategoryData() && this.getCategoryData().length > 0) {
       this.spinner.start();
-      this.observationlabsService
-        .getCibmtrObservationsLabs(subj, psScope)
+      this.utility
+        .getCibmtrObservations(subj, psScope, "laboratory")
         .pipe(
           expand((response) => {
             let next =

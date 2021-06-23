@@ -36,7 +36,7 @@ export class ObservationVitalsComponent implements OnInit {
   constructor(
     private http: HttpClient,
     public observationvitalsService: ObservationVitalsService,
-    utility: UtilityService,
+    private utility: UtilityService,
     private spinner: SpinnerService
   ) {
     let data = utility.data;
@@ -52,8 +52,8 @@ export class ObservationVitalsComponent implements OnInit {
 
     if (this.vitals.length > 0 && this.vitals[0].resource.subject) {
       this.spinner.start();
-      this.observationvitalsService
-        .getCibmtrObservationsVitals(subj, psScope)
+      this.utility
+        .getCibmtrObservations(subj, psScope, "vital-signs")
         .pipe(
           expand((response) => {
             let next =
