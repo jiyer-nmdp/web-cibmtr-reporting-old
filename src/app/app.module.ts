@@ -31,7 +31,6 @@ import { SpinnerComponent } from "./spinner/spinner.component";
 import { SpinnerService } from "./spinner/spinner.service";
 import { ModalModule } from "ngx-bootstrap/modal";
 import { FormsModule } from "@angular/forms";
-import { TokenInterceptor } from "./interceptors/http.interceptor";
 
 export const isMock = environment.mock;
 
@@ -76,11 +75,6 @@ export const isMock = environment.mock;
     AppInitService,
     FhirService,
     SpinnerService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
-      multi: true,
-    },
     {
       provide: APP_INITIALIZER,
       useFactory: appInitFactory,

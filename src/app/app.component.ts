@@ -6,6 +6,7 @@ import {
 } from "@angular/core";
 import {
   NEW_SESSION,
+  NMDPHttpClientInterceptor,
   NmdpWidget,
   SESSION_CLOSED,
   SESSION_EXTENDED,
@@ -30,6 +31,9 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.loginWidget.setWidgetLocation("#nmdp-login-container");
     this.loginWidget.onEvent.subscribe(this.processSELEvent.bind(this));
+    var regExp = new RegExp("^((?!nmdp.org).)*$");
+    NMDPHttpClientInterceptor.addExcludeUrl(regExp, null, false);
+    NMDPHttpClientInterceptor.enable();
     this.loginWidget.sessionInfo();
   }
 
@@ -38,7 +42,6 @@ export class AppComponent implements OnInit {
   }
 
   logout() {
-    this.sessionService.sessionDestroyed();
     this.loginWidget.signout();
     //Route Navigation should be redirect from main when user logsout.
     this.router.navigateByUrl("/main");
@@ -47,7 +50,6 @@ export class AppComponent implements OnInit {
   processSELEvent(event: any) {
     switch (event.type) {
       case SESSION_CLOSED || SESSION_TIMEOUT:
-        this.sessionService.sessionDestroyed();
         // detect the changes -- needed so that the login form will be displayed
         this.ref.detectChanges();
         // show the login.  Can also use this.nmdpWidget.getNewToken(), but that makes an extra call to Okta...
@@ -55,7 +57,6 @@ export class AppComponent implements OnInit {
         break;
 
       case NEW_SESSION:
-        this.sessionService.fetchSessionAliveStatus();
         this.loginWidget.getAccessToken();
         this.ref.detectChanges();
         break;
