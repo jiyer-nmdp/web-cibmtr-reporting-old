@@ -262,56 +262,59 @@ export class PatientComponent implements OnInit {
       gender = ehrpatient.gender.toLowerCase();
     }
 
-    const raceCodes = ehrpatient.extension
-      .map((outerEle) => {
-        return (
-          outerEle.extension &&
-          outerEle.extension.filter(
-            (innerEle) =>
-              innerEle.valueCoding &&
-              AppConfig.race_ombsystem.includes(innerEle.valueCoding.system)
-          )
-        );
-      })
-      .filter((a) => a !== undefined && a.length > 0) // filter
-      .reduce((acc, val) => acc.concat(val), []) // flatten the array
-      .map((i) => i.valueCoding && i.valueCoding.code); // extract the codes
+    let raceCodes;
+    let ethnicityCodes;
+    if (ehrpatient.extension) {
+       raceCodes = ehrpatient.extension
+        .map((outerEle) => {
+          return (
+            outerEle.extension &&
+            outerEle.extension.filter(
+              (innerEle) =>
+                innerEle.valueCoding &&
+                AppConfig.race_ombsystem.includes(innerEle.valueCoding.system)
+            )
+          );
+        })
+        .filter((a) => a !== undefined && a.length > 0) // filter
+        .reduce((acc, val) => acc.concat(val), []) // flatten the array
+        .map((i) => i.valueCoding && i.valueCoding.code); // extract the codes
 
-    // const raceDetailCodes = ehrpatient.extension
-    //   .map((outerEle) => {
-    //     return (
-    //       outerEle.extension &&
-    //       outerEle.extension.filter(
-    //         (innerEle) =>
-    //           innerEle.valueCoding &&
-    //           AppConfig.racedetails_ombsystem.includes(
-    //             innerEle.valueCoding.system
-    //           )
-    //       )
-    //     );
-    //   })
-    //   .filter((a) => a !== undefined && a.length > 0)
-    //   .reduce((acc, val) => acc.concat(val), [])
-    //   .map((i) => i.valueCoding && i.valueCoding.code);
+      // const raceDetailCodes = ehrpatient.extension
+      //   .map((outerEle) => {
+      //     return (
+      //       outerEle.extension &&
+      //       outerEle.extension.filter(
+      //         (innerEle) =>
+      //           innerEle.valueCoding &&
+      //           AppConfig.racedetails_ombsystem.includes(
+      //             innerEle.valueCoding.system
+      //           )
+      //       )
+      //     );
+      //   })
+      //   .filter((a) => a !== undefined && a.length > 0)
+      //   .reduce((acc, val) => acc.concat(val), [])
+      //   .map((i) => i.valueCoding && i.valueCoding.code);
 
-    const ethnicityCodes = ehrpatient.extension
-      .map((outerEle) => {
-        return (
-          outerEle.extension &&
-          outerEle.extension.filter(
-            (innerEle) =>
-              innerEle.valueCoding &&
-              AppConfig.ethnicity_ombsystem.includes(
-                innerEle.valueCoding.system
-              )
-          )
-        );
-      })
-      .filter((a) => a !== undefined && a.length > 0)
-      .reduce((acc, val) => acc.concat(val), [])
-      .map((i) => i.valueCoding && i.valueCoding.code)
-      .join();
-
+       ethnicityCodes = ehrpatient.extension
+        .map((outerEle) => {
+          return (
+            outerEle.extension &&
+            outerEle.extension.filter(
+              (innerEle) =>
+                innerEle.valueCoding &&
+                AppConfig.ethnicity_ombsystem.includes(
+                  innerEle.valueCoding.system
+                )
+            )
+          );
+        })
+        .filter((a) => a !== undefined && a.length > 0)
+        .reduce((acc, val) => acc.concat(val), [])
+        .map((i) => i.valueCoding && i.valueCoding.code)
+        .join();
+    }
     //CRID Payload
 
     let payload = {
