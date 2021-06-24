@@ -101,4 +101,30 @@ export class UtilityService {
       "&_total=accurate&_count=500&category=" + category;
     return this.http.get(url);
   }
+
+
+  /**
+   * Correct Resource URL in logicahealth resources
+   * @param selectedEntries
+   */
+  buildSelectedResources(selectedEntries) {
+    let selectedResources = [];
+    const flattenSelectedEntries = Array.prototype.concat.apply(
+      [],
+      selectedEntries
+    );
+    flattenSelectedEntries.forEach((selectedEntry) => {
+      selectedResources.push(selectedEntry);
+    });
+
+    selectedResources.forEach((selectedEntry) => {
+      if (!selectedEntry.resource.subject.reference.startsWith("http")) {
+        selectedEntry.resource.subject.reference = this._localStorageService.get("iss") + "/" + selectedEntry.resource.subject.reference;
+      }
+      if (selectedEntry.resource.performer && !selectedEntry.resource.performer[0].reference.startsWith("http")) {
+        selectedEntry.resource.performer[0].reference = this._localStorageService.get("iss") + "/" + selectedEntry.resource.performer[0].reference;
+      }
+    });
+    return selectedResources;
+  }
 }

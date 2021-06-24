@@ -203,7 +203,7 @@ export class ObservationLabsComponent implements OnInit {
 
     this.selectedNewResources = Array.prototype.concat.apply(
       [],
-      this.selectedNewEntries
+      this.utility.buildSelectedResources(this.selectedNewEntries)
     );
 
     // Updated Records
@@ -215,7 +215,7 @@ export class ObservationLabsComponent implements OnInit {
 
     this.selectedUpdatedResources = Array.prototype.concat.apply(
       [],
-      this.selectedUpdatedEntries
+      this.utility.buildSelectedResources(this.selectedUpdatedEntries)
     );
 
     let totalEntries = [
