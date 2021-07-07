@@ -12,6 +12,7 @@ import { LocalStorageService } from "angular-2-local-storage";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { UtilityService } from "../utility.service";
 import { SpinnerService } from "../spinner/spinner.service";
+import { Validator } from "../validator_regex";
 
 @Component({
   selector: "app-main",
@@ -21,10 +22,7 @@ import { SpinnerService } from "../spinner/spinner.service";
 export class PatientComponent implements OnInit {
   bsModalRef: BsModalRef;
   ehrpatient: Patient;
-  agvhd: any;
   labs: any;
-  vitals: any;
-  core: any;
   priorityLabs: any;
   cibmtrObservations: any;
   crid: string;
@@ -41,6 +39,8 @@ export class PatientComponent implements OnInit {
   selectedCenter_name: string;
   cridSubject: Subject<any> = new Subject();
   crid$: Observable<string> = this.cridSubject.asObservable();
+  isValidSsn: boolean;
+  ssn: string;
 
   constructor(
     private _route: ActivatedRoute,
@@ -51,7 +51,8 @@ export class PatientComponent implements OnInit {
     private http: HttpClient,
     private router: Router,
     private spinner: SpinnerService,
-    private utility: UtilityService
+    private utility: UtilityService,
+    private ssnregex: Validator
   ) {}
 
   ngOnInit() {
@@ -147,11 +148,9 @@ export class PatientComponent implements OnInit {
     this._route.data.subscribe(
       (results) => {
         this.ehrpatient = results.pageData[0];
-        this.agvhd = results.pageData[1];
-        this.vitals = results.pageData[2];
-        this.labs = results.pageData[3];
-        this.core = results.pageData[4];
-        this.priorityLabs = results.pageData[5];
+        this.labs = results.pageData[1];
+        this.priorityLabs = results.pageData[2];
+        this.validateFields(this.ehrpatient);
         this.retreiveFhirPatient(this.ehrpatient, selectedScope);
       },
       (error) => {
@@ -170,7 +169,7 @@ export class PatientComponent implements OnInit {
         AppConfig.epic_logicalId_namespace,
         "|",
         this.utility.rebuild_DSTU2_STU3_Url(
-          this._localStorageService.get("iss")
+          "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3"
         ) +
           "/Patient/" +
           ehrpatient.id
@@ -235,12 +234,6 @@ export class PatientComponent implements OnInit {
     e.preventDefault();
     e.stopPropagation();
     this.isLoading = true;
-
-    //SSN
-    let ehrSsn = ehrpatient.identifier
-      .filter((i) => AppConfig.ssn_system.includes(i.system))
-      .map((i) => i.value)
-      .join("");
 
     //Gender
     //let genderenums = ["unknown", "other"];
@@ -321,7 +314,7 @@ export class PatientComponent implements OnInit {
         lastName: ehrpatient.name[0].family,
         birthDate: ehrpatient.birthDate,
         gender: gender === "male" ? "M" : "F",
-        ssn: ehrSsn,
+        ssn: this.isValidSsn ? this.ssn : null,
         race: raceCodes,
         //raceDetails: raceDetailCodes,
         ethnicity: ethnicityCodes,
@@ -426,12 +419,23 @@ export class PatientComponent implements OnInit {
     return updatedEhrPatient;
   }
 
+  validateFields(ehrpatient) {
+    const ssnIdentifier = ehrpatient.identifier.filter((i) =>
+      AppConfig.ssn_system.includes(i.system)
+    );
+
+    if (ssnIdentifier && ssnIdentifier.length > 0) {
+      this.ssn = ssnIdentifier[0].value;
+
+      if (this.ssnregex.validateSSN(ssnIdentifier[0].value)) {
+        this.isValidSsn = true;
+      }
+    }
+  }
+
   proceed() {
     this.utility.data = {
-      agvhd: JSON.stringify(this.agvhd),
       labs: JSON.stringify(this.labs),
-      vitals: JSON.stringify(this.vitals),
-      core: JSON.stringify(this.core),
       priorityLabs: JSON.stringify(this.priorityLabs),
       ehrpatient: JSON.stringify(this.ehrpatient),
       crid: this.crid,
