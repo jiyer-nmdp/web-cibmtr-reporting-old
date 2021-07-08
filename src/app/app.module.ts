@@ -6,22 +6,16 @@ import { AppComponent } from "./app.component";
 import { HttpMockRequestInterceptor } from "./mock/mock.http.interceptor";
 import { PatientService } from "./patient/patient.service";
 import { PatientResolver } from "./patient/patient.resolver";
-import { ObservationAgvhdComponent } from "./observation.agvhd/observation.agvhd.component";
 import { NmdpWidgetModule } from "@nmdp/nmdp-login";
 import { AuthorizationService } from "./services/authorization.service";
 import { FhirService } from "./patient/fhir.service";
 import { LocalStorageModule } from "angular-2-local-storage";
 import { AppInitService } from "./services/app.init";
-import { ObservationAgvhdService } from "./observation.agvhd/observation.agvhd.service";
 import { DialogComponent } from "./dialog/dialog.component";
 import { PatientDetailComponent } from "./patient.detail/patient.detail.component";
 import { DefaultComponent } from "./default/default.component";
 import { ObservationLabsComponent } from "./observation.labs/observation.labs.component";
 import { ObservationLabsService } from "./observation.labs/observation.labs.service";
-import { ObservationVitalsComponent } from "./observation.vitals/observation.vitals.component";
-import { ObservationVitalsService } from "./observation.vitals/observation.vitals.service";
-import { ObservationCoreComponent } from "./observation.corecharacteristics/observation.corecharacteristics.component";
-import { ObservationCoreService } from "./observation.corecharacteristics/observation.corecharacteristics.service";
 import { ErrorComponent } from "./error/error.component";
 import { InfoComponent } from "./info/info.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -31,6 +25,7 @@ import { SpinnerComponent } from "./spinner/spinner.component";
 import { SpinnerService } from "./spinner/spinner.service";
 import { ModalModule } from "ngx-bootstrap/modal";
 import { FormsModule } from "@angular/forms";
+import { Validator } from "./validator_regex";
 
 export const isMock = environment.mock;
 
@@ -38,13 +33,10 @@ export const isMock = environment.mock;
   declarations: [
     AppComponent,
     routingComponents,
-    ObservationAgvhdComponent,
     DialogComponent,
     PatientDetailComponent,
     DefaultComponent,
     ObservationLabsComponent,
-    ObservationVitalsComponent,
-    ObservationCoreComponent,
     ErrorComponent,
     InfoComponent,
     SpinnerComponent,
@@ -63,18 +55,16 @@ export const isMock = environment.mock;
     BrowserAnimationsModule,
     MaterialModule,
   ],
-  entryComponents: [ObservationAgvhdComponent, DialogComponent],
+  entryComponents: [DialogComponent],
   providers: [
     PatientResolver,
     PatientService,
-    ObservationAgvhdService,
     ObservationLabsService,
-    ObservationVitalsService,
-    ObservationCoreService,
     AuthorizationService,
     AppInitService,
     FhirService,
     SpinnerService,
+    Validator,
     {
       provide: APP_INITIALIZER,
       useFactory: appInitFactory,
