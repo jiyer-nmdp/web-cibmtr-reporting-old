@@ -1,61 +1,18 @@
 {
   "resourceType": "Patient",
-  "id": "eQYVH16R88hl-NPxd4lL17A31",
+  "id": "e.Evi4toMFqPiXu0iCJJ3MA3",
   "extension": [
     {
       "extension": [
         {
           "valueCoding": {
             "system": "http://hl7.org/fhir/us/core/ValueSet/omb-race-category",
-            "code": "2106-3",
-            "display": "White"
+            "code": "UNK",
+            "display": "Unknown"
           },
           "url": "ombCategory"
         },
-        {
-          "valueCoding": {
-            "system": "http://hl7.org/fhir/us/core/ValueSet/omb-race-category",
-            "code": "2028-9",
-            "display": "Asian"
-          },
-          "url": "ombCategory"
-        },
-        {
-          "valueCoding": {
-            "system": "http://hl7.org/fhir/us/core/ValueSet/omb-race-category",
-            "code": "1004-1",
-            "display": "American Indian"
-          },
-          "url": "ombCategory"
-        },
-        {
-          "valueCoding": {
-            "system": "http://hl7.org/fhir/us/core/ValueSet/detailed-race",
-            "code": "1039-7",
-            "display": "Burt Lake Band"
-          },
-          "url": "ombCategory"
-        },
-        {
-          "valueCoding": {
-            "system": "http://hl7.org/fhir/us/core/ValueSet/detailed-race",
-            "code": "1039-8",
-            "display": "Burt Lake"
-          },
-          "url": "ombCategory"
-        },
-        {
-          "valueCoding": {
-            "system": "http://hl7.org/fhir/us/core/ValueSet/detailed-race",
-            "code": "1039-4",
-            "display": "Burt"
-          },
-          "url": "ombCategory"
-        },
-        {
-          "valueString": "White",
-          "url": "text"
-        }
+        { "valueString": "Unknown", "url": "text" }
       ],
       "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race"
     },
@@ -64,15 +21,12 @@
         {
           "valueCoding": {
             "system": "http://hl7.org/fhir/us/core/ValueSet/omb-ethnicity-category",
-            "code": "2186-5",
-            "display": "Not Hispanic or Latino"
+            "code": "UNK",
+            "display": "Unknown"
           },
           "url": "ombCategory"
         },
-        {
-          "valueString": "Not Hispanic or Latino",
-          "url": "text"
-        }
+        { "valueString": "Unknown", "url": "text" }
       ],
       "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity"
     },
@@ -82,112 +36,158 @@
     }
   ],
   "identifier": [
-    {
-      "extension": [
-        {
-          "valueString": "462-90-4504",
-          "url": "http://hl7.org/fhir/StructureDefinition/rendered-value"
-        }
-      ],
-      "use": "usual",
-      "system": "urn:oid:2.16.840.1.113883.4.1",
-      "value": "462-90-4504"
-    },
+    { "use": "usual", "type": { "text": "CEID" }, "value": "AO1-593-6801" },
     {
       "use": "usual",
-      "type": {
-        "text": "EPIC"
-      },
+      "type": { "text": "EPIC" },
       "system": "urn:oid:1.2.840.114350.1.1",
-      "value": "E3071"
+      "value": "E237738"
     },
     {
       "use": "usual",
-      "type": {
-        "text": "EXTERNAL"
-      },
-      "value": "Z4962"
+      "type": { "text": "EXTERNAL" },
+      "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.698084",
+      "value": "Z5333"
     },
     {
       "use": "usual",
-      "type": {
-        "text": "FHIR"
-      },
-      "value": "TEFWnsC5mSQ6Z6BtJEgg6hRm41I4qDKVoV4dffycVLMgB"
+      "type": { "text": "FHIR" },
+      "system": "http://open.epic.com/FHIR/StructureDefinition/patient-dstu2-fhir-id",
+      "value": "Tjn.G6rCTiIXnJWtyjrzPuGntgkQyNGRl..3oxaa-VxkB"
     },
     {
       "use": "usual",
-      "type": {
-        "text": "FHIR STU3"
-      },
-      "value": "endFZe2sorgK5yH219Tqbsw3"
+      "type": { "text": "FHIR STU3" },
+      "system": "http://open.epic.com/FHIR/StructureDefinition/patient-fhir-id",
+      "value": "e.Evi4toMFqPiXu0iCJJ3MA3"
     },
     {
       "use": "usual",
-      "type": {
-        "text": "INTERNAL"
-      },
-      "value": "     Z4962"
+      "type": { "text": "INTERNAL" },
+      "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.698084",
+      "value": "     Z5333"
     },
     {
       "use": "usual",
-      "type": {
-        "text": "MRN"
-      },
+      "type": { "text": "MRN" },
       "system": "urn:oid:1.2.840.114350.1.13.0.1.7.5.737384.14",
-      "value": "202821"
+      "value": "31484"
+    },
+    {
+      "use": "usual",
+      "type": { "text": "MYCHARTLOGIN" },
+      "system": "urn:oid:1.2.840.114350.1.13.0.1.7.3.878082.110",
+      "value": "KELLY.NEWMAN"
+    },
+    {
+      "use": "usual",
+      "type": { "text": "WPRINTERNAL" },
+      "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.878082",
+      "value": "21"
     }
   ],
   "active": true,
   "name": [
     {
       "use": "official",
-      "text": "Angela D Nephrology",
-      "family": "Nephrology",
-      "given": ["Angela", "D"]
+      "text": "Ms. Kelly Newman",
+      "family": "Newman",
+      "given": ["Kelly"],
+      "prefix": ["MS."]
     },
     {
       "use": "usual",
-      "text": "Angela D Nephrology",
-      "family": "Nephrology",
-      "given": ["Angela", "D"]
+      "text": "Ms. Kelly Newman",
+      "family": "Newman",
+      "given": ["Kelly"],
+      "prefix": ["MS."]
     }
   ],
   "telecom": [
-    {
-      "system": "phone",
-      "value": "608-555-6826",
-      "use": "home"
-    },
-    {
-      "system": "phone",
-      "value": "608-544-1000",
-      "use": "work"
-    },
-    {
-      "system": "phone",
-      "value": "608-550-6826",
-      "use": "mobile"
-    }
+    { "system": "phone", "value": "608-270-4567", "use": "home" },
+    { "system": "phone", "value": "608-556-8712", "use": "work" },
+    { "system": "phone", "value": "608-663-8766", "use": "mobile" },
+    { "system": "email", "value": "birder@aol.com" }
   ],
-  "gender": "male",
-  "birthDate": "1962-08-01",
+  "gender": "female",
+  "birthDate": "1947-04-09",
   "deceasedBoolean": false,
   "address": [
     {
       "use": "home",
-      "line": ["6826 Maple Street"],
-      "city": "Madison",
+      "line": ["4399 Audubon Circle"],
+      "city": "MADISON",
+      "district": "DANE",
       "state": "WI",
-      "postalCode": "53711",
+      "postalCode": "53710",
       "country": "US"
     }
   ],
-  "maritalStatus": {
-    "text": "Single"
-  },
+  "maritalStatus": { "text": "Married" },
+  "contact": [
+    {
+      "relationship": [
+        {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0131",
+              "code": "C",
+              "display": "Emergency Contact"
+            }
+          ]
+        }
+      ],
+      "name": { "use": "usual", "text": "Trish Unger" },
+      "telecom": [
+        { "system": "phone", "value": "414-359-2251", "use": "temp" },
+        { "system": "phone", "value": "414-789-3321", "use": "temp" },
+        { "system": "phone", "value": "414-749-3922", "use": "temp" }
+      ],
+      "address": {
+        "use": "home",
+        "line": ["7322 W. Layton Avenue"],
+        "city": "MILWAUKEE",
+        "state": "WI",
+        "postalCode": "53215",
+        "country": "US"
+      }
+    },
+    {
+      "relationship": [
+        {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0131",
+              "code": "C",
+              "display": "Emergency Contact"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "communication": [
+    {
+      "language": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/ValueSet/languages",
+            "code": "en",
+            "display": "English"
+          }
+        ],
+        "text": "English"
+      }
+    }
+  ],
+  "generalPractitioner": [
+    {
+      "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eoScyX3bs1SY.2lMoHCGcVw3",
+      "display": "Physician Pediatrics, MD"
+    }
+  ],
   "managingOrganization": {
     "reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Organization/enRyWnSP963FYDpoks4NHOA3",
-    "display": "Epic Hospital System"
+    "display": "EHS Service Area"
   }
 }

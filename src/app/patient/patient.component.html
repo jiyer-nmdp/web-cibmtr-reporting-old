@@ -33,13 +33,24 @@
       </div>
 
       <div class="patient_details">
-        <ul class="list-unstyled">
+        <ul>
           <li>Date of birth: {{ ehrpatient.birthDate }}</li>
           <li>Gender: {{ ehrpatient.gender }}</li>
           <li>Identifiers:</li>
           <ul *ngFor="let identifier of ehrpatient.identifier">
             <div *ngIf="identifier.system !== 'urn:oid:2.16.840.1.113883.4.1'">
               <li>{{ identifier.type?.text }}:{{ identifier.value }}</li>
+            </div>
+            <div
+              *ngIf="
+                identifier.system === 'urn:oid:2.16.840.1.113883.4.1' &&
+                !isValidSsn
+              "
+            >
+              <li class="text-danger">
+                Warning : Invalid SSN {{ identifier.value }} will not be used
+                for CRID registration
+              </li>
             </div>
           </ul>
         </ul>

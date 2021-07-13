@@ -42,10 +42,16 @@ export class ObservationLabsComponent implements OnInit {
     private spinner: SpinnerService,
     private route: ActivatedRoute
   ) {
-    console.log(route);
     let data = utility.data;
-    this.labs = utility.bundleObservations(data.labs).entry;
-    this.priority = utility.bundleObservations(data.priorityLabs).entry;
+
+    if (data.labs != "null") {
+      this.labs = utility.bundleObservations(data.labs).entry;
+    }
+
+    if (data.priorityLabs != "null") {
+      this.priority = utility.bundleObservations(data.priorityLabs).entry;
+    }
+
     this.psScope = data.psScope;
   }
 
