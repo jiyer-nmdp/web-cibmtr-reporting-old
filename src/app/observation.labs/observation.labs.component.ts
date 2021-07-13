@@ -44,11 +44,11 @@ export class ObservationLabsComponent implements OnInit {
   ) {
     let data = utility.data;
 
-    if (data.labs) {
+    if (data.labs != "null") {
       this.labs = utility.bundleObservations(data.labs).entry;
     }
 
-    if (data.priority) {
+    if (data.priorityLabs != "null") {
       this.priority = utility.bundleObservations(data.priorityLabs).entry;
     }
 
