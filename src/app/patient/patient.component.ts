@@ -137,7 +137,10 @@ export class PatientComponent implements OnInit {
    */
   getGivenName(ehrpatient) {
     let givenName;
-    if (ehrpatient.name[0].given.length > 0) {
+    if (ehrpatient.name[0].text && ehrpatient.name[0].text.length > 0) {
+      givenName = ehrpatient.name[0].text;
+    }
+    else if (ehrpatient.name[0].given && ehrpatient.name[0].given.length > 0) {
       givenName = ehrpatient.name[0].given.join(" ");
     }
     return givenName;
@@ -171,8 +174,8 @@ export class PatientComponent implements OnInit {
         this.utility.rebuild_DSTU2_STU3_Url(
           this._localStorageService.get("iss")
         ) +
-          "/Patient/" +
-          ehrpatient.id
+        "/Patient/" +
+        ehrpatient.id
       )
     );
     let encodedScope = encodeURI(
@@ -246,8 +249,8 @@ export class PatientComponent implements OnInit {
     ) {
       alert(
         "Unable to register this patient " +
-          ehrpatient.gender +
-          " is not currently supported as a gender value. Please contact your center's CIBMTR CRC to review this case."
+        ehrpatient.gender +
+        " is not currently supported as a gender value. Please contact your center's CIBMTR CRC to review this case."
       );
       this.isLoading = false;
       return;

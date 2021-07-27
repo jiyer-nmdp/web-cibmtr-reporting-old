@@ -31,6 +31,15 @@ export class AuthorizationService {
     if(!validState || validState !== state) {
       return Promise.reject(new Error("Invalid or missing state."));
     }
+    console.log("tokenurl = " + tokenurl);
+    let client_id = "";
+
+    if (tokenurl.indexOf("logica") === -1)
+    {
+      client_id = AppConfig.ehr_client_id;
+    } else {
+      client_id = AppConfig.logica_client_ids[0];
+    }
     //HTTP Post request  get Bearer token
     let body =
       "grant_type=authorization_code" +
@@ -39,7 +48,7 @@ export class AuthorizationService {
       "&redirect_uri=" +
       AppConfig.ehr_oauth_redirect_url +
       "&client_id=" +
-      AppConfig.ehr_client_id;
+      client_id;
 
     return this.http
       .post(tokenurl, body, {
@@ -51,13 +60,23 @@ export class AuthorizationService {
   }
 
   constructAuthorizationUrl(baseUrl, launchToken, aud, state) {
+    console.log("baseurl = " + baseUrl);
+    console.log("launchtoken = " + launchToken);
+    let client_id = "";
+    console.log("aud = " + aud);
+    if (aud.indexOf("logica") === -1)
+    {
+      client_id = AppConfig.ehr_client_id;
+    } else {
+      client_id = AppConfig.logica_client_ids[0];
+    }
     return (
       baseUrl +
       "?scope=launch&response_type=code" +
       "&redirect_uri=" +
       encodeURIComponent(AppConfig.ehr_oauth_redirect_url) +
       "&client_id=" +
-      AppConfig.ehr_client_id +
+      client_id +
       "&launch=" +
       launchToken +
       "&aud=" +

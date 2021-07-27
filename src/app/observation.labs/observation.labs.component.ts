@@ -63,8 +63,8 @@ export class ObservationLabsComponent implements OnInit {
 
     if (this.getCategoryData() && this.getCategoryData().length > 0) {
       this.spinner.start();
-      this.observationlabsService
-        .getCibmtrObservationsLabs(subj, psScope)
+      this.utility
+        .getCibmtrObservations(subj, psScope, "laboratory")
         .pipe(
           expand((response) => {
             let next =
@@ -209,7 +209,7 @@ export class ObservationLabsComponent implements OnInit {
 
     this.selectedNewResources = Array.prototype.concat.apply(
       [],
-      this.selectedNewEntries
+      this.utility.buildSelectedResources(this.selectedNewEntries)
     );
 
     // Updated Records
@@ -221,7 +221,7 @@ export class ObservationLabsComponent implements OnInit {
 
     this.selectedUpdatedResources = Array.prototype.concat.apply(
       [],
-      this.selectedUpdatedEntries
+      this.utility.buildSelectedResources(this.selectedUpdatedEntries)
     );
 
     let totalEntries = [
