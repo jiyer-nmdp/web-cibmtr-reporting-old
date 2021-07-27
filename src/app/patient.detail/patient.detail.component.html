@@ -25,15 +25,15 @@
                   : ['priority']
               "
               [ngClass]="{ active: activeLabel == 'priority' }"
-              >Priority Labs
+            >Priority Labs
             </a>
             <b *ngIf="priority; else other_content" class="badge pull-right">{{
               priority.total
-            }}</b>
+              }}</b>
             <ng-template #other_content
-              ><img
-                src="assets/images/exclamation-triangle.png"
-                class="exclamation pull-right"
+            ><img
+              src="assets/images/exclamation-triangle.png"
+              class="exclamation pull-right"
             /></ng-template>
           </div>
           <br />
@@ -45,75 +45,15 @@
                 !labs ? ['error'] : labs.total === 0 ? ['info'] : ['labs']
               "
               [ngClass]="{ active: activeLabel == 'lab' }"
-              >Labs
+            >Labs
             </a>
             <b *ngIf="labs; else other_content" class="badge pull-right">{{
               labs.total
-            }}</b>
+              }}</b>
             <ng-template #other_content
-              ><img
-                src="assets/images/exclamation-triangle.png"
-                class="exclamation pull-right"
-            /></ng-template>
-          </div>
-
-          <div class="resource-label">
-            <a
-              class="label-font"
-              id="vital"
-              [ngClass]="{ active: activeLabel == 'vital' }"
-              [routerLink]="
-                !vitals ? ['error'] : vitals.total === 0 ? ['info'] : ['vitals']
-              "
-              >VitalSigns
-            </a>
-            <b *ngIf="vitals; else other_content" class="badge pull-right">{{
-              vitals.total
-            }}</b>
-            <ng-template #other_content
-              ><img
-                src="assets/images/exclamation-triangle.png"
-                class="exclamation pull-right"
-            /></ng-template>
-          </div>
-
-          <div class="resource-label">
-            <a
-              class="label-font"
-              id="agvhd"
-              [ngClass]="{ active: activeLabel == 'agvhd' }"
-              [routerLink]="
-                !agvhd ? ['error'] : agvhd.total === 0 ? ['info'] : ['agvhd']
-              "
-              >Flowsheet-aGVHD
-            </a>
-            <b *ngIf="agvhd; else other_content" class="badge pull-right">{{
-              agvhd.total
-            }}</b>
-            <ng-template #other_content
-              ><img
-                src="assets/images/exclamation-triangle.png"
-                class="exclamation pull-right"
-            /></ng-template>
-          </div>
-
-          <div class="resource-label">
-            <a
-              class="label-font"
-              id="core"
-              [ngClass]="{ active: activeLabel == 'core' }"
-              [routerLink]="
-                !core ? ['error'] : core.total === 0 ? ['info'] : ['core']
-              "
-              >CoreCharacteristics
-            </a>
-            <b *ngIf="core; else other_content" class="badge pull-right">{{
-              core.total
-            }}</b>
-            <ng-template #other_content
-              ><img
-                src="assets/images/exclamation-triangle.png"
-                class="exclamation pull-right"
+            ><img
+              src="assets/images/exclamation-triangle.png"
+              class="exclamation pull-right"
             /></ng-template>
           </div>
         </div>

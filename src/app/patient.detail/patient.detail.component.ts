@@ -11,10 +11,7 @@ import { UtilityService } from "../utility.service";
 })
 export class PatientDetailComponent implements OnInit {
   ehrpatient: Patient;
-  agvhd: any;
   labs: any;
-  vitals: any;
-  core: any;
   psScope: string;
   crid: string;
   activeLabel: string;
@@ -24,11 +21,9 @@ export class PatientDetailComponent implements OnInit {
 
     let data = utility.data;
 
-    this.agvhd = this.utility.bundleObservations(data.agvhd);
     this.labs = this.utility.bundleObservations(data.labs);
-    this.vitals = this.utility.bundleObservations(data.vitals);
     this.priority = this.utility.bundleObservations(data.priorityLabs);
-    this.core = this.utility.bundleObservations(data.core);
+
     this.ehrpatient = JSON.parse(data.ehrpatient);
     this.crid = data.crid;
     this.psScope = data.psScope;

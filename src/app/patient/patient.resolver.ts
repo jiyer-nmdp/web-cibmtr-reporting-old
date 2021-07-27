@@ -73,10 +73,7 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
             this.spinner.start();
             return forkJoin([
               this.patientDetailService.getPatient(stu3_id),
-              this.patientDetailService.getObservation(stu3_id),
-              this.patientDetailService.getObservationVitalSigns(stu3_id),
               this.patientDetailService.getObservationLabs(stu3_id),
-              this.patientDetailService.getObservationCoreChar(stu3_id),
               this.patientDetailService.getObservationPriorityLabs(stu3_id),
             ]);
           })
@@ -86,10 +83,7 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
       this.spinner.start();
       return forkJoin([
         this.patientDetailService.getPatient(id),
-        this.patientDetailService.getObservation(id),
-        this.patientDetailService.getObservationVitalSigns(id),
         this.patientDetailService.getObservationLabs(id),
-        this.patientDetailService.getObservationCoreChar(id),
         this.patientDetailService.getObservationPriorityLabs(id),
       ]);
     }
