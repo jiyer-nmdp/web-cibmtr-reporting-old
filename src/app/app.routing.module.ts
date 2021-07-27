@@ -1,7 +1,6 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { ObservationLabsComponent } from "./observation.labs/observation.labs.component";
-
 import { PatientComponent } from "./patient/patient.component";
 import { PatientResolver } from "./patient/patient.resolver";
 import { PatientDetailComponent } from "./patient.detail/patient.detail.component";

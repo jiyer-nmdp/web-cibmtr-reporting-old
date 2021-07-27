@@ -13,7 +13,6 @@ import {
   SESSION_TIMEOUT,
 } from "@nmdp/nmdp-login";
 import { Router } from "@angular/router";
-import { SessionService } from "./services/session.service";
 
 @Component({
   selector: "app-root",
@@ -24,8 +23,7 @@ export class AppComponent implements OnInit {
   constructor(
     private loginWidget: NmdpWidget,
     private ref: ChangeDetectorRef,
-    private router: Router,
-    private sessionService: SessionService
+    private router: Router
   ) {}
 
   ngOnInit() {

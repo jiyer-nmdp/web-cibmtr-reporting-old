@@ -25,6 +25,7 @@ import { SpinnerComponent } from "./spinner/spinner.component";
 import { SpinnerService } from "./spinner/spinner.service";
 import { ModalModule } from "ngx-bootstrap/modal";
 import { FormsModule } from "@angular/forms";
+import { Validator } from "./validator_regex";
 
 export const isMock = environment.mock;
 
@@ -63,6 +64,7 @@ export const isMock = environment.mock;
     AppInitService,
     FhirService,
     SpinnerService,
+    Validator,
     {
       provide: APP_INITIALIZER,
       useFactory: appInitFactory,

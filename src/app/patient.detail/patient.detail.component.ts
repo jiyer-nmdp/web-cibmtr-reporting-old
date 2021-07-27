@@ -1,8 +1,6 @@
 import { Component, OnInit, HostListener } from "@angular/core";
 import { Patient } from "../model/patient.";
-import { Router } from "@angular/router";
 import { UtilityService } from "../utility.service";
-
 
 @Component({
   selector: "app-patient.detail",
@@ -17,8 +15,7 @@ export class PatientDetailComponent implements OnInit {
   activeLabel: string;
   priority: any;
 
-  constructor(private router: Router, private utility: UtilityService) {
-
+  constructor(private utility: UtilityService) {
     let data = utility.data;
 
     this.labs = this.utility.bundleObservations(data.labs);
