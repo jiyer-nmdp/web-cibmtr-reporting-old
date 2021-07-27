@@ -34,14 +34,15 @@ export class PatientService {
   }
 
   getObservation(identifier): Observable<IPatientContext> {
+    let str = this._localStorageService.get("iss") + "";
     let url =
       this.utilityService.rebuild_DSTU2_STU3_Url(
-        this._localStorageService.get("iss")
+        str
       ) +
       "/Observation?patient=" +
       identifier +
       "&_count=1000&" +
-      AppConfig.observation_codes;
+      (str.indexOf("logicahealth") === -1) ? AppConfig.observation_codes : AppConfig.observation_codes.replace("|","%7C");
     return this.utilityService
       .getPage(url, this.buildEhrHeaders())
       .pipe(catchError(() => of(null)));

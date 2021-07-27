@@ -60,10 +60,10 @@ export class AuthorizationService {
   }
 
   constructAuthorizationUrl(baseUrl, launchToken, aud, state) {
-    console.log ("baseurl = " + baseUrl);
-    console.log ("launchtoken = " + launchToken);
+    console.log("baseurl = " + baseUrl);
+    console.log("launchtoken = " + launchToken);
     let client_id = "";
-
+    console.log("aud = " + aud);
     if (aud.indexOf("logica") === -1)
     {
       client_id = AppConfig.ehr_client_id;
