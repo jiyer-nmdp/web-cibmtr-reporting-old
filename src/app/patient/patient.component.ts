@@ -255,22 +255,24 @@ export class PatientComponent implements OnInit {
       gender = ehrpatient.gender.toLowerCase();
     }
 
-    const raceCodes = ehrpatient.extension
-      .map((outerEle) => {
-        return (
-          outerEle.extension &&
-          outerEle.extension.filter(
-            (innerEle) =>
-              innerEle.valueCoding &&
-              AppConfig.race_ombsystem.includes(innerEle.valueCoding.system)
-          )
-        );
-      })
-      .filter((a) => a !== undefined && a.length > 0) // filter
-      .reduce((acc, val) => acc.concat(val), []) // flatten the array
-      .map((i) => i.valueCoding && i.valueCoding.code); // extract the codes
+    const raceCodes =
+      ehrpatient.extension &&
+      ehrpatient.extension
+        .map((outerEle) => {
+          return (
+            outerEle.extension &&
+            outerEle.extension.filter(
+              (innerEle) =>
+                innerEle.valueCoding &&
+                AppConfig.race_ombsystem.includes(innerEle.valueCoding.system)
+            )
+          );
+        })
+        .filter((a) => a !== undefined && a.length > 0) // filter
+        .reduce((acc, val) => acc.concat(val), []) // flatten the array
+        .map((i) => i.valueCoding && i.valueCoding.code); // extract the codes
 
-    // const raceDetailCodes = ehrpatient.extension
+    // const raceDetailCodes = ehrpatient.extension && ehrpatient.extension
     //   .map((outerEle) => {
     //     return (
     //       outerEle.extension &&
@@ -287,23 +289,25 @@ export class PatientComponent implements OnInit {
     //   .reduce((acc, val) => acc.concat(val), [])
     //   .map((i) => i.valueCoding && i.valueCoding.code);
 
-    const ethnicityCodes = ehrpatient.extension
-      .map((outerEle) => {
-        return (
-          outerEle.extension &&
-          outerEle.extension.filter(
-            (innerEle) =>
-              innerEle.valueCoding &&
-              AppConfig.ethnicity_ombsystem.includes(
-                innerEle.valueCoding.system
-              )
-          )
-        );
-      })
-      .filter((a) => a !== undefined && a.length > 0)
-      .reduce((acc, val) => acc.concat(val), [])
-      .map((i) => i.valueCoding && i.valueCoding.code)
-      .join();
+    const ethnicityCodes =
+      ehrpatient.extension &&
+      ehrpatient.extension
+        .map((outerEle) => {
+          return (
+            outerEle.extension &&
+            outerEle.extension.filter(
+              (innerEle) =>
+                innerEle.valueCoding &&
+                AppConfig.ethnicity_ombsystem.includes(
+                  innerEle.valueCoding.system
+                )
+            )
+          );
+        })
+        .filter((a) => a !== undefined && a.length > 0)
+        .reduce((acc, val) => acc.concat(val), [])
+        .map((i) => i.valueCoding && i.valueCoding.code)
+        .join();
 
     //CRID Payload
 
@@ -404,7 +408,7 @@ export class PatientComponent implements OnInit {
           system: AppConfig.epic_logicalId_namespace,
           value:
             this.utility.rebuild_DSTU2_STU3_Url(
-              this._localStorageService.get("iss")
+              "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3"
             ) +
             "/Patient/" +
             logicalId,
