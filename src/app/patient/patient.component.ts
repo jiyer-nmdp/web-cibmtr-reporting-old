@@ -258,7 +258,7 @@ export class PatientComponent implements OnInit {
       gender = ehrpatient.gender.toLowerCase();
     }
 
-    const raceCodes = ehrpatient.extension && ehrpatient.ext
+    const raceCodes = ehrpatient.extension && ehrpatient.extension
       .map((outerEle) => {
         return (
           outerEle.extension &&
