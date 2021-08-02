@@ -1,6 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { MatSortModule } from "@angular/material/sort";
 
-const MaterialComponents = [];
+const MaterialComponents = [MatSortModule];
 
 @NgModule({
   imports: [MaterialComponents],
