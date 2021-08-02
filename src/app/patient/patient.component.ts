@@ -255,6 +255,25 @@ export class PatientComponent implements OnInit {
       gender = ehrpatient.gender.toLowerCase();
     }
 
+
+    // const raceDetailCodes = ehrpatient.extension && ehrpatient.extension
+    //   .map((outerEle) => {
+    //     return (
+    //       outerEle.extension &&
+    //       outerEle.extension.filter(
+    //         (innerEle) =>
+    //           innerEle.valueCoding &&
+    //           AppConfig.racedetails_ombsystem.includes(
+    //             innerEle.valueCoding.system
+    //           )
+    //       )
+    //     );
+    //   })
+    //   .filter((a) => a !== undefined && a.length > 0)
+    //   .reduce((acc, val) => acc.concat(val), [])
+    //   .map((i) => i.valueCoding && i.valueCoding.code);
+
+  
     const raceCodes = ehrpatient.extension && ehrpatient.extension
       .map((outerEle) => {
         return (
