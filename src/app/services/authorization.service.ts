@@ -1,11 +1,13 @@
 import { Injectable } from "@angular/core";
 import { AppConfig } from "../app.config";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { LocalStorageService } from "angular-2-local-storage";
 import { HttpErrorResponse } from "@angular/common/http";
 
 @Injectable()
 export class AuthorizationService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,
+              private _localStorageService: LocalStorageService) {}
 
   getEhrCode(url) {
     let segments = url.split("?")[1].split("&");
@@ -38,8 +40,9 @@ export class AuthorizationService {
     {
       client_id = AppConfig.ehr_client_id;
     } else {
-      client_id = AppConfig.logica_client_ids[0];
+      client_id = this._localStorageService.get("client_id");
     }
+    console.log("client_id in codeToBearerToken - " + client_id );
     //HTTP Post request  get Bearer token
     let body =
       "grant_type=authorization_code" +
@@ -68,7 +71,9 @@ export class AuthorizationService {
     {
       client_id = AppConfig.ehr_client_id;
     } else {
-      client_id = AppConfig.logica_client_ids[0];
+      let sandboxName = aud.substring(aud.indexOf("org/") + 4, aud.lastIndexOf("/"));
+      this._localStorageService.set("client_id", AppConfig.logica_map.get(sandboxName));
+      client_id = this._localStorageService.get("client_id");
     }
     return (
       baseUrl +

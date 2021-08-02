@@ -137,10 +137,7 @@ export class PatientComponent implements OnInit {
    */
   getGivenName(ehrpatient) {
     let givenName;
-    if (ehrpatient.name[0].text && ehrpatient.name[0].text.length > 0) {
-      givenName = ehrpatient.name[0].text;
-    }
-    else if (ehrpatient.name[0].given && ehrpatient.name[0].given.length > 0) {
+    if (ehrpatient.name[0].given.length > 0) {
       givenName = ehrpatient.name[0].given.join(" ");
     }
     return givenName;
@@ -258,22 +255,6 @@ export class PatientComponent implements OnInit {
       gender = ehrpatient.gender.toLowerCase();
     }
 
-    const raceCodes =
-      ehrpatient.extension &&
-      ehrpatient.extension
-        .map((outerEle) => {
-          return (
-            outerEle.extension &&
-            outerEle.extension.filter(
-              (innerEle) =>
-                innerEle.valueCoding &&
-                AppConfig.race_ombsystem.includes(innerEle.valueCoding.system)
-            )
-          );
-        })
-        .filter((a) => a !== undefined && a.length > 0) // filter
-        .reduce((acc, val) => acc.concat(val), []) // flatten the array
-        .map((i) => i.valueCoding && i.valueCoding.code); // extract the codes
 
     // const raceDetailCodes = ehrpatient.extension && ehrpatient.extension
     //   .map((outerEle) => {
@@ -292,26 +273,39 @@ export class PatientComponent implements OnInit {
     //   .reduce((acc, val) => acc.concat(val), [])
     //   .map((i) => i.valueCoding && i.valueCoding.code);
 
-    const ethnicityCodes =
-      ehrpatient.extension &&
-      ehrpatient.extension
-        .map((outerEle) => {
-          return (
-            outerEle.extension &&
-            outerEle.extension.filter(
-              (innerEle) =>
-                innerEle.valueCoding &&
-                AppConfig.ethnicity_ombsystem.includes(
-                  innerEle.valueCoding.system
-                )
-            )
-          );
-        })
-        .filter((a) => a !== undefined && a.length > 0)
-        .reduce((acc, val) => acc.concat(val), [])
-        .map((i) => i.valueCoding && i.valueCoding.code)
-        .join();
+  
+    const raceCodes = ehrpatient.extension && ehrpatient.extension
+      .map((outerEle) => {
+        return (
+          outerEle.extension &&
+          outerEle.extension.filter(
+            (innerEle) =>
+              innerEle.valueCoding &&
+              AppConfig.race_ombsystem.includes(innerEle.valueCoding.system)
+          )
+        );
+      })
+      .filter((a) => a !== undefined && a.length > 0) // filter
+      .reduce((acc, val) => acc.concat(val), []) // flatten the array
+      .map((i) => i.valueCoding && i.valueCoding.code); // extract the codes
 
+     const ethnicityCodes = ehrpatient.extension && ehrpatient.extension
+      .map((outerEle) => {
+        return (
+          outerEle.extension &&
+          outerEle.extension.filter(
+            (innerEle) =>
+              innerEle.valueCoding &&
+              AppConfig.ethnicity_ombsystem.includes(
+                innerEle.valueCoding.system
+              )
+          )
+        );
+      })
+      .filter((a) => a !== undefined && a.length > 0)
+      .reduce((acc, val) => acc.concat(val), [])
+      .map((i) => i.valueCoding && i.valueCoding.code)
+      .join();
     //CRID Payload
 
     let payload = {
