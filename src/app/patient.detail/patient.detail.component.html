@@ -45,7 +45,7 @@
                 !labs ? ['error'] : labs.total === 0 ? ['info'] : ['labs']
               "
               [ngClass]="{ active: activeLabel == 'lab' }"
-            >Labs
+              >All Labs
             </a>
             <b *ngIf="labs; else other_content" class="badge pull-right">{{
               labs.total
