@@ -332,6 +332,12 @@ export class ObservationLabsComponent implements OnInit {
             b.resource.effectiveDateTime,
             isAsc
           );
+        case "name":
+          return this.compare(
+            a.resource.code?.text,
+            b.resource.code?.text,
+            isAsc
+          );
 
         default:
           return 0;
