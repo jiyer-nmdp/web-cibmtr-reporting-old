@@ -38,7 +38,6 @@ const routes: Routes = [
         path: "priority",
         component: ObservationLabsComponent,
       },
-
       {
         path: "info",
         component: InfoComponent,

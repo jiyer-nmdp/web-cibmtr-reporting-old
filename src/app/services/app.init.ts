@@ -4,6 +4,7 @@ import { Location } from "@angular/common";
 import { LocalStorageService } from "angular-2-local-storage";
 import { HttpErrorResponse } from "@angular/common/http";
 import { v4 as uuidv4 } from 'uuid';
+import {AppConfig} from "../app.config";
 
 @Injectable()
 export class AppInitService {
@@ -20,6 +21,12 @@ export class AppInitService {
       );
       return;
     }
+
+    // Extract the client_id and sandbox names from env input and put into map
+    AppConfig.logica_client_id_list.forEach( obj => {
+      let str = obj.split(":");
+      AppConfig.logica_map.set(str[0], str[1]);
+    })
 
     let authorizationToken = this.authorizationService.getEhrCode(
       window.location.href
@@ -55,7 +62,7 @@ export class AppInitService {
 
     if (iss && launchToken) {
       this._localStorageService.set("iss", iss);
-
+      console.log("iss = " + iss);
       return this.authorizationService.getMetadata(iss).then((response) => {
         let validCodeState = uuidv4();
         this._localStorageService.set("validCodeState", validCodeState);
