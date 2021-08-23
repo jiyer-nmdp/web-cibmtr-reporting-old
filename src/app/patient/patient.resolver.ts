@@ -5,7 +5,7 @@ import {
   Resolve,
 } from "@angular/router";
 import { BsModalRef } from "ngx-bootstrap/modal";
-import { forkJoin, throwError, Observable } from "rxjs";
+import { forkJoin, throwError, Observable, merge } from "rxjs";
 import { IPatientContext } from "../model/patient.";
 import { PatientService } from "./patient.service";
 import { LocalStorageService } from "angular-2-local-storage";
@@ -16,6 +16,7 @@ import { HttpErrorResponse } from "@angular/common/http";
 import { map, mergeMap, catchError } from "rxjs/operators";
 import { UtilityService } from "../utility.service";
 import { SpinnerService } from "../spinner/spinner.service";
+import { MergeMapSubscriber } from "rxjs/internal/operators/mergeMap";
 
 @Injectable()
 export class PatientResolver implements Resolve<IPatientContext[]> {
@@ -71,21 +72,13 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
           }),
           mergeMap((stu3_id) => {
             this.spinner.start();
-            return forkJoin([
-              this.patientDetailService.getPatient(stu3_id),
-              this.patientDetailService.getObservationLabs(stu3_id),
-              this.patientDetailService.getObservationPriorityLabs(stu3_id),
-            ]);
+            return forkJoin([this.patientDetailService.getPatient(stu3_id)]);
           })
         );
     } else {
       let id = this._localStorageService.get("patient");
       this.spinner.start();
-      return forkJoin([
-        this.patientDetailService.getPatient(id),
-        this.patientDetailService.getObservationLabs(id),
-        this.patientDetailService.getObservationPriorityLabs(id),
-      ]);
+      return forkJoin([this.patientDetailService.getPatient(id)]);
     }
   }
 
