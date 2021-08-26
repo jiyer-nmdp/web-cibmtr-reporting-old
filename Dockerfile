@@ -4,7 +4,7 @@
 
 #base image
 #FROM node:11-alpine AS builder
-FROM dockerhub.nmdp.org:8443/nmdp/nmdp-node:12-stretch-slim.nmdp.latest AS builder
+FROM dtr.nmdp.org:4444/nmdp/nmdp-node:12-stretch-slim.nmdp.latest AS builder
 
 USER root
 

@@ -39,12 +39,6 @@ export class AppConfig {
   //EHR Client ID's
   public static ehr_client_id = environment.ehr_client_id;
 
-  //Logica health client_ids and sandbox_names
-  public static logica_client_id_list = environment.logica_client_ids.join().split(",");
-
-  //Logica health map of sandbox-name to client_id
-  public static logica_map = new Map();
-
   //EHR Redirect URL
   public static ehr_oauth_redirect_url = environment.ehr_redirect_url;
 
