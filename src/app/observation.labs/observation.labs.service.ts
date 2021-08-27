@@ -101,14 +101,14 @@ export class ObservationLabsService {
     };
   }
 
-  // getCibmtrObservationsLabs(subject, psScope): Observable<any> {
-  //   const url =
-  //     AppConfig.cibmtr_fhir_url +
-  //     "Observation?subject=" +
-  //     subject +
-  //     "&_security=" +
-  //     psScope +
-  //     "&_total=accurate&_count=500&category=laboratory";
-  //   return this.http.get(url);
-  // }
+  getCibmtrObservationsLabs(subject, psScope): Observable<any> {
+    const url =
+      AppConfig.cibmtr_fhir_url +
+      "Observation?subject=" +
+      subject +
+      "&_security=" +
+      psScope +
+      "&_total=accurate&_count=500&category=laboratory";
+    return this.http.get(url);
+  }
 }

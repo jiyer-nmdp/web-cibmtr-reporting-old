@@ -71,21 +71,13 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
           }),
           mergeMap((stu3_id) => {
             this.spinner.start();
-            return forkJoin([
-              this.patientDetailService.getPatient(stu3_id),
-              this.patientDetailService.getObservationLabs(stu3_id),
-              this.patientDetailService.getObservationPriorityLabs(stu3_id),
-            ]);
+            return forkJoin([this.patientDetailService.getPatient(stu3_id)]);
           })
         );
     } else {
       let id = this._localStorageService.get("patient");
       this.spinner.start();
-      return forkJoin([
-        this.patientDetailService.getPatient(id),
-        this.patientDetailService.getObservationLabs(id),
-        this.patientDetailService.getObservationPriorityLabs(id),
-      ]);
+      return forkJoin([this.patientDetailService.getPatient(id)]);
     }
   }
 

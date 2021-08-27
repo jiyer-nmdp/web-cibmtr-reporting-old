@@ -32,8 +32,10 @@ export class PatientDetailComponent implements OnInit {
     let givenName;
     if (ehrpatient.name[0].text && ehrpatient.name[0].text.length > 0) {
       givenName = ehrpatient.name[0].text;
-    }
-    else if (ehrpatient.name[0].given && ehrpatient.name[0].given.length > 0) {
+    } else if (
+      ehrpatient.name[0].given &&
+      ehrpatient.name[0].given.length > 0
+    ) {
       givenName = ehrpatient.name[0].given.join(" ");
     }
     return givenName;
