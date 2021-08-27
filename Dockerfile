@@ -4,7 +4,7 @@
 
 #base image
 #FROM node:11-alpine AS builder
-FROM dockerhub.nmdp.org:8443/nmdp/nmdp-node:12-stretch-slim.nmdp.latest AS builder
+FROM dtr.nmdp.org:4444/nmdp/nmdp-node:12-stretch-slim.nmdp.latest AS builder
 
 USER root
 
@@ -35,7 +35,7 @@ ARG build_environment
 RUN npm run build:$build_environment
 
 # Stage 2
-FROM dockerhub.nmdp.org:8443/nginx:latest
+FROM dockerhub.nmdp.org:8443/nginx:1.19.4
 
 # Copy our default nginx conf
 COPY nginx/default.conf /etc/nginx/conf.d/
