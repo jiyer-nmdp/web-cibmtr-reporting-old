@@ -10,6 +10,4 @@
   window["env"]["okta_scopes"] = "${OKTA_SCOPES}";
   window["env"]["okta_env_name"] = "${OKTA_ENV_NAME}";
   window["env"]["loinc_codes"] = "${LOINC_CODES}";
-
-  window["env"]["logica_client_Ids"] = "${LOGICA_CLIENT_IDS}";
 })(this);
