@@ -148,8 +148,6 @@ export class PatientComponent implements OnInit {
     this._route.data.subscribe(
       (results) => {
         this.ehrpatient = results.pageData[0];
-        this.labs = results.pageData[1];
-        this.priorityLabs = results.pageData[2];
         this.validateFields(this.ehrpatient);
         this.retreiveFhirPatient(this.ehrpatient, selectedScope);
       },

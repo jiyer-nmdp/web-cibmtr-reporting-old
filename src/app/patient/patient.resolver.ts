@@ -13,7 +13,7 @@ import { IIdentifiers } from "../model/identifiers";
 import { HttpHeaders } from "@angular/common/http";
 import { HttpClient } from "@angular/common/http";
 import { HttpErrorResponse } from "@angular/common/http";
-import { map, mergeMap, catchError } from "rxjs/operators";
+import { map, mergeMap, catchError, mapTo } from "rxjs/operators";
 import { UtilityService } from "../utility.service";
 import { SpinnerService } from "../spinner/spinner.service";
 
@@ -33,7 +33,8 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
 
     //Post call to get the STU3 patient id by retreving the patient identifier from local storage
 
-    let issurl: string = this._localStorageService.get("iss");
+    let issurl: string =
+      "https://apporchard.epic.com/interconnect-aomay20prd-oauth/api/FHIR/STU3";
 
     if (issurl.includes("DSTU2")) {
       let ehrHeaders: HttpHeaders = new HttpHeaders()
@@ -69,16 +70,20 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
               );
             }
           }),
-          mergeMap((stu3_id) => {
-            this.spinner.start();
-            return forkJoin([this.patientDetailService.getPatient(stu3_id)]);
-          })
+          mergeMap((stu3_id) => this.getEHRPatient(stu3_id))
         );
     } else {
-      let id = this._localStorageService.get("patient");
-      this.spinner.start();
-      return forkJoin([this.patientDetailService.getPatient(id)]);
+      return this.getEHRPatient(this._localStorageService.get("patient"));
+
+      // let id = "enUzUbclL5CmKODptMHj-iw3";
+      // this.spinner.start();
+      // return forkJoin([this.patientDetailService.getPatient(id)]);
     }
+  }
+
+  getEHRPatient(id) {
+    this.spinner.start();
+    return forkJoin([this.patientDetailService.getPatient(id)]);
   }
 
   handleError(error: HttpErrorResponse) {
