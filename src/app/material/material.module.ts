@@ -1,9 +1,8 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { MatSortModule } from "@angular/material/sort";
-import { MatDialog } from "@angular/material/dialog/dialog";
-import { MatDialogRef } from "@angular/material/dialog/dialog-ref";
+import { MatDialogModule } from "@angular/material/dialog";
 
-const MaterialComponents = [MatSortModule, MatDialog, MatDialogRef];
+const MaterialComponents = [MatSortModule, MatDialogModule];
 
 @NgModule({
   imports: [MaterialComponents],
