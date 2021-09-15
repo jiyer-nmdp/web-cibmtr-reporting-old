@@ -2,8 +2,11 @@ import { Component, OnInit, HostListener } from "@angular/core";
 import { Patient } from "../model/patient.";
 import { UtilityService } from "../utility.service";
 import { ConfirmationDialog } from "../confirm.dialog/confirmation-dialog";
-import { MatDialog } from "@angular/material/dialog/dialog";
-import { MatDialogRef } from "@angular/material/dialog/dialog-ref";
+import { MatDialog } from "@angular/material/dialog";
+import { MatDialogRef } from "@angular/material/dialog";
+import { PatientService } from "../patient/patient.service";
+import { LocalStorageService } from "angular-2-local-storage";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: "app-patient.detail",
@@ -12,17 +15,21 @@ import { MatDialogRef } from "@angular/material/dialog/dialog-ref";
 })
 export class PatientDetailComponent implements OnInit {
   ehrpatient: Patient;
-  //labs: any;
   psScope: string;
   crid: string;
   activeLabel: string;
   priority: any;
   dialogRef: MatDialogRef<ConfirmationDialog>;
 
-  constructor(private utility: UtilityService, public dialog: MatDialog) {
+  constructor(
+    private utility: UtilityService,
+    private dialog: MatDialog,
+    private patientService: PatientService,
+    private localStorageService: LocalStorageService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
     let data = utility.data;
-
-    //this.labs = this.utility.bundleObservations(data.labs);
     this.ehrpatient = JSON.parse(data.ehrpatient);
     this.priority = this.utility.bundleObservations(data.priorityLabs);
     this.crid = data.crid;
@@ -53,19 +60,50 @@ export class PatientDetailComponent implements OnInit {
   }
 
   //Confirmation on AllLabs API on demand
-  openConfirmationDialog() {
-    this.dialogRef = this.dialog.open(ConfirmationDialog, {
-      disableClose: false,
-    });
-    //Alert_messages will be maintained in constant file in future
-    this.dialogRef.componentInstance.confirmMessage =
-      "Retrieving All Labs may taken several minutes. Do you want to continue?";
+  //If fecthced already avoid the Confirmation dialog
 
-    this.dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        // do confirmation actions
-      }
-      this.dialogRef = null;
-    });
+  openConfirmationDialog() {
+    if (!this.utility.data.labs) {
+      this.dialogRef = this.dialog.open(ConfirmationDialog, {
+        disableClose: false,
+      });
+      //Alert_messages will be maintained in constant file in future
+      this.dialogRef.componentInstance.confirmMessage =
+        "Retrieving All Labs may taken several minutes. Do you want to continue?";
+
+      this.dialogRef.afterClosed().subscribe((result) => {
+        if (result) {
+          this.patientService
+            .getObservationLabs(this.localStorageService.get("patient"))
+            .subscribe(
+              (labsData) => {
+                if (labsData) {
+                  this.utility.data.labs = JSON.stringify(labsData);
+                  this.routeTo(labsData);
+                }
+              },
+              () => {
+                this.router.navigate(["./error"], { relativeTo: this.route });
+              }
+            );
+        }
+        this.dialogRef = null;
+      });
+    } else {
+      const data = JSON.parse(this.utility.data.labs);
+      this.routeTo(data);
+    }
+  }
+
+  routeTo(data) {
+    if (data.length === 0) {
+      this.router.navigate(["./info"], {
+        relativeTo: this.route,
+      });
+    } else {
+      this.router.navigate(["./labs"], {
+        relativeTo: this.route,
+      });
+    }
   }
 }

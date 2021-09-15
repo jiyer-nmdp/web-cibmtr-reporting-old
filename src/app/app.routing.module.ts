@@ -31,11 +31,11 @@ const routes: Routes = [
         pathMatch: "full",
       },
       {
-        path: "labs",
+        path: "priority",
         component: ObservationLabsComponent,
       },
       {
-        path: "priority",
+        path: "labs",
         component: ObservationLabsComponent,
       },
       {

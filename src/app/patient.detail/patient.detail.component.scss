@@ -60,8 +60,9 @@
   letter-spacing: normal;
 }
 
-.label-font {
+.resource-label > a {
   color: #696969;
+  cursor: pointer;
 }
 
 .date-label {

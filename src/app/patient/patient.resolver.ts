@@ -13,7 +13,7 @@ import { IIdentifiers } from "../model/identifiers";
 import { HttpHeaders } from "@angular/common/http";
 import { HttpClient } from "@angular/common/http";
 import { HttpErrorResponse } from "@angular/common/http";
-import { map, mergeMap, catchError, mapTo } from "rxjs/operators";
+import { map, mergeMap, catchError, mapTo, flatMap } from "rxjs/operators";
 import { UtilityService } from "../utility.service";
 import { SpinnerService } from "../spinner/spinner.service";
 
@@ -33,8 +33,7 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
 
     //Post call to get the STU3 patient id by retreving the patient identifier from local storage
 
-    let issurl: string =
-      "https://apporchard.epic.com/interconnect-aomay20prd-oauth/api/FHIR/STU3";
+    let issurl: string = this._localStorageService.get("iss");
 
     if (issurl.includes("DSTU2")) {
       let ehrHeaders: HttpHeaders = new HttpHeaders()
@@ -70,25 +69,24 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
               );
             }
           }),
-          mergeMap((stu3_id) => this.getEHRPatient(stu3_id))
+          mergeMap((stu3_id) => this.getEhrDataSets(stu3_id))
         );
     } else {
-      return this.getEHRPatient(this._localStorageService.get("patient"));
-
-      // let id = "enUzUbclL5CmKODptMHj-iw3";
-      // this.spinner.start();
-      // return forkJoin([this.patientDetailService.getPatient(id)]);
+      return this.getEhrDataSets(this._localStorageService.get("patient"));
     }
   }
 
-  getEHRPatient(id) {
+  getEhrDataSets(id) {
     this.spinner.start();
-    return forkJoin([this.patientDetailService.getPatient(id)]);
+    return forkJoin([
+      this.patientDetailService.getPatient(id),
+      this.patientDetailService.getObservationPriorityLabs(id),
+    ]);
   }
 
   handleError(error: HttpErrorResponse) {
     this.spinner.reset();
-    let errorMessage = `Unexpected Failure Patient.Read API \n${
+    let errorMessage = `Unexpected Failure EPIC API \n${
       error.status
     } \n Message : ${error.url || error.message}. `;
 
