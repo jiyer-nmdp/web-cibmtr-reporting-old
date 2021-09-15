@@ -13,7 +13,7 @@ import { IIdentifiers } from "../model/identifiers";
 import { HttpHeaders } from "@angular/common/http";
 import { HttpClient } from "@angular/common/http";
 import { HttpErrorResponse } from "@angular/common/http";
-import { map, mergeMap, catchError, mapTo, flatMap } from "rxjs/operators";
+import { map, mergeMap, catchError } from "rxjs/operators";
 import { UtilityService } from "../utility.service";
 import { SpinnerService } from "../spinner/spinner.service";
 
