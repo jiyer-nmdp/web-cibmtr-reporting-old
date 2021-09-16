@@ -1,12 +1,18 @@
-<!--<h1 md-dialog-title>Confirm</h1>-->
-<div md-dialog-content>{{confirmMessage}}</div>
-<div md-dialog-actions>
-  <button
-    mat-raised-button
-    style="color: #fff; background-color: #153961"
+<div mat-dialog-content>{{confirmMessage}}</div>
+<div style="float: right; margin: 20px">
+  <input
+    style="margin: 0px 10px"
+    type="button"
+    class="btn btn-primary"
     (click)="dialogRef.close(true)"
-  >
-    Continue
-  </button>
-  <button md-button (click)="dialogRef.close(false)">Cancel</button>
+    value="Confirm"
+    [mat-dialog-close]="true"
+  />
+  <input
+    type="button"
+    class="btn btn-danger"
+    (click)="dialogRef.close(false)"
+    value="Cancel"
+    [mat-dialog-close]="false"
+  />
 </div>
