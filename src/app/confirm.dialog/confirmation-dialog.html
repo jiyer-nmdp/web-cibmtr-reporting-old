@@ -1,0 +1,18 @@
+<div mat-dialog-content>{{confirmMessage}}</div>
+<div style="float: right; margin: 20px">
+  <input
+    style="margin: 0px 10px"
+    type="button"
+    class="btn btn-primary"
+    (click)="dialogRef.close(true)"
+    value="Confirm"
+    [mat-dialog-close]="true"
+  />
+  <input
+    type="button"
+    class="btn btn-danger"
+    (click)="dialogRef.close(false)"
+    value="Cancel"
+    [mat-dialog-close]="false"
+  />
+</div>

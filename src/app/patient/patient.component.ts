@@ -148,8 +148,7 @@ export class PatientComponent implements OnInit {
     this._route.data.subscribe(
       (results) => {
         this.ehrpatient = results.pageData[0];
-        this.labs = results.pageData[1];
-        this.priorityLabs = results.pageData[2];
+        this.priorityLabs = results.pageData[1];
         this.validateFields(this.ehrpatient);
         this.retreiveFhirPatient(this.ehrpatient, selectedScope);
       },
@@ -438,9 +437,9 @@ export class PatientComponent implements OnInit {
 
   proceed() {
     this.utility.data = {
-      labs: JSON.stringify(this.labs),
-      priorityLabs: JSON.stringify(this.priorityLabs),
+      //Stringified JSON object for IE11 issue
       ehrpatient: JSON.stringify(this.ehrpatient),
+      priorityLabs: JSON.stringify(this.priorityLabs),
       crid: this.crid,
       psScope: this.psScope,
     };

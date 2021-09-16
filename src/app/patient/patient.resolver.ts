@@ -69,29 +69,24 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
               );
             }
           }),
-          mergeMap((stu3_id) => {
-            this.spinner.start();
-            return forkJoin([
-              this.patientDetailService.getPatient(stu3_id),
-              this.patientDetailService.getObservationLabs(stu3_id),
-              this.patientDetailService.getObservationPriorityLabs(stu3_id),
-            ]);
-          })
+          mergeMap((stu3_id) => this.getEhrDataSets(stu3_id))
         );
     } else {
-      let id = this._localStorageService.get("patient");
-      this.spinner.start();
-      return forkJoin([
-        this.patientDetailService.getPatient(id),
-        this.patientDetailService.getObservationLabs(id),
-        this.patientDetailService.getObservationPriorityLabs(id),
-      ]);
+      return this.getEhrDataSets(this._localStorageService.get("patient"));
     }
+  }
+
+  getEhrDataSets(id) {
+    this.spinner.start();
+    return forkJoin([
+      this.patientDetailService.getPatient(id),
+      this.patientDetailService.getObservationPriorityLabs(id),
+    ]);
   }
 
   handleError(error: HttpErrorResponse) {
     this.spinner.reset();
-    let errorMessage = `Unexpected Failure Patient.Read API \n${
+    let errorMessage = `Unexpected Failure EPIC API \n${
       error.status
     } \n Message : ${error.url || error.message}. `;
 

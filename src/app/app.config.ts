@@ -1,4 +1,4 @@
-import {environment} from "../environments/environment";
+import { environment } from "../environments/environment";
 
 export class AppConfig {
   // Define all the constants of the app
@@ -46,48 +46,6 @@ export class AppConfig {
   public static crid_service_endpoint = environment.cibmtr_fhir_r3_url + "CRID";
 
   public static cibmtr_fhir_url = environment.cibmtr_fhir_r3_url;
-
-  public static codes = [
-    "2003853",
-    "2603692",
-    "2787385",
-    "2787392",
-    "2787396",
-    "2787403",
-    "2787415",
-    "2787423",
-    "2787453",
-    "2787459",
-    "2787467",
-    "2787484",
-    "2787521",
-    "2787539",
-    "2787565",
-    "2787579",
-    "2787616",
-    "2787667",
-    "2787671",
-    "2787840",
-    "2787856",
-    "2787862",
-    "2787870",
-    "2787872",
-    "2787874",
-    "2793688",
-    "2797618",
-    "2797645",
-    "2797671",
-    "2860477",
-    "2861433",
-    "3578143",
-    "4492414",
-    "4492418",
-    "4492434",
-    "4492471",
-    "4492511",
-    "4492571",
-    "4492575",
-  ];
 
   public static loinc_system = "http://loinc.org";
 

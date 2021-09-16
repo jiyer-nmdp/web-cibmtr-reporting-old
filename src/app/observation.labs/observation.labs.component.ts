@@ -46,12 +46,12 @@ export class ObservationLabsComponent implements OnInit {
   ) {
     let data = utility.data;
 
-    if (data.labs != "null") {
-      this.labs = utility.bundleObservations(data.labs).entry;
+    if (data.priorityLabs != "null") {
+      this.priority = this.utility.bundleObservations(data.priorityLabs).entry;
     }
 
-    if (data.priorityLabs != "null") {
-      this.priority = utility.bundleObservations(data.priorityLabs).entry;
+    if (data.labs) {
+      this.labs = this.utility.bundleObservations(data.labs).entry;
     }
 
     this.psScope = data.psScope;
