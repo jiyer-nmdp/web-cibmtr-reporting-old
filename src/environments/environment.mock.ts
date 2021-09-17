@@ -1,5 +1,5 @@
 export const environment = {
-  production: true,
+  production: false,
   mock: false,
   ehr_client_id: "b5aaa0c6-6909-4473-a11e-fa7492cdce6d",
   okta_setup: {
