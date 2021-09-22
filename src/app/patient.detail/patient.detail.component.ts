@@ -7,6 +7,7 @@ import { MatDialogRef } from "@angular/material/dialog";
 import { PatientService } from "../patient/patient.service";
 import { LocalStorageService } from "angular-2-local-storage";
 import { ActivatedRoute, Router } from "@angular/router";
+import { SpinnerService } from "../spinner/spinner.service";
 
 @Component({
   selector: "app-patient.detail",
@@ -20,9 +21,11 @@ export class PatientDetailComponent implements OnInit {
   activeLabel: string;
   priority: any;
   dialogRef: MatDialogRef<ConfirmationDialog>;
+  total;
 
   constructor(
     private utility: UtilityService,
+    private spinner: SpinnerService,
     private dialog: MatDialog,
     private patientService: PatientService,
     private localStorageService: LocalStorageService,
@@ -73,6 +76,7 @@ export class PatientDetailComponent implements OnInit {
 
       this.dialogRef.afterClosed().subscribe((result) => {
         if (result) {
+          this.spinner.start();
           this.patientService
             .getObservationLabs(this.localStorageService.get("patient"))
             .subscribe(
@@ -81,8 +85,10 @@ export class PatientDetailComponent implements OnInit {
                   this.utility.data.labs = JSON.stringify(labsData);
                   this.routeTo(labsData);
                 }
+                this.spinner.end();
               },
               () => {
+                this.spinner.reset();
                 this.router.navigate(["./error"], { relativeTo: this.route });
               }
             );
@@ -95,8 +101,9 @@ export class PatientDetailComponent implements OnInit {
     }
   }
 
-  routeTo(data) {
-    if (data.length === 0) {
+  routeTo(labsData) {
+    const data = this.utility.bundleObservations(JSON.stringify(labsData));
+    if (data.total === 0) {
       this.router.navigate(["./info"], {
         relativeTo: this.route,
       });
