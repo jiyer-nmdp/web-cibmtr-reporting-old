@@ -54,9 +54,7 @@ export class PatientService {
       ) +
       "/Observation?category=laboratory&_count=1000&patient=" +
       identifier;
-    return this.utilityService
-      .getPage(url, this.buildEhrHeaders())
-      .pipe(catchError(() => of(null)));
+    return this.utilityService.getPage(url, this.buildEhrHeaders());
   }
 
   buildEhrHeaders() {
