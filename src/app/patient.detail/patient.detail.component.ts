@@ -21,7 +21,7 @@ export class PatientDetailComponent implements OnInit {
   activeLabel: string;
   priority: any;
   dialogRef: MatDialogRef<ConfirmationDialog>;
-  labsdata: any;
+  labsState: any;
 
   constructor(
     private utility: UtilityService,
@@ -80,14 +80,15 @@ export class PatientDetailComponent implements OnInit {
           this.patientService
             .getObservationLabs(this.localStorageService.get("patient"))
             .subscribe(
-              (labsData) => {
-                if (labsData) {
-                  this.utility.data.labs = JSON.stringify(labsData);
-                  this.routeTo(labsData);
+              (data) => {
+                if (data) {
+                  this.utility.data.labs = JSON.stringify(data);
+                  this.routeTo(data);
                 }
                 this.spinner.end();
               },
               (error) => {
+                this.labsState = "error";
                 this.spinner.reset();
                 this.router.navigate(["./error"], { relativeTo: this.route });
               }
@@ -101,9 +102,9 @@ export class PatientDetailComponent implements OnInit {
     }
   }
 
-  routeTo(labsData) {
-    this.labsdata = this.utility.bundleObservations(JSON.stringify(labsData));
-    if (this.labsdata.total === 0) {
+  routeTo(data) {
+    this.labsState = this.utility.bundleObservations(JSON.stringify(data));
+    if (this.labsState.total === 0) {
       this.router.navigate(["./info"], {
         relativeTo: this.route,
       });

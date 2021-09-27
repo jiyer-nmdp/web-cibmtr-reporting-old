@@ -43,9 +43,19 @@
               [ngClass]="{ active: activeLabel == 'lab' }"
               >All Labs
             </a>
-            <b *ngIf="labsdata" class="badge pull-right">{{
-              labsdata.total
-            }}</b>
+
+            <ng-container *ngIf="labsState">
+              <img
+                *ngIf="labsState === 'error'; else labsTotal"
+                src="assets/images/exclamation-triangle.png"
+                class="exclamation pull-right"
+              />
+              <ng-template #labsTotal
+                ><b class="badge pull-right">{{
+                  labsState.total
+                }}</b></ng-template
+              >
+            </ng-container>
           </div>
         </div>
       </div>
