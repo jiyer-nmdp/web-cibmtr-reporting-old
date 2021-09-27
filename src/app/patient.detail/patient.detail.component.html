@@ -26,10 +26,10 @@
               [ngClass]="{ active: activeLabel == 'priority' }"
               >Priority Labs
             </a>
-            <b *ngIf="priority; else other_content" class="badge pull-right">{{
+            <b *ngIf="priority; else error_priority" class="badge pull-right">{{
               priority.total
             }}</b>
-            <ng-template #other_content
+            <ng-template #error_priority
               ><img
                 src="assets/images/exclamation-triangle.png"
                 class="exclamation pull-right"
@@ -43,6 +43,9 @@
               [ngClass]="{ active: activeLabel == 'lab' }"
               >All Labs
             </a>
+            <b *ngIf="labsdata" class="badge pull-right">{{
+              labsdata.total
+            }}</b>
           </div>
         </div>
       </div>
