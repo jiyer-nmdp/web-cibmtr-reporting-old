@@ -55,7 +55,7 @@ export class AppInitService {
 
     if (iss && launchToken) {
       this._localStorageService.set("iss", iss);
-
+      console.log("iss = " + iss);
       return this.authorizationService.getMetadata(iss).then((response) => {
         let validCodeState = uuidv4();
         this._localStorageService.set("validCodeState", validCodeState);

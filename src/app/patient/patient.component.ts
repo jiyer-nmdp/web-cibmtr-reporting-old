@@ -148,8 +148,7 @@ export class PatientComponent implements OnInit {
     this._route.data.subscribe(
       (results) => {
         this.ehrpatient = results.pageData[0];
-        this.labs = results.pageData[1];
-        this.priorityLabs = results.pageData[2];
+        this.priorityLabs = results.pageData[1];
         this.validateFields(this.ehrpatient);
         this.retreiveFhirPatient(this.ehrpatient, selectedScope);
       },
@@ -255,22 +254,7 @@ export class PatientComponent implements OnInit {
       gender = ehrpatient.gender.toLowerCase();
     }
 
-    const raceCodes = ehrpatient.extension
-      .map((outerEle) => {
-        return (
-          outerEle.extension &&
-          outerEle.extension.filter(
-            (innerEle) =>
-              innerEle.valueCoding &&
-              AppConfig.race_ombsystem.includes(innerEle.valueCoding.system)
-          )
-        );
-      })
-      .filter((a) => a !== undefined && a.length > 0) // filter
-      .reduce((acc, val) => acc.concat(val), []) // flatten the array
-      .map((i) => i.valueCoding && i.valueCoding.code); // extract the codes
-
-    // const raceDetailCodes = ehrpatient.extension
+    // const raceDetailCodes = ehrpatient.extension && ehrpatient.extension
     //   .map((outerEle) => {
     //     return (
     //       outerEle.extension &&
@@ -287,24 +271,42 @@ export class PatientComponent implements OnInit {
     //   .reduce((acc, val) => acc.concat(val), [])
     //   .map((i) => i.valueCoding && i.valueCoding.code);
 
-    const ethnicityCodes = ehrpatient.extension
-      .map((outerEle) => {
-        return (
-          outerEle.extension &&
-          outerEle.extension.filter(
-            (innerEle) =>
-              innerEle.valueCoding &&
-              AppConfig.ethnicity_ombsystem.includes(
-                innerEle.valueCoding.system
-              )
-          )
-        );
-      })
-      .filter((a) => a !== undefined && a.length > 0)
-      .reduce((acc, val) => acc.concat(val), [])
-      .map((i) => i.valueCoding && i.valueCoding.code)
-      .join();
+    const raceCodes =
+      ehrpatient.extension &&
+      ehrpatient.extension
+        .map((outerEle) => {
+          return (
+            outerEle.extension &&
+            outerEle.extension.filter(
+              (innerEle) =>
+                innerEle.valueCoding &&
+                AppConfig.race_ombsystem.includes(innerEle.valueCoding.system)
+            )
+          );
+        })
+        .filter((a) => a !== undefined && a.length > 0) // filter
+        .reduce((acc, val) => acc.concat(val), []) // flatten the array
+        .map((i) => i.valueCoding && i.valueCoding.code); // extract the codes
 
+    const ethnicityCodes =
+      ehrpatient.extension &&
+      ehrpatient.extension
+        .map((outerEle) => {
+          return (
+            outerEle.extension &&
+            outerEle.extension.filter(
+              (innerEle) =>
+                innerEle.valueCoding &&
+                AppConfig.ethnicity_ombsystem.includes(
+                  innerEle.valueCoding.system
+                )
+            )
+          );
+        })
+        .filter((a) => a !== undefined && a.length > 0)
+        .reduce((acc, val) => acc.concat(val), [])
+        .map((i) => i.valueCoding && i.valueCoding.code)
+        .join();
     //CRID Payload
 
     let payload = {
@@ -435,9 +437,9 @@ export class PatientComponent implements OnInit {
 
   proceed() {
     this.utility.data = {
-      labs: JSON.stringify(this.labs),
-      priorityLabs: JSON.stringify(this.priorityLabs),
+      //Stringified JSON object for IE11 issue
       ehrpatient: JSON.stringify(this.ehrpatient),
+      priorityLabs: JSON.stringify(this.priorityLabs),
       crid: this.crid,
       psScope: this.psScope,
     };

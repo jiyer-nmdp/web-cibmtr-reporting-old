@@ -31,6 +31,7 @@ export class AuthorizationService {
     if(!validState || validState !== state) {
       return Promise.reject(new Error("Invalid or missing state."));
     }
+
     //HTTP Post request  get Bearer token
     let body =
       "grant_type=authorization_code" +

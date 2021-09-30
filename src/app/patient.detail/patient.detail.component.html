@@ -15,7 +15,6 @@
         <div class="col-md-12">
           <div class="resource-label">
             <a
-              class="label-font"
               id="priority"
               [routerLink]="
                 !priority
@@ -27,10 +26,10 @@
               [ngClass]="{ active: activeLabel == 'priority' }"
               >Priority Labs
             </a>
-            <b *ngIf="priority; else other_content" class="badge pull-right">{{
+            <b *ngIf="priority; else error_priority" class="badge pull-right">{{
               priority.total
             }}</b>
-            <ng-template #other_content
+            <ng-template #error_priority
               ><img
                 src="assets/images/exclamation-triangle.png"
                 class="exclamation pull-right"
@@ -39,22 +38,24 @@
           <br />
           <div class="resource-label">
             <a
-              class="label-font"
+              (click)="openConfirmationDialog()"
               id="lab"
-              [routerLink]="
-                !labs ? ['error'] : labs.total === 0 ? ['info'] : ['labs']
-              "
               [ngClass]="{ active: activeLabel == 'lab' }"
-              >Labs
+              >All Labs
             </a>
-            <b *ngIf="labs; else other_content" class="badge pull-right">{{
-              labs.total
-            }}</b>
-            <ng-template #other_content
-              ><img
+
+            <ng-container *ngIf="labsState">
+              <img
+                *ngIf="labsState === 'error'; else labsTotal"
                 src="assets/images/exclamation-triangle.png"
                 class="exclamation pull-right"
-            /></ng-template>
+              />
+              <ng-template #labsTotal
+                ><b class="badge pull-right">{{
+                  labsState.total
+                }}</b></ng-template
+              >
+            </ng-container>
           </div>
         </div>
       </div>

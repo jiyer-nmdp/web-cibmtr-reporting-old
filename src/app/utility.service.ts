@@ -49,7 +49,10 @@ export class UtilityService {
     return url;
   }
 
-  //
+  /**
+   * Bundle Chunck
+   * @param observations
+   */
   chunk(array, size) {
     const chunked_arr = [];
     let index = 0;
@@ -73,7 +76,6 @@ export class UtilityService {
         return obs.resource && obs.resource.resourceType === "Observation";
       });
     }
-
     if (filteredObservations) {
       return {
         entry: filteredObservations,

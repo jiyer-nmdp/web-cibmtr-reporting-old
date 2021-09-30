@@ -8,6 +8,7 @@ import { AppConfig } from "../app.config";
 import { HttpClient } from "@angular/common/http";
 import { SpinnerService } from "../spinner/spinner.service";
 import { ActivatedRoute } from "@angular/router";
+import { Sort } from "@angular/material/sort";
 
 @Component({
   selector: "app-observation.labs",
@@ -34,6 +35,7 @@ export class ObservationLabsComponent implements OnInit {
   isAlldisabled: boolean;
   totalSuccessCount: number;
   totalFailCount: number;
+  categoryData: any = [];
 
   constructor(
     private http: HttpClient,
@@ -44,24 +46,27 @@ export class ObservationLabsComponent implements OnInit {
   ) {
     let data = utility.data;
 
-    if (data.labs != "null") {
-      this.labs = utility.bundleObservations(data.labs).entry;
+    if (data.priorityLabs != "null") {
+      this.priority = this.utility.bundleObservations(data.priorityLabs).entry;
     }
 
-    if (data.priorityLabs != "null") {
-      this.priority = utility.bundleObservations(data.priorityLabs).entry;
+    if (data.labs) {
+      this.labs = this.utility.bundleObservations(data.labs).entry;
     }
 
     this.psScope = data.psScope;
   }
 
   ngOnInit() {
-    const subj = this.getCategoryData()[0].resource.subject.reference;
+    this.categoryData = this.getCategoryData();
+    this.sortHeader({ active: "time", direction: "desc" });
+
+    const subj = this.categoryData[0].resource.subject.reference;
     const psScope = this.psScope;
 
     this.now = new Date();
 
-    if (this.getCategoryData() && this.getCategoryData().length > 0) {
+    if (this.categoryData && this.categoryData.length > 0) {
       this.spinner.start();
       this.observationlabsService
         .getCibmtrObservationsLabs(subj, psScope)
@@ -88,7 +93,7 @@ export class ObservationLabsComponent implements OnInit {
         .subscribe(
           (savedEntries) => {
             this.spinner.end();
-            let entries = this.getCategoryData();
+            let entries = this.categoryData;
             if (entries && entries.length > 0) {
               // filtering the entries to only Observations
               let observationEntries = entries.filter(function (item) {
@@ -202,9 +207,7 @@ export class ObservationLabsComponent implements OnInit {
 
     // New Records
     this.selectedNewEntries.push(
-      this.getCategoryData().filter(
-        (m) => m.selected === true && m.state === "bold"
-      )
+      this.categoryData.filter((m) => m.selected === true && m.state === "bold")
     );
 
     this.selectedNewResources = Array.prototype.concat.apply(
@@ -214,7 +217,7 @@ export class ObservationLabsComponent implements OnInit {
 
     // Updated Records
     this.selectedUpdatedEntries.push(
-      this.getCategoryData().filter(
+      this.categoryData.filter(
         (m) => m.selected === true && m.state === "normal"
       )
     );
@@ -274,17 +277,15 @@ export class ObservationLabsComponent implements OnInit {
   }
 
   checkForSelectAll() {
-    this.isAllSelected = this.getCategoryData().every(
-      (entry) => entry.selected
-    );
-    this.isAlldisabled = this.getCategoryData().every(
+    this.isAllSelected = this.categoryData.every((entry) => entry.selected);
+    this.isAlldisabled = this.categoryData.every(
       (entry) => entry.selected && entry.state === "lighter"
     );
   }
 
   selectAll() {
     let toggleStatus = this.isAllSelected;
-    this.getCategoryData().forEach((entry) => {
+    this.categoryData.forEach((entry) => {
       if (entry.state != "lighter") {
         entry.selected = toggleStatus;
       }
@@ -292,13 +293,13 @@ export class ObservationLabsComponent implements OnInit {
   }
 
   toggleOption = function () {
-    this.isAllSelected = this.getCategoryData().every(function (entry) {
+    this.isAllSelected = this.categoryData.every(function (entry) {
       return entry.selected;
     });
   };
 
   toggleAllOption = function () {
-    this.isAlldisabled = this.getCategoryData().every(function (entry) {
+    this.isAlldisabled = this.categoryData.every(function (entry) {
       return entry.disabled;
     });
   };
@@ -314,5 +315,41 @@ export class ObservationLabsComponent implements OnInit {
       return this.priority;
     }
     return this.labs;
+  }
+
+  sortHeader(event: Sort) {
+    const isAsc = event.direction === "asc";
+
+    if (!event.active || event.direction === "") {
+      return this.categoryData;
+    }
+
+    this.categoryData.sort((a, b) => {
+      switch (event.active) {
+        case "time":
+          return this.compare(
+            a.resource.effectiveDateTime,
+            b.resource.effectiveDateTime,
+            isAsc
+          );
+        case "name":
+          return this.compare(
+            a.resource.code?.text,
+            b.resource.code?.text,
+            isAsc
+          );
+
+        default:
+          return 0;
+      }
+    });
+  }
+
+  compare(
+    a: number | string | Date,
+    b: number | string | Date,
+    isAsc: boolean
+  ) {
+    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
 }
