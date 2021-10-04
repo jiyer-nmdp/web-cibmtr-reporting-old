@@ -1,9 +1,7 @@
 import { Injectable } from "@angular/core";
-import { EMPTY, Observable } from "rxjs";
+import { EMPTY } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { expand, map, reduce } from "rxjs/operators";
-import {AppConfig} from "./app.config";
-import {LocalStorageService} from "angular-2-local-storage";
 
 @Injectable({
   providedIn: "root",
@@ -13,7 +11,7 @@ export class UtilityService {
   data: any;
   chunkSize: number = 30;
 
-  constructor(private http: HttpClient, private _localStorageService: LocalStorageService) {}
+  constructor(private http: HttpClient) {}
 
   //Reusable methods defined in this Components
 
@@ -51,7 +49,10 @@ export class UtilityService {
     return url;
   }
 
-  //
+  /**
+   * Bundle Chunck
+   * @param observations
+   */
   chunk(array, size) {
     const chunked_arr = [];
     let index = 0;
@@ -75,7 +76,6 @@ export class UtilityService {
         return obs.resource && obs.resource.resourceType === "Observation";
       });
     }
-
     if (filteredObservations) {
       return {
         entry: filteredObservations,
@@ -83,48 +83,5 @@ export class UtilityService {
         resourceType: "Bundle",
       };
     }
-  }
-
-  /**
-   * Common utility method for cibmtr observations
-   * @param subject
-   * @param psScope
-   * @param category
-   */
-  getCibmtrObservations(subject, psScope, category): Observable<any> {
-    const url =
-      AppConfig.cibmtr_fhir_url +
-      "Observation?subject=" +
-      (subject.startsWith("http") ? subject : this._localStorageService.get("iss") + "/" + subject) +
-      "&_security=" +
-      psScope +
-      "&_total=accurate&_count=500&category=" + category;
-    return this.http.get(url);
-  }
-
-
-  /**
-   * Correct Resource URL in logicahealth resources
-   * @param selectedEntries
-   */
-  buildSelectedResources(selectedEntries) {
-    let selectedResources = [];
-    const flattenSelectedEntries = Array.prototype.concat.apply(
-      [],
-      selectedEntries
-    );
-    flattenSelectedEntries.forEach((selectedEntry) => {
-      selectedResources.push(selectedEntry);
-    });
-
-    selectedResources.forEach((selectedEntry) => {
-      if (!selectedEntry.resource.subject.reference.startsWith("http")) {
-        selectedEntry.resource.subject.reference = this._localStorageService.get("iss") + "/" + selectedEntry.resource.subject.reference;
-      }
-      if (selectedEntry.resource.performer && !selectedEntry.resource.performer[0].reference.startsWith("http")) {
-        selectedEntry.resource.performer[0].reference = this._localStorageService.get("iss") + "/" + selectedEntry.resource.performer[0].reference;
-      }
-    });
-    return selectedResources;
   }
 }

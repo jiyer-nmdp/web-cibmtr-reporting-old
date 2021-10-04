@@ -9,7 +9,7 @@ import { AppConfig } from "../app.config";
 import { IPatientContext } from "../model/patient.";
 import { LocalStorageService } from "angular-2-local-storage";
 import { UtilityService } from "../utility.service";
-import { catchError, timestamp } from "rxjs/operators";
+import { catchError } from "rxjs/operators";
 
 @Injectable()
 export class PatientService {
@@ -47,16 +47,14 @@ export class PatientService {
       .pipe(catchError(() => of(null)));
   }
 
-  getObservationLabs(identifier): Observable<IPatientContext> {
+  getObservationLabs(identifier): Observable<any> {
     let url =
       this.utilityService.rebuild_DSTU2_STU3_Url(
         this._localStorageService.get("iss")
       ) +
       "/Observation?category=laboratory&_count=1000&patient=" +
       identifier;
-    return this.utilityService
-      .getPage(url, this.buildEhrHeaders())
-      .pipe(catchError(() => of(null)));
+    return this.utilityService.getPage(url, this.buildEhrHeaders());
   }
 
   buildEhrHeaders() {
