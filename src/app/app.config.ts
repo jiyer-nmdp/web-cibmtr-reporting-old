@@ -50,4 +50,6 @@ export class AppConfig {
   public static loinc_system = "http://loinc.org";
 
   public static loinc_codes = environment.loinc_codes;
+
+  public static logica_client_id = environment.logica_client_id;
 }

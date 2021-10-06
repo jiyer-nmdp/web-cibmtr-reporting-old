@@ -16,6 +16,7 @@ export const environment = {
   ehr_redirect_url: window["env"]["ehr_redirect_url"],
   cibmtr_fhir_r3_url: window["env"]["cibmtr_fhir_r3_url"],
   loinc_codes: [window["env"]["loinc_codes"]],
+  logica_client_id:window["env"]["logica_client_Id"]
 };
 
 /*
