@@ -149,6 +149,7 @@ export class ObservationLabsComponent implements OnInit {
               "error occurred while fetching saved observations",
               error
             );
+            throw error;
           }
         );
     }
@@ -264,6 +265,7 @@ export class ObservationLabsComponent implements OnInit {
                 matchedEntry.state = "lighter";
                 _successCount++;
               });
+            throw response;
           },
           (errorBundle) => {
             this.spinner.reset();
@@ -271,6 +273,7 @@ export class ObservationLabsComponent implements OnInit {
               "error occurred while fetching saved observations",
               errorBundle
             );
+            throw errorBundle;
           }
         );
     }

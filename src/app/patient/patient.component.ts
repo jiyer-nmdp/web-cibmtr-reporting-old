@@ -67,7 +67,9 @@ export class PatientComponent implements OnInit {
           if (result === "Continue") {
             this.subscribeRouteData(this.bsModalRef.content.currentItem);
           }
-        });
+        },
+          error => {throw error;}
+        );
       } else if (cibmtrCenters) {
         this.subscribeRouteData(cibmtrCenters[0]);
       }
@@ -122,7 +124,8 @@ export class PatientComponent implements OnInit {
           });
         })
         .catch((error) => {
-          this.handleError(error, this.fhirApp, new Date().getTime());
+        //  this.handleError(error, this.fhirApp, new Date().getTime());
+          throw error;
         });
       return cibmtrCenters;
     }
@@ -154,7 +157,8 @@ export class PatientComponent implements OnInit {
       },
       (error) => {
         this.spinner.reset();
-        return throwError(error);
+        throw error;
+//        return throwError(error);
       }
     );
   };
@@ -222,11 +226,14 @@ export class PatientComponent implements OnInit {
     }
     if (error != null) {
       console.error("An error occurred" + error);
+      throw error;
       return Promise.reject(error.message || error.status);
     } else {
       console.error("An unknown error occurred");
+      throw error;
       return Promise.reject("Unknown error");
     }
+    throw error;
   }
 
   register(e: any, ehrpatient: any) {
@@ -243,11 +250,11 @@ export class PatientComponent implements OnInit {
       ehrpatient.gender === "unknown" ||
       ehrpatient.gender === "other"
     ) {
-      alert(
-        "Unable to register this patient " +
-          ehrpatient.gender +
-          " is not currently supported as a gender value. Please contact your center's CIBMTR CRC to review this case."
-      );
+      let msg =  "Unable to register this patient " +
+        ehrpatient.gender +
+        " is not currently supported as a gender value. Please contact your center's CIBMTR CRC to review this case.";
+      alert(msg);
+      throw msg;
       this.isLoading = false;
       return;
     } else {
@@ -361,12 +368,14 @@ export class PatientComponent implements OnInit {
                 console.log("Submitted patient");
               },
               (error) => {
-                this.handleError(error, this.fhirApp, new Date().getTime());
+                throw error;
+              //  this.handleError(error, this.fhirApp, new Date().getTime());
               }
             );
         },
         (error) => {
-          this.handleError(error, this.cridApp, new Date().getTime());
+          throw error;
+          // this.handleError(error, this.cridApp, new Date().getTime());
         },
         () => (this.cridCallComplete = true)
       );

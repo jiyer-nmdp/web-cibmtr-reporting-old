@@ -91,6 +91,7 @@ export class PatientDetailComponent implements OnInit {
                 this.labsState = "error";
                 this.spinner.reset();
                 this.router.navigate(["./error"], { relativeTo: this.route });
+                throw error;
               }
             );
         }

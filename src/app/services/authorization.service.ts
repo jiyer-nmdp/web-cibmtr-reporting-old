@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { AppConfig } from "../app.config";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { HttpErrorResponse } from "@angular/common/http";
+import {Observable} from "rxjs";
 
 @Injectable()
 export class AuthorizationService {
@@ -68,15 +69,15 @@ export class AuthorizationService {
     );
   }
 
-  getMetadata(url) {
+  getMetadata(url): Observable<any> {
     let metadata = url + "/metadata";
     return this.http
-      .get(metadata, {
+      .get<any>(metadata, {
         headers: new HttpHeaders({
           Accept: "application/fhir+json",
         }),
-      })
-      .toPromise();
+      });
+      // .toPromise();
   }
 
   getAuthorizeUrl(data) {

@@ -1,5 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule, APP_INITIALIZER } from "@angular/core";
+import {NgModule, APP_INITIALIZER, ErrorHandler} from "@angular/core";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AppRoutingModule, routingComponents } from "./app.routing.module";
 import { AppComponent } from "./app.component";
@@ -26,6 +26,9 @@ import { SpinnerService } from "./spinner/spinner.service";
 import { ModalModule } from "ngx-bootstrap/modal";
 import { FormsModule } from "@angular/forms";
 import { Validator } from "./validator_regex";
+import { MessageTrayComponent } from './message-tray/message-tray.component';
+import {HttpErrorInterceptor} from "./http-error.interceptor";
+import {MyErrorHandler} from "./my-error-handler";
 
 export const isMock = environment.mock;
 
@@ -40,6 +43,7 @@ export const isMock = environment.mock;
     ErrorComponent,
     InfoComponent,
     SpinnerComponent,
+    MessageTrayComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,6 +75,15 @@ export const isMock = environment.mock;
       deps: [AppInitService],
       multi: true,
     },
+    {
+      provide: ErrorHandler,
+      useClass: MyErrorHandler
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true,
+    },
     ...(isMock
       ? [
           {
@@ -86,7 +99,7 @@ export const isMock = environment.mock;
 export class AppModule {}
 
 export function appInitFactory(appInitService: AppInitService) {
-  return (): Promise<any> => {
+  return () => {
     return appInitService.initializeApp();
   };
 }

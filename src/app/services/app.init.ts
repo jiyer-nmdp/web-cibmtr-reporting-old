@@ -12,7 +12,7 @@ export class AppInitService {
     private location: Location,
     private _localStorageService: LocalStorageService
   ) {}
-  initializeApp(): Promise<any> {
+  initializeApp() {
     if (!window.location.href.includes("?")) {
       console.log(
         "Location doesnt seems to have query paremeters..",
@@ -45,7 +45,7 @@ export class AppInitService {
           this._localStorageService.set("patient", response["patient"]);
           this.location.go("/main");
         })
-        .catch();
+        .catch(error => {throw error;});
     }
 
     let iss = this.authorizationService.getIss(window.location.href),
@@ -56,29 +56,32 @@ export class AppInitService {
     if (iss && launchToken) {
       this._localStorageService.set("iss", iss);
       console.log("iss = " + iss);
-      return this.authorizationService.getMetadata(iss).then((response) => {
-        let validCodeState = uuidv4();
-        this._localStorageService.set("validCodeState", validCodeState);
-        let tokenUrl = this.authorizationService.getTokenUrl(response),
-          authorizeUrl = this.authorizationService.getAuthorizeUrl(response),
-          authorizationCodeUrl = this.authorizationService.constructAuthorizationUrl(
+      return this.authorizationService.getMetadata(iss).
+      subscribe( response => {
+          let validCodeState = uuidv4();
+          this._localStorageService.set("validCodeState", validCodeState);
+          let tokenUrl = this.authorizationService.getTokenUrl(response);
+          let authorizeUrl = this.authorizationService.getAuthorizeUrl(response);
+          let authorizationCodeUrl = this.authorizationService.constructAuthorizationUrl(
             authorizeUrl,
             launchToken,
             iss,
             validCodeState
           );
-        this._localStorageService.set("tokenUrl", tokenUrl);
-        window.location.href = authorizationCodeUrl;
-        console.log(
-          " IssUrl => ",
-          iss + "\n launchToken =>",
-          launchToken,
-          "\n authorizeUrl =>",
-          authorizeUrl,
-          "\n authorizationCodeUrl =>",
-          authorizationCodeUrl
-        );
-      });
+          this._localStorageService.set("tokenUrl", tokenUrl);
+          window.location.href = authorizationCodeUrl;
+          console.log(
+            " IssUrl => ",
+            iss + "\n launchToken =>",
+            launchToken,
+            "\n authorizeUrl =>",
+            authorizeUrl,
+            "\n authorizationCodeUrl =>",
+            authorizationCodeUrl
+          );
+          throw response;
+        }, error => { throw error;}
+      );
     }
   }
   handleError(error: HttpErrorResponse) {
