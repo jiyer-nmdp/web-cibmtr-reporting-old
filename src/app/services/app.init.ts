@@ -3,6 +3,7 @@ import { AuthorizationService } from "./authorization.service";
 import { Location } from "@angular/common";
 import { LocalStorageService } from "angular-2-local-storage";
 import { HttpErrorResponse } from "@angular/common/http";
+
 import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
@@ -55,29 +56,20 @@ export class AppInitService {
 
     if (iss && launchToken) {
       this._localStorageService.set("iss", iss);
-      console.log("iss = " + iss);
       return this.authorizationService.getMetadata(iss).then((response) => {
         let validCodeState = uuidv4();
         this._localStorageService.set("validCodeState", validCodeState);
         let tokenUrl = this.authorizationService.getTokenUrl(response),
           authorizeUrl = this.authorizationService.getAuthorizeUrl(response),
-          authorizationCodeUrl = this.authorizationService.constructAuthorizationUrl(
-            authorizeUrl,
-            launchToken,
-            iss,
-            validCodeState
-          );
+          authorizationCodeUrl =
+            this.authorizationService.constructAuthorizationUrl(
+              authorizeUrl,
+              launchToken,
+              iss,
+              validCodeState
+            );
         this._localStorageService.set("tokenUrl", tokenUrl);
         window.location.href = authorizationCodeUrl;
-        console.log(
-          " IssUrl => ",
-          iss + "\n launchToken =>",
-          launchToken,
-          "\n authorizeUrl =>",
-          authorizeUrl,
-          "\n authorizationCodeUrl =>",
-          authorizationCodeUrl
-        );
       });
     }
   }

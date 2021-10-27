@@ -327,7 +327,7 @@ export class PatientComponent implements OnInit {
       if (!value) delete payload.patient[key];
     }
 
-    console.log("Sanitized", payload);
+    //console.log("Sanitized", payload);
 
     this.fhirService
       .getCrid(payload)
