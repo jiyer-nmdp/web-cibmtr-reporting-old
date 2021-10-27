@@ -1,13 +1,11 @@
 import { Injectable } from "@angular/core";
 import { AppConfig } from "../app.config";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { LocalStorageService } from "angular-2-local-storage";
 import { HttpErrorResponse } from "@angular/common/http";
 
 @Injectable()
 export class AuthorizationService {
-  constructor(private http: HttpClient,
-              private _localStorageService: LocalStorageService) {}
+  constructor(private http: HttpClient) {}
 
   getEhrCode(url) {
     let segments = url.split("?")[1].split("&");
@@ -33,16 +31,7 @@ export class AuthorizationService {
     if(!validState || validState !== state) {
       return Promise.reject(new Error("Invalid or missing state."));
     }
-    console.log("tokenurl = " + tokenurl);
-    let client_id = "";
 
-    if (tokenurl.indexOf("logica") === -1)
-    {
-      client_id = AppConfig.ehr_client_id;
-    } else {
-      client_id = this._localStorageService.get("client_id");
-    }
-    console.log("client_id in codeToBearerToken - " + client_id );
     //HTTP Post request  get Bearer token
     let body =
       "grant_type=authorization_code" +
@@ -51,7 +40,7 @@ export class AuthorizationService {
       "&redirect_uri=" +
       AppConfig.ehr_oauth_redirect_url +
       "&client_id=" +
-      client_id;
+      AppConfig.ehr_client_id;
 
     return this.http
       .post(tokenurl, body, {
@@ -63,25 +52,13 @@ export class AuthorizationService {
   }
 
   constructAuthorizationUrl(baseUrl, launchToken, aud, state) {
-    console.log("baseurl = " + baseUrl);
-    console.log("launchtoken = " + launchToken);
-    let client_id = "";
-    console.log("aud = " + aud);
-    if (aud.indexOf("logica") === -1)
-    {
-      client_id = AppConfig.ehr_client_id;
-    } else {
-      let sandboxName = aud.substring(aud.indexOf("org/") + 4, aud.lastIndexOf("/"));
-      this._localStorageService.set("client_id", AppConfig.logica_map.get(sandboxName));
-      client_id = this._localStorageService.get("client_id");
-    }
     return (
       baseUrl +
       "?scope=launch&response_type=code" +
       "&redirect_uri=" +
       encodeURIComponent(AppConfig.ehr_oauth_redirect_url) +
       "&client_id=" +
-      client_id +
+      AppConfig.ehr_client_id +
       "&launch=" +
       launchToken +
       "&aud=" +

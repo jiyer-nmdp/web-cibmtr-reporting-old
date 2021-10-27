@@ -46,12 +46,12 @@ export class ObservationLabsComponent implements OnInit {
   ) {
     let data = utility.data;
 
-    if (data.labs != "null") {
-      this.labs = utility.bundleObservations(data.labs).entry;
+    if (data.priorityLabs != "null") {
+      this.priority = this.utility.bundleObservations(data.priorityLabs).entry;
     }
 
-    if (data.priorityLabs != "null") {
-      this.priority = utility.bundleObservations(data.priorityLabs).entry;
+    if (data.labs) {
+      this.labs = this.utility.bundleObservations(data.labs).entry;
     }
 
     this.psScope = data.psScope;
@@ -68,8 +68,8 @@ export class ObservationLabsComponent implements OnInit {
 
     if (this.categoryData && this.categoryData.length > 0) {
       this.spinner.start();
-      this.utility
-        .getCibmtrObservations(subj, psScope, "laboratory")
+      this.observationlabsService
+        .getCibmtrObservationsLabs(subj, psScope)
         .pipe(
           expand((response) => {
             let next =
@@ -212,7 +212,7 @@ export class ObservationLabsComponent implements OnInit {
 
     this.selectedNewResources = Array.prototype.concat.apply(
       [],
-      this.utility.buildSelectedResources(this.selectedNewEntries)
+      this.selectedNewEntries
     );
 
     // Updated Records
@@ -224,7 +224,7 @@ export class ObservationLabsComponent implements OnInit {
 
     this.selectedUpdatedResources = Array.prototype.concat.apply(
       [],
-      this.utility.buildSelectedResources(this.selectedUpdatedEntries)
+      this.selectedUpdatedEntries
     );
 
     let totalEntries = [

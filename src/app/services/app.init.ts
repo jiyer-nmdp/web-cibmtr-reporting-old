@@ -3,8 +3,8 @@ import { AuthorizationService } from "./authorization.service";
 import { Location } from "@angular/common";
 import { LocalStorageService } from "angular-2-local-storage";
 import { HttpErrorResponse } from "@angular/common/http";
-import { v4 as uuidv4 } from "uuid";
-import { AppConfig } from "../app.config";
+
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
 export class AppInitService {
@@ -21,12 +21,6 @@ export class AppInitService {
       );
       return;
     }
-
-    // Extract the client_id and sandbox names from env input and put into map
-    AppConfig.logica_client_id_list.forEach((obj) => {
-      let str = obj.split(":");
-      AppConfig.logica_map.set(str[0], str[1]);
-    });
 
     let authorizationToken = this.authorizationService.getEhrCode(
       window.location.href
