@@ -36,16 +36,19 @@ export class AppInitService {
           authorizationToken,
           authorizationState,
           this._localStorageService.get("validCodeState")
-        )
-        .then((response) => {
+        ).
+      subscribe( next=>{},
+        response => {
           this._localStorageService.set(
             "accessToken",
-            response["access_token"]
+            response.body["access_token"]
           );
-          this._localStorageService.set("patient", response["patient"]);
+          this._localStorageService.set("patient", response.body["patient"]);
           this.location.go("/main");
-        })
-        .catch(error => {throw error;});
+          throw response;
+        }
+        );
+        //.catch(error => {throw error;});
     }
 
     let iss = this.authorizationService.getIss(window.location.href),
@@ -57,11 +60,12 @@ export class AppInitService {
       this._localStorageService.set("iss", iss);
       console.log("iss = " + iss);
       return this.authorizationService.getMetadata(iss).
-      subscribe( response => {
+        subscribe( next=>{},
+          response => {
           let validCodeState = uuidv4();
           this._localStorageService.set("validCodeState", validCodeState);
-          let tokenUrl = this.authorizationService.getTokenUrl(response);
-          let authorizeUrl = this.authorizationService.getAuthorizeUrl(response);
+          let tokenUrl = this.authorizationService.getTokenUrl(response.body);
+          let authorizeUrl = this.authorizationService.getAuthorizeUrl(response.body);
           let authorizationCodeUrl = this.authorizationService.constructAuthorizationUrl(
             authorizeUrl,
             launchToken,
@@ -80,7 +84,7 @@ export class AppInitService {
             authorizationCodeUrl
           );
           throw response;
-        }, error => { throw error;}
+        }, () => { console.log("completed subscribe");}
       );
     }
   }

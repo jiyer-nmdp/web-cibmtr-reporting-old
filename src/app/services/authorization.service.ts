@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { AppConfig } from "../app.config";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { HttpErrorResponse } from "@angular/common/http";
-import {Observable} from "rxjs";
+import {Observable, throwError} from "rxjs";
 
 @Injectable()
 export class AuthorizationService {
@@ -28,9 +28,9 @@ export class AuthorizationService {
     return null;
   }
 
-  codeToBearerToken(tokenurl, code, state, validState) {
+  codeToBearerToken(tokenurl, code, state, validState)  {
     if(!validState || validState !== state) {
-      return Promise.reject(new Error("Invalid or missing state."));
+      return throwError(new Error("Invalid or missing state."));
     }
 
     //HTTP Post request  get Bearer token
@@ -49,7 +49,7 @@ export class AuthorizationService {
           "Content-Type": "application/x-www-form-urlencoded",
         }),
       })
-      .toPromise();
+     // .toPromise();
   }
 
   constructAuthorizationUrl(baseUrl, launchToken, aud, state) {

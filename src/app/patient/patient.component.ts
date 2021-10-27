@@ -67,9 +67,7 @@ export class PatientComponent implements OnInit {
           if (result === "Continue") {
             this.subscribeRouteData(this.bsModalRef.content.currentItem);
           }
-        },
-          error => {throw error;}
-        );
+        });
       } else if (cibmtrCenters) {
         this.subscribeRouteData(cibmtrCenters[0]);
       }
@@ -110,8 +108,12 @@ export class PatientComponent implements OnInit {
     if (scopes !== "") {
       await this.http
         .get(`${cibmtrUrl}${scopes}`)
+        // .subscribe(
+        //   next => {},
+        //   cibmtrResponse => {
         .toPromise()
-        .then((cibmtrResponse: any) => {
+        .then((cibmtrResponse: any) =>
+          {
           let cibmtrEntry = cibmtrResponse.entry;
           cibmtrEntry.forEach((element) => {
             let value = element.resource.identifier[0].value;
@@ -122,13 +124,11 @@ export class PatientComponent implements OnInit {
               selected: false,
             });
           });
-        })
-        .catch((error) => {
-        //  this.handleError(error, this.fhirApp, new Date().getTime());
-          throw error;
         });
+        }
+    //);
       return cibmtrCenters;
-    }
+   // }
     alert(
       "your User ID has not been provisioned correctly. \n Please contact the Service Desk at (763) 406-3411 or (800) 526-7809 x3411"
     );
@@ -157,8 +157,8 @@ export class PatientComponent implements OnInit {
       },
       (error) => {
         this.spinner.reset();
-        throw error;
-//        return throwError(error);
+       // throw error;
+        return throwError(error);
       }
     );
   };
@@ -226,14 +226,14 @@ export class PatientComponent implements OnInit {
     }
     if (error != null) {
       console.error("An error occurred" + error);
-      throw error;
+    //  throw error;
       return Promise.reject(error.message || error.status);
     } else {
       console.error("An unknown error occurred");
-      throw error;
+      //throw error;
       return Promise.reject("Unknown error");
     }
-    throw error;
+    //throw error;
   }
 
   register(e: any, ehrpatient: any) {
