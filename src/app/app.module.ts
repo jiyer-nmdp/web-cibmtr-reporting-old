@@ -1,5 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule, APP_INITIALIZER } from "@angular/core";
+import {NgModule, APP_INITIALIZER, ErrorHandler} from "@angular/core";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AppRoutingModule, routingComponents } from "./app.routing.module";
 import { AppComponent } from "./app.component";
@@ -26,6 +26,9 @@ import { SpinnerService } from "./spinner/spinner.service";
 import { ModalModule } from "ngx-bootstrap/modal";
 import { FormsModule } from "@angular/forms";
 import { Validator } from "./validator_regex";
+import {MessageTrayComponent} from "./message-tray/message-tray.component";
+import {GlobalErrorHandler} from "./global-error-handler";
+import {HttpErrorInterceptor} from "./http-error.interceptor";
 
 export const isMock = environment.mock;
 
@@ -40,6 +43,7 @@ export const isMock = environment.mock;
     ErrorComponent,
     InfoComponent,
     SpinnerComponent,
+    MessageTrayComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,15 +75,24 @@ export const isMock = environment.mock;
       deps: [AppInitService],
       multi: true,
     },
-    ...(isMock
-      ? [
-          {
-            provide: HTTP_INTERCEPTORS,
-            useClass: HttpMockRequestInterceptor,
-            multi: true,
-          },
-        ]
-      : []),
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandler
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true,
+    }
+    // ...(isMock
+    //   ? [
+    //       {
+    //         provide: HTTP_INTERCEPTORS,
+    //         useClass: HttpMockRequestInterceptor,
+    //         multi: true,
+    //       },
+    //     ]
+    //   : []),
   ],
   bootstrap: [AppComponent],
 })

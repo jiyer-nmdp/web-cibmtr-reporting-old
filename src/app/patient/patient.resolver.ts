@@ -92,7 +92,7 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
 
     alert(errorMessage);
     console.log(errorMessage);
-
+    throw error;
     return throwError(error);
   }
 }

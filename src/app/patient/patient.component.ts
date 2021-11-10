@@ -13,6 +13,7 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { UtilityService } from "../utility.service";
 import { SpinnerService } from "../spinner/spinner.service";
 import { Validator } from "../validator_regex";
+import {GlobalErrorHandler} from "../global-error-handler";
 
 @Component({
   selector: "app-main",
@@ -52,7 +53,8 @@ export class PatientComponent implements OnInit {
     private router: Router,
     private spinner: SpinnerService,
     private utility: UtilityService,
-    private ssnregex: Validator
+    private ssnregex: Validator,
+    private _globalErrorHandler: GlobalErrorHandler
   ) {}
 
   ngOnInit() {
@@ -71,7 +73,8 @@ export class PatientComponent implements OnInit {
       } else if (cibmtrCenters) {
         this.subscribeRouteData(cibmtrCenters[0]);
       }
-    });
+      this._globalErrorHandler.handleError(cibmtrCenters);
+    }). catch(error => {throw error;});
   }
 
   async determineModal(): Promise<any[]> {
@@ -120,6 +123,7 @@ export class PatientComponent implements OnInit {
               selected: false,
             });
           });
+          this._globalErrorHandler.handleError("Successfully retrieved cibmtrcenter");
         })
         .catch((error) => {
           this.handleError(error, this.fhirApp, new Date().getTime());
@@ -151,9 +155,11 @@ export class PatientComponent implements OnInit {
         this.priorityLabs = results.pageData[1];
         this.validateFields(this.ehrpatient);
         this.retreiveFhirPatient(this.ehrpatient, selectedScope);
+        this._globalErrorHandler.handleError("Success in retrieving patient and priority labs");
       },
       (error) => {
         this.spinner.reset();
+        this._globalErrorHandler.handleError(error);
         return throwError(error);
       }
     );
@@ -205,9 +211,10 @@ export class PatientComponent implements OnInit {
           }
           this.cridCallComplete = true;
           this.cridSubject.next("Patient lookup Successful");
+          this._globalErrorHandler.handleError("Successful patient look up. CRID - " + this.crid);
         },
-        () => {
-          this.handleErrorv2;
+        (error) => {
+          this.handleErrorv2(error);
         }
       );
   }
@@ -219,12 +226,15 @@ export class PatientComponent implements OnInit {
   private handleErrorv2(error: any): Promise<any> {
     if (error == null) {
       error = "undefined";
+      this._globalErrorHandler.handleError(error);
     }
     if (error != null) {
       console.error("An error occurred" + error);
+      this._globalErrorHandler.handleError(error);
       return Promise.reject(error.message || error.status);
     } else {
       console.error("An unknown error occurred");
+      this._globalErrorHandler.handleError(error);
       return Promise.reject("Unknown error");
     }
   }
@@ -359,11 +369,13 @@ export class PatientComponent implements OnInit {
             .subscribe(
               () => {
                 console.log("Submitted patient");
+                this._globalErrorHandler.handleError("Submitted patient");
               },
               (error) => {
                 this.handleError(error, this.fhirApp, new Date().getTime());
               }
             );
+          this._globalErrorHandler.handleError(result);
         },
         (error) => {
           this.handleError(error, this.cridApp, new Date().getTime());
@@ -445,8 +457,8 @@ export class PatientComponent implements OnInit {
     };
     this.router
       .navigate(["/patientdetail"])
-      .then((e) => console.info(e + ""))
-      .catch((e) => console.error(e));
+      .then((e) => {console.info(e + ""); this._globalErrorHandler.handleError("Navigated to Patient Detail page");} )
+      .catch((e) => {console.error(e); throw e;});
   }
 
   /**
@@ -469,7 +481,7 @@ export class PatientComponent implements OnInit {
 
     alert(errorMessage);
     console.log(errorMessage);
-
+    throw errorMessage;
     return throwError(error);
   }
 }

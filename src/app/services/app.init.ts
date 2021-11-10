@@ -5,13 +5,15 @@ import { LocalStorageService } from "angular-2-local-storage";
 import { HttpErrorResponse } from "@angular/common/http";
 
 import { v4 as uuidv4 } from 'uuid';
+import {GlobalErrorHandler} from "../global-error-handler";
 
 @Injectable()
 export class AppInitService {
   constructor(
     private authorizationService: AuthorizationService,
     private location: Location,
-    private _localStorageService: LocalStorageService
+    private _localStorageService: LocalStorageService,
+    private _globalErrorHandler: GlobalErrorHandler
   ) {}
   initializeApp(): Promise<any> {
     if (!window.location.href.includes("?")) {
@@ -45,8 +47,14 @@ export class AppInitService {
           );
           this._localStorageService.set("patient", response["patient"]);
           this.location.go("/main");
+          this._globalErrorHandler.handleError("Access token granted");
+          this._globalErrorHandler.handleError(response);
         })
-        .catch();
+        .catch(error => {
+            this._globalErrorHandler.handleError("Auth token denied - ");
+            this._globalErrorHandler.handleError(error);
+            console.log("Auth token denied");
+        });
     }
 
     let iss = this.authorizationService.getIss(window.location.href),
@@ -70,6 +78,14 @@ export class AppInitService {
             );
         this._localStorageService.set("tokenUrl", tokenUrl);
         window.location.href = authorizationCodeUrl;
+        this._globalErrorHandler.handleError("Authorization confirmed for client");
+        this._globalErrorHandler.handleError(tokenUrl);
+        this._globalErrorHandler.handleError(authorizationCodeUrl);
+        this._globalErrorHandler.handleError(authorizeUrl);
+        this._globalErrorHandler.handleError(response);
+      }).catch(error => {
+        this._globalErrorHandler.handleError("Authorization denied");
+        this._globalErrorHandler.handleError(error);
       });
     }
   }

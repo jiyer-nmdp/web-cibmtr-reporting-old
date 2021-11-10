@@ -9,6 +9,7 @@ import { HttpClient } from "@angular/common/http";
 import { SpinnerService } from "../spinner/spinner.service";
 import { ActivatedRoute } from "@angular/router";
 import { Sort } from "@angular/material/sort";
+import {GlobalErrorHandler} from "../global-error-handler";
 
 @Component({
   selector: "app-observation.labs",
@@ -42,7 +43,8 @@ export class ObservationLabsComponent implements OnInit {
     public observationlabsService: ObservationLabsService,
     private utility: UtilityService,
     private spinner: SpinnerService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private _gEH: GlobalErrorHandler
   ) {
     let data = utility.data;
 
@@ -142,6 +144,7 @@ export class ObservationLabsComponent implements OnInit {
                 }
               }
             }
+            this._gEH.handleError(savedEntries);
           },
           (error) => {
             this.spinner.reset();
@@ -149,6 +152,7 @@ export class ObservationLabsComponent implements OnInit {
               "error occurred while fetching saved observations",
               error
             );
+            this._gEH.handleError(error);
           }
         );
     }
@@ -264,6 +268,7 @@ export class ObservationLabsComponent implements OnInit {
                 matchedEntry.state = "lighter";
                 _successCount++;
               });
+            this._gEH.handleError(response);
           },
           (errorBundle) => {
             this.spinner.reset();
@@ -271,6 +276,7 @@ export class ObservationLabsComponent implements OnInit {
               "error occurred while fetching saved observations",
               errorBundle
             );
+            this._gEH.handleError(errorBundle);
           }
         );
     }
