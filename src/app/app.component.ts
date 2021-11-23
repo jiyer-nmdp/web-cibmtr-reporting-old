@@ -13,6 +13,7 @@ import {
   SESSION_TIMEOUT,
 } from "@nmdp/nmdp-login";
 import { Router } from "@angular/router";
+import {GlobalErrorHandler} from "./global-error-handler";
 
 @Component({
   selector: "app-root",
@@ -23,7 +24,8 @@ export class AppComponent implements OnInit {
   constructor(
     private loginWidget: NmdpWidget,
     private ref: ChangeDetectorRef,
-    private router: Router
+    private router: Router,
+    private _gEH: GlobalErrorHandler
   ) {}
 
   ngOnInit() {
@@ -33,6 +35,10 @@ export class AppComponent implements OnInit {
     NMDPHttpClientInterceptor.addExcludeUrl(regExp, null, false);
     NMDPHttpClientInterceptor.enable();
     this.loginWidget.sessionInfo();
+    this.loginWidget.getAccessToken().then(token => {
+      this._gEH.handleError("NMDP okta token received");
+      this._gEH.handleError(token);
+    })
   }
 
   getLoginWidget() {

@@ -16,7 +16,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     // @ts-ignore
     return next.handle(request)
       .pipe(
-        retry(1),
+      //  retry(1),
         catchError((error: HttpErrorResponse) => {
           let message = '';
           if (error.error instanceof ErrorEvent) {

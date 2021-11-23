@@ -64,28 +64,26 @@ export class AppInitService {
 
     if (iss && launchToken) {
       this._localStorageService.set("iss", iss);
-      return this.authorizationService.getMetadata(iss).then((response) => {
-        let validCodeState = uuidv4();
-        this._localStorageService.set("validCodeState", validCodeState);
-        let tokenUrl = this.authorizationService.getTokenUrl(response),
-          authorizeUrl = this.authorizationService.getAuthorizeUrl(response),
-          authorizationCodeUrl =
-            this.authorizationService.constructAuthorizationUrl(
-              authorizeUrl,
-              launchToken,
-              iss,
-              validCodeState
-            );
-        this._localStorageService.set("tokenUrl", tokenUrl);
-        window.location.href = authorizationCodeUrl;
-        this._globalErrorHandler.handleError("Authorization confirmed for client");
-        this._globalErrorHandler.handleError(tokenUrl);
-        this._globalErrorHandler.handleError(authorizationCodeUrl);
-        this._globalErrorHandler.handleError(authorizeUrl);
-        this._globalErrorHandler.handleError(response);
-      }).catch(error => {
-        this._globalErrorHandler.handleError("Authorization denied");
-        this._globalErrorHandler.handleError(error);
+      return this.authorizationService.getMetadata(iss)
+        .then((response) => {
+          let validCodeState = uuidv4();
+          this._localStorageService.set("validCodeState", validCodeState);
+          let tokenUrl = this.authorizationService.getTokenUrl(response),
+            authorizeUrl = this.authorizationService.getAuthorizeUrl(response),
+            authorizationCodeUrl =
+              this.authorizationService.constructAuthorizationUrl(
+                authorizeUrl,
+                launchToken,
+                iss,
+                validCodeState
+              );
+          this._localStorageService.set("tokenUrl", tokenUrl);
+          window.location.href = authorizationCodeUrl;
+          this._globalErrorHandler.handleError("Metadata retrieved");
+          this._globalErrorHandler.handleError(response);
+        })
+        .catch(error => {
+          throw error;
       });
     }
   }
