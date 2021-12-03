@@ -179,7 +179,7 @@ export class PatientComponent implements OnInit {
     );
 
     this.fhirService
-      .lookupPatientCrid(logicalId.concat(`&_security=${encodedScope}`))
+      .lookupPatientIdentifier(logicalId.concat(`&_security=${encodedScope}`))
       .pipe(take(1))
       .subscribe(
         (resp: any) => {
