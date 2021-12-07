@@ -18,7 +18,7 @@ export class Patient {
   text: Text;
 }
 
-class Identifier {
+export class Identifier {
   use: string;
   type: IdentifierType;
   extension: Extension[];
@@ -26,11 +26,11 @@ class Identifier {
   value: string;
 }
 
-class IdentifierType {
+export class IdentifierType {
   text: string;
 }
 
-class Extension {
+export class Extension {
   extension: Extension[];
   valueString: string;
   url: string;
