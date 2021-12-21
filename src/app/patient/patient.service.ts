@@ -34,12 +34,12 @@ export class PatientService {
   }
 
   getObservationPriorityLabs(identifier): Observable<IPatientContext> {
-    let requestUrls:any[] = [];
-    let splitLoincCodesArray = this.utilityService.chunk(AppConfig.loinc_codes.toString().split(','),150);
+    const requestUrls:any[] = [];
+    const splitLoincCodesArray = this.utilityService.chunk(AppConfig.loinc_codes.toString().split(','),150);
     splitLoincCodesArray.forEach((loincs) =>
     {
-      let loinc_codes = loincs.join(',');
-      let url = this.utilityService.rebuild_DSTU2_STU3_Url
+      const loinc_codes = loincs.join(',');
+      const url = this.utilityService.rebuild_DSTU2_STU3_Url
         (this._localStorageService.get("iss")) +
         "/Observation?patient=" +
         identifier +
@@ -50,7 +50,7 @@ export class PatientService {
     return forkJoin(requestUrls).pipe(
       map((res: []) =>
       {
-        let bundles:any[] = [];
+        const bundles:any[] = [];
         res.forEach((r1: any) =>
           {
             if (r1 instanceof Array)
