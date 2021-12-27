@@ -3,6 +3,7 @@ import { AuthorizationService } from "./authorization.service";
 import { Location } from "@angular/common";
 import { LocalStorageService } from "angular-2-local-storage";
 import { HttpErrorResponse } from "@angular/common/http";
+
 import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
@@ -12,7 +13,7 @@ export class AppInitService {
     private location: Location,
     private _localStorageService: LocalStorageService
   ) {}
-  initializeApp() {
+  initializeApp(): Promise<any> {
     if (!window.location.href.includes("?")) {
       console.log(
         "Location doesnt seems to have query paremeters..",
@@ -36,19 +37,16 @@ export class AppInitService {
           authorizationToken,
           authorizationState,
           this._localStorageService.get("validCodeState")
-        ).
-      subscribe( next=>{},
-        response => {
+        )
+        .then((response) => {
           this._localStorageService.set(
             "accessToken",
-            response.body["access_token"]
+            response["access_token"]
           );
-          this._localStorageService.set("patient", response.body["patient"]);
+          this._localStorageService.set("patient", response["patient"]);
           this.location.go("/main");
-          throw response;
-        }
-        );
-        //.catch(error => {throw error;});
+        })
+        .catch();
     }
 
     let iss = this.authorizationService.getIss(window.location.href),
@@ -58,34 +56,21 @@ export class AppInitService {
 
     if (iss && launchToken) {
       this._localStorageService.set("iss", iss);
-      console.log("iss = " + iss);
-      return this.authorizationService.getMetadata(iss).
-        subscribe( next=>{},
-          response => {
-          let validCodeState = uuidv4();
-          this._localStorageService.set("validCodeState", validCodeState);
-          let tokenUrl = this.authorizationService.getTokenUrl(response.body);
-          let authorizeUrl = this.authorizationService.getAuthorizeUrl(response.body);
-          let authorizationCodeUrl = this.authorizationService.constructAuthorizationUrl(
-            authorizeUrl,
-            launchToken,
-            iss,
-            validCodeState
-          );
-          this._localStorageService.set("tokenUrl", tokenUrl);
-          window.location.href = authorizationCodeUrl;
-          console.log(
-            " IssUrl => ",
-            iss + "\n launchToken =>",
-            launchToken,
-            "\n authorizeUrl =>",
-            authorizeUrl,
-            "\n authorizationCodeUrl =>",
-            authorizationCodeUrl
-          );
-          throw response;
-        }, () => { console.log("completed subscribe");}
-      );
+      return this.authorizationService.getMetadata(iss).then((response) => {
+        let validCodeState = uuidv4();
+        this._localStorageService.set("validCodeState", validCodeState);
+        let tokenUrl = this.authorizationService.getTokenUrl(response),
+          authorizeUrl = this.authorizationService.getAuthorizeUrl(response),
+          authorizationCodeUrl =
+            this.authorizationService.constructAuthorizationUrl(
+              authorizeUrl,
+              launchToken,
+              iss,
+              validCodeState
+            );
+        this._localStorageService.set("tokenUrl", tokenUrl);
+        window.location.href = authorizationCodeUrl;
+      });
     }
   }
   handleError(error: HttpErrorResponse) {

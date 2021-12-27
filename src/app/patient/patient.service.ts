@@ -1,23 +1,22 @@
 import { Injectable } from "@angular/core";
 import {
   HttpClient,
-  HttpHeaders
+  HttpHeaders,
+  HttpErrorResponse,
 } from "@angular/common/http";
-import { Observable, throwError, of } from "rxjs";
+import {Observable, throwError, of, forkJoin} from "rxjs";
 import { AppConfig } from "../app.config";
 import { IPatientContext } from "../model/patient.";
 import { LocalStorageService } from "angular-2-local-storage";
 import { UtilityService } from "../utility.service";
-import {MessageTrayService} from "../message-tray.service";
-import {catchError, tap} from "rxjs/operators";
+import {catchError, map} from "rxjs/operators";
 
 @Injectable()
 export class PatientService {
   constructor(
     private http: HttpClient,
     private _localStorageService: LocalStorageService,
-    private utilityService: UtilityService,
-    private mTrayService: MessageTrayService
+    private utilityService: UtilityService
   ) {}
 
   getPatient(identifier): Observable<IPatientContext> {
@@ -30,30 +29,39 @@ export class PatientService {
     return this.http
       .get<IPatientContext>(url, {
         headers: this.buildEhrHeaders(),
-      });
-       // .subscribe(
-       //  error => {
-       //    throw error;
-       //  });
-         // tap( (resp : any) => (this.handleSuccess(resp, "getPatient"))),
-         // catchError( e => { throw e; }));//(e: any) => Observable.throw(this.handleError(e))));
+      })
+      .pipe(catchError(this.handleError));
   }
 
-  getObservationPriorityLabs(identifier): Observable<any> {
-    let url =
-      this.utilityService.rebuild_DSTU2_STU3_Url(
-        this._localStorageService.get("iss")
-      ) +
-      "/Observation?patient=" +
-      identifier +
-      "&_count=1000&code=" +
-      AppConfig.loinc_codes;
-    return this.utilityService
-      .getPage(url, this.buildEhrHeaders());
-      //   .pipe(
-      // //   tap( (resp : any) => (this.handleSuccess(resp, "getObservtionPriorityLabs"))),
-      // //
-      //    catchError(e => { throw e; }));
+  getObservationPriorityLabs(identifier): Observable<IPatientContext> {
+    const requestUrls:any[] = [];
+    const splitLoincCodesArray = this.utilityService.chunk(AppConfig.loinc_codes.toString().split(','),150);
+    splitLoincCodesArray.forEach((loincs) =>
+    {
+      const loinc_codes = loincs.join(',');
+      const url = this.utilityService.rebuild_DSTU2_STU3_Url
+        (this._localStorageService.get("iss")) +
+        "/Observation?patient=" +
+        identifier +
+        "&_count=1000&code=" +
+        loinc_codes;
+      requestUrls.push(this.utilityService.getPage(url, this.buildEhrHeaders()));
+    });
+    return forkJoin(requestUrls).pipe(
+      map((res: []) =>
+      {
+        const bundles:any[] = [];
+        res.forEach((r1: any) =>
+          {
+            if (r1 instanceof Array)
+            {
+              r1.forEach(r => bundles.push(r));
+            }
+          }
+        );
+        return bundles;
+      }),
+      catchError(() => of(null)));
   }
 
   getObservationLabs(identifier): Observable<any> {
@@ -63,11 +71,7 @@ export class PatientService {
       ) +
       "/Observation?category=laboratory&_count=1000&patient=" +
       identifier;
-    return this.utilityService
-      .getPage(url, this.buildEhrHeaders());
-      // .pipe(
-      //    tap( (resp : any) => (this.handleSuccess(resp, "getObservationAllLabs"))),
-      //    catchError(e => { throw e; }));
+    return this.utilityService.getPage(url, this.buildEhrHeaders());
   }
 
   buildEhrHeaders() {
@@ -82,22 +86,9 @@ export class PatientService {
     return ehrHeaders;
   }
 
-  // handleError(error: HttpErrorResponse) {
-  //   let errorMessage = `Unable to process request for \nURL : ${error.url}.  \nStatus: ${error.status}. \nStatusText: ${error.statusText}`;
-  //   alert(errorMessage);
-  //   this.mTrayService.addErrorMessages(errorMessage);
-  //   return throwError(errorMessage);
-  // }
-
-//   handleSuccess(success: HttpResponse<any>, apiCall: string) {
-//     let message = `Success in ${apiCall} API \n${
-//       success.status
-//     } \n Message : ${success.url || success.body}. `;
-//
-// //    alert(message);
-//     console.log(message);
-//     //this.mTrayService.addRespMessages(message);
-//     throw message;
-// //    return throwError(message);
-//   }
+  handleError(error: HttpErrorResponse) {
+    let errorMessage = `Unable to process request for \nURL : ${error.url}.  \nStatus: ${error.status}. \nStatusText: ${error.statusText}`;
+    alert(errorMessage);
+    return throwError(errorMessage);
+  }
 }
