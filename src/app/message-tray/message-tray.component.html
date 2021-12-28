@@ -1,18 +1,10 @@
-<div class="container">
-  <div *ngIf="isDebugMode; else elseBlock">
-    <button mat-icon-button class="icon-button-small"
-            (click)="toggleDebug()">
-      <mat-icon>keyboard_arrow_left</mat-icon>
-    </button>
-  </div>
-  <ng-template #elseBlock>
-    <button mat-icon-button
-            (click)="toggleDebug()">
-      <mat-icon>keyboard_arrow_right</mat-icon>
-    </button>
-  </ng-template>
-
-  <div class="row" *ngIf="isDebugMode">
+<mat-drawer-container class="example-container">
+  <mat-drawer
+    class="sidebarcontainer"
+    #drawer
+    mode="side"
+    position="end"
+  >
     <div class="messagetray-detail-card ">
       <h3 class="center">Message Tray</h3>
       <div class="container">
@@ -28,12 +20,24 @@
           <tbody>
           <tr *ngFor="let data of messages">
             <td> <span>{{data.timestamp | date: "yyyy-MM-dd HH:mm:ssZ"}}</span> </td>
-            <td ><span>{{data.message | json }} </span></td>
+            <td ><ngx-json-viewer [json]="data.message">  </ngx-json-viewer></td>
           </tr>
           </tbody>
         </table>
 
       </div>
     </div>
+  </mat-drawer>
+  <div class="vl" *ngIf="drawer.opened; else elseBlock">
+    <button mat-icon-button class="icon-button-small arrow_left"
+            (click)="drawer.toggle()">
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
   </div>
-</div>
+  <ng-template #elseBlock>
+    <button mat-icon-button class="arrow_right"
+            (click)="drawer.toggle()">
+      <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+  </ng-template>
+</mat-drawer-container>

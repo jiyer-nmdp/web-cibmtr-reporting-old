@@ -28,9 +28,6 @@ import { FormsModule } from "@angular/forms";
 import { Validator } from "./validator_regex";
 import {MessageTrayComponent} from "./message-tray/message-tray.component";
 import {GlobalErrorHandler} from "./global-error-handler";
-import { MatTableModule } from '@angular/material/table'
-import {MatIconModule} from "@angular/material/icon";
-import {MatButtonModule} from "@angular/material/button";
 import {HttpErrorInterceptor} from "./http-error.interceptor";
 export const isMock = environment.mock;
 
@@ -59,10 +56,7 @@ export const isMock = environment.mock;
       storageType: "localStorage",
     }),
     BrowserAnimationsModule,
-    MaterialModule,
-    MatTableModule,
-    MatIconModule,
-    MatButtonModule
+    MaterialModule
   ],
   entryComponents: [DialogComponent],
   providers: [

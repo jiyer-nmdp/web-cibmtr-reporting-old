@@ -51,8 +51,8 @@ export class GlobalErrorHandler implements ErrorHandler {
       console.log("in the else for json - " + JSON.parse(updatedStr));
       this.mTrayServ.setMessage(JSON.parse(updatedStr));
     } else if (this.isJson(JSON.stringify(updatedStr))) {
-      console.log("in the else - " + JSON.parse(JSON.stringify(updatedStr)));
-      this.mTrayServ.setMessage(JSON.parse(JSON.stringify(updatedStr)));
+      console.log("in the else - " + JSON.stringify(updatedStr));
+      this.mTrayServ.setMessage(JSON.stringify(updatedStr));
     } else {
       console.log("in the else - " + updatedStr);
       this.mTrayServ.setMessage(updatedStr);

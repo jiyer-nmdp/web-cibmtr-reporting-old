@@ -363,6 +363,7 @@ export class PatientComponent implements OnInit {
             this.logicalId
           );
 
+          //Now that we got the CRID save the Info into FHIR
           //Lookup CRID in FHIR Server
           const cridSearchurl = encodeURI(
             "".concat(AppConfig.cibmtr_crid_namespace, "|", this.crid)
