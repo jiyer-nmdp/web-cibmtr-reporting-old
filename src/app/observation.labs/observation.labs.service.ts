@@ -3,7 +3,7 @@ import { AppConfig } from "../app.config";
 import { EMPTY, Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { UtilityService } from "../utility.service";
-import {catchError, map, retry, tap} from "rxjs/operators";
+import { catchError, map, retry } from "rxjs/operators";
 
 @Injectable()
 export class ObservationLabsService {
@@ -30,11 +30,7 @@ export class ObservationLabsService {
     return this.http.post(AppConfig.cibmtr_fhir_url + "Bundle", bundle).pipe(
       map(() => bundle),
       retry(1),
-      // tap(
-      //   response => {throw response},
-      //         error => {throw error}
-      // ),
-      catchError(err => {throw err;} )
+      catchError((error) => {throw error;})
     );
   }
 
@@ -113,10 +109,6 @@ export class ObservationLabsService {
       "&_security=" +
       psScope +
       "&_total=accurate&_count=500&category=laboratory";
-    return this.http.get(url)
-    //   .do(
-    //
-    //     error => {throw error;}
-    // );
+    return this.http.get(url);
   }
 }

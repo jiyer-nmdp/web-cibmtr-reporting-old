@@ -6,8 +6,9 @@ import {
   HttpResponse,
   HttpErrorResponse
 } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 import {retry, catchError, tap} from 'rxjs/operators';
+import {GlobalErrorHandler} from "./global-error-handler";
 
 export class HttpErrorInterceptor implements HttpInterceptor {
 
@@ -15,16 +16,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     // @ts-ignore
     return next.handle(request)
       .pipe(
-        retry(1),
-        tap(event => {
-          if (event instanceof HttpResponse) {
-
-            console.log(" all looks good");
-            // http response status code
-            console.log(event.status);
-            throw (event) ;
-          }
-        }),
+      //  retry(1),
         catchError((error: HttpErrorResponse) => {
           let message = '';
           if (error.error instanceof ErrorEvent) {
@@ -36,6 +28,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
           }
           // this.errorMessages.push(message);
           throw error;
+//          throw message;
         })
       )
   }

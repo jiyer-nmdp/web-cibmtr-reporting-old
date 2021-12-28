@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { AppConfig } from "../app.config";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { HttpErrorResponse } from "@angular/common/http";
-import {Observable, throwError} from "rxjs";
 
 @Injectable()
 export class AuthorizationService {
@@ -30,7 +29,7 @@ export class AuthorizationService {
 
   codeToBearerToken(tokenurl, code, state, validState)  {
     if(!validState || validState !== state) {
-      return throwError(new Error("Invalid or missing state."));
+      return Promise.reject(new Error("Invalid or missing state."));
     }
 
     //HTTP Post request  get Bearer token
@@ -49,7 +48,7 @@ export class AuthorizationService {
           "Content-Type": "application/x-www-form-urlencoded",
         }),
       })
-     // .toPromise();
+      .toPromise();
   }
 
   constructAuthorizationUrl(baseUrl, launchToken, aud, state) {
@@ -69,15 +68,15 @@ export class AuthorizationService {
     );
   }
 
-  getMetadata(url): Observable<any> {
+  getMetadata(url) {
     let metadata = url + "/metadata";
     return this.http
-      .get<any>(metadata, {
+      .get(metadata, {
         headers: new HttpHeaders({
           Accept: "application/fhir+json",
         }),
-      });
-      // .toPromise();
+      })
+      .toPromise();
   }
 
   getAuthorizeUrl(data) {

@@ -35,8 +35,7 @@ ARG build_environment
 RUN npm run build:$build_environment
 
 # Stage 2
-
-FROM nginx:1.20-alpine
+FROM dockerhub.nmdp.org:8443/nginx:latest
 
 # Copy our default nginx conf
 COPY nginx/default.conf /etc/nginx/conf.d/

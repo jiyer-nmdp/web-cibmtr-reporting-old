@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject, Observable} from "rxjs";
+import {Observable, ReplaySubject, Subject} from "rxjs";
 
 @Injectable({ providedIn: 'root' })
 
 export class MessageTrayService {
 
-  private _data: BehaviorSubject<string> = new BehaviorSubject('');
-  public _onEvent: Observable<string>
+  private _data: Subject<any> = new ReplaySubject<any>();
+  public _onEvent: Observable<any>
 
   constructor() {
     this._onEvent = this._data.asObservable();
@@ -16,11 +16,7 @@ export class MessageTrayService {
     return this._onEvent;
   }
 
-  public get Data(): Observable<string>{
-    return this._data.asObservable();
-  }
-
-  setMessage(message: string){
+  public setMessage(message: any){
     this._data.next(message);
   }
 }

@@ -26,10 +26,12 @@ import { SpinnerService } from "./spinner/spinner.service";
 import { ModalModule } from "ngx-bootstrap/modal";
 import { FormsModule } from "@angular/forms";
 import { Validator } from "./validator_regex";
-import { MessageTrayComponent } from './message-tray/message-tray.component';
+import {MessageTrayComponent} from "./message-tray/message-tray.component";
+import {GlobalErrorHandler} from "./global-error-handler";
+import { MatTableModule } from '@angular/material/table'
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
 import {HttpErrorInterceptor} from "./http-error.interceptor";
-import {MyErrorHandler} from "./my-error-handler";
-
 export const isMock = environment.mock;
 
 @NgModule({
@@ -58,6 +60,9 @@ export const isMock = environment.mock;
     }),
     BrowserAnimationsModule,
     MaterialModule,
+    MatTableModule,
+    MatIconModule,
+    MatButtonModule
   ],
   entryComponents: [DialogComponent],
   providers: [
@@ -77,29 +82,29 @@ export const isMock = environment.mock;
     },
     {
       provide: ErrorHandler,
-      useClass: MyErrorHandler
+      useClass: GlobalErrorHandler
     },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpErrorInterceptor,
       multi: true,
-    },
-    ...(isMock
-      ? [
-          {
-            provide: HTTP_INTERCEPTORS,
-            useClass: HttpMockRequestInterceptor,
-            multi: true,
-          },
-        ]
-      : []),
+    }
+    // ...(isMock
+    //   ? [
+    //       {
+    //         provide: HTTP_INTERCEPTORS,
+    //         useClass: HttpMockRequestInterceptor,
+    //         multi: true,
+    //       },
+    //     ]
+    //   : []),
   ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
 
 export function appInitFactory(appInitService: AppInitService) {
-  return () => {
+  return (): Promise<any> => {
     return appInitService.initializeApp();
   };
 }

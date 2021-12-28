@@ -10,9 +10,10 @@ import { IPatientContext } from "../model/patient.";
 import { PatientService } from "./patient.service";
 import { LocalStorageService } from "angular-2-local-storage";
 import { IIdentifiers } from "../model/identifiers";
-import {HttpHeaders, HttpResponse} from "@angular/common/http";
+import { HttpHeaders } from "@angular/common/http";
 import { HttpClient } from "@angular/common/http";
-import {map, mergeMap, catchError, tap} from "rxjs/operators";
+import { HttpErrorResponse } from "@angular/common/http";
+import { map, mergeMap, catchError } from "rxjs/operators";
 import { UtilityService } from "../utility.service";
 import { SpinnerService } from "../spinner/spinner.service";
 
@@ -53,8 +54,7 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
           { headers: ehrHeaders }
         )
         .pipe(
-        //  tap( (resp : any) => (this.handleSuccess(resp))),
-          catchError(e => { throw e; }),
+          catchError((e: any) => Observable.throw(this.handleError(e))),
           map((response: IIdentifiers) => {
             let stu3_id = response.identifier.filter((id) => {
               if (id.type && id.type.text === "FHIR STU3") {
@@ -79,40 +79,20 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
   getEhrDataSets(id) {
     this.spinner.start();
     return forkJoin([
-      this.patientDetailService.getPatient(id)
-        .subscribe(
-          error => {
-            throw error;
-          }),
-      this.patientDetailService.getObservationPriorityLabs(id)
-        .subscribe(
-          error => {
-            throw error;
-          }),
+      this.patientDetailService.getPatient(id),
+      this.patientDetailService.getObservationPriorityLabs(id),
     ]);
   }
 
-  // handleError(error: HttpErrorResponse) {
-  //   this.spinner.reset();
-  //   let errorMessage = `Unexpected Failure EPIC API \n${
-  //     error.status
-  //   } \n Message : ${error.url || error.message}. `;
-  //
-  //   alert(errorMessage);
-  //   console.log(errorMessage);
-  //   this.mTrayService.addErrorMessages(errorMessage);
-  //   return throwError(error);
-  // }
+  handleError(error: HttpErrorResponse) {
+    this.spinner.reset();
+    let errorMessage = `Unexpected Failure EPIC API \n${
+      error.status
+    } \n Message : ${error.url || error.message}. `;
 
-  // handleSuccess(success: HttpResponse<any>) {
-  //   this.spinner.reset();
-  //   let message = `Success in Patient.Read API \n${
-  //     success.status
-  //   } \n Message : ${success.url || success.body}. `;
-  //
-  // //  alert(message);
-  //   console.log(message);
-  //   this.mTrayService.addRespMessages(message);
-  //   return throwError(message);
-  // }
+    alert(errorMessage);
+    console.log(errorMessage);
+    throw error;
+    return throwError(error);
+  }
 }

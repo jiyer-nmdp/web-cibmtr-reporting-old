@@ -8,6 +8,7 @@ import { PatientService } from "../patient/patient.service";
 import { LocalStorageService } from "angular-2-local-storage";
 import { ActivatedRoute, Router } from "@angular/router";
 import { SpinnerService } from "../spinner/spinner.service";
+import {GlobalErrorHandler} from "../global-error-handler";
 
 @Component({
   selector: "app-patient.detail",
@@ -30,7 +31,8 @@ export class PatientDetailComponent implements OnInit {
     private patientService: PatientService,
     private localStorageService: LocalStorageService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private _globalErrorHandler: GlobalErrorHandler
   ) {
     let data = utility.data;
     this.ehrpatient = JSON.parse(data.ehrpatient);
@@ -84,6 +86,7 @@ export class PatientDetailComponent implements OnInit {
                 if (data) {
                   this.utility.data.labs = JSON.stringify(data);
                   this.routeTo(data);
+                  this._globalErrorHandler.handleError("Retrieved all labs");
                 }
                 this.spinner.end();
               },

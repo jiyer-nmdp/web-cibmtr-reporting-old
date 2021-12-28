@@ -9,6 +9,7 @@ import { HttpClient } from "@angular/common/http";
 import { SpinnerService } from "../spinner/spinner.service";
 import { ActivatedRoute } from "@angular/router";
 import { Sort } from "@angular/material/sort";
+import {GlobalErrorHandler} from "../global-error-handler";
 
 @Component({
   selector: "app-observation.labs",
@@ -42,7 +43,8 @@ export class ObservationLabsComponent implements OnInit {
     public observationlabsService: ObservationLabsService,
     private utility: UtilityService,
     private spinner: SpinnerService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private _gEH: GlobalErrorHandler
   ) {
     let data = utility.data;
 
@@ -68,8 +70,8 @@ export class ObservationLabsComponent implements OnInit {
 
     if (this.categoryData && this.categoryData.length > 0) {
       this.spinner.start();
-      this.observationlabsService
-        .getCibmtrObservationsLabs(subj, psScope)
+      this.utility
+        .getCibmtrObservations(subj, psScope, "laboratory")
         .pipe(
           expand((response) => {
             let next =
@@ -142,6 +144,7 @@ export class ObservationLabsComponent implements OnInit {
                 }
               }
             }
+            this._gEH.handleError(savedEntries);
           },
           (error) => {
             this.spinner.reset();
@@ -149,7 +152,7 @@ export class ObservationLabsComponent implements OnInit {
               "error occurred while fetching saved observations",
               error
             );
-            throw error;
+            this._gEH.handleError(error);
           }
         );
     }
@@ -265,7 +268,7 @@ export class ObservationLabsComponent implements OnInit {
                 matchedEntry.state = "lighter";
                 _successCount++;
               });
-            throw response;
+            this._gEH.handleError(response);
           },
           (errorBundle) => {
             this.spinner.reset();
@@ -273,7 +276,7 @@ export class ObservationLabsComponent implements OnInit {
               "error occurred while fetching saved observations",
               errorBundle
             );
-            throw errorBundle;
+            this._gEH.handleError(errorBundle);
           }
         );
     }

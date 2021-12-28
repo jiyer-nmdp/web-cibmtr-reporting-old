@@ -9,14 +9,16 @@ import { AppConfig } from "../app.config";
 import { IPatientContext } from "../model/patient.";
 import { LocalStorageService } from "angular-2-local-storage";
 import { UtilityService } from "../utility.service";
-import {catchError, map} from "rxjs/operators";
+import {catchError, map, tap} from "rxjs/operators";
+import {GlobalErrorHandler} from "../global-error-handler";
 
 @Injectable()
 export class PatientService {
   constructor(
     private http: HttpClient,
     private _localStorageService: LocalStorageService,
-    private utilityService: UtilityService
+    private utilityService: UtilityService,
+    private _gEH: GlobalErrorHandler
   ) {}
 
   getPatient(identifier): Observable<IPatientContext> {
@@ -30,7 +32,9 @@ export class PatientService {
       .get<IPatientContext>(url, {
         headers: this.buildEhrHeaders(),
       })
-      .pipe(catchError(this.handleError));
+      .pipe(
+        tap(),
+        catchError(this.handleError));
   }
 
   getObservationPriorityLabs(identifier): Observable<IPatientContext> {
@@ -71,7 +75,14 @@ export class PatientService {
       ) +
       "/Observation?category=laboratory&_count=1000&patient=" +
       identifier;
-    return this.utilityService.getPage(url, this.buildEhrHeaders());
+    return this.utilityService.getPage(url, this.buildEhrHeaders())
+      .pipe(
+      tap(success => {this._gEH.handleError( "Retrived all labs successfully." );
+        this._gEH.handleError(success);}),
+      catchError((error) =>
+        {this._gEH.handleError(error);
+          return of(null); }
+      ));;
   }
 
   buildEhrHeaders() {
@@ -89,6 +100,7 @@ export class PatientService {
   handleError(error: HttpErrorResponse) {
     let errorMessage = `Unable to process request for \nURL : ${error.url}.  \nStatus: ${error.status}. \nStatusText: ${error.statusText}`;
     alert(errorMessage);
+    throw errorMessage;
     return throwError(errorMessage);
   }
 }
