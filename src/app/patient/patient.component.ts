@@ -23,7 +23,6 @@ import {GlobalErrorHandler} from "../global-error-handler";
 export class PatientComponent implements OnInit {
   bsModalRef: BsModalRef;
   ehrpatient: Patient;
-  cibmtrPatient: Patient;
   labs: any;
   priorityLabs: any;
   cibmtrObservations: any;
@@ -166,7 +165,6 @@ export class PatientComponent implements OnInit {
     );
   };
 
-  //Intial search Patient in FHIR server for CRID Lookup
   retreiveFhirPatient(ehrpatient, selectedScope) {
     this.psScope = "rc_" + selectedScope.value;
     this.selectedCenter_name = selectedScope.name;
@@ -187,7 +185,7 @@ export class PatientComponent implements OnInit {
     );
 
     this.fhirService
-      .lookupPatientIdentifier(logicalId.concat(`&_security=${encodedScope}`))
+      .lookupPatientCrid(logicalId.concat(`&_security=${encodedScope}`))
       .pipe(take(1))
       .subscribe(
         (resp: any) => {
@@ -241,13 +239,14 @@ export class PatientComponent implements OnInit {
     }
   }
 
-  //Associate CRID
   register(e: any, ehrpatient: any) {
     e.preventDefault();
     e.stopPropagation();
     this.isLoading = true;
 
-    //Mapping CRID Payload
+    //Gender
+    //let genderenums = ["unknown", "other"];
+
     let gender;
     if (
       !ehrpatient.gender ||
@@ -299,7 +298,7 @@ export class PatientComponent implements OnInit {
         .reduce((acc, val) => acc.concat(val), []) // flatten the array
         .map((i) => i.valueCoding && i.valueCoding.code); // extract the codes
 
-    const ethnicityCode =
+    const ethnicityCodes =
       ehrpatient.extension &&
       ehrpatient.extension
         .map((outerEle) => {
@@ -330,7 +329,7 @@ export class PatientComponent implements OnInit {
         ssn: this.isValidSsn ? this.ssn : null,
         race: raceCodes,
         //raceDetails: raceDetailCodes,
-        ethnicity: ethnicityCode,
+        ethnicity: ethnicityCodes,
       },
     };
 
@@ -357,68 +356,24 @@ export class PatientComponent implements OnInit {
           //get EHR logical id
           this.logicalId = ehrpatient.id;
 
-          const createEhrPatient = this.appendCridIdentifier(
+          let updatedEhrPatient = this.appendCridIdentifier(
             ehrpatient,
             this.crid,
             this.logicalId
           );
 
           //Now that we got the CRID save the Info into FHIR
-          //Lookup CRID in FHIR Server
-          const cridSearchurl = encodeURI(
-            "".concat(AppConfig.cibmtr_crid_namespace, "|", this.crid)
-          );
-
           this.fhirService
-            .lookupPatientIdentifier(
-              cridSearchurl.concat(`&_security=${this.psScope}`)
-            )
-            .subscribe((_cibmtrPatient): void => {
-              const total = _cibmtrPatient.total;
-              if (total > 0) {
-                //Update the CITPatient_record with new logic id
-                this.fhirService
-                  .updatePatient(
-                    this.updatelogicalId(
-                      _cibmtrPatient.entry[0].resource,
-                      this.ehrpatient.id
-                    ),
-                    _cibmtrPatient.entry[0]?.resource?.id
-                  )
-                  .pipe(retry(1))
-                  .subscribe(
-                    () => {
-                      console.log("Updated the patient");
-                    },
-                    (error) => {
-                      this.handleError(
-                        error,
-                        this.fhirApp,
-                        new Date().getTime()
-                      );
-                    }
-                  );
-              } else {
-                //Patient record not found create the entry
-                this.fhirService
-                  .submitPatient(createEhrPatient)
-                  .pipe(retry(1))
-                  .subscribe(
-                    () => {
-                      console.log("Submitted patient");
-                    },
-                    (error) => {
-                      this.handleError(
-                        error,
-                        this.fhirApp,
-                        new Date().getTime()
-                      );
-                    }
-                  );
+            .submitPatient(updatedEhrPatient)
+            .pipe(retry(1))
+            .subscribe(
+              () => {
+                console.log("Submitted patient");
+              },
+              (error) => {
+                this.handleError(error, this.fhirApp, new Date().getTime());
               }
-            });
-
-          //Create the CRID in FHIR Server.
+            );
         },
         (error) => {
           this.handleError(error, this.cridApp, new Date().getTime());
@@ -441,7 +396,7 @@ export class PatientComponent implements OnInit {
       ...remainingfields
     } = ehrpatient;
 
-    let createEhrPatient = {
+    let updatedEhrPatient = {
       ...remainingfields,
       text: {
         status: status,
@@ -473,24 +428,7 @@ export class PatientComponent implements OnInit {
         },
       ],
     };
-    return createEhrPatient;
-  }
-
-  //Update Patient Record
-  updatelogicalId(cibmtrPatient: Patient, logicalId: string) {
-    const identifier: any = {
-      use: "official",
-      system: AppConfig.epic_logicalId_namespace,
-      value:
-        this.utility.rebuild_DSTU2_STU3_Url(
-          this._localStorageService.get("iss")
-        ) +
-        "/Patient/" +
-        logicalId,
-    };
-    cibmtrPatient.identifier.push(identifier);
-
-    return cibmtrPatient;
+    return updatedEhrPatient;
   }
 
   validateFields(ehrpatient) {
