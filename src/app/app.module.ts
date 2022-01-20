@@ -29,6 +29,8 @@ import { Validator } from "./validator_regex";
 import {MessageTrayComponent} from "./message-tray/message-tray.component";
 import {GlobalErrorHandler} from "./global-error-handler";
 import {HttpErrorInterceptor} from "./http-error.interceptor";
+import { SidebarbuttonComponent } from './sidebarbutton/sidebarbutton.component';
+import {SidenavService} from "./sidenav.service";
 export const isMock = environment.mock;
 
 @NgModule({
@@ -43,6 +45,7 @@ export const isMock = environment.mock;
     InfoComponent,
     SpinnerComponent,
     MessageTrayComponent,
+    SidebarbuttonComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,6 +71,7 @@ export const isMock = environment.mock;
     FhirService,
     SpinnerService,
     Validator,
+    SidenavService,
     {
       provide: APP_INITIALIZER,
       useFactory: appInitFactory,

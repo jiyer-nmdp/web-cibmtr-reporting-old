@@ -9,7 +9,7 @@ import { AppConfig } from "../app.config";
 import { IPatientContext } from "../model/patient.";
 import { LocalStorageService } from "angular-2-local-storage";
 import { UtilityService } from "../utility.service";
-import {catchError, map, tap} from "rxjs/operators";
+import {catchError, tap, map} from "rxjs/operators";
 import {GlobalErrorHandler} from "../global-error-handler";
 
 @Injectable()
@@ -65,7 +65,10 @@ export class PatientService {
         );
         return bundles;
       }),
-      catchError(() => of(null)));
+      catchError((error) =>
+        {this._gEH.handleError(error);
+          return of(null); }
+      ));
   }
 
   getObservationLabs(identifier): Observable<any> {

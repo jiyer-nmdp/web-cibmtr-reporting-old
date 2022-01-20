@@ -2,7 +2,7 @@ import {
   Component,
   ChangeDetectorRef,
   OnInit,
-  HostListener,
+  HostListener, ViewChild,
 } from "@angular/core";
 import {
   NEW_SESSION,
@@ -14,6 +14,10 @@ import {
 } from "@nmdp/nmdp-login";
 import { Router } from "@angular/router";
 import {GlobalErrorHandler} from "./global-error-handler";
+import {SidenavService} from "./sidenav.service";
+import {MatSidenav} from "@angular/material/sidenav";
+import jwtDecode from "jwt-decode";
+
 
 @Component({
   selector: "app-root",
@@ -21,14 +25,19 @@ import {GlobalErrorHandler} from "./global-error-handler";
   styleUrls: ["./app.component.scss"],
 })
 export class AppComponent implements OnInit {
+
+  @ViewChild('sidenav', {static: true}) public sidenav: MatSidenav;
+
   constructor(
     private loginWidget: NmdpWidget,
     private ref: ChangeDetectorRef,
     private router: Router,
-    private _gEH: GlobalErrorHandler
+    private _gEH: GlobalErrorHandler,
+    private sidenavService: SidenavService
   ) {}
 
   ngOnInit() {
+    this.sidenavService.setSidenav(this.sidenav);
     this.loginWidget.setWidgetLocation("#nmdp-login-container");
     this.loginWidget.onEvent.subscribe(this.processSELEvent.bind(this));
     var regExp = new RegExp("^((?!nmdp.org).)*$");
@@ -37,7 +46,7 @@ export class AppComponent implements OnInit {
     this.loginWidget.sessionInfo();
     this.loginWidget.getAccessToken().then(token => {
       this._gEH.handleError("NMDP okta token received");
-      this._gEH.handleError(token);
+      this._gEH.handleError(jwtDecode(token));
     })
   }
 

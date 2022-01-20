@@ -7,12 +7,12 @@
   min-height: 100px;
   /*overflow-y: scroll;*/
   overflow: scroll;
-  height: 700px;
+  //height: 700px;
 }
 
 .messagetray-detail-card table {
   border-collapse: collapse;
-  width: 100%;
+  width: 100vw;
   overflow: scroll;
 }
 
@@ -34,58 +34,18 @@ th.mat-sort-header-sorted {
   color: black;
 }
 
+.h3 {
+  text-align: center;
+}
+
 .center {
   display: flex;
   justify-content: center;
-}
-
-
-.rightarrow {
-  float: right;
-  margin-top: 50%;
+  background: rgb(200, 0, 0);
 }
 
 .sidebarcontainer {
-  width: 50%;
-}
-
-.example-events {
-  width: 300px;
-  height: 200px;
-  overflow: auto;
-  border: 1px solid #555;
-}
-
-.arrow_left {
-  float: right;
-  color: green;
-  height: 100%;
-}
-
-.arrow_right {
-  float: right;
-  color: blue;
-  height: 100%;
-}
-
-.example-container {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-
-
-.example-sidenav-content {
-  display: flex;
-}
-
-.vl {
-  border: 1px solid rgba(0, 150, 0, 0.5);
-  height: 100%;
-}
-
-.example-sidenav {
   padding: 20px;
+  width: 50vw;
+  height: 100vh;
 }

@@ -369,6 +369,7 @@ export class PatientComponent implements OnInit {
             .subscribe(
               () => {
                 console.log("Submitted patient");
+                this._globalErrorHandler.handleError("Submitted patient");
               },
               (error) => {
                 this.handleError(error, this.fhirApp, new Date().getTime());

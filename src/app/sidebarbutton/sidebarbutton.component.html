@@ -1,0 +1,16 @@
+<!--<mat-sidenav #buttonsidebar mode="side" opened="opened" position="end" class="example-sidenav-content">-->
+  <div class="example-sidenav-div">
+    <div *ngIf="isVisible; else elseBlock">
+      <button mat-icon-button class="arrow_right"
+              (click)="toggleButton()">
+        <mat-icon>keyboard_arrow_right</mat-icon>
+      </button>
+    </div>
+    <ng-template #elseBlock>
+      <button mat-icon-button
+              (click)="toggleButton()">
+        <mat-icon>keyboard_arrow_left</mat-icon>
+      </button>
+    </ng-template>
+  </div>
+<!--</mat-sidenav>-->
