@@ -22,7 +22,7 @@ import { Validator } from "../validator_regex";
 export class PatientComponent implements OnInit {
   bsModalRef: BsModalRef;
   ehrpatient: Patient;
-  cibmtrPatient: Patient;
+  cibmtrPatientCount: any;
   labs: any;
   priorityLabs: any;
   cibmtrObservations: any;
@@ -185,8 +185,8 @@ export class PatientComponent implements OnInit {
       .pipe(take(1))
       .subscribe(
         (resp: any) => {
-          const total = resp.total;
-          if (total && total > 0) {
+          this.cibmtrPatientCount = resp.total;
+          if (this.cibmtrPatientCount > 0) {
             if (resp.entry) {
               resp.entry.filter((entry) => {
                 if (entry.resource) {

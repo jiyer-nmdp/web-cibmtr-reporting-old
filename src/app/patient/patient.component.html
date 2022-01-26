@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="alert alert-warning mt-n1">
+  <div *ngIf="cibmtrPatientCount > 1" class="alert alert-warning mt-n1">
     WARNING! A duplicate resource has been found for this patient. Please
     contact CIBMTR to report this duplicate resource.
   </div>
