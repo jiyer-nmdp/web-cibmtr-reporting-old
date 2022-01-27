@@ -466,7 +466,7 @@ export class PatientComponent implements OnInit {
   }
 
   //Update Patient Record
-  mergedPatient(ehrpatient: Patient, cibmtrPatient: Patient) {
+  mergedPatient(ehrpatient: Patient, cibmtrPatient: any) {
     const { identifier } = cibmtrPatient;
 
     let updatedPatient = {
