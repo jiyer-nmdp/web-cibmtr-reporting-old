@@ -471,7 +471,7 @@ export class PatientComponent implements OnInit {
 
     let updatedPatient = {
       ...ehrpatient,
-      meta1: {
+      meta: {
         ...cibmtrPatient.meta,
       },
       identifier: [
