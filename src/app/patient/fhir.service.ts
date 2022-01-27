@@ -27,8 +27,8 @@ export class FhirService {
 
   //Update EHR Patient in Cibmtr FHIR Server
   updatePatient(updatedEhrPatient, logical_id) {
-    const fhirUpdate = AppConfig.cibmtr_fhir_url + "Patient/" + logical_id;
-    return this.http.put(fhirUpdate, updatedEhrPatient);
+    const fhirUpdateurl = AppConfig.cibmtr_fhir_url + "Patient/" + logical_id;
+    return this.http.put(fhirUpdateurl, updatedEhrPatient);
   }
 
   handleError(error: any): Observable<any> {

@@ -28,7 +28,7 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
     private utilityService: UtilityService
   ) {}
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): any {
+  resolve(): any {
     //Commented the below code as EPIC STU3 identifiers
 
     //Post call to get the STU3 patient id by retreving the patient identifier from local storage

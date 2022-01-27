@@ -363,14 +363,14 @@ export class PatientComponent implements OnInit {
               cridSearchurl.concat(`&_security=${this.psScope}`)
             )
             .subscribe((_cibmtrPatient): void => {
-              const total = _cibmtrPatient.total;
-              if (total > 0) {
+              this.cibmtrPatientCount = _cibmtrPatient.total;
+              if (this.cibmtrPatientCount > 0) {
                 //Update the CITPatient_record with new logic id
                 this.fhirService
                   .updatePatient(
-                    this.updatelogicalId(
-                      _cibmtrPatient.entry[0].resource,
-                      this.ehrpatient.id
+                    this.mergedPatient(
+                      ehrpatient,
+                      _cibmtrPatient.entry[0].resource
                     ),
                     _cibmtrPatient.entry[0]?.resource?.id
                   )
@@ -466,20 +466,29 @@ export class PatientComponent implements OnInit {
   }
 
   //Update Patient Record
-  updatelogicalId(cibmtrPatient: Patient, logicalId: string) {
-    const identifier: any = {
-      use: "official",
-      system: AppConfig.epic_logicalId_namespace,
-      value:
-        this.utility.rebuild_DSTU2_STU3_Url(
-          this._localStorageService.get("iss")
-        ) +
-        "/Patient/" +
-        logicalId,
-    };
-    cibmtrPatient.identifier.push(identifier);
+  mergedPatient(ehrpatient: Patient, cibmtrPatient: Patient) {
+    const { identifier } = cibmtrPatient;
 
-    return cibmtrPatient;
+    let updatedPatient = {
+      ...ehrpatient,
+      meta1: {
+        ...cibmtrPatient.meta,
+      },
+      identifier: [
+        ...identifier,
+        {
+          use: "official",
+          system: AppConfig.epic_logicalId_namespace,
+          value:
+            this.utility.rebuild_DSTU2_STU3_Url(
+              this._localStorageService.get("iss")
+            ) +
+            "/Patient/" +
+            ehrpatient.id,
+        },
+      ],
+    };
+    return updatedPatient;
   }
 
   validateFields(ehrpatient) {
