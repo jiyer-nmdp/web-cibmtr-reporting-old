@@ -450,7 +450,7 @@ export class PatientComponent implements OnInit {
           system: AppConfig.epic_logicalId_namespace,
           value:
             this.utility.rebuild_DSTU2_STU3_Url(
-              "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3"
+              this._localStorageService.get("iss")
             ) +
             "/Patient/" +
             logicalId,
