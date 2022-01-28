@@ -450,7 +450,7 @@ export class PatientComponent implements OnInit {
           system: AppConfig.epic_logicalId_namespace,
           value:
             this.utility.rebuild_DSTU2_STU3_Url(
-              this._localStorageService.get("iss")
+              "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3"
             ) +
             "/Patient/" +
             logicalId,
@@ -467,12 +467,19 @@ export class PatientComponent implements OnInit {
 
   //Update Patient Record
   mergedPatient(ehrpatient: Patient, cibmtrPatient: any) {
-    const { identifier } = cibmtrPatient;
+    const {
+      identifier,
+      text: { status } = { status: "generated" },
+      meta,
+    } = cibmtrPatient;
 
     let updatedPatient = {
       ...ehrpatient,
+      text: {
+        status: status,
+      },
       meta: {
-        ...cibmtrPatient.meta,
+        ...meta,
       },
       identifier: [
         ...identifier,
