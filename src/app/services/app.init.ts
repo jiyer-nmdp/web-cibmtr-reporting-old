@@ -4,7 +4,7 @@ import { Location } from "@angular/common";
 import { LocalStorageService } from "angular-2-local-storage";
 import { HttpErrorResponse } from "@angular/common/http";
 
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 @Injectable()
 export class AppInitService {
@@ -39,14 +39,20 @@ export class AppInitService {
           this._localStorageService.get("validCodeState")
         )
         .then((response) => {
-          this._localStorageService.set(
-            "accessToken",
-            response["access_token"]
-          );
-          this._localStorageService.set("patient", response["patient"]);
-          this.location.go("/main");
-        })
-        .catch();
+          if (response["patient"]) {
+            this._localStorageService.set(
+              "accessToken",
+              response["access_token"]
+            );
+            this._localStorageService.set("patient", response["patient"]);
+            this.location.go("/main");
+          } else {
+            this.handleError({
+              url: this._localStorageService.get("iss"),
+              reason: "PatientId not found",
+            });
+          }
+        });
     }
 
     let iss = this.authorizationService.getIss(window.location.href),
@@ -73,9 +79,9 @@ export class AppInitService {
       });
     }
   }
-  handleError(error: HttpErrorResponse) {
+  handleError(error) {
     let errorMessage =
-      "Unable to process request for \nURL : ${error.url}.  \nStatus: ${error.status}. \nStatusText: ${error.statusText}";
+      "Unable to process request for \nURL : ${error.url}. \rReason: ${error.reason}";
     alert(errorMessage);
     console.log(errorMessage);
   }
