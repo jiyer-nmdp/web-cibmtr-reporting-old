@@ -42,6 +42,8 @@ export class PatientComponent implements OnInit {
   crid$: Observable<string> = this.cridSubject.asObservable();
   isValidSsn: boolean;
   ssn: string;
+  nonPIIIdentifiers: any[];
+  ssnIdentifier: any;
 
   constructor(
     private _route: ActivatedRoute,
@@ -499,14 +501,17 @@ export class PatientComponent implements OnInit {
   }
 
   validateFields(ehrpatient) {
-    const ssnIdentifier = ehrpatient.identifier.filter((i) =>
+    this.nonPIIIdentifiers = ehrpatient.identifier.filter(
+      (i) => !AppConfig.ssn_system.includes(i.system)
+    );
+
+    this.ssnIdentifier = ehrpatient.identifier.filter((i) =>
       AppConfig.ssn_system.includes(i.system)
     );
 
-    if (ssnIdentifier && ssnIdentifier.length > 0) {
-      this.ssn = ssnIdentifier[0].value;
-
-      if (this.ssnregex.validateSSN(ssnIdentifier[0].value)) {
+    if (this.ssnIdentifier) {
+      this.ssn = this.ssnIdentifier[0].value;
+      if (this.ssnregex.validateSSN(this.ssnIdentifier[0].value)) {
         this.isValidSsn = true;
       }
     }
