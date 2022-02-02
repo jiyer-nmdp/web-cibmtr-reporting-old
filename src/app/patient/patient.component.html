@@ -37,7 +37,10 @@
       </div>
 
       <div class="patient_details">
-        <div class="text-danger" *ngIf="ssnIdentifier && !isValidSsn">
+        <div
+          class="text-danger"
+          *ngIf="ssnIdentifier?.length > 0 && !isValidSsn"
+        >
           Warning : Invalid SSN {{ ssnIdentifier.value }} will not be used for
           CRID registration
         </div>
