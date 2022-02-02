@@ -508,7 +508,7 @@ export class PatientComponent implements OnInit {
       AppConfig.ssn_system.includes(i.system)
     );
 
-    if (this.ssnIdentifier && this.ssnIdentifier.length > 0) {
+    if (this.ssnIdentifier?.length > 0) {
       this.ssn = this.ssnIdentifier[0].value;
       if (this.ssnregex.validateSSN(this.ssn)) {
         this.isValidSsn = true;
