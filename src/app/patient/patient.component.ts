@@ -501,17 +501,19 @@ export class PatientComponent implements OnInit {
   }
 
   validateFields(ehrpatient) {
-    this.nonPIIIdentifiers = ehrpatient.identifier.filter(
-      (i) => !AppConfig.ssn_system.includes(i.system)
-    );
-
     this.ssnIdentifier = ehrpatient.identifier.filter((i) =>
       AppConfig.ssn_system.includes(i.system)
     );
 
-    if (this.ssnIdentifier) {
+    console.log(this.ssnIdentifier);
+
+    this.nonPIIIdentifiers = ehrpatient.identifier.filter(
+      (i) => !AppConfig.ssn_system.includes(i.system)
+    );
+
+    if (this.ssnIdentifier && this.ssnIdentifier.length > 0) {
       this.ssn = this.ssnIdentifier[0].value;
-      if (this.ssnregex.validateSSN(this.ssnIdentifier[0].value)) {
+      if (this.ssnregex.validateSSN(this.ssn)) {
         this.isValidSsn = true;
       }
     }
