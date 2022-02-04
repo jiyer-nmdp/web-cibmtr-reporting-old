@@ -1,0 +1,51 @@
+.messagetray-detail-card {
+  /*height: 73px;*/
+  margin-top: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  min-height: 100px;
+  /*overflow-y: scroll;*/
+  overflow: scroll;
+  //height: 700px;
+}
+
+.messagetray-detail-card table {
+  border-collapse: collapse;
+  width: 100vw;
+  overflow: scroll;
+}
+
+.messagetray-detail-card th {
+  /* position: sticky;*/
+  top: 0;
+  background: rgb(230, 230, 230);
+}
+
+.messagetray-detail-card th,
+.messagetray-detail-card td {
+  /*padding: 8px 16px;*/
+  white-space: break-spaces;
+  word-wrap: break-word;
+  /*max-width: 200px;*/
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+.h3 {
+  text-align: center;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  background: rgb(200, 0, 0);
+}
+
+.sidebarcontainer {
+  padding: 20px;
+  width: 50vw;
+  height: 100vh;
+}
