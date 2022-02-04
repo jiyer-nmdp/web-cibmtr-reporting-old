@@ -77,7 +77,7 @@ export class PatientComponent implements OnInit {
         this.subscribeRouteData(cibmtrCenters[0]);
       }
       this._globalErrorHandler.handleError(cibmtrCenters);
-    }). catch(error => {throw error;});
+    }). catch(error => {this._globalErrorHandler.handleError(error);});
   }
 
   async determineModal(): Promise<any[]> {

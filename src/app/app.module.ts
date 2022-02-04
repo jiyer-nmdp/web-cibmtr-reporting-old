@@ -86,16 +86,16 @@ export const isMock = environment.mock;
       provide: HTTP_INTERCEPTORS,
       useClass: HttpErrorInterceptor,
       multi: true,
-    }
-    // ...(isMock
-    //   ? [
-    //       {
-    //         provide: HTTP_INTERCEPTORS,
-    //         useClass: HttpMockRequestInterceptor,
-    //         multi: true,
-    //       },
-    //     ]
-    //   : []),
+    },
+    ...(isMock
+      ? [
+          {
+            provide: HTTP_INTERCEPTORS,
+            useClass: HttpMockRequestInterceptor,
+            multi: true,
+          },
+        ]
+      : []),
   ],
   bootstrap: [AppComponent],
 })

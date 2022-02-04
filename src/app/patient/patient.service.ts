@@ -103,7 +103,7 @@ export class PatientService {
   handleError(error: HttpErrorResponse) {
     let errorMessage = `Unable to process request for \nURL : ${error.url}.  \nStatus: ${error.status}. \nStatusText: ${error.statusText}`;
     alert(errorMessage);
-    throw errorMessage;
+    this._gEH.handleError(errorMessage);
     return throwError(errorMessage);
   }
 }
