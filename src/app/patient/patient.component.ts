@@ -217,8 +217,8 @@ export class PatientComponent implements OnInit {
           this.cridSubject.next("Patient lookup Successful");
           this._globalErrorHandler.handleError("Successful patient look up. CRID - " + this.crid);
         },
-        (error) => {
-          this.handleErrorv2(error);
+        () => {
+          this.handleErrorv2;
         }
       );
   }
@@ -378,7 +378,7 @@ export class PatientComponent implements OnInit {
               this.cibmtrPatientCount = _cibmtrPatient.total;
               if (this.cibmtrPatientCount > 0) {
                 //Update the CITPatient_record with new logic id
-          this.fhirService
+                this.fhirService
                   .updatePatient(
                     this.mergedPatient(
                       ehrpatient,
@@ -403,16 +403,20 @@ export class PatientComponent implements OnInit {
                 //Patient record not found create the entry
                 this.fhirService
                   .submitPatient(createEhrPatient)
-            .pipe(retry(1))
-            .subscribe(
-              () => {
-                console.log("Submitted patient");
-                this._globalErrorHandler.handleError("Submitted patient");
-              },
-              (error) => {
-                this.handleError(error, this.fhirApp, new Date().getTime());
-              }
-            );
+                  .pipe(retry(1))
+                  .subscribe(
+                    () => {
+                      console.log("Submitted patient");
+                      this._globalErrorHandler.handleError("Submitted patient");
+                    },
+                    (error) => {
+                      this.handleError(
+                        error,
+                        this.fhirApp,
+                        new Date().getTime()
+                      );
+                    }
+                  );
               }
             });
 
@@ -511,14 +515,13 @@ export class PatientComponent implements OnInit {
     this.nonPIIIdentifiers = ehrpatient.identifier.filter(
       (i) => !AppConfig.ssn_system.includes(i.system)
     );
-
     this.ssnIdentifier = ehrpatient.identifier.filter((i) =>
       AppConfig.ssn_system.includes(i.system)
     );
 
-    if (this.ssnIdentifier) {
+    if (this.ssnIdentifier?.length > 0) {
       this.ssn = this.ssnIdentifier[0].value;
-      if (this.ssnregex.validateSSN(this.ssnIdentifier[0].value)) {
+      if (this.ssnregex.validateSSN(this.ssn)) {
         this.isValidSsn = true;
       }
     }

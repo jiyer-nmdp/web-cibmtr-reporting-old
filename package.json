@@ -1,6 +1,6 @@
 {
   "name": "cibmtr-ehrapp",
-  "version": "2.15.0-SNAPSHOT",
+  "version": "2.20.0-SNAPSHOT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

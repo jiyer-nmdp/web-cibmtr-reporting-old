@@ -1,4 +1,8 @@
 <div class="container">
+  <div *ngIf="cibmtrPatientCount > 1" class="alert alert-warning mt-n1">
+    WARNING! A duplicate resource has been found for this patient. Please
+    contact CIBMTR to report this duplicate resource.
+  </div>
   <div class="row">
     <div class="welcome-text">
       Welcome {{ dataManager_name }} from {{ selectedCenter_name }}
@@ -33,25 +37,19 @@
       </div>
 
       <div class="patient_details">
+        <div
+          class="text-danger"
+          *ngIf="ssnIdentifier?.length > 0 && !isValidSsn"
+        >
+          Warning : Invalid SSN {{ ssnIdentifier.value }} will not be used for
+          CRID registration
+        </div>
         <ul>
           <li>Date of birth: {{ ehrpatient.birthDate }}</li>
           <li>Gender: {{ ehrpatient.gender }}</li>
           <li>Identifiers:</li>
-          <ul *ngFor="let identifier of ehrpatient.identifier">
-            <div *ngIf="identifier.system !== 'urn:oid:2.16.840.1.113883.4.1'">
-              <li>{{ identifier.type?.text }}:{{ identifier.value }}</li>
-            </div>
-            <div
-              *ngIf="
-                identifier.system === 'urn:oid:2.16.840.1.113883.4.1' &&
-                !isValidSsn
-              "
-            >
-              <li class="text-danger">
-                Warning : Invalid SSN {{ identifier.value }} will not be used
-                for CRID registration
-              </li>
-            </div>
+          <ul *ngFor="let identifier of nonPIIIdentifiers">
+            <li>{{ identifier.type?.text }}:{{ identifier.value }}</li>
           </ul>
         </ul>
       </div>

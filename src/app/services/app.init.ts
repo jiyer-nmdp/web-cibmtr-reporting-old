@@ -4,8 +4,8 @@ import { Location } from "@angular/common";
 import { LocalStorageService } from "angular-2-local-storage";
 import { HttpErrorResponse } from "@angular/common/http";
 
-import { v4 as uuidv4 } from 'uuid';
 import {GlobalErrorHandler} from "../global-error-handler";
+import { v4 as uuidv4 } from "uuid";
 
 @Injectable()
 export class AppInitService {
@@ -42,12 +42,12 @@ export class AppInitService {
         )
         .then((response) => {
           if (response["patient"]) {
-          this._localStorageService.set(
-            "accessToken",
-            response["access_token"]
-          );
-          this._localStorageService.set("patient", response["patient"]);
-          this.location.go("/main");
+            this._localStorageService.set(
+              "accessToken",
+              response["access_token"]
+            );
+            this._localStorageService.set("patient", response["patient"]);
+            this.location.go("/main");
           } else {
             this._globalErrorHandler.handleError("Access token granted");
             this._globalErrorHandler.handleError(response);
