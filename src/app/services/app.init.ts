@@ -41,20 +41,22 @@ export class AppInitService {
           this._localStorageService.get("validCodeState")
         )
         .then((response) => {
+          if (response["patient"]) {
           this._localStorageService.set(
             "accessToken",
             response["access_token"]
           );
           this._localStorageService.set("patient", response["patient"]);
           this.location.go("/main");
-          this._globalErrorHandler.handleError("Access token granted");
-          this._globalErrorHandler.handleError(response);
+          } else {
+            this._globalErrorHandler.handleError("Access token granted");
+            this._globalErrorHandler.handleError(response);
+            this.handleError({
+              url: this._localStorageService.get("iss"),
+              reason: "PatientId not found",
+            });
+          }
         })
-        .catch(error => {
-            this._globalErrorHandler.handleError("Auth token denied - ");
-            this._globalErrorHandler.handleError(error);
-            console.log("Auth token denied");
-        });
     }
 
     let iss = this.authorizationService.getIss(window.location.href),
@@ -83,14 +85,15 @@ export class AppInitService {
           this._globalErrorHandler.handleError(response);
         })
         .catch(error => {
-          throw error;
+          this._globalErrorHandler.handleError(error);
       });
     }
   }
-  handleError(error: HttpErrorResponse) {
+  handleError(error) {
     let errorMessage =
-      "Unable to process request for \nURL : ${error.url}.  \nStatus: ${error.status}. \nStatusText: ${error.statusText}";
+      "Unable to process request for \nURL : ${error.url}. \rReason: ${error.reason}";
     alert(errorMessage);
     console.log(errorMessage);
+    this._globalErrorHandler.handleError(errorMessage);
   }
 }

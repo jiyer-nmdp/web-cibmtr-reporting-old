@@ -16,8 +16,6 @@ import { Router } from "@angular/router";
 import {GlobalErrorHandler} from "./global-error-handler";
 import {SidenavService} from "./sidenav.service";
 import {MatSidenav} from "@angular/material/sidenav";
-import jwtDecode from "jwt-decode";
-
 
 @Component({
   selector: "app-root",
@@ -46,7 +44,7 @@ export class AppComponent implements OnInit {
     this.loginWidget.sessionInfo();
     this.loginWidget.getAccessToken().then(token => {
       this._gEH.handleError("NMDP okta token received");
-      this._gEH.handleError(jwtDecode(token));
+      this._gEH.handleError(this.loginWidget.decodeJWT(token));
     })
   }
 

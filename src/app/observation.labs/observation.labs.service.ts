@@ -30,6 +30,7 @@ export class ObservationLabsService {
     return this.http.post(AppConfig.cibmtr_fhir_url + "Bundle", bundle).pipe(
       map(() => bundle),
       retry(1),
+      catchError(() => EMPTY),
       catchError((error) => {throw error;})
     );
   }

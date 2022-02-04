@@ -1,9 +1,7 @@
 import { Injectable } from "@angular/core";
-import { EMPTY, Observable } from "rxjs";
+import { EMPTY } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { expand, map, reduce } from "rxjs/operators";
-import {AppConfig} from "./app.config";
-import {LocalStorageService} from "angular-2-local-storage";
 
 @Injectable({
   providedIn: "root",
@@ -13,7 +11,7 @@ export class UtilityService {
   data: any;
   chunkSize: number = 30;
 
-  constructor(private http: HttpClient,  private _localStorageService: LocalStorageService) {}
+  constructor(private http: HttpClient) {}
 
   //Reusable methods defined in this Components
 
@@ -85,21 +83,5 @@ export class UtilityService {
         resourceType: "Bundle",
       };
     }
-  }
-  /**
-   * Common utility method for cibmtr observations
-   * @param subject
-   * @param psScope
-   * @param category
-   */
-  getCibmtrObservations(subject, psScope, category): Observable<any> {
-    const url =
-      AppConfig.cibmtr_fhir_url +
-      "Observation?subject=" +
-      (subject.startsWith("http") ? subject : this._localStorageService.get("iss") + "/" + subject) +
-      "&_security=" +
-      psScope +
-      "&_total=accurate&_count=500&category=" + category;
-    return this.http.get(url);
   }
 }

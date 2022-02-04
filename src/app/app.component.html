@@ -1,7 +1,6 @@
 <mat-drawer-container>
   <mat-drawer-content class="example-container">
     <mat-sidenav-container class="example-container">
-<!--    <div class="divcontent">-->
   <div *ngIf="!getLoginWidget().isLoggedIn()" id="nmdp-login-container"></div>
   <div *ngIf="getLoginWidget().isLoggedIn()">
     <div class="header">
@@ -21,7 +20,6 @@
     <app-spinner></app-spinner>
     <router-outlet></router-outlet>
   </div>
-<!--      </div>-->
       <mat-sidenav #buttonsidebar mode="side" opened="opened" position="end" class="example-sidenav-content">
         <app-sidebarbutton></app-sidebarbutton>
       </mat-sidenav>

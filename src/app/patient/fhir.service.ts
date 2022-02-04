@@ -8,33 +8,39 @@ import { HttpClient } from "@angular/common/http";
 export class FhirService {
   constructor(private http: HttpClient) {}
 
-  lookupPatientCrid(identifier): Observable<any> {
-    let fhirGetUrl =
+  lookupPatientIdentifier(identifier): Observable<any> {
+    const fhirGetUrl =
       AppConfig.cibmtr_fhir_url + "Patient?identifier=".concat(identifier);
      return this.http.get(fhirGetUrl);
   }
 
   getCrid(payload): Observable<any> {
-    let cridUrl = AppConfig.crid_service_endpoint;
+    const cridUrl = AppConfig.crid_service_endpoint;
     return this.http.put(cridUrl, payload);
   }
 
-  //Updated EHR Patient in Cibmtr FHIR Server
-  submitPatient(updatedEhrPatient) {
-    let fhirPostUrl = AppConfig.cibmtr_fhir_url + "Patient";
-    return this.http.post(fhirPostUrl, updatedEhrPatient);
+  //Create EHR Patient in Cibmtr FHIR Server
+  submitPatient(createEhrPatient) {
+    const fhirPostUrl = AppConfig.cibmtr_fhir_url + "Patient";
+    return this.http.post(fhirPostUrl, createEhrPatient);
   }
 
-  // handleError(error: any): Observable<any> {
-  //   if (error == null) {
-  //     error = "undefined";
-  //   }
-  //   if (error != null) {
-  //     console.error("An error occurred" + error);
-  //     return Observable.throw(error.message || error);
-  //   } else {
-  //     console.error("An unknown error occurred");
-  //     return Observable.throw("Unknown error");
-  //   }
-  // }
+  //Update EHR Patient in Cibmtr FHIR Server
+  updatePatient(updatedEhrPatient, logical_id) {
+    const fhirUpdateurl = AppConfig.cibmtr_fhir_url + "Patient/" + logical_id;
+    return this.http.put(fhirUpdateurl, updatedEhrPatient);
+  }
+
+  handleError(error: any): Observable<any> {
+    if (error == null) {
+      error = "undefined";
+    }
+    if (error != null) {
+      console.error("An error occurred" + error);
+      return Observable.throw(error.message || error);
+    } else {
+      console.error("An unknown error occurred");
+      return Observable.throw("Unknown error");
+    }
+  }
 }
