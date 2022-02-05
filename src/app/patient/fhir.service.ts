@@ -11,7 +11,7 @@ export class FhirService {
   lookupPatientIdentifier(identifier): Observable<any> {
     const fhirGetUrl =
       AppConfig.cibmtr_fhir_url + "Patient?identifier=".concat(identifier);
-    return this.http.get(fhirGetUrl);
+     return this.http.get(fhirGetUrl);
   }
 
   getCrid(payload): Observable<any> {

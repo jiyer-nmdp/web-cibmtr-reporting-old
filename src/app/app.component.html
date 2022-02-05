@@ -1,13 +1,12 @@
-<div>
+<mat-drawer-container>
+  <mat-drawer-content class="example-container">
+    <mat-sidenav-container class="example-container">
   <div *ngIf="!getLoginWidget().isLoggedIn()" id="nmdp-login-container"></div>
   <div *ngIf="getLoginWidget().isLoggedIn()">
     <div class="header">
       <div class="navbar-default" role="navigation">
         <div class="container">
-          <img
-            class="btm-logo navbar-left"
-            src="assets/images/cibmtr_logo.gif"
-          />
+          <img class="btm-logo navbar-left" src="assets/images/cibmtr_logo.gif"/>
           <div class="navbar-brand">
             <span class="CIBMTR-Reporting-label"> CIBMTR Reporting </span>
             <span class="version">version 0.4.0</span>
@@ -21,4 +20,13 @@
     <app-spinner></app-spinner>
     <router-outlet></router-outlet>
   </div>
-</div>
+      <mat-sidenav #buttonsidebar mode="side" opened="opened" position="end" class="example-sidenav-content">
+        <app-sidebarbutton></app-sidebarbutton>
+      </mat-sidenav>
+    </mat-sidenav-container>
+  </mat-drawer-content>
+
+  <mat-drawer class="sidebarcontainer" #sidenav mode="side" position="end">
+    <app-message-tray></app-message-tray>
+  </mat-drawer>
+</mat-drawer-container>

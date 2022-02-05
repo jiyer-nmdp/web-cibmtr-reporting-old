@@ -30,3 +30,18 @@
 .navbar-brand {
   margin-top: 20px;
 }
+
+.example-container {
+  display: flex;
+  height: 100vh;
+  align-content: center;
+  justify-content: center;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  flex: 1;
+}
+
+.sidebarcontainer {
+  padding: 2px;
+  width: 50vw;
+  height: 100vh;
+}
