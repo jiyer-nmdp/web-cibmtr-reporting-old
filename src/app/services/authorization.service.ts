@@ -27,8 +27,8 @@ export class AuthorizationService {
     return null;
   }
 
-  codeToBearerToken(tokenurl, code, state, validState)  {
-    if(!validState || validState !== state) {
+  codeToBearerToken(tokenurl, code, state, validState) {
+    if (!validState || validState !== state) {
       return Promise.reject(new Error("Invalid or missing state."));
     }
 

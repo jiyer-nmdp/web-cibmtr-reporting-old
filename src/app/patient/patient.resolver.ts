@@ -16,7 +16,6 @@ import { HttpErrorResponse } from "@angular/common/http";
 import { map, mergeMap, catchError } from "rxjs/operators";
 import { UtilityService } from "../utility.service";
 import { SpinnerService } from "../spinner/spinner.service";
-import {GlobalErrorHandler} from "../global-error-handler";
 
 @Injectable()
 export class PatientResolver implements Resolve<IPatientContext[]> {
@@ -26,8 +25,7 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
     private _localStorageService: LocalStorageService,
     private http: HttpClient,
     private spinner: SpinnerService,
-    private utilityService: UtilityService,
-    private _globalErrorHanlder: GlobalErrorHandler
+    private utilityService: UtilityService
   ) {}
 
   resolve(): any {
@@ -94,7 +92,7 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
 
     alert(errorMessage);
     console.log(errorMessage);
-    this._globalErrorHanlder.handleError(errorMessage);
+
     return throwError(error);
   }
 }
