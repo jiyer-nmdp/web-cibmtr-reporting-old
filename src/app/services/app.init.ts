@@ -4,6 +4,7 @@ import { Location } from "@angular/common";
 import { LocalStorageService } from "angular-2-local-storage";
 import { HttpErrorResponse } from "@angular/common/http";
 
+import {GlobalErrorHandler} from "../global-error-handler";
 import { v4 as uuidv4 } from "uuid";
 
 @Injectable()
@@ -11,7 +12,8 @@ export class AppInitService {
   constructor(
     private authorizationService: AuthorizationService,
     private location: Location,
-    private _localStorageService: LocalStorageService
+    private _localStorageService: LocalStorageService,
+    private _globalErrorHandler: GlobalErrorHandler
   ) {}
   initializeApp(): Promise<any> {
     if (!window.location.href.includes("?")) {
@@ -47,12 +49,14 @@ export class AppInitService {
             this._localStorageService.set("patient", response["patient"]);
             this.location.go("/main");
           } else {
+            this._globalErrorHandler.handleError("Access token granted");
+            this._globalErrorHandler.handleError(response);
             this.handleError({
               url: this._localStorageService.get("iss"),
               reason: "PatientId not found",
             });
           }
-        });
+        })
     }
 
     let iss = this.authorizationService.getIss(window.location.href),
@@ -62,20 +66,26 @@ export class AppInitService {
 
     if (iss && launchToken) {
       this._localStorageService.set("iss", iss);
-      return this.authorizationService.getMetadata(iss).then((response) => {
-        let validCodeState = uuidv4();
-        this._localStorageService.set("validCodeState", validCodeState);
-        let tokenUrl = this.authorizationService.getTokenUrl(response),
-          authorizeUrl = this.authorizationService.getAuthorizeUrl(response),
-          authorizationCodeUrl =
-            this.authorizationService.constructAuthorizationUrl(
-              authorizeUrl,
-              launchToken,
-              iss,
-              validCodeState
-            );
-        this._localStorageService.set("tokenUrl", tokenUrl);
-        window.location.href = authorizationCodeUrl;
+      return this.authorizationService.getMetadata(iss)
+        .then((response) => {
+          let validCodeState = uuidv4();
+          this._localStorageService.set("validCodeState", validCodeState);
+          let tokenUrl = this.authorizationService.getTokenUrl(response),
+            authorizeUrl = this.authorizationService.getAuthorizeUrl(response),
+            authorizationCodeUrl =
+              this.authorizationService.constructAuthorizationUrl(
+                authorizeUrl,
+                launchToken,
+                iss,
+                validCodeState
+              );
+          this._localStorageService.set("tokenUrl", tokenUrl);
+          window.location.href = authorizationCodeUrl;
+          this._globalErrorHandler.handleError("Metadata retrieved");
+          this._globalErrorHandler.handleError(response);
+        })
+        .catch(error => {
+          this._globalErrorHandler.handleError(error);
       });
     }
   }
@@ -84,5 +94,6 @@ export class AppInitService {
       "Unable to process request for \nURL : ${error.url}. \rReason: ${error.reason}";
     alert(errorMessage);
     console.log(errorMessage);
+    this._globalErrorHandler.handleError(errorMessage);
   }
 }

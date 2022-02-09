@@ -34,7 +34,6 @@ ARG build_environment
 RUN npm run build:$build_environment
 
 # Stage 2
-
 FROM nginx:1.20-alpine
 
 # Copy our default nginx conf

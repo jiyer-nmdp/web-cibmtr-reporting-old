@@ -9,14 +9,16 @@ import { AppConfig } from "../app.config";
 import { IPatientContext } from "../model/patient.";
 import { LocalStorageService } from "angular-2-local-storage";
 import { UtilityService } from "../utility.service";
-import { catchError, map } from "rxjs/operators";
+import {catchError, tap, map} from "rxjs/operators";
+import {GlobalErrorHandler} from "../global-error-handler";
 
 @Injectable()
 export class PatientService {
   constructor(
     private http: HttpClient,
     private _localStorageService: LocalStorageService,
-    private utilityService: UtilityService
+    private utilityService: UtilityService,
+    private _gEH: GlobalErrorHandler
   ) {}
 
   getPatient(identifier): Observable<IPatientContext> {
@@ -30,41 +32,44 @@ export class PatientService {
       .get<IPatientContext>(url, {
         headers: this.buildEhrHeaders(),
       })
-      .pipe(catchError(this.handleError));
+      .pipe(
+        tap(),
+        catchError(this.handleError));
   }
 
   getObservationPriorityLabs(identifier): Observable<IPatientContext> {
     const requestUrls: any[] = [];
-    const splitLoincCodesArray = this.utilityService.chunk(
-      AppConfig.loinc_codes.toString().split(","),
-      150
-    );
-    splitLoincCodesArray.forEach((loincs) => {
-      const loinc_codes = loincs.join(",");
-      const url =
-        this.utilityService.rebuild_DSTU2_STU3_Url(
-          this._localStorageService.get("iss")
-        ) +
+    const splitLoincCodesArray = this.utilityService.chunk(AppConfig.loinc_codes.toString().split(','),150);
+    splitLoincCodesArray.forEach((loincs) =>
+    {
+      const loinc_codes = loincs.join(',');
+      const url = this.utilityService.rebuild_DSTU2_STU3_Url
+        (this._localStorageService.get("iss")) +
         "/Observation?patient=" +
         identifier +
         "&_count=1000&code=" +
         loinc_codes;
-      requestUrls.push(
-        this.utilityService.getPage(url, this.buildEhrHeaders())
-      );
+      requestUrls.push(this.utilityService.getPage(url, this.buildEhrHeaders()));
     });
     return forkJoin(requestUrls).pipe(
-      map((res: []) => {
-        const bundles: any[] = [];
-        res.forEach((r1: any) => {
-          if (r1 instanceof Array) {
-            r1.forEach((r) => bundles.push(r));
+      map((res: []) =>
+      {
+        const bundles:any[] = [];
+        res.forEach((r1: any) =>
+          {
+            if (r1 instanceof Array)
+            {
+              r1.forEach(r => bundles.push(r));
+            }
           }
-        });
+        );
         return bundles;
-      }),
-      catchError(() => of(null))
-    );
+      }),tap(success => {this._gEH.handleError( "Retrived priority labs successfully." );
+        this._gEH.handleError(success);}),
+      catchError((error) =>
+        {this._gEH.handleError(error);
+          return of(null); }
+      ));
   }
 
   getObservationLabs(identifier): Observable<any> {
@@ -74,7 +79,14 @@ export class PatientService {
       ) +
       "/Observation?category=laboratory&_count=1000&patient=" +
       identifier;
-    return this.utilityService.getPage(url, this.buildEhrHeaders());
+    return this.utilityService.getPage(url, this.buildEhrHeaders())
+      .pipe(
+      tap(success => {this._gEH.handleError( "Retrived all labs successfully." );
+        this._gEH.handleError(success);}),
+      catchError((error) =>
+        {this._gEH.handleError(error);
+          return of(null); }
+      ));;
   }
 
   buildEhrHeaders() {
@@ -92,6 +104,7 @@ export class PatientService {
   handleError(error: HttpErrorResponse) {
     let errorMessage = `Unable to process request for \nURL : ${error.url}.  \nStatus: ${error.status}. \nStatusText: ${error.statusText}`;
     alert(errorMessage);
+    this._gEH.handleError(errorMessage);
     return throwError(errorMessage);
   }
 }
