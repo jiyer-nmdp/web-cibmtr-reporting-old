@@ -158,7 +158,8 @@ export class PatientComponent implements OnInit {
         this.priorityLabs = results.pageData[1];
         this.validateFields(this.ehrpatient);
         this.retreiveFhirPatient(this.ehrpatient, selectedScope);
-        this._globalErrorHandler.handleError("Success in retrieving patient and priority labs");
+        this._globalErrorHandler.handleError("Success in retrieving patient");
+        this._globalErrorHandler.handleError(this.ehrpatient);
       },
       (error) => {
         this.spinner.reset();

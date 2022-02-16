@@ -38,7 +38,7 @@
   justify-content: center;
   border: 1px solid rgba(0, 0, 0, 0.5);
   flex: 1;
-  overflow-scrolling: unset;
+  overflow: hidden !important;
 }
 
 .example-container-sidenav {
@@ -48,7 +48,7 @@
   justify-content: center;
   border: 1px solid rgba(0, 0, 0, 0.5);
   flex: 1;
-  overflow: hidden;
+  overflow: hidden !important;
 }
 
 .sidebarcontainer {
