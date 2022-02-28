@@ -32,9 +32,7 @@ export class PatientService {
       .get<IPatientContext>(url, {
         headers: this.buildEhrHeaders(),
       })
-      .pipe(
-        tap(),
-        catchError(this.handleError));
+      .pipe(catchError(this.handleError));
   }
 
   getObservationPriorityLabs(identifier): Observable<IPatientContext> {

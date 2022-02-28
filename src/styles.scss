@@ -11,3 +11,14 @@ body {
 .app-full-bleed-dialog .mat-dialog-container {
   padding: 0;
 }
+
+body
+{
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar
+{
+  display: none;
+}

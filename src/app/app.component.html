@@ -1,15 +1,15 @@
-<mat-drawer-container>
-  <mat-drawer-content class="example-container">
-    <mat-sidenav-container class="example-container-sidenav">
+<mat-drawer-container autosize>
+  <mat-drawer-content class="example-container" autosize>
+    <mat-sidenav-container class="example-container-sidenav" autosize>
   <div *ngIf="!getLoginWidget().isLoggedIn()" id="nmdp-login-container"></div>
   <div *ngIf="getLoginWidget().isLoggedIn()">
     <div class="header">
-      <div class="navbar-default" role="navigation">
+          <div class="navbar-default navbarwidth" role="navigation">
         <div class="container">
           <img class="btm-logo navbar-left" src="assets/images/cibmtr_logo.gif"/>
           <div class="navbar-brand">
             <span class="CIBMTR-Reporting-label"> CIBMTR Reporting </span>
-            <span class="version">version 0.4.0</span>
+                <span class="version">version 0.3.10</span>
           </div>
           <div class="navbar-brand navbar-right">
             <button (click)="logout()">CIBMTR Logout</button>
