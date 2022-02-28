@@ -218,8 +218,8 @@ export class PatientComponent implements OnInit {
           this.cridSubject.next("Patient lookup Successful");
           this._globalErrorHandler.handleError("Successful patient look up. CRID - " + this.crid);
         },
-        () => {
-          this.handleErrorv2;
+        (error) => {
+          this.handleErrorv2(error);
         }
       );
   }
@@ -257,11 +257,12 @@ export class PatientComponent implements OnInit {
       ehrpatient.gender === "unknown" ||
       ehrpatient.gender === "other"
     ) {
-      alert(
+      const alertMsg =
         "Unable to register this patient " +
           ehrpatient.gender +
-          " is not currently supported as a gender value. Please contact your center's CIBMTR CRC to review this case."
-      );
+          " is not currently supported as a gender value. Please contact your center's CIBMTR CRC to review this case.";
+      alert(alertMsg);
+      this._globalErrorHandler.handleError(alertMsg);
       this.isLoading = false;
       return;
     } else {
@@ -418,6 +419,8 @@ export class PatientComponent implements OnInit {
                       );
                     }
                   );
+                if (result)
+                {this._globalErrorHandler.handleError(result)};
               }
             });
 
