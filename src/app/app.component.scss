@@ -63,12 +63,12 @@
   height: 100vh;
 }
 
-mat-drawer {
+* {
   scrollbar-width: none;
   -ms-overflow-style: auto;
 }
 
-mat-drawer::-webkit-scrollbar {
+*::-webkit-scrollbar {
   overflow: auto;
   visibility: hidden;
 }
