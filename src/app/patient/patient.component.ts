@@ -88,7 +88,7 @@ export class PatientComponent implements OnInit {
     let decodedValue = this.widget.decodeJWT(
       await this.widget.getAccessToken()
     );
-
+    this._globalErrorHandler.handleError(decodedValue);
     let scopes = decodedValue.authz_cibmtr_fhir_ehr_client.filter(
       (item) => item.includes("_role_rc") && item.includes("_fn3")
     );
