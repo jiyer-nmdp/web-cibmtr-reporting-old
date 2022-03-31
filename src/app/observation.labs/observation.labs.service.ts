@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { AppConfig } from "../app.config";
 import { EMPTY, Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
-import { UtilityService } from "../utility.service";
+import { UtilityService } from "../shared/utility.service";
 import { catchError, map, retry } from "rxjs/operators";
 
 @Injectable()

@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, ChangeDetectionStrategy, Component, OnInit, Injectable} from '@angular/core';
-import {MessageTrayService} from "../message-tray.service";
+import {MessageTrayService} from "./message-tray.service";
 import {MessageTrayData} from "./message-tray.data";
 import {Sort} from "@angular/material/sort";
 

@@ -13,8 +13,8 @@ import {
   SESSION_TIMEOUT,
 } from "@nmdp/nmdp-login";
 import { Router } from "@angular/router";
-import {GlobalErrorHandler} from "./global-error-handler";
-import {SidenavService} from "./sidenav.service";
+import {GlobalErrorHandler} from "../global-error-handler";
+import {SidenavService} from "../sidenav.service";
 import {MatSidenav} from "@angular/material/sidenav";
 
 @Component({

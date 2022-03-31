@@ -1,6 +1,6 @@
 import {ErrorHandler, Injectable} from "@angular/core";
 import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
-import {MessageTrayService} from "./message-tray.service";
+import {MessageTrayService} from "./message-tray/message-tray.service";
 
 @Injectable({
   providedIn: 'root'

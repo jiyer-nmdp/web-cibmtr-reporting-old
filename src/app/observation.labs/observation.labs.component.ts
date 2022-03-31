@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Patient } from "../model/patient.";
 import { ObservationLabsService } from "./observation.labs.service";
-import { UtilityService } from "../utility.service";
+import { UtilityService } from "../shared/utility.service";
 import { mergeMap, expand, map, reduce, finalize } from "rxjs/operators";
 import { EMPTY, from } from "rxjs";
 import { AppConfig } from "../app.config";
