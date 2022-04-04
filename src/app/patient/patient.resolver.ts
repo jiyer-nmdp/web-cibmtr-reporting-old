@@ -14,9 +14,9 @@ import { HttpHeaders } from "@angular/common/http";
 import { HttpClient } from "@angular/common/http";
 import { HttpErrorResponse } from "@angular/common/http";
 import { map, mergeMap, catchError } from "rxjs/operators";
-import { UtilityService } from "../utility.service";
+import { UtilityService } from "../shared/utility.service";
 import { SpinnerService } from "../spinner/spinner.service";
-import {GlobalErrorHandler} from "../global-error-handler";
+import { GlobalErrorHandler } from "../global-error-handler";
 
 @Injectable()
 export class PatientResolver implements Resolve<IPatientContext[]> {

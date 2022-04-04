@@ -8,7 +8,7 @@ import { PatientService } from "../patient/patient.service";
 import { LocalStorageService } from "angular-2-local-storage";
 import { ActivatedRoute, Router } from "@angular/router";
 import { SpinnerService } from "../spinner/spinner.service";
-import {GlobalErrorHandler} from "../global-error-handler";
+import { GlobalErrorHandler } from "../global-error-handler";
 
 @Component({
   selector: "app-patient.detail",
@@ -17,7 +17,6 @@ import {GlobalErrorHandler} from "../global-error-handler";
 })
 export class PatientDetailComponent implements OnInit {
   ehrpatient: Patient;
-  psScope: string;
   crid: string;
   activeLabel: string;
   priority: any;
@@ -34,11 +33,10 @@ export class PatientDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private _globalErrorHandler: GlobalErrorHandler
   ) {
-    let data = utility.data;
+    const data = utility.data;
     this.ehrpatient = JSON.parse(data.ehrpatient);
     this.priority = this.utility.bundleObservations(data.priorityLabs);
     this.crid = data.crid;
-    this.psScope = data.psScope;
   }
 
   ngOnInit() {}
@@ -72,7 +70,6 @@ export class PatientDetailComponent implements OnInit {
       this.dialogRef = this.dialog.open(ConfirmationDialog, {
         disableClose: false,
       });
-      //Alert_messages will be maintained in constant file in future
       this.dialogRef.componentInstance.confirmMessage =
         "Retrieving All Labs may taken several minutes. Do you want to continue?";
 

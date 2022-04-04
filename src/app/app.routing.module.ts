@@ -14,7 +14,7 @@ const routes: Routes = [
     component: PatientComponent,
   },
   {
-    path: "patient",
+    path: "launch",
     component: PatientComponent,
     pathMatch: "full",
     resolve: {

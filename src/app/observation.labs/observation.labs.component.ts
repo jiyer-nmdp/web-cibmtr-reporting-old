@@ -3,13 +3,14 @@ import { Patient } from "../model/patient.";
 import { ObservationLabsService } from "./observation.labs.service";
 import { UtilityService } from "../shared/utility.service";
 import { mergeMap, expand, map, reduce, finalize } from "rxjs/operators";
-import { EMPTY, from } from "rxjs";
+import { EMPTY, forkJoin, from } from "rxjs";
 import { AppConfig } from "../app.config";
 import { HttpClient } from "@angular/common/http";
 import { SpinnerService } from "../spinner/spinner.service";
 import { ActivatedRoute } from "@angular/router";
 import { Sort } from "@angular/material/sort";
-import {GlobalErrorHandler} from "../global-error-handler";
+import { GlobalErrorHandler } from "../global-error-handler";
+import { LocalStorageService } from "angular-2-local-storage";
 
 @Component({
   selector: "app-observation.labs",
@@ -37,6 +38,7 @@ export class ObservationLabsComponent implements OnInit {
   totalSuccessCount: number;
   totalFailCount: number;
   categoryData: any = [];
+  selectedOrg: any;
 
   constructor(
     private http: HttpClient,
@@ -44,6 +46,7 @@ export class ObservationLabsComponent implements OnInit {
     private utility: UtilityService,
     private spinner: SpinnerService,
     private route: ActivatedRoute,
+    private _localStorageService: LocalStorageService,
     private _gEH: GlobalErrorHandler
   ) {
     let data = utility.data;
@@ -56,106 +59,111 @@ export class ObservationLabsComponent implements OnInit {
       this.labs = this.utility.bundleObservations(data.labs).entry;
     }
 
-    this.psScope = data.psScope;
+    this.selectedOrg = data.selectedOrg;
+    this.psScope = this.selectedOrg.value;
   }
 
   ngOnInit() {
     this.categoryData = this.getCategoryData();
     this.sortHeader({ active: "time", direction: "desc" });
-
-    const subj = this.categoryData[0].resource.subject.reference;
-    const psScope = this.psScope;
-
     this.now = new Date();
 
-    if (this.categoryData && this.categoryData.length > 0) {
-      this.spinner.start();
-      this.observationlabsService
-        .getCibmtrObservationsLabs(subj, psScope)
-        .pipe(
-          expand((response) => {
-            let next =
-              response.link && response.link.find((l) => l.relation === "next");
-            if (next) {
-              let modifiedUrl =
-                AppConfig.cibmtr_fhir_url + "?" + next.url.split("?")[1];
-              return this.http.get(modifiedUrl);
-            } else {
-              return EMPTY;
-            }
-          }),
-          map((response: any) => {
-            if (response.entry) {
-              return response.entry.flatMap((array) => array);
-            }
-            return [];
-          }),
-          reduce((acc, x) => acc.concat(x), [])
-        )
-        .subscribe(
-          (savedEntries) => {
-            this.spinner.end();
-            let entries = this.categoryData;
-            if (entries && entries.length > 0) {
-              // filtering the entries to only Observations
-              let observationEntries = entries.filter(function (item) {
-                return item.resource.resourceType === "Observation";
-              });
+    const telecomUrlItems = this.selectedOrg.telecomUrlItems;
 
-              for (let j = 0; j < observationEntries.length; j++) {
-                let observationEntry = observationEntries[j];
-                // Case I - The record has not been submitted
-                observationEntry.state = "bold";
-                if (savedEntries && savedEntries.length > 0) {
-                  // Case II - The record has been submitted and there were no updates
-                  // we cannot submit these records unless there is a change in data.
-                  // sse stands for submitted saved entry
-                  let sse = savedEntries.filter((savedEntry) => {
-                    return (
-                      savedEntry.resource.identifier &&
-                      observationEntry.fullUrl ===
-                        savedEntry.resource.identifier[0].value &&
-                      observationEntry.resource.issued ===
-                        savedEntry.resource.issued
-                    );
-                  });
+    this.spinner.start();
+    if (telecomUrlItems && telecomUrlItems.length > 0) {
+      let urls = telecomUrlItems.map((item) => item.value);
+      forkJoin(urls.map((url) => this.getCibmtrLabs(url)));
+    } else {
+      this.getCibmtrLabs(this._localStorageService.get("iss"));
+    }
+    this.spinner.end();
+  }
 
-                  // use - updated saved entry
-                  let use = savedEntries.filter((savedEntry) => {
-                    return (
-                      savedEntry.resource.identifier &&
-                      observationEntry.fullUrl ===
-                        savedEntry.resource.identifier[0].value &&
-                      observationEntry.resource.issued !=
-                        savedEntry.resource.issued
-                    );
-                  });
+  getCibmtrLabs(url) {
+    this.observationlabsService
+      .getCibmtrObservationsLabs(url, this.selectedOrg.value)
+      .pipe(
+        expand((response) => {
+          let next =
+            response.link && response.link.find((l) => l.relation === "next");
+          if (next) {
+            let modifiedUrl =
+              AppConfig.cibmtr_fhir_url + "?" + next.url.split("?")[1];
+            return this.http.get(modifiedUrl);
+          } else {
+            return EMPTY;
+          }
+        }),
+        map((response: any) => {
+          if (response.entry) {
+            return response.entry.flatMap((array) => array);
+          }
+          return [];
+        }),
+        reduce((acc, x) => acc.concat(x), [])
+      )
+      .subscribe(
+        (savedEntries) => {
+          let entries = this.categoryData;
+          if (entries && entries.length > 0) {
+            // filtering the entries to only Observations
+            let observationEntries = entries.filter(function (item) {
+              return item.resource.resourceType === "Observation";
+            });
 
-                  if (sse.length > 0) {
-                    observationEntry.selected = true;
-                    observationEntry.state = "lighter";
-                    observationEntry.resource.id = sse[0].resource.id;
-                  }
-                  // Case III - The record has been submitted and there were updates made after
-                  else if (use.length > 0) {
-                    observationEntry.state = "normal";
-                    observationEntry.resource.id = use[0].resource.id;
-                  }
+            for (let j = 0; j < observationEntries.length; j++) {
+              let observationEntry = observationEntries[j];
+              // Case I - The record has not been submitted
+              observationEntry.state = "bold";
+              if (savedEntries && savedEntries.length > 0) {
+                // Case II - The record has been submitted and there were no updates
+                // we cannot submit these records unless there is a change in data.
+                // sse stands for submitted saved entry
+                let sse = savedEntries.filter((savedEntry) => {
+                  return (
+                    savedEntry.resource.identifier &&
+                    observationEntry.fullUrl ===
+                      savedEntry.resource.identifier[0].value &&
+                    observationEntry.resource.issued ===
+                      savedEntry.resource.issued
+                  );
+                });
+
+                // use - updated saved entry
+                let use = savedEntries.filter((savedEntry) => {
+                  return (
+                    savedEntry.resource.identifier &&
+                    observationEntry.fullUrl ===
+                      savedEntry.resource.identifier[0].value &&
+                    observationEntry.resource.issued !=
+                      savedEntry.resource.issued
+                  );
+                });
+
+                if (sse.length > 0) {
+                  observationEntry.selected = true;
+                  observationEntry.state = "lighter";
+                  observationEntry.resource.id = sse[0].resource.id;
+                }
+                // Case III - The record has been submitted and there were updates made after
+                else if (use.length > 0) {
+                  observationEntry.state = "normal";
+                  observationEntry.resource.id = use[0].resource.id;
                 }
               }
             }
-            this._gEH.handleError(savedEntries);
-          },
-          (error) => {
-            this.spinner.reset();
-            console.log(
-              "error occurred while fetching saved observations",
-              error
-            );
-            this._gEH.handleError(error);
           }
-        );
-    }
+          this._gEH.handleError(savedEntries);
+        },
+        (error) => {
+          console.log(
+            "error occurred while fetching saved observations",
+            error
+          );
+          this._gEH.handleError(error);
+        }
+      );
   }
 
   getNodeValue(value) {

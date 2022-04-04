@@ -10,10 +10,10 @@ import { NmdpWidget } from "@nmdp/nmdp-login";
 import { DialogComponent } from "../dialog/dialog.component";
 import { LocalStorageService } from "angular-2-local-storage";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { UtilityService } from "../utility.service";
+import { UtilityService } from "../shared/utility.service";
 import { SpinnerService } from "../spinner/spinner.service";
-import { Validator } from "../validator_regex";
-import {GlobalErrorHandler} from "../global-error-handler";
+import { Validator } from "../shared/validator_regex";
+import { GlobalErrorHandler } from "../global-error-handler";
 
 @Component({
   selector: "app-main",
@@ -45,6 +45,7 @@ export class PatientComponent implements OnInit {
   ssn: string;
   nonPIIIdentifiers: any[];
   ssnIdentifier: any;
+  selectedOrg: any;
 
   constructor(
     private _route: ActivatedRoute,
@@ -61,22 +62,23 @@ export class PatientComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.determineModal().then((cibmtrCenters) => {
-      if (cibmtrCenters && cibmtrCenters.length > 1) {
-        this.bsModalRef = this.modalService.show(DialogComponent, {
-          initialState: { cibmtrCenters },
-          ignoreBackdropClick: true,
-          keyboard: false,
-        });
-        this.bsModalRef.content.onClose.subscribe((result) => {
-          if (result === "Continue") {
-            this.subscribeRouteData(this.bsModalRef.content.currentItem);
-          }
-        });
-      } else if (cibmtrCenters) {
-        this.subscribeRouteData(cibmtrCenters[0]);
-      }
-      this._globalErrorHandler.handleError(cibmtrCenters);
+    this.determineModal()
+      .then((cibmtrCenters) => {
+        if (cibmtrCenters && cibmtrCenters.length > 1) {
+          this.bsModalRef = this.modalService.show(DialogComponent, {
+            initialState: { cibmtrCenters },
+            ignoreBackdropClick: true,
+            keyboard: false,
+          });
+          this.bsModalRef.content.onClose.subscribe((result) => {
+            if (result === "Continue") {
+              this.subscribeRouteData(this.bsModalRef.content.currentItem);
+            }
+          });
+        } else if (cibmtrCenters) {
+          this.subscribeRouteData(cibmtrCenters[0]);
+        }
+        this._globalErrorHandler.handleError(cibmtrCenters);
     }). catch(error => {this._globalErrorHandler.handleError(error);});
   }
 
@@ -108,22 +110,30 @@ export class PatientComponent implements OnInit {
    * @param scopes
    */
   async fetchData(scopes): Promise<any[]> {
-    let cibmtrUrl = AppConfig.cibmtr_fhir_url + "Organization?_security=";
+    const orgUrl = AppConfig.cibmtr_fhir_url + "Organization?_security=";
 
-    let cibmtrCenters = [];
+    const cibmtrCenters = [];
     if (scopes !== "") {
       await this.http
-        .get(`${cibmtrUrl}${scopes}`)
+        .get(`${orgUrl}${scopes}`)
         .toPromise()
-        .then((cibmtrResponse: any) => {
-          let cibmtrEntry = cibmtrResponse.entry;
-          cibmtrEntry.forEach((element) => {
-            let value = element.resource.identifier[0].value;
-            let name = element.resource.name;
+        .then((response: any) => {
+          let orgEntries = response.entry;
+          orgEntries.forEach((orgEntry) => {
+            const value = "rc_" + orgEntry.resource.identifier[0].value;
+            const name = orgEntry.resource.name;
+            const telecom = orgEntry.resource.telecom;
+
+            let telecomUrlItems = [];
+            if (telecom) {
+              telecomUrlItems = telecom.filter((item) => item.system === "url");
+            }
+
             cibmtrCenters.push({
               value,
               name,
               selected: false,
+              telecomUrlItems,
             });
           });
           this._globalErrorHandler.handleError("Successfully retrieved cibmtrcenter");
@@ -150,14 +160,15 @@ export class PatientComponent implements OnInit {
     return givenName;
   }
 
-  subscribeRouteData = (selectedScope) => {
+  subscribeRouteData = (selectedOrg) => {
     this.spinner.end();
     this._route.data.subscribe(
       (results) => {
         this.ehrpatient = results.pageData[0];
         this.priorityLabs = results.pageData[1];
-        this.validateFields(this.ehrpatient);
-        this.retreiveFhirPatient(this.ehrpatient, selectedScope);
+        this.selectedOrg = selectedOrg;
+        this.validate(this.ehrpatient, this.selectedOrg);
+        this.retreiveFhirPatient(this.ehrpatient, selectedOrg);
         this._globalErrorHandler.handleError("Success in retrieving patient");
         this._globalErrorHandler.handleError(this.ehrpatient);
       },
@@ -170,9 +181,9 @@ export class PatientComponent implements OnInit {
   };
 
   //Intial search Patient in FHIR server for CRID Lookup
-  retreiveFhirPatient(ehrpatient, selectedScope) {
-    this.psScope = "rc_" + selectedScope.value;
-    this.selectedCenter_name = selectedScope.name;
+  retreiveFhirPatient(ehrpatient, selectedOrg) {
+    this.psScope = selectedOrg.value;
+    this.selectedCenter_name = selectedOrg.name;
 
     const logicalId = encodeURI(
       "".concat(
@@ -259,8 +270,8 @@ export class PatientComponent implements OnInit {
     ) {
       const alertMsg =
         "Unable to register this patient " +
-          ehrpatient.gender +
-          " is not currently supported as a gender value. Please contact your center's CIBMTR CRC to review this case.";
+        ehrpatient.gender +
+        " is not currently supported as a gender value. Please contact your center's CIBMTR CRC to review this case.";
       alert(alertMsg);
       this._globalErrorHandler.handleError(alertMsg);
       this.isLoading = false;
@@ -419,8 +430,9 @@ export class PatientComponent implements OnInit {
                       );
                     }
                   );
-                if (result)
-                {this._globalErrorHandler.handleError(result)};
+                if (result) {
+                  this._globalErrorHandler.handleError(result);
+                }
               }
             });
 
@@ -515,7 +527,20 @@ export class PatientComponent implements OnInit {
     return updatedPatient;
   }
 
-  validateFields(ehrpatient) {
+  validate(ehrpatient, selectedOrg) {
+    if (selectedOrg.telecomUrlItems?.length > 0) {
+      const recentOrgItem = selectedOrg.telecomUrlItems.filter(
+        (item) => item.rank === 1
+      );
+
+      if (recentOrgItem[0]?.value !== this._localStorageService.get("iss")) {
+        const invalid_issuer =
+          "Please validate the updtaed Issuer URL with CIBMTR";
+        alert(invalid_issuer);
+        throwError;
+      }
+    }
+
     this.nonPIIIdentifiers = ehrpatient.identifier.filter(
       (i) => !AppConfig.ssn_system.includes(i.system)
     );
@@ -537,12 +562,20 @@ export class PatientComponent implements OnInit {
       ehrpatient: JSON.stringify(this.ehrpatient),
       priorityLabs: JSON.stringify(this.priorityLabs),
       crid: this.crid,
-      psScope: this.psScope,
+      selectedOrg: this.selectedOrg,
     };
     this.router
       .navigate(["/patientdetail"])
-      .then((e) => {console.info(e + ""); this._globalErrorHandler.handleError("Navigated to Patient Detail page");} )
-      .catch((e) => {console.error(e); this._globalErrorHandler.handleError(e);});
+      .then((e) => {
+        console.info(e + "");
+        this._globalErrorHandler.handleError(
+          "Navigated to Patient Detail page"
+        );
+      })
+      .catch((e) => {
+        console.error(e);
+        this._globalErrorHandler.handleError(e);
+      });
   }
 
   /**

@@ -47,7 +47,7 @@ export class AppInitService {
               response["access_token"]
             );
             this._localStorageService.set("patient", response["patient"]);
-            this.location.go("/patient");
+            this.location.go("/launch");
           } else {
             this._globalErrorHandler.handleError("Access token granted");
             this._globalErrorHandler.handleError(response);
