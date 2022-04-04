@@ -105,7 +105,7 @@ export class ObservationLabsService {
     };
   }
 
-  getCibmtrObservationsLabs(iss, psScope): Observable<any> {
+  getCibmtrObservationsLabs(subject, psScope): Observable<any> {
     const url =
       AppConfig.cibmtr_fhir_url +
       "Observation?subject=" +
