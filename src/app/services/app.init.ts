@@ -4,7 +4,7 @@ import { Location } from "@angular/common";
 import { LocalStorageService } from "angular-2-local-storage";
 import { HttpErrorResponse } from "@angular/common/http";
 
-import {GlobalErrorHandler} from "../global-error-handler";
+import { GlobalErrorHandler } from "../global-error-handler";
 import { v4 as uuidv4 } from "uuid";
 
 @Injectable()
@@ -47,7 +47,7 @@ export class AppInitService {
               response["access_token"]
             );
             this._localStorageService.set("patient", response["patient"]);
-            this.location.go("/main");
+            this.location.go("/patient");
           } else {
             this._globalErrorHandler.handleError("Access token granted");
             this._globalErrorHandler.handleError(response);
@@ -56,7 +56,7 @@ export class AppInitService {
               reason: "PatientId not found",
             });
           }
-        })
+        });
     }
 
     let iss = this.authorizationService.getIss(window.location.href),
@@ -66,7 +66,8 @@ export class AppInitService {
 
     if (iss && launchToken) {
       this._localStorageService.set("iss", iss);
-      return this.authorizationService.getMetadata(iss)
+      return this.authorizationService
+        .getMetadata(iss)
         .then((response) => {
           let validCodeState = uuidv4();
           this._localStorageService.set("validCodeState", validCodeState);
@@ -84,9 +85,9 @@ export class AppInitService {
           this._globalErrorHandler.handleError("Metadata retrieved");
           this._globalErrorHandler.handleError(response);
         })
-        .catch(error => {
+        .catch((error) => {
           this._globalErrorHandler.handleError(error);
-      });
+        });
     }
   }
   handleError(error) {

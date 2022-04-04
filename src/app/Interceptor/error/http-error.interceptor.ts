@@ -8,7 +8,7 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {retry, catchError, tap} from 'rxjs/operators';
-import {GlobalErrorHandler} from "./global-error-handler";
+import {GlobalErrorHandler} from "../../global-error-handler";
 
 export class HttpErrorInterceptor implements HttpInterceptor {
 

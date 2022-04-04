@@ -8,9 +8,9 @@ import {
 } from "@angular/common/http";
 import { Observable, of } from "rxjs";
 
-import * as patient from "../data/patient.json";
-import * as labs from "../data/labs.json";
-import * as priority from "../data/priority.json";
+import * as patient from "../../data/patient.json";
+import * as labs from "../../data/labs.json";
+import * as priority from "../../data/priority.json";
 
 const ehr_url = [
   {
