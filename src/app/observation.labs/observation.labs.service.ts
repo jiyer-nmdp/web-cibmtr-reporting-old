@@ -4,7 +4,7 @@ import { EMPTY, Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { UtilityService } from "../shared/utility.service";
 import { catchError, map, retry } from "rxjs/operators";
-import { LocalStorageService } from "angular-2-local-storage/local-storage.service";
+import { LocalStorageService } from "angular-2-local-storage";
 
 @Injectable()
 export class ObservationLabsService {
