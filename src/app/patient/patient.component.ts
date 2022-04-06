@@ -31,7 +31,7 @@ export class PatientComponent implements OnInit {
   logicalId: string;
   lookupPatientCrid$: Observable<any>;
   cridCallComplete: Boolean = false;
-  psScope: string;
+  ccn: string;
   isLoading: Boolean;
   now: Date;
   cibmtrPatientId: Observable<any>;
@@ -137,7 +137,7 @@ export class PatientComponent implements OnInit {
 
   //Intial search Patient in FHIR server for CRID Lookup
   retreiveFhirPatient(ehrpatient, selectedOrg) {
-    this.psScope = selectedOrg.value;
+    this.ccn = selectedOrg.value;
     this.selectedCenter_name = selectedOrg.name;
 
     const logicalId = encodeURI(
@@ -152,7 +152,7 @@ export class PatientComponent implements OnInit {
       )
     );
     let encodedScope = encodeURI(
-      "".concat(AppConfig.cibmtr_centers_namespace, "|", this.psScope)
+      "".concat(AppConfig.cibmtr_centers_namespace, "|", this.ccn)
     );
 
     this.fhirService
@@ -222,7 +222,7 @@ export class PatientComponent implements OnInit {
 
     //CRID Payload
     let payload = {
-      ccn: this.psScope.substring(3),
+      ccn: this.ccn.substring(3),
       patient: {
         firstName: ehrpatient.name[0].given[0],
         lastName: ehrpatient.name[0].family,
@@ -260,7 +260,7 @@ export class PatientComponent implements OnInit {
             ehrpatient,
             this.crid,
             this.logicalId,
-            this.psScope
+            this.ccn
           );
 
           //Lookup CRID in FHIR Server
@@ -270,7 +270,7 @@ export class PatientComponent implements OnInit {
 
           this.fhirService
             .lookupPatientIdentifier(
-              cridSearchurl.concat(`&_security=${this.psScope}`)
+              cridSearchurl.concat(`&_security=${this.ccn}`)
             )
             .subscribe((cibmtrPatient): void => {
               this.cibmtrPatientCount = cibmtrPatient.total;
