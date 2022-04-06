@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { EMPTY } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { expand, map, reduce } from "rxjs/operators";
-import { LocalStorageService } from "angular-2-local-storage";
 
 @Injectable({
   providedIn: "root",
@@ -11,12 +10,8 @@ export class UtilityService {
   //IE data clone issue with router state object
   data: any;
   chunkSize: number = 30;
-  issuer: any = this._localStorageService.get("iss");
 
-  constructor(
-    private http: HttpClient,
-    private _localStorageService: LocalStorageService
-  ) {}
+  constructor(private http: HttpClient) {}
 
   //Reusable methods defined in this Components
 

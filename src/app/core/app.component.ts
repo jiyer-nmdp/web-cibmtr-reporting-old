@@ -2,7 +2,8 @@ import {
   Component,
   ChangeDetectorRef,
   OnInit,
-  HostListener, ViewChild,
+  HostListener,
+  ViewChild,
 } from "@angular/core";
 import {
   NEW_SESSION,
@@ -13,9 +14,9 @@ import {
   SESSION_TIMEOUT,
 } from "@nmdp/nmdp-login";
 import { Router } from "@angular/router";
-import {GlobalErrorHandler} from "../global-error-handler";
-import {SidenavService} from "../sidenav.service";
-import {MatSidenav} from "@angular/material/sidenav";
+import { GlobalErrorHandler } from "../global-error-handler";
+import { SidenavService } from "../sidenav.service";
+import { MatSidenav } from "@angular/material/sidenav";
 
 @Component({
   selector: "app-root",
@@ -23,8 +24,7 @@ import {MatSidenav} from "@angular/material/sidenav";
   styleUrls: ["./app.component.scss"],
 })
 export class AppComponent implements OnInit {
-
-  @ViewChild('sidenav', {static: true}) public sidenav: MatSidenav;
+  @ViewChild("sidenav", { static: true }) public sidenav: MatSidenav;
 
   constructor(
     private loginWidget: NmdpWidget,
@@ -42,10 +42,10 @@ export class AppComponent implements OnInit {
     NMDPHttpClientInterceptor.addExcludeUrl(regExp, null, false);
     NMDPHttpClientInterceptor.enable();
     this.loginWidget.sessionInfo();
-    this.loginWidget.getAccessToken().then(token => {
+    this.loginWidget.getAccessToken().then((token) => {
       this._gEH.handleError("NMDP okta token received");
       this._gEH.handleError(this.loginWidget.decodeJWT(token));
-    })
+    });
   }
 
   getLoginWidget() {
@@ -55,7 +55,7 @@ export class AppComponent implements OnInit {
   logout() {
     this.loginWidget.signout();
     //Route Navigation should be redirect from main when user logsout.
-    this.router.navigateByUrl("/main");
+    this.router.navigateByUrl("/launch");
   }
 
   processSELEvent(event: any) {
