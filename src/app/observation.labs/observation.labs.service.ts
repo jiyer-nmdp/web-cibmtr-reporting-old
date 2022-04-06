@@ -4,12 +4,14 @@ import { EMPTY, Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { UtilityService } from "../shared/utility.service";
 import { catchError, map, retry } from "rxjs/operators";
+import { LocalStorageService } from "angular-2-local-storage/local-storage.service";
 
 @Injectable()
 export class ObservationLabsService {
   constructor(
     private http: HttpClient,
-    private utilityService: UtilityService
+    private utilityService: UtilityService,
+    private _localStorageService: LocalStorageService
   ) {}
 
   // Below method submit new records to the cibmtr
@@ -30,7 +32,9 @@ export class ObservationLabsService {
     return this.http.post(AppConfig.cibmtr_fhir_url + "Bundle", bundle).pipe(
       map(() => bundle),
       retry(1),
-      catchError((error) => {throw error;})
+      catchError((error) => {
+        throw error;
+      })
     );
   }
 
@@ -106,9 +110,9 @@ export class ObservationLabsService {
       AppConfig.cibmtr_fhir_url +
       "Observation?subject=" +
       subject +
-      "&_security=" +
-      psScope +
-      "&_total=accurate&_count=500&category=laboratory";
+      "/Patient/" +
+      this._localStorageService.get("patient");
+    "&_security=" + psScope + "&_total=accurate&_count=500&category=laboratory";
     return this.http.get(url);
   }
 }

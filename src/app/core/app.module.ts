@@ -1,5 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
-import {NgModule, APP_INITIALIZER, ErrorHandler} from "@angular/core";
+import { NgModule, APP_INITIALIZER, ErrorHandler } from "@angular/core";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AppRoutingModule, routingComponents } from "../app.routing.module";
 import { AppComponent } from "./app.component";
@@ -26,11 +26,11 @@ import { SpinnerService } from "../spinner/spinner.service";
 import { ModalModule } from "ngx-bootstrap/modal";
 import { FormsModule } from "@angular/forms";
 import { Validator } from "../shared/validator_regex";
-import {MessageTrayComponent} from "../message-tray/message-tray.component";
-import {GlobalErrorHandler} from "../global-error-handler";
-import {HttpErrorInterceptor} from "../Interceptor/error/http-error.interceptor";
-import { SidebarbuttonComponent } from '../sidebarbutton/sidebarbutton.component';
-import {SidenavService} from "../sidenav.service";
+import { MessageTrayComponent } from "../message-tray/message-tray.component";
+import { GlobalErrorHandler } from "../global-error-handler";
+import { HttpErrorInterceptor } from "../Interceptor/error/http-error.interceptor";
+import { SidebarbuttonComponent } from "../sidebarbutton/sidebarbutton.component";
+import { SidenavService } from "../sidenav.service";
 export const isMock = environment.mock;
 
 @NgModule({
@@ -59,7 +59,7 @@ export const isMock = environment.mock;
       storageType: "localStorage",
     }),
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
   ],
   entryComponents: [DialogComponent],
   providers: [
@@ -80,7 +80,7 @@ export const isMock = environment.mock;
     },
     {
       provide: ErrorHandler,
-      useClass: GlobalErrorHandler
+      useClass: GlobalErrorHandler,
     },
     {
       provide: HTTP_INTERCEPTORS,
