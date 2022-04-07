@@ -321,7 +321,6 @@ export class PatientComponent implements OnInit {
   }
 
   validate(ehrpatient, selectedOrg) {
-    this.organizationService.validateSelectedOrg(selectedOrg);
     this.nonPIIIdentifiers = ehrpatient.identifier.filter(
       (i) => !AppConfig.ssn_system.includes(i.system)
     );
@@ -335,6 +334,7 @@ export class PatientComponent implements OnInit {
         this.isValidSsn = true;
       }
     }
+    this.organizationService.validateSelectedOrg(selectedOrg);
   }
 
   proceed() {

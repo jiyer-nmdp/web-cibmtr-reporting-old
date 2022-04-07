@@ -66,7 +66,7 @@ export class OrganizationService {
         const invalid_issuer =
           "Please validate the updtaed Issuer URL with CIBMTR";
         alert(invalid_issuer);
-        throwError;
+        throw Error;
       }
     }
   }
