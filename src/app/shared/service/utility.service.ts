@@ -7,20 +7,12 @@ import { expand, map, reduce } from "rxjs/operators";
   providedIn: "root",
 })
 export class UtilityService {
-  //IE data clone issue with router state object
   data: any;
   chunkSize: number = 30;
 
   constructor(private http: HttpClient) {}
 
   //Reusable methods defined in this Components
-
-  /**
-   * Recursively fetch next url page
-   * @param url
-   * @param theHeaders
-   */
-
   getPage(url, theHeaders) {
     return this.http.get(url, { headers: theHeaders }).pipe(
       expand((response: any) => {
@@ -50,10 +42,6 @@ export class UtilityService {
     return url;
   }
 
-  /**
-   * Bundle Chunck
-   * @param observations
-   */
   chunk(array, size) {
     const chunked_arr = [];
     let index = 0;
@@ -63,11 +51,6 @@ export class UtilityService {
     }
     return chunked_arr;
   }
-
-  /**
-   * Create a Fhir bundle of the returned observations
-   * @param observations
-   */
 
   bundleObservations(observations) {
     let filteredObservations;

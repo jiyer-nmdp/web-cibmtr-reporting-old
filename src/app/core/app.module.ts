@@ -25,7 +25,7 @@ import { SpinnerComponent } from "../spinner/spinner.component";
 import { SpinnerService } from "../spinner/spinner.service";
 import { ModalModule } from "ngx-bootstrap/modal";
 import { FormsModule } from "@angular/forms";
-import { Validator } from "../shared/validator_regex";
+import { Validator } from "../shared/constants/validator_regex";
 import { MessageTrayComponent } from "../message-tray/message-tray.component";
 import { GlobalErrorHandler } from "../global-error-handler";
 import { HttpErrorInterceptor } from "../Interceptor/error/http-error.interceptor";

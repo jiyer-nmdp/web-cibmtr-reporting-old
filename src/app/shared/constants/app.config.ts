@@ -1,4 +1,4 @@
-import { environment } from "../environments/environment";
+import { environment } from "../../../environments/environment";
 
 export class AppConfig {
   // Define all the constants of the app

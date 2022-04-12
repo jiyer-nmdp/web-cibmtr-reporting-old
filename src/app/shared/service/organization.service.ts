@@ -1,8 +1,8 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { AppConfig } from "./app.config";
+import { AppConfig } from "../constants/app.config";
 import { throwError } from "rxjs";
-import { GlobalErrorHandler } from "./global-error-handler";
+import { GlobalErrorHandler } from "../../global-error-handler";
 import { LocalStorageService } from "angular-2-local-storage";
 
 @Injectable({
@@ -63,8 +63,10 @@ export class OrganizationService {
       );
 
       if (recentOrgItem[0]?.value !== this.localStorageService.get("iss")) {
-        const invalid_issuer =
-          "Please validate the updtaed Issuer URL with CIBMTR";
+        const invalid_issuer = `The data submission was received from an unknown endpoint and cannot be processed: \n Issuer received : ${this.localStorageService.get(
+          "iss"
+        )}`;
+
         alert(invalid_issuer);
         throw Error(invalid_issuer);
       }

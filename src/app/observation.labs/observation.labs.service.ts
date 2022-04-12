@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
-import { AppConfig } from "../app.config";
+import { AppConfig } from "../shared/constants/app.config";
 import { EMPTY, Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
-import { UtilityService } from "../shared/utility.service";
+import { UtilityService } from "../shared/service/utility.service";
 import { catchError, map, retry } from "rxjs/operators";
 import { LocalStorageService } from "angular-2-local-storage";
 

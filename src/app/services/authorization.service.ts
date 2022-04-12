@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { AppConfig } from "../app.config";
+import { AppConfig } from "../shared/constants/app.config";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { HttpErrorResponse } from "@angular/common/http";
 
