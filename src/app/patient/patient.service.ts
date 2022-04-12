@@ -5,10 +5,10 @@ import {
   HttpErrorResponse,
 } from "@angular/common/http";
 import { Observable, throwError, of, forkJoin } from "rxjs";
-import { AppConfig } from "../app.config";
+import { AppConfig } from "../shared/constants/app.config";
 import { IPatientContext, Patient } from "../model/patient.";
 import { LocalStorageService } from "angular-2-local-storage";
-import { UtilityService } from "../shared/utility.service";
+import { UtilityService } from "../shared/service/utility.service";
 import { catchError, tap, map } from "rxjs/operators";
 import { GlobalErrorHandler } from "../global-error-handler";
 

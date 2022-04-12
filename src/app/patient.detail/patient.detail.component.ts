@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener } from "@angular/core";
 import { Patient } from "../model/patient.";
-import { UtilityService } from "../shared/utility.service";
+import { UtilityService } from "../shared/service/utility.service";
 import { ConfirmationDialog } from "../confirm.dialog/confirmation-dialog";
 import { MatDialog } from "@angular/material/dialog";
 import { MatDialogRef } from "@angular/material/dialog";

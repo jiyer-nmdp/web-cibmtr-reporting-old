@@ -1,10 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { Patient } from "../model/patient.";
 import { ObservationLabsService } from "./observation.labs.service";
-import { UtilityService } from "../shared/utility.service";
+import { UtilityService } from "../shared/service/utility.service";
 import { mergeMap, expand, map, reduce, finalize } from "rxjs/operators";
 import { EMPTY, forkJoin, from } from "rxjs";
-import { AppConfig } from "../app.config";
+import { AppConfig } from "../shared/constants/app.config";
 import { HttpClient } from "@angular/common/http";
 import { SpinnerService } from "../spinner/spinner.service";
 import { ActivatedRoute } from "@angular/router";
@@ -71,6 +71,7 @@ export class ObservationLabsComponent implements OnInit {
     const telecomUrlItems = this.selectedOrg.telecomUrlItems;
 
     this.spinner.start();
+
     if (telecomUrlItems && telecomUrlItems.length > 0) {
       let urls = telecomUrlItems.map((item) => item.value);
       forkJoin(urls.map((url) => this.getCibmtrLabs(url)));

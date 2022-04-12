@@ -4,18 +4,18 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { throwError, Observable, Subject } from "rxjs";
 import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
 import { FhirService } from "./fhir.service";
-import { AppConfig } from "../app.config";
+import { AppConfig } from "../shared/constants/app.config";
 import { take, retry } from "rxjs/operators";
 import { NmdpWidget } from "@nmdp/nmdp-login";
 import { DialogComponent } from "../dialog/dialog.component";
 import { LocalStorageService } from "angular-2-local-storage";
 import { HttpErrorResponse } from "@angular/common/http";
-import { UtilityService } from "../shared/utility.service";
+import { UtilityService } from "../shared/service/utility.service";
 import { SpinnerService } from "../spinner/spinner.service";
-import { Validator } from "../shared/validator_regex";
+import { Validator } from "../shared/constants/validator_regex";
 import { GlobalErrorHandler } from "../global-error-handler";
 import { PatientService } from "./patient.service";
-import { OrganizationService } from "../organization.service";
+import { OrganizationService } from "../shared/service/organization.service";
 
 @Component({
   selector: "app-main",
@@ -324,6 +324,7 @@ export class PatientComponent implements OnInit {
     this.nonPIIIdentifiers = ehrpatient.identifier.filter(
       (i) => !AppConfig.ssn_system.includes(i.system)
     );
+
     this.ssnIdentifier = ehrpatient.identifier.filter((i) =>
       AppConfig.ssn_system.includes(i.system)
     );
