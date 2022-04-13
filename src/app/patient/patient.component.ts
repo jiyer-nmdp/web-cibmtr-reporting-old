@@ -30,7 +30,7 @@ export class PatientComponent implements OnInit {
   crid: string;
   logicalId: string;
   lookupPatientCrid$: Observable<any>;
-  cridCallComplete: Boolean = false;
+  isCibmtrCallSuccess: Boolean = false;
   ccn: string;
   isLoading: Boolean;
   now: Date;
@@ -124,7 +124,6 @@ export class PatientComponent implements OnInit {
         this.selectedOrg = selectedOrg;
         this.validate(this.ehrpatient, this.selectedOrg);
         this.retreiveFhirPatient(this.ehrpatient, selectedOrg);
-        this.globalErrorHandler.handleError("Success in retrieving patient");
         this.globalErrorHandler.handleError(this.ehrpatient);
       },
       (error) => {
@@ -162,6 +161,7 @@ export class PatientComponent implements OnInit {
         (resp: any) => {
           this.cibmtrPatientCount = resp.total;
           if (this.cibmtrPatientCount > 0) {
+            this.isCibmtrCallSuccess = true;
             if (resp.entry) {
               resp.entry.filter((entry) => {
                 if (entry.resource) {
@@ -180,14 +180,10 @@ export class PatientComponent implements OnInit {
               });
             }
           }
-          this.cridCallComplete = true;
           this.cridSubject.next("Patient lookup Successful");
-          this.globalErrorHandler.handleError(
-            "Successful patient look up. CRID - " + this.crid
-          );
         },
         (error) => {
-          this.handleErrorv2(error);
+          this.handleError(error, new Date().getTime());
         }
       );
   }
@@ -275,7 +271,6 @@ export class PatientComponent implements OnInit {
             .subscribe((cibmtrPatient): void => {
               this.cibmtrPatientCount = cibmtrPatient.total;
               if (this.cibmtrPatientCount > 0) {
-                //Update the CITPatient_record with new logic id
                 this.fhirService
                   .updatePatient(
                     this.patientService.mergedPatient(
@@ -287,6 +282,7 @@ export class PatientComponent implements OnInit {
                   .pipe(retry(1))
                   .subscribe(
                     () => {
+                      this.isCibmtrCallSuccess = true;
                       console.log("Updated the patient");
                     },
                     (error) => {
@@ -300,7 +296,7 @@ export class PatientComponent implements OnInit {
                   .pipe(retry(1))
                   .subscribe(
                     () => {
-                      console.log("Submitted patient");
+                      this.isCibmtrCallSuccess = true;
                       this.globalErrorHandler.handleError("Submitted patient");
                     },
                     (error) => {
@@ -315,8 +311,7 @@ export class PatientComponent implements OnInit {
         },
         (error) => {
           this.handleError(error, new Date().getTime());
-        },
-        () => (this.cridCallComplete = true)
+        }
       );
   }
 
@@ -349,11 +344,9 @@ export class PatientComponent implements OnInit {
     this.router
       .navigate(["/patientdetail"])
       .then((e) => {
-        console.info(e + "");
         this.globalErrorHandler.handleError("Navigated to Patient Detail page");
       })
       .catch((e) => {
-        console.error(e);
         this.globalErrorHandler.handleError(e);
       });
   }
@@ -367,24 +360,7 @@ export class PatientComponent implements OnInit {
     }. \nTimestamp : ${timestamp} `;
 
     alert(errorMessage);
-    console.log(errorMessage);
     this.globalErrorHandler.handleError(errorMessage);
-    return throwError(error);
-  }
-
-  private handleErrorv2(error: any): Promise<any> {
-    if (error == null) {
-      error = "undefined";
-      this.globalErrorHandler.handleError(error);
-    }
-    if (error != null) {
-      console.error("An error occurred" + error);
-      this.globalErrorHandler.handleError(error);
-      return Promise.reject(error.message || error.status);
-    } else {
-      console.error("An unknown error occurred");
-      this.globalErrorHandler.handleError(error);
-      return Promise.reject("Unknown error");
-    }
+    return throwError;
   }
 }

@@ -58,16 +58,14 @@
     </div>
 
     <div class="row">
-      <div class="col-12" *ngIf="cridCallComplete === true && crid">
-        <div *ngIf="crid">
-          <button
-            type="button"
-            class="btn btn-primary register_proceed pull-right"
-            (click)="proceed()"
-          >
-            Proceed
-          </button>
-        </div>
+      <div class="col-12" *ngIf="crid && isCibmtrCallSuccess">
+        <button
+          type="button"
+          class="btn btn-primary register_proceed pull-right"
+          (click)="proceed()"
+        >
+          Proceed
+        </button>
       </div>
     </div>
   </div>
