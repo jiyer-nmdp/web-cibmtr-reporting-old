@@ -5,7 +5,7 @@ import {
   Resolve,
 } from "@angular/router";
 import { BsModalRef } from "ngx-bootstrap/modal";
-import { forkJoin, throwError, Observable } from "rxjs";
+import { forkJoin, throwError, Observable, of } from "rxjs";
 import { IPatientContext } from "../model/patient.";
 import { PatientService } from "./patient.service";
 import { LocalStorageService } from "angular-2-local-storage";
@@ -13,7 +13,7 @@ import { IIdentifiers } from "../model/identifiers";
 import { HttpHeaders } from "@angular/common/http";
 import { HttpClient } from "@angular/common/http";
 import { HttpErrorResponse } from "@angular/common/http";
-import { map, mergeMap, catchError } from "rxjs/operators";
+import { map, mergeMap, catchError, concatMap } from "rxjs/operators";
 import { SpinnerService } from "../spinner/spinner.service";
 import { GlobalErrorHandler } from "../global-error-handler";
 import { UtilityService } from "../shared/service/utility.service";
@@ -71,7 +71,7 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
               );
             }
           }),
-          mergeMap((stu3_id) => this.getEhrDataSets(stu3_id))
+          mergeMap(async (stu3_id) => this.getEhrDataSets(stu3_id))
         );
     } else {
       return this.getEhrDataSets(this._localStorageService.get("patient"));
@@ -80,10 +80,14 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
 
   getEhrDataSets(id) {
     this.spinner.start();
-    return forkJoin([
-      this.patientDetailService.getPatient(id),
-      this.patientDetailService.getObservationPriorityLabs(id),
-    ]);
+    const ehrretrivals = of(
+      this.patientDetailService.getObservationPriorityLabs(id)
+    );
+    ehrretrivals.pipe(
+      concatMap((response: any) => {
+        return response;
+      })
+    );
   }
 
   handleError(error: HttpErrorResponse) {
