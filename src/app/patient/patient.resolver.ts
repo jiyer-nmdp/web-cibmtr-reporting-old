@@ -81,6 +81,7 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
   getEhrDataSets(id) {
     this.spinner.start();
     const ehrretrivals = of(
+      this.patientDetailService.getPatient(id),
       this.patientDetailService.getObservationPriorityLabs(id)
     );
     ehrretrivals.pipe(
