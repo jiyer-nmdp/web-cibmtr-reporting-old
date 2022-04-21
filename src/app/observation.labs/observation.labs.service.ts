@@ -111,8 +111,10 @@ export class ObservationLabsService {
       "Observation?subject=" +
       subject +
       "/Patient/" +
-      this._localStorageService.get("patient");
-    "&_security=" + psScope + "&_total=accurate&_count=500&category=laboratory";
+      this._localStorageService.get("patient") +
+      "&_security=" +
+      psScope +
+      "&_total=accurate&_count=500&category=laboratory";
     return this.http.get(url);
   }
 }
