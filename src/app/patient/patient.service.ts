@@ -66,9 +66,6 @@ export class PatientService {
         return bundles;
       }),
       tap((success) => {
-        this.globalErrorHandler.handleError(
-          "Retrived priority labs successfully."
-        );
         this.globalErrorHandler.handleError(success);
       }),
       catchError((error) => {
@@ -78,6 +75,7 @@ export class PatientService {
     );
   }
 
+  //Ondemand API Error is handled in subscription
   getObservationLabs(identifier): Observable<any> {
     let url =
       this.utilityService.rebuild_DSTU2_STU3_Url(
@@ -85,16 +83,7 @@ export class PatientService {
       ) +
       "/Observation?category=laboratory&_count=1000&patient=" +
       identifier;
-    return this.utilityService.getPage(url, this.buildEhrHeaders()).pipe(
-      tap((success) => {
-        this.globalErrorHandler.handleError("Retrived all labs successfully.");
-        this.globalErrorHandler.handleError(success);
-      }),
-      catchError((error) => {
-        this.globalErrorHandler.handleError(error);
-        return of(null);
-      })
-    );
+    return this.utilityService.getPage(url, this.buildEhrHeaders());
   }
 
   buildEhrHeaders() {
