@@ -81,21 +81,17 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
   //
 
   getEhrDataSets(id) {
-    this.spinner.start();
+    this.spinner.start;
     return forkJoin([
       this.patientDetailService.getPatient(id),
       this.patientDetailService.getObservationPriorityLabs(id),
-    ]);
+    ]).pipe(catchError(this.handleError));
   }
-  handleError(error: HttpErrorResponse) {
-    this.spinner.reset();
-    let errorMessage = `Unexpected Failure EPIC API \n${
-      error.status
-    } \n Message : ${error.url || error.message}. `;
 
+  handleError(error: HttpErrorResponse) {
+    let errorMessage = `Unable to process the Request : \n ${error.message} `;
     alert(errorMessage);
     console.log(errorMessage);
-    this._globalErrorHanlder.handleError(errorMessage);
     return throwError(error);
   }
 }

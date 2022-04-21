@@ -28,11 +28,9 @@ export class PatientService {
       ) +
       "/Patient/" +
       identifier;
-    return this.http
-      .get<IPatientContext>(url, {
-        headers: this.buildEhrHeaders(),
-      })
-      .pipe(catchError(this.handleError));
+    return this.http.get<IPatientContext>(url, {
+      headers: this.buildEhrHeaders(),
+    });
   }
 
   getObservationPriorityLabs(identifier): Observable<IPatientContext> {
@@ -239,12 +237,5 @@ export class PatientService {
         .map((i) => i.valueCoding && i.valueCoding.code)
         .join()
     );
-  }
-
-  handleError(error: HttpErrorResponse) {
-    let errorMessage = `Unable to process request for \nURL : ${error.url}.  \nStatus: ${error.status}. \nStatusText: ${error.statusText}`;
-    alert(errorMessage);
-    this.globalErrorHandler.handleError(errorMessage);
-    return throwError(errorMessage);
   }
 }
