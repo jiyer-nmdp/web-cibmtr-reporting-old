@@ -120,12 +120,17 @@ export class ObservationLabsComponent implements OnInit {
               if (savedEntries && savedEntries.length > 0) {
                 // Case II - The record has been submitted and there were no updates
                 // we cannot submit these records unless there is a change in data.
-                // sse stands for submitted saved entry
+                // sse stands for submitted  saved entry
+
                 let sse = savedEntries.filter((savedEntry) => {
+                  const created_id =
+                    savedEntry.resource.identifier[0].value.match(
+                      new RegExp("/Observation/(.*)")
+                    )[1];
+
                   return (
                     savedEntry.resource.identifier &&
-                    observationEntry.fullUrl ===
-                      savedEntry.resource.identifier[0].value &&
+                    observationEntry.resource.id === created_id &&
                     observationEntry.resource.issued ===
                       savedEntry.resource.issued
                   );
@@ -133,10 +138,13 @@ export class ObservationLabsComponent implements OnInit {
 
                 // use - updated saved entry
                 let use = savedEntries.filter((savedEntry) => {
+                  const updated_id =
+                    savedEntry.resource.identifier[0].value.match(
+                      new RegExp("/Observation/(.*)")
+                    )[1];
                   return (
                     savedEntry.resource.identifier &&
-                    observationEntry.fullUrl ===
-                      savedEntry.resource.identifier[0].value &&
+                    observationEntry.resource.id === updated_id &&
                     observationEntry.resource.issued !=
                       savedEntry.resource.issued
                   );

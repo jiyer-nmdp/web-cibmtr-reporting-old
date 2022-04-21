@@ -78,19 +78,15 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
     }
   }
 
+  //
+
   getEhrDataSets(id) {
     this.spinner.start();
-    const ehrretrivals = of(
+    return forkJoin([
       this.patientDetailService.getPatient(id),
-      this.patientDetailService.getObservationPriorityLabs(id)
-    );
-    ehrretrivals.pipe(
-      concatMap((response: any) => {
-        return response;
-      })
-    );
+      this.patientDetailService.getObservationPriorityLabs(id),
+    ]);
   }
-
   handleError(error: HttpErrorResponse) {
     this.spinner.reset();
     let errorMessage = `Unexpected Failure EPIC API \n${
