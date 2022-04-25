@@ -106,17 +106,27 @@ export class ObservationLabsComponent implements OnInit {
       )
       .subscribe(
         (savedEntries) => {
+          console.log("*****1*****");
           let entries = this.categoryData;
           if (entries && entries.length > 0) {
-            // filtering the entries to only Observations
             let observationEntries = entries.filter(function (item) {
               return item.resource.resourceType === "Observation";
             });
 
+            console.log(
+              "saved entry : ",
+              savedEntries[0].resource.valueQuantity.value
+            );
+
             for (let j = 0; j < observationEntries.length; j++) {
               let observationEntry = observationEntries[j];
-              // Case I - The record has not been submitted
-              observationEntry.state = "bold";
+
+              // Case I - Default state the record has not been submitted
+              if (!observationEntry.state) {
+                observationEntry.state = "bold";
+                observationEntry.selected = false;
+              }
+
               if (savedEntries && savedEntries.length > 0) {
                 // Case II - The record has been submitted and there were no updates
                 // we cannot submit these records unless there is a change in data.
@@ -151,12 +161,14 @@ export class ObservationLabsComponent implements OnInit {
                 });
 
                 if (sse.length > 0) {
+                  console.log("sse ", sse[0].resource.valueQuantity.value);
                   observationEntry.selected = true;
                   observationEntry.state = "lighter";
                   observationEntry.resource.id = sse[0].resource.id;
                 }
                 // Case III - The record has been submitted and there were updates made after
                 else if (use.length > 0) {
+                  console.log("use ", use[0].resource.valueQuantity.value);
                   observationEntry.state = "normal";
                   observationEntry.resource.id = use[0].resource.id;
                 }
@@ -164,6 +176,7 @@ export class ObservationLabsComponent implements OnInit {
             }
           }
           this._gEH.handleError(savedEntries);
+          console.log("*****2*****");
         },
         (error) => {
           console.log(
