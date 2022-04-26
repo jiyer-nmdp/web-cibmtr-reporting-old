@@ -114,7 +114,7 @@ export class ObservationLabsService {
       this._localStorageService.get("patient") +
       "&_security=" +
       psScope +
-      "&_total=accurate&_count=500&category=laboratory";
+      "&_total=accurate&_count=10&category=laboratory";
     return this.http.get(url);
   }
 }
