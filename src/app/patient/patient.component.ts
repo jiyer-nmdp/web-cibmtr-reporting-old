@@ -63,7 +63,7 @@ export class PatientComponent implements OnInit {
   ngOnInit() {
     this.determineModal()
       .then((cibmtrCenters) => {
-        if (cibmtrCenters && cibmtrCenters.length > 1) {
+        if (cibmtrCenters?.length > 1) {
           this.bsModalRef = this.modalService.show(DialogComponent, {
             initialState: { cibmtrCenters },
             ignoreBackdropClick: true,

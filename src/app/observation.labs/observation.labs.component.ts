@@ -107,7 +107,7 @@ export class ObservationLabsComponent implements OnInit {
       .subscribe(
         (savedEntries) => {
           let entries = this.categoryData;
-          if (entries && entries.length > 0) {
+          if (entries?.length > 0) {
             //Filters Operationoutcome entries
             let observationEntries = entries.filter(function (item) {
               return item.resource.resourceType === "Observation";
@@ -122,7 +122,7 @@ export class ObservationLabsComponent implements OnInit {
                 observationEntry.selected = false;
               }
 
-              if (savedEntries && savedEntries.length > 0) {
+              if (savedEntries?.length > 0) {
                 // Case II - The record has been submitted and there were no updates
                 // we cannot submit these records unless there is a change in data.
                 // sse stands for submitted  saved entry

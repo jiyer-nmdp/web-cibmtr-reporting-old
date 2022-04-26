@@ -13,7 +13,7 @@ import { IIdentifiers } from "../model/identifiers";
 import { HttpHeaders } from "@angular/common/http";
 import { HttpClient } from "@angular/common/http";
 import { HttpErrorResponse } from "@angular/common/http";
-import { map, mergeMap, catchError, concatMap } from "rxjs/operators";
+import { map, mergeMap, catchError } from "rxjs/operators";
 import { SpinnerService } from "../spinner/spinner.service";
 import { GlobalErrorHandler } from "../global-error-handler";
 import { UtilityService } from "../shared/service/utility.service";
@@ -63,7 +63,7 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
                 return id.value;
               }
             });
-            if (stu3_id && stu3_id.length > 0) {
+            if (stu3_id?.length > 0) {
               return stu3_id[0].value;
             } else {
               alert(
@@ -78,10 +78,19 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
     }
   }
 
-  //
-
   getEhrDataSets(id) {
     this.spinner.start;
+    // return this.patientDetailService
+    //   .getPatient(id)
+    //   .pipe(
+    //     tap((patient) => console.log("First result", patient)),
+    //     concatMap(() =>
+    //       this.patientDetailService.getObservationPriorityLabs(id)
+    //     ),
+    //     tap((observation) => console.log("Second result", observation))
+    //   )
+    //   .pipe(catchError(this.handleError));
+
     return forkJoin([
       this.patientDetailService.getPatient(id),
       this.patientDetailService.getObservationPriorityLabs(id),
