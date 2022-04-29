@@ -65,7 +65,8 @@ export class OrganizationService {
       if (recentOrgItem[0]?.value !== this.localStorageService.get("iss")) {
         const invalid_issuer = `The data submission was received from an unknown endpoint and cannot be processed: \n Issuer received : ${this.localStorageService.get(
           "iss"
-        )}`;
+        )} \n \n Please open a ticket through NMDP ServiceNow and include the url listed above so that this can be addressed
+        `;
 
         alert(invalid_issuer);
         throw Error(invalid_issuer);
