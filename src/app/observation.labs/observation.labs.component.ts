@@ -82,6 +82,7 @@ export class ObservationLabsComponent implements OnInit {
   }
 
   getCibmtrLabs(url) {
+    this.spinner.start();
     this.observationlabsService
       .getCibmtrObservationsLabs(url, this.selectedOrg.value)
       .pipe(
@@ -106,6 +107,7 @@ export class ObservationLabsComponent implements OnInit {
       )
       .subscribe(
         (savedEntries) => {
+          this.spinner.end();
           let entries = this.categoryData;
           if (entries?.length > 0) {
             //Filters Operationoutcome entries
@@ -171,6 +173,7 @@ export class ObservationLabsComponent implements OnInit {
           this._gEH.handleError(savedEntries);
         },
         (error) => {
+          this.spinner.end();
           console.log(
             "error occurred while fetching saved observations",
             error
