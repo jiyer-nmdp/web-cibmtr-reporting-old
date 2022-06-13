@@ -34,70 +34,69 @@ import { SidenavService } from "../sidenav.service";
 export const isMock = environment.mock;
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    routingComponents,
-    DialogComponent,
-    PatientDetailComponent,
-    DefaultComponent,
-    ObservationLabsComponent,
-    ErrorComponent,
-    InfoComponent,
-    SpinnerComponent,
-    MessageTrayComponent,
-    SidebarbuttonComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    ModalModule.forRoot(),
-    FormsModule,
-    NmdpWidgetModule.forRoot(environment.okta_setup),
-    LocalStorageModule.forRoot({
-      prefix: "cibmtr",
-      storageType: "localStorage",
-    }),
-    BrowserAnimationsModule,
-    MaterialModule,
-  ],
-  entryComponents: [DialogComponent],
-  providers: [
-    PatientResolver,
-    PatientService,
-    ObservationLabsService,
-    AuthorizationService,
-    AppInitService,
-    FhirService,
-    SpinnerService,
-    Validator,
-    SidenavService,
-    {
-      provide: APP_INITIALIZER,
-      useFactory: appInitFactory,
-      deps: [AppInitService],
-      multi: true,
-    },
-    {
-      provide: ErrorHandler,
-      useClass: GlobalErrorHandler,
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpErrorInterceptor,
-      multi: true,
-    },
-    ...(isMock
-      ? [
-          {
-            provide: HTTP_INTERCEPTORS,
-            useClass: HttpMockRequestInterceptor,
+    declarations: [
+        AppComponent,
+        routingComponents,
+        DialogComponent,
+        PatientDetailComponent,
+        DefaultComponent,
+        ObservationLabsComponent,
+        ErrorComponent,
+        InfoComponent,
+        SpinnerComponent,
+        MessageTrayComponent,
+        SidebarbuttonComponent,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        ModalModule.forRoot(),
+        FormsModule,
+        NmdpWidgetModule.forRoot(environment.okta_setup),
+        LocalStorageModule.forRoot({
+            prefix: "cibmtr",
+            storageType: "localStorage",
+        }),
+        BrowserAnimationsModule,
+        MaterialModule,
+    ],
+    providers: [
+        PatientResolver,
+        PatientService,
+        ObservationLabsService,
+        AuthorizationService,
+        AppInitService,
+        FhirService,
+        SpinnerService,
+        Validator,
+        SidenavService,
+        {
+            provide: APP_INITIALIZER,
+            useFactory: appInitFactory,
+            deps: [AppInitService],
             multi: true,
-          },
-        ]
-      : []),
-  ],
-  bootstrap: [AppComponent],
+        },
+        {
+            provide: ErrorHandler,
+            useClass: GlobalErrorHandler,
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: HttpErrorInterceptor,
+            multi: true,
+        },
+        ...(isMock
+            ? [
+                {
+                    provide: HTTP_INTERCEPTORS,
+                    useClass: HttpMockRequestInterceptor,
+                    multi: true,
+                },
+            ]
+            : []),
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {}
 
