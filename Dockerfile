@@ -3,7 +3,7 @@
 # Stage 1
 
 #base image
-FROM node:12.7-alpine AS builder
+FROM node:16.10-alpine AS builder
 
 USER root
 
