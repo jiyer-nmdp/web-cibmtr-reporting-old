@@ -149,6 +149,9 @@
             "production": {
               "browserTarget": "CibmtrEHRApp:build:production"
             },
+            "development-es5": {
+              "browserTarget": "handling-ie:build:development-es5"
+            },
             "mock": {
               "browserTarget": "CibmtrEHRApp:build:mock"
             }
