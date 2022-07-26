@@ -5,17 +5,17 @@
 import { renderFlagCheckIfStmt } from "@angular/compiler/src/render3/view/template";
 
 export const environment = {
-  production: false,
+  production: true,
   mock: false,
   ehr_client_id: window["env"]["ehr_client_id"] || "ehr_client_id",
   okta_setup: {
     clientId: window["env"]["okta_client_id"],
     scopes: [window["env"]["okta_scopes"]],
-    environment : window["env"]["okta_env_name"]
+    environment: window["env"]["okta_env_name"],
   },
   ehr_redirect_url: window["env"]["ehr_redirect_url"],
   cibmtr_fhir_r3_url: window["env"]["cibmtr_fhir_r3_url"],
-  loinc_codes:[window["env"]["loinc_codes"]]
+  loinc_codes: [window["env"]["loinc_codes"]]
 };
 
 /*
@@ -25,4 +25,4 @@ export const environment = {
  * This import should be commented out in production mode because it will have a negative impact
  * on performance if an error is thrown.
  */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+// import 'zone.js/plugins/zone-error';  // Included with Angular CLI.

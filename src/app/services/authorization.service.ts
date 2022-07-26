@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { AppConfig } from "../app.config";
+import { AppConfig } from "../shared/constants/app.config";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { HttpErrorResponse } from "@angular/common/http";
 
@@ -27,10 +27,11 @@ export class AuthorizationService {
     return null;
   }
 
-  codeToBearerToken(tokenurl, code, state, validState) {
-    if(!validState || validState !== state) {
+  codeToBearerToken(tokenurl, code, state, validState)  {
+    if (!validState || validState !== state) {
       return Promise.reject(new Error("Invalid or missing state."));
     }
+
     //HTTP Post request  get Bearer token
     let body =
       "grant_type=authorization_code" +

@@ -1,0 +1,78 @@
+.CIBMTR-Reporting-label {
+  font-family: Cambria;
+  font-size: 25px;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #9f9f9f;
+  height: auto;
+}
+
+.version {
+  width: 61px;
+  height: 16px;
+  font-family: AvenirNext;
+  font-size: 12px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #9f9f9f;
+  text-align: center;
+}
+
+.btm-logo {
+  width: 20%;
+  height: auto;
+  margin: 20px 30px 25px 0px;
+}
+.navbar-brand {
+  margin-top: 20px;
+}
+
+.navbarwidth {
+  width: 100vw;
+}
+
+.example-container {
+  display: flex;
+  height: 100vh;
+  align-content: center;
+  justify-content: center;
+  //flex: 1;
+   overflow: auto;
+   //scrollbar-width: none;
+   //-ms-overflow-style: none;
+}
+
+.example-container-sidenav {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  overflow: auto;
+  //scrollbar-width: none;
+  //-ms-overflow-style: none;
+}
+
+.sidebarcontainer {
+  padding: 2px;
+  width: 50vw;
+  height: 100vh;
+}
+
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: auto;
+}
+
+*::-webkit-scrollbar {
+  overflow: auto;
+  visibility: hidden;
+}
+
+.mat-drawer-container {
+  background: rgb(24,102,151,.02) !important;
+}

@@ -9,6 +9,5 @@
   window["env"]["okta_client_id"] = "okta_client_id";
   window["env"]["okta_scopes"] = "okta_scopes";
   window["env"]["okta_env_name"] = "okta_env_name";
-  window["env"]["loinc_codes"] = "loinc_codes"
-
+  window["env"]["loinc_codes"] = "loinc_codes";
 })(this);

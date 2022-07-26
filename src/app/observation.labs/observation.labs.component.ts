@@ -1,13 +1,16 @@
 import { Component, OnInit } from "@angular/core";
 import { Patient } from "../model/patient.";
 import { ObservationLabsService } from "./observation.labs.service";
-import { UtilityService } from "../utility.service";
-import { mergeMap } from "rxjs/operators";
-import { EMPTY, from } from "rxjs";
-import { AppConfig } from "../app.config";
-import { CustomHttpClient } from "../client/custom.http.client";
+import { UtilityService } from "../shared/service/utility.service";
+import { mergeMap, expand, map, reduce, finalize } from "rxjs/operators";
+import { EMPTY, forkJoin, from } from "rxjs";
+import { AppConfig } from "../shared/constants/app.config";
+import { HttpClient } from "@angular/common/http";
 import { SpinnerService } from "../spinner/spinner.service";
 import { ActivatedRoute } from "@angular/router";
+import { Sort } from "@angular/material/sort";
+import { GlobalErrorHandler } from "../global-error-handler";
+import { LocalStorageService } from "angular-2-local-storage";
 
 @Component({
   selector: "app-observation.labs",
@@ -34,32 +37,56 @@ export class ObservationLabsComponent implements OnInit {
   isAlldisabled: boolean;
   totalSuccessCount: number;
   totalFailCount: number;
+  categoryData: any = [];
+  selectedOrg: any;
 
   constructor(
-    private http: CustomHttpClient,
+    private http: HttpClient,
     public observationlabsService: ObservationLabsService,
     private utility: UtilityService,
     private spinner: SpinnerService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private _localStorageService: LocalStorageService,
+    private _gEH: GlobalErrorHandler
   ) {
-    console.log(route);
     let data = utility.data;
-    this.labs = utility.bundleObservations(data.labs).entry;
-    this.priority = utility.bundleObservations(data.priorityLabs).entry;
-    this.psScope = data.psScope;
+
+    if (data.priorityLabs != "null") {
+      this.priority = this.utility.bundleObservations(data.priorityLabs).entry;
+    }
+
+    if (data.labs) {
+      this.labs = this.utility.bundleObservations(data.labs).entry;
+    }
+
+    this.selectedOrg = data.selectedOrg;
+    this.psScope = this.selectedOrg.value;
   }
 
   ngOnInit() {
-    const subj = this.getCategoryData()[0].resource.subject.reference;
-    const psScope = this.psScope;
-
+    this.categoryData = this.getCategoryData();
+    this.sortHeader({ active: "time", direction: "desc" });
     this.now = new Date();
 
-    if (this.getCategoryData() && this.getCategoryData().length > 0) {
-      this.spinner.start();
-      this.observationlabsService
-        .getCibmtrObservationsLabs(subj, psScope)
-        .expand((response) => {
+    const telecomUrlItems = this.selectedOrg.telecomUrlItems;
+
+    this.spinner.start();
+
+    if (telecomUrlItems && telecomUrlItems.length > 0) {
+      let urls = telecomUrlItems.map((item) => item.value);
+      forkJoin(urls.map((url) => this.getCibmtrLabs(url)));
+    } else {
+      this.getCibmtrLabs(this._localStorageService.get("iss"));
+    }
+    this.spinner.end();
+  }
+
+  getCibmtrLabs(url) {
+    this.spinner.start();
+    this.observationlabsService
+      .getCibmtrObservationsLabs(url, this.selectedOrg.value)
+      .pipe(
+        expand((response) => {
           let next =
             response.link && response.link.find((l) => l.relation === "next");
           if (next) {
@@ -69,76 +96,91 @@ export class ObservationLabsComponent implements OnInit {
           } else {
             return EMPTY;
           }
-        })
-        .map((response) => {
+        }),
+        map((response: any) => {
           if (response.entry) {
             return response.entry.flatMap((array) => array);
           }
           return [];
-        })
-        .reduce((acc, x) => acc.concat(x), [])
-        .subscribe(
-          (savedEntries) => {
-            this.spinner.end();
-            let entries = this.getCategoryData();
-            if (entries && entries.length > 0) {
-              // filtering the entries to only Observations
-              let observationEntries = entries.filter(function (item) {
-                return item.resource.resourceType === "Observation";
-              });
+        }),
+        reduce((acc, x) => acc.concat(x), [])
+      )
+      .subscribe(
+        (savedEntries) => {
+          this.spinner.end();
+          let entries = this.categoryData;
+          if (entries?.length > 0) {
+            //Filters Operationoutcome entries
+            let observationEntries = entries.filter(function (item) {
+              return item.resource.resourceType === "Observation";
+            });
 
-              for (let j = 0; j < observationEntries.length; j++) {
-                let observationEntry = observationEntries[j];
-                // Case I - The record has not been submitted
+            for (let j = 0; j < observationEntries.length; j++) {
+              let observationEntry = observationEntries[j];
+
+              // Case I - Default state the record has not been submitted
+              if (!observationEntry.state) {
                 observationEntry.state = "bold";
-                if (savedEntries && savedEntries.length > 0) {
-                  // Case II - The record has been submitted and there were no updates
-                  // we cannot submit these records unless there is a change in data.
-                  // sse stands for submitted saved entry
-                  let sse = savedEntries.filter((savedEntry) => {
-                    return (
-                      savedEntry.resource.identifier &&
-                      observationEntry.fullUrl ===
-                        savedEntry.resource.identifier[0].value &&
-                      observationEntry.resource.issued ===
-                        savedEntry.resource.issued
-                    );
-                  });
+                observationEntry.selected = false;
+              }
 
-                  // use - updated saved entry
-                  let use = savedEntries.filter((savedEntry) => {
-                    return (
-                      savedEntry.resource.identifier &&
-                      observationEntry.fullUrl ===
-                        savedEntry.resource.identifier[0].value &&
-                      observationEntry.resource.issued !=
-                        savedEntry.resource.issued
-                    );
-                  });
+              if (savedEntries?.length > 0) {
+                // Case II - The record has been submitted and there were no updates
+                // we cannot submit these records unless there is a change in data.
+                // sse stands for submitted  saved entry
 
-                  if (sse.length > 0) {
-                    observationEntry.selected = true;
-                    observationEntry.state = "lighter";
-                    observationEntry.resource.id = sse[0].resource.id;
-                  }
-                  // Case III - The record has been submitted and there were updates made after
-                  else if (use.length > 0) {
-                    observationEntry.state = "normal";
-                    observationEntry.resource.id = use[0].resource.id;
-                  }
+                let sse = savedEntries.filter((savedEntry) => {
+                  const created_id =
+                    savedEntry.resource.identifier[0].value.match(
+                      new RegExp("/Observation/(.*)")
+                    )[1];
+
+                  return (
+                    savedEntry.resource.identifier &&
+                    observationEntry.resource.id === created_id &&
+                    observationEntry.resource.issued ===
+                      savedEntry.resource.issued
+                  );
+                });
+
+                // use - updated saved entry
+                let use = savedEntries.filter((savedEntry) => {
+                  const updated_id =
+                    savedEntry.resource.identifier[0].value.match(
+                      new RegExp("/Observation/(.*)")
+                    )[1];
+                  return (
+                    savedEntry.resource.identifier &&
+                    observationEntry.resource.id === updated_id &&
+                    observationEntry.resource.issued !=
+                      savedEntry.resource.issued
+                  );
+                });
+
+                if (sse.length > 0) {
+                  observationEntry.selected = true;
+                  observationEntry.state = "lighter";
+                  observationEntry.resource.id = sse[0].resource.id;
+                }
+                // Case III - The record has been submitted and there were updates made after
+                else if (use.length > 0) {
+                  observationEntry.state = "normal";
+                  observationEntry.resource.id = use[0].resource.id;
                 }
               }
             }
-          },
-          (error) => {
-            this.spinner.reset();
-            console.log(
-              "error occurred while fetching saved observations",
-              error
-            );
           }
-        );
-    }
+          this._gEH.handleError(savedEntries);
+        },
+        (error) => {
+          this.spinner.end();
+          console.log(
+            "error occurred while fetching saved observations",
+            error
+          );
+          this._gEH.handleError(error);
+        }
+      );
   }
 
   getNodeValue(value) {
@@ -194,9 +236,7 @@ export class ObservationLabsComponent implements OnInit {
 
     // New Records
     this.selectedNewEntries.push(
-      this.getCategoryData().filter(
-        (m) => m.selected === true && m.state === "bold"
-      )
+      this.categoryData.filter((m) => m.selected === true && m.state === "bold")
     );
 
     this.selectedNewResources = Array.prototype.concat.apply(
@@ -206,7 +246,7 @@ export class ObservationLabsComponent implements OnInit {
 
     // Updated Records
     this.selectedUpdatedEntries.push(
-      this.getCategoryData().filter(
+      this.categoryData.filter(
         (m) => m.selected === true && m.state === "normal"
       )
     );
@@ -234,16 +274,16 @@ export class ObservationLabsComponent implements OnInit {
         .pipe(
           mergeMap((bundle) =>
             this.observationlabsService.getBundleObservable(bundle)
-          )
+          ),
+          finalize(() => {
+            this.spinner.end();
+            this.totalSuccessCount = _successCount;
+            this.totalFailCount = totalEntries.length - _successCount;
+            this.checkForSelectAll();
+          })
         )
-        .finally(() => {
-          this.spinner.end();
-          this.totalSuccessCount = _successCount;
-          this.totalFailCount = totalEntries.length - _successCount;
-          this.checkForSelectAll();
-        })
         .subscribe(
-          (response) => {
+          (response: any) => {
             response.entry &&
               response.entry.forEach((entry) => {
                 let idValue = entry.resource.identifier[0].value;
@@ -253,6 +293,7 @@ export class ObservationLabsComponent implements OnInit {
                 matchedEntry.state = "lighter";
                 _successCount++;
               });
+            this._gEH.handleError(response);
           },
           (errorBundle) => {
             this.spinner.reset();
@@ -260,23 +301,22 @@ export class ObservationLabsComponent implements OnInit {
               "error occurred while fetching saved observations",
               errorBundle
             );
+            this._gEH.handleError(errorBundle);
           }
         );
     }
   }
 
   checkForSelectAll() {
-    this.isAllSelected = this.getCategoryData().every(
-      (entry) => entry.selected
-    );
-    this.isAlldisabled = this.getCategoryData().every(
+    this.isAllSelected = this.categoryData.every((entry) => entry.selected);
+    this.isAlldisabled = this.categoryData.every(
       (entry) => entry.selected && entry.state === "lighter"
     );
   }
 
   selectAll() {
     let toggleStatus = this.isAllSelected;
-    this.getCategoryData().forEach((entry) => {
+    this.categoryData.forEach((entry) => {
       if (entry.state != "lighter") {
         entry.selected = toggleStatus;
       }
@@ -284,13 +324,13 @@ export class ObservationLabsComponent implements OnInit {
   }
 
   toggleOption = function () {
-    this.isAllSelected = this.getCategoryData().every(function (entry) {
+    this.isAllSelected = this.categoryData.every(function (entry) {
       return entry.selected;
     });
   };
 
   toggleAllOption = function () {
-    this.isAlldisabled = this.getCategoryData().every(function (entry) {
+    this.isAlldisabled = this.categoryData.every(function (entry) {
       return entry.disabled;
     });
   };
@@ -306,5 +346,41 @@ export class ObservationLabsComponent implements OnInit {
       return this.priority;
     }
     return this.labs;
+  }
+
+  sortHeader(event: Sort) {
+    const isAsc = event.direction === "asc";
+
+    if (!event.active || event.direction === "") {
+      return this.categoryData;
+    }
+
+    this.categoryData.sort((a, b) => {
+      switch (event.active) {
+        case "time":
+          return this.compare(
+            a.resource.effectiveDateTime,
+            b.resource.effectiveDateTime,
+            isAsc
+          );
+        case "name":
+          return this.compare(
+            a.resource.code?.text,
+            b.resource.code?.text,
+            isAsc
+          );
+
+        default:
+          return 0;
+      }
+    });
+  }
+
+  compare(
+    a: number | string | Date,
+    b: number | string | Date,
+    isAsc: boolean
+  ) {
+    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
 }
