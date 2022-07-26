@@ -1,11 +1,11 @@
 import { Component, OnInit } from "@angular/core";
-import { Subject } from "rxjs/Subject";
+import { Subject } from "rxjs";
 import { BsModalRef } from "ngx-bootstrap/modal";
 
 @Component({
   selector: "app-dialog",
   templateUrl: "./dialog.component.html",
-  styleUrls: ["./dialog.component.scss"]
+  styleUrls: ["./dialog.component.scss"],
 })
 export class DialogComponent implements OnInit {
   onClose: Subject<String>;
@@ -21,12 +21,12 @@ export class DialogComponent implements OnInit {
   }
 
   selectRow(item) {
-    this.cibmtrCenters.forEach(c => {
+    this.cibmtrCenters.forEach((c) => {
       if (c.value === item.value) {
         this.currentItem = item;
       }
     });
-    this.onClose.next("rowSelected"); 
+    this.onClose.next("rowSelected");
   }
 
   public onContinue(): void {

@@ -3,8 +3,9 @@
 # Stage 1
 
 #base image
-FROM node:11-alpine AS builder
-#FROM dtr.nmdp.org:4444/nmdp/nmdp-node:12-stretch-slim.nmdp.latest AS builder
+FROM node:16.10-alpine AS builder
+
+USER root
 
 # set working directory
 WORKDIR /usr/src/app
@@ -19,7 +20,7 @@ EXPOSE 80
 COPY .npmrc /usr/src/app/
 
 # Install Angular Cli globally
-RUN npm install -g @angular/cli@7.3.4
+RUN npm install -g @angular/cli@13.3.7
 
 # Install Node Modules
 RUN npm install
@@ -33,7 +34,7 @@ ARG build_environment
 RUN npm run build:$build_environment
 
 # Stage 2
-FROM dockerhub.nmdp.org:8443/nginx:latest
+FROM nginx:1.20-alpine
 
 # Copy our default nginx conf
 COPY nginx/default.conf /etc/nginx/conf.d/

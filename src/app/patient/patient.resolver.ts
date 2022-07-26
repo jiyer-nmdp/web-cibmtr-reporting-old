@@ -5,18 +5,18 @@ import {
   Resolve,
 } from "@angular/router";
 import { BsModalRef } from "ngx-bootstrap/modal";
-import { forkJoin, throwError, Observable } from "rxjs";
+import { forkJoin, throwError, Observable, of } from "rxjs";
 import { IPatientContext } from "../model/patient.";
 import { PatientService } from "./patient.service";
 import { LocalStorageService } from "angular-2-local-storage";
 import { IIdentifiers } from "../model/identifiers";
 import { HttpHeaders } from "@angular/common/http";
-import { NmdpWidget } from "@nmdp/nmdp-login/Angular/service/nmdp.widget";
 import { HttpClient } from "@angular/common/http";
 import { HttpErrorResponse } from "@angular/common/http";
 import { map, mergeMap, catchError } from "rxjs/operators";
-import { UtilityService } from "../utility.service";
 import { SpinnerService } from "../spinner/spinner.service";
+import { GlobalErrorHandler } from "../global-error-handler";
+import { UtilityService } from "../shared/service/utility.service";
 
 @Injectable()
 export class PatientResolver implements Resolve<IPatientContext[]> {
@@ -26,10 +26,11 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
     private _localStorageService: LocalStorageService,
     private http: HttpClient,
     private spinner: SpinnerService,
-    private utilityService: UtilityService
+    private utilityService: UtilityService,
+    private _globalErrorHanlder: GlobalErrorHandler
   ) {}
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): any {
+  resolve(): any {
     //Commented the below code as EPIC STU3 identifiers
 
     //Post call to get the STU3 patient id by retreving the patient identifier from local storage
@@ -62,7 +63,7 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
                 return id.value;
               }
             });
-            if (stu3_id && stu3_id.length > 0) {
+            if (stu3_id?.length > 0) {
               return stu3_id[0].value;
             } else {
               alert(
@@ -70,41 +71,36 @@ export class PatientResolver implements Resolve<IPatientContext[]> {
               );
             }
           }),
-          mergeMap((stu3_id) => {
-            this.spinner.start();
-            return forkJoin([
-              this.patientDetailService.getPatient(stu3_id),
-              this.patientDetailService.getObservation(stu3_id),
-              this.patientDetailService.getObservationVitalSigns(stu3_id),
-              this.patientDetailService.getObservationLabs(stu3_id),
-              this.patientDetailService.getObservationCoreChar(stu3_id),
-              this.patientDetailService.getObservationPriorityLabs(stu3_id),
-            ]);
-          })
+          mergeMap(async (stu3_id) => this.getEhrDataSets(stu3_id))
         );
     } else {
-      let id = this._localStorageService.get("patient");
-      this.spinner.start();
-      return forkJoin([
-        this.patientDetailService.getPatient(id),
-        this.patientDetailService.getObservation(id),
-        this.patientDetailService.getObservationVitalSigns(id),
-        this.patientDetailService.getObservationLabs(id),
-        this.patientDetailService.getObservationCoreChar(id),
-        this.patientDetailService.getObservationPriorityLabs(id),
-      ]);
+      return this.getEhrDataSets(this._localStorageService.get("patient"));
     }
   }
 
-  handleError(error: HttpErrorResponse) {
-    this.spinner.reset();
-    let errorMessage = `Unexpected Failure Patient.Read API \n${
-      error.status
-    } \n Message : ${error.url || error.message}. `;
+  getEhrDataSets(id) {
+    this.spinner.start;
+    // return this.patientDetailService
+    //   .getPatient(id)
+    //   .pipe(
+    //     tap((patient) => console.log("First result", patient)),
+    //     concatMap(() =>
+    //       this.patientDetailService.getObservationPriorityLabs(id)
+    //     ),
+    //     tap((observation) => console.log("Second result", observation))
+    //   )
+    //   .pipe(catchError(this.handleError));
 
+    return forkJoin([
+      this.patientDetailService.getPatient(id),
+      this.patientDetailService.getObservationPriorityLabs(id),
+    ]).pipe(catchError(this.handleError));
+  }
+
+  handleError(error: HttpErrorResponse) {
+    let errorMessage = `Unable to process the Request : \n ${error.message} `;
     alert(errorMessage);
     console.log(errorMessage);
-
     return throwError(error);
   }
 }

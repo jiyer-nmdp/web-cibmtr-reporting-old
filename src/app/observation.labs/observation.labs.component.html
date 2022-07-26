@@ -1,24 +1,33 @@
 <div class="container">
   <nav class="navbar navbar-expand-sm fixed-top navbar-light bg-light">
-    <alert type="info" *ngIf="totalSuccessCount > 0 || totalFailCount > 0">
+    <div
+      class="alert alert-info"
+      *ngIf="totalSuccessCount > 0 || totalFailCount > 0"
+    >
       <strong *ngIf="totalSuccessCount > 0"
         >{{ totalSuccessCount }} Observation(s) submitted Successfully.
       </strong>
       <strong *ngIf="totalFailCount > 0"
         >{{ totalFailCount }} Observation(s) failed to Submit
       </strong>
-    </alert>
+    </div>
     <div class="col-md-6 date-label">
       <b>Date Retrieved </b> : {{ now | date: "yyyy-MM-dd HH:mm" }}
     </div>
   </nav>
+
   <div class="fixed_header">
-    <table class="table table-striped">
+    <table
+      matSort
+      (matSortChange)="sortHeader($event)"
+      matSortDisableClear="true"
+      class="table table-striped"
+    >
       <thead>
         <tr>
-          <th>Name</th>
+          <th mat-sort-header="name">Name</th>
           <th>Value</th>
-          <th>Effective Time</th>
+          <th mat-sort-header="time">Effective Time</th>
           <th>
             <input
               type="checkbox"
@@ -30,10 +39,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr
-          *ngFor="let entry of getCategoryData()"
-          [style.fontWeight]="entry.state"
-        >
+        <tr *ngFor="let entry of categoryData" [style.fontWeight]="entry.state">
           <td>
             {{ entry?.resource?.code?.text }}
           </td>
@@ -60,15 +66,13 @@
   </div>
 
   <div class="row top-buffer">
-    <div class="col-xs-12">
-      <button
-        type="button"
-        class="btn btn-primary pull-right"
-        (click)="submitToCibmtr()"
-        enabled
-      >
-        Submit to CIBMTR
-      </button>
-    </div>
+    <button
+      type="button"
+      class="btn btn-primary pull-right"
+      (click)="submitToCibmtr()"
+      enabled
+    >
+      Submit to CIBMTR
+    </button>
   </div>
 </div>

@@ -1,15 +1,17 @@
 import { Injectable } from "@angular/core";
-import { AppConfig } from "../app.config";
+import { AppConfig } from "../shared/constants/app.config";
 import { EMPTY, Observable } from "rxjs";
-import { CustomHttpClient } from "../client/custom.http.client";
-import { UtilityService } from "../utility.service";
-import { map } from "rxjs/operators";
+import { HttpClient } from "@angular/common/http";
+import { UtilityService } from "../shared/service/utility.service";
+import { catchError, map, retry } from "rxjs/operators";
+import { LocalStorageService } from "angular-2-local-storage";
 
 @Injectable()
 export class ObservationLabsService {
   constructor(
-    private http: CustomHttpClient,
-    private utilityService: UtilityService
+    private http: HttpClient,
+    private utilityService: UtilityService,
+    private _localStorageService: LocalStorageService
   ) {}
 
   // Below method submit new records to the cibmtr
@@ -27,11 +29,13 @@ export class ObservationLabsService {
   }
 
   getBundleObservable(bundle) {
-    return this.http
-      .post(AppConfig.cibmtr_fhir_url + "Bundle", bundle)
-      .pipe(map(() => bundle))
-      .retry(1)
-      .catch(() => EMPTY);
+    return this.http.post(AppConfig.cibmtr_fhir_url + "Bundle", bundle).pipe(
+      map(() => bundle),
+      retry(1),
+      catchError((error) => {
+        throw error;
+      })
+    );
   }
 
   // Below method submit updated records to the cibmtr
@@ -106,6 +110,8 @@ export class ObservationLabsService {
       AppConfig.cibmtr_fhir_url +
       "Observation?subject=" +
       subject +
+      "/Patient/" +
+      this._localStorageService.get("patient") +
       "&_security=" +
       psScope +
       "&_total=accurate&_count=500&category=laboratory";

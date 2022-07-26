@@ -24,12 +24,20 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.scss",
+              "node_modules/@nmdp/nmdp-login/css/okta-sign-in.min.css",
+              "node_modules/@nmdp/nmdp-login/css/nmdp-login.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.scss"
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
             ],
-            "scripts": [],
-            "es5BrowserSupport": true
+            "scripts": ["node_modules/@nmdp/nmdp-login/js/nmdp-login.js"],
+            "aot": false,
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "mock": {
@@ -49,8 +57,6 @@
               ],
               "optimization": true,
               "outputHashing": "all",
-              "sourceMap": true,
-              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
@@ -73,8 +79,6 @@
               ],
               "optimization": true,
               "outputHashing": "all",
-              "sourceMap": true,
-              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
@@ -97,8 +101,6 @@
               ],
               "optimization": true,
               "outputHashing": "all",
-              "sourceMap": true,
-              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
@@ -122,7 +124,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
@@ -136,7 +137,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -147,17 +149,11 @@
             "production": {
               "browserTarget": "CibmtrEHRApp:build:production"
             },
+            "development-es5": {
+              "browserTarget": "handling-ie:build:development-es5"
+            },
             "mock": {
               "browserTarget": "CibmtrEHRApp:build:mock"
-            },
-            "dev": {
-              "browserTarget": "CibmtrEHRApp:build:dev"
-            },
-            "qa": {
-              "browserTarget": "CibmtrEHRApp:build:qa"
-            },
-            "preprod": {
-              "browserTarget": "CibmtrEHRApp:build:preprod"
             }
           }
         },
@@ -181,13 +177,6 @@
             "scripts": [],
             "assets": ["src/favicon.ico", "src/assets"]
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
-          }
         }
       }
     },
@@ -206,13 +195,6 @@
             "production": {
               "devServerTarget": "CibmtrEHRApp:serve:production"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**"]
           }
         }
       }
